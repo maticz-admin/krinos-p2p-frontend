@@ -1,0 +1,10 @@
+[
+    {
+        "label": "dashboard",
+        "url": "/userdash"
+    },
+    {
+        "label": "wallet",
+        "url": "/wallet"
+    }
+]
