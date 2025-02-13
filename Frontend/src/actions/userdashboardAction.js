@@ -14,7 +14,6 @@ export const Getuserp2pcreateorderhooks = async (filterdata) => {
             'params': { encode: encodedata(filterdata) }
         });
         const response = decodedata(respData.data)
-        console.log('respDatarespDatarespData-----', response);
         return { status: "success", loading: false, result: response.data, count: response.count };
     } catch (err) {
         handleResp(err, 'error')

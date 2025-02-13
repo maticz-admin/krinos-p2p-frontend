@@ -12,7 +12,6 @@ export const Createp2porderhooks = async (datas, dispatch) => {
             'method': 'post',
             data: { encode: encodedata(datas) },
         });
-        console.log('decodedata(respData----', decodedata(respData.data));
         const response = decodedata(respData.data);
         return { data: response };
     }
@@ -257,7 +256,6 @@ export const updateorderstatushooks = async (datas, dispatch) => {
             'method': 'post',
             'data': {encode: encodedata(datas)}
         });
-        console.log('respData-------', respData)
         const response = decodedata(respData.data)
         return {data: response};
     }
