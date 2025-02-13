@@ -487,8 +487,10 @@ export const updateuserprofilepichooks = async (datas, dispatch) => {
     catch (err) {
         console.log("error", err);
         handleResp(err, 'error')
+        const response = decodedata(err.response.data)
         return {
             status: "failed",
+            message: response.message
         }
     }
 }
@@ -522,11 +524,11 @@ export const getpaymenttypeshook = async (datas, dispatch) => {
             'method': 'get',
             // 'params' : datas
         });
-        console.log('respDatarespData-----', respData);
         // return false;
-        respData = decodedata(respData.data);
+        const response = decodedata(respData.data);
+        console.log('respDatarespData-----', response);
 
-        return respData;
+        return  response;
     }
     catch (err) {
         console.log("error", err);

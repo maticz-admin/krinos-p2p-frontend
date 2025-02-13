@@ -98,6 +98,7 @@ export const createUserPhone = async (data) => {
 
 export const userEmailActivation = async (data) => {
   try {
+    // console.log('datadata-----', data)
     let respData = await axios({
       method: "post",
       url: `/api/confirm-mail`,
