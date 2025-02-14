@@ -93,7 +93,7 @@ $themeyellow: #aff41f;
    
 }
 
-@mixin header($bg: #090909, $linkclr: #cccccc, $active: #fff) {
+@mixin header($bg: #0a090d, $linkclr: #cccccc, $active: #fff) {
     .page_wrap {
         header {
             border-bottom: 0px solid #e3e3e3;
@@ -320,7 +320,7 @@ $themeyellow: #aff41f;
     table{ border-collapse: collapse;
      thead{
          tr{
-             background-image:linear-gradient(40deg, #7384c696 20%, #e8699175 55%, #4493497a 80%);
+            //  background-image:linear-gradient(40deg, #7384c696 20%, #e8699175 55%, #4493497a 80%);
             th{
              color: $theadclr !important;
              white-space: nowrap;
@@ -331,7 +331,7 @@ $themeyellow: #aff41f;
      }
      tbody{
          tr{
-              border: 10px solid $border !important;
+              border: 10px solid transparent !important;
               border-right: 0 !important;
               border-left: 0 !important;
               th{
@@ -346,7 +346,7 @@ $themeyellow: #aff41f;
          background-color: $rowbg !important;
          td{
              color: $rowclr ;
-             background: #80808045;
+             background: transparent;
              vertical-align: middle;
             //  white-space: nowrap;
              font-size: 12px;
@@ -500,7 +500,7 @@ $themeyellow: #aff41f;
     }
 }
 
-@mixin tablesec( $bg:#050505, $tablecolor:#0f0f0f, $table1color:#050505) {
+@mixin tablesec( $bg:#0a090d, $tablecolor:#0f0f0f, $table1color:#050505) {
     background: $bg;
     z-index: 99;
     position: relative;
@@ -509,7 +509,7 @@ $themeyellow: #aff41f;
     .tradetab {
         border: 1px solid #F5F5F5;
         border-radius: 20px;
-        background: $table1color;
+        background: transparent;
         position: relative;
         margin-top: 40px;
 
@@ -541,6 +541,7 @@ $themeyellow: #aff41f;
             right: -40px;
             transform: rotate(-90deg);
             top: -56px;
+            display: none;
         }
 
         .bannerconnect {
@@ -552,6 +553,7 @@ $themeyellow: #aff41f;
 
         .tablebg {
             position: absolute;
+            display: none !important;
             aspect-ratio: 1/1;
             width: 60%;
             border-radius: 50%;
@@ -568,6 +570,7 @@ $themeyellow: #aff41f;
 
             img {
                 object-fit: contain;
+                display: none;
                 width: 434px;
                 margin-top: -197px;
                 aspect-ratio: 1/2;
@@ -625,6 +628,7 @@ $themeyellow: #aff41f;
             .tradinglist {
                 height: 192px;
                 overflow-y: auto;
+                scrollbar-width: none;
 
                 .tradelists {
                     margin-bottom: 20px;

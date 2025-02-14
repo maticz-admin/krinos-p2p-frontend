@@ -13,7 +13,8 @@ a{
     text-decoration: none;
 }
 .aqua {
-    color: #0AD2B9 !important;
+    // color: #0AD2B9 !important;
+    color: #aff41f !important;
 }
 
 .yellow {
@@ -162,9 +163,9 @@ a{
 
 .graybtn {
 
-    background: #2E2E2ECC;
+    background: #121116;
     color: #fff;
-    border: 1px solid #70707099;
+    border: 1px solid transparent;
     padding: 13px 63px;
     border-radius: 12px;
     a{
@@ -249,13 +250,13 @@ a{
         background: rgb(167 155 155 / 10%) !important;
     }
     .userdash .gradbox::before {
-        background: rgba(136, 172, 230, 0.36);
+        // background: rgba(136, 172, 230, 0.36);
     }
     .userdash .gradbox::after {
-        background: rgba(104, 255, 183, 0.36);
+        // background: rgba(104, 255, 183, 0.36);
     }
     .userdash .gradbox .pinkshade::after {
-        background: rgba(247, 158, 218, 0.36);
+        // background: rgba(247, 158, 218, 0.36);
     }
     .pagination input {
         background-color: #0000 !important;
@@ -490,46 +491,51 @@ button:hover{
         color: #000 ;
     }
   }
+ .light_theme .userdash .gradbox .img {
+    width: 33px;
+    filter: brightness(0);
+} 
 .userdash{
     .gradbox {
         overflow: hidden;
         position: relative;
         .img {
             width: 33px;
+            filter: brightness(0) invert(1);
         }
-        &::after {
-            content: "";
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            background: #0ea15b5c;
-            filter: brightness(1) blur(22px);
-            top: -35px;
-            left: 10%;
-            border-radius: 50%;
-          }
-          &::before {
-            content: "";
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            background: #0e46a15c;
-            filter: brightness(1) blur(22px);
-            top: -35px;
-            right: -35px;
-            border-radius: 50%;
-          }
-          .pinkshade::after{
-            content: "";
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            background: #a10e725c;
-            filter: brightness(1) blur(22px);
-            bottom: -35px;
-            left: 19%;
-            border-radius: 50%;
-          }
+        // &::after {
+        //     content: "";
+        //     width: 100px;
+        //     height: 100px;
+        //     position: absolute;
+        //     background: #0ea15b5c;
+        //     filter: brightness(1) blur(22px);
+        //     top: -35px;
+        //     left: 10%;
+        //     border-radius: 50%;
+        //   }
+        //   &::before {
+        //     content: "";
+        //     width: 100px;
+        //     height: 100px;
+        //     position: absolute;
+        //     background: #0e46a15c;
+        //     filter: brightness(1) blur(22px);
+        //     top: -35px;
+        //     right: -35px;
+        //     border-radius: 50%;
+        //   }
+        //   .pinkshade::after{
+        //     content: "";
+        //     width: 100px;
+        //     height: 100px;
+        //     position: absolute;
+        //     background: #a10e725c;
+        //     filter: brightness(1) blur(22px);
+        //     bottom: -35px;
+        //     left: 19%;
+        //     border-radius: 50%;
+        //   }
     }
 }
 // light sections
@@ -555,7 +561,7 @@ button:hover{
         border: 1px solid #dadada;
         border-radius: 10px;
         padding: 15px;
-        background: #e2e2e2;
+        background: #F2F4F7;
         .btn.btn-bordered.white {
         
             background: transparent;
@@ -589,7 +595,7 @@ button:hover{
     // }
    
     .themeselect {
-        @include mixins.themeselect(#ff40, #eeeeee)
+        @include mixins.themeselect(#ff40, #F2F4F7)
     }
 
     @include mixins.header(#F2F4F7, #757272, #000);
@@ -600,15 +606,15 @@ button:hover{
     }
 
     #careprivacy {
-        @include mixins.privacycare(#eeeeee, #000, #393939)
+        @include mixins.privacycare(#F2F4F7, #000, #393939)
     }
 
     #tablesec {
-        @include mixins.tablesec(#eeeeee, #eeeeee, #eeeeee)
+        @include mixins.tablesec(#F2F4F7, #F2F4F7, #F2F4F7)
     }
 
     .themenav {
-        @include mixins.buysellnav(#eeeeee, #a7a1a1, #000,#0f9a6c,#000)
+        @include mixins.buysellnav(#F2F4F7, #a7a1a1, #000,#0f9a6c,#000)
     }
     .themebtn {
         @include mixins.themebtn(#000,0 0 5px 5px #e0e0e0);

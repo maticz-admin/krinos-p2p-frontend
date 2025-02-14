@@ -3,6 +3,7 @@
   --themeclr1: #eaffba;
   --dark-bg: #0a090d;
   --secondary-bg: #19181c;
+  --dark-secondary-btnBg:#121116;
   --dark-clr: #a3a3b7;
   --white-bg: #fff;
   --white-clr: #0d0d0d;
@@ -2445,7 +2446,7 @@ pre code {
 .form-control:focus {
   color: #495057;
   background-color: rgba(0, 0, 0, 0);
-  border-color: #d176e1;
+  border-color: #495057;
   outline: 0;
   box-shadow: none, 0 0 0 0.2rem rgba(156, 39, 176, 0.25);
 }
@@ -33445,7 +33446,7 @@ option {
 
 /* NEW CSS NIVI */
 .dashboard_login button.lightleft {
-  color: #fff !important;
+  color: #000 !important;
   min-width: 35px !important;
 }
 .mes_icon_header {
