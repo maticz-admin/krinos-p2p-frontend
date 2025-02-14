@@ -101,7 +101,7 @@ export default function Header(props) {
   const brandComponent = 
   <><Link to="/" className="logo_div">
     {/* {brand} */}
-    <img src={require("../../assets/images/logo.png")} alt="logo" className="img-fluid black" />
+    <img src={require("../../assets/images/logo.png")} alt="logo" className="img-fluid black" /> 
     <img src={require("../../assets/images/blck.png")} alt="logo" className="img-fluid white" />
   </Link>
   

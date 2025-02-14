@@ -1,4 +1,4 @@
-$themeyellow: #ECFF00;
+$themeyellow: #aff41f;
 
 @mixin floating($bg: #fff, $borderclr: #636363, $label: #fff,$inputbg: transparent,$inputclr: #c7c7c7,$dropbg: #000,$dropspanclr:#fff,$drophover:#1d1c1c,$drophighlight:#1d1c1c,$righthover:#ecff03 ) {
     position: relative;
@@ -493,7 +493,7 @@ $themeyellow: #ECFF00;
             margin-bottom: 0;
         }
 
-        .themebtn {
+        .themebtn { 
             padding: 13px 25px !important;
         }
     }
@@ -995,9 +995,9 @@ $themeyellow: #ECFF00;
     }
 }
 
-@mixin themebtn($btnhoverbg: #ECFF03, $shadow: 0 0 5px 5px #222121) {
-    background-color: #ECFF03;
-    border: 1px solid #ECFF03;
+@mixin themebtn($btnhoverbg: #aff41f, $shadow: 0 0 5px 5px #222121) {
+    background-color: #aff41f;
+    border: 1px solid #aff41f;
     border-radius: 10px;
     // padding: 5px 20px !important;
     padding: 10px 30px !important;
@@ -1026,8 +1026,8 @@ $themeyellow: #ECFF00;
     border: 1px solid $bordercolor;
 
     &:hover {
-        background-color: #ECFF03;
-        border: 1px solid #ECFF03;
+        background-color: #aff41f;
+        border: 1px solid #aff41f;
         color: #000 !important;
     }
 }

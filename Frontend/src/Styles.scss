@@ -5,7 +5,7 @@
     font-family: 'Roboto', sans-serif;
 }
 
-$themeyellow: #ECFF00;
+$themeyellow: #aff41f;
 $grayss: #9E9E9E;
 $aqua:  #0AD2B9 !important;
 
@@ -31,7 +31,7 @@ a{
 .gray {
     color: gray !important;
 }
-.themebtn.big {
+.themebtn.big { 
     max-width: 170px;
     width:100%;
 }
@@ -846,16 +846,16 @@ button:hover{
     .tgrayconnect {
         left: -6%;
     }
-    .light_theme .bannersec:after {
-        content: "";
-        background: transparent linear-gradient(180deg, #f8658d5e 0%, #00a3fb5e 53%, #03ff4854 100%) 0% 0% no-repeat padding-box !important;
-    }
+    // .light_theme .bannersec:after {
+    //     content: "";
+    //     background: transparent linear-gradient(180deg, #f8658d5e 0%, #00a3fb5e 53%, #03ff4854 100%) 0% 0% no-repeat padding-box !important;
+    // }
     }
 
 @media(max-width:767px) {
-    .light_theme .bannersec:after {
-        z-index: -1 !important;
-    }
+    // .light_theme .bannersec:after {
+    //     z-index: -1 !important;
+    // }
     .rightptag button {
         padding: 10px !important;
     }
@@ -998,10 +998,10 @@ a[aria-expanded="true"] .fa-plus:before {
     .footer_links li a {
         font-size: 10px;
     }
-    .light_theme .bannersec:after {
-        right: 0%;
-        z-index: -1 !important;
-    }
+    // .light_theme .bannersec:after {
+    //     right: 0%;
+    //     z-index: -1 !important;
+    // }
     .light_theme #faqsec .bannerconnect {
         width: 100px;
         right: 18%;
@@ -1016,9 +1016,9 @@ a[aria-expanded="true"] .fa-plus:before {
     .light_theme #footer .container .bannerconnect {
        display: none;
     }
-    .light_theme .bannersec:after {
-        background: transparent linear-gradient(180deg, #F8658DE0 0%, #00a3fb2e 53%, #03ff482b 100%) 0% 0% no-repeat padding-box !important;
-    }
+    // .light_theme .bannersec:after {
+    //     background: transparent linear-gradient(180deg, #F8658DE0 0%, #00a3fb2e 53%, #03ff482b 100%) 0% 0% no-repeat padding-box !important;
+    // }
 }
 
 
