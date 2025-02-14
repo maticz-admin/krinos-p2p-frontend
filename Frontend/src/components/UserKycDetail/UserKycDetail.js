@@ -39,7 +39,7 @@ const UserKycDetail = () => {
     const { userId, firstName, lastName, email, emailStatus, phoneStatus, phoneCode, phoneNo, type, createAt, bankDetail } = accountData;
 
     useEffect(() => {
-        handleverify();
+        // handleverify();
     } , [])
 
     const handleverify = async () => {
@@ -54,7 +54,6 @@ const UserKycDetail = () => {
                 setUserdetail(userresult?.result);
             }
             if (!userresult?.result?.kycId?.sessionId) { console.log("check if");
-            
                 let result = await fetchClientToken();
                 let sessionresult = await createSession("", "https://verify.didit.me/api/session/callback", userdetail?._id);
                 console.log("Result in geyt token", sessionresult);
@@ -67,7 +66,7 @@ const UserKycDetail = () => {
                     console.log("Result in geyt token", sessionresult);
                     setUrl(sessionresult?.url);
                 }
-                else{
+                else{  
                     setUrl(res?.session_url);
                 }
             }
