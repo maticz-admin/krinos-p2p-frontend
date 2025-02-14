@@ -8,6 +8,8 @@
   --white-bg: #fff;
   --white-clr: #0d0d0d;
   --btn-bg: #aff41f;
+  --theme-clr: #aff41f;
+  --theme-hvr-clr: #b1f41fe0;
   /* #ecff03 */
   --btn-bg1: #222223;
   --btn-txt: #111013;
@@ -10607,8 +10609,13 @@ color: #000 !important;
 .btn.btn-default.btn-link {
   background-color: transparent;
   color: #999999;
+  /* color: #2a2727; */
   box-shadow: none;
 }
+
+/* .light_theme .btn.btn-default.btn-link {
+  color: #2a2727 !important;
+} */
 
 .btn.btn-link:hover,
 .btn.btn-link:focus,
@@ -12313,14 +12320,14 @@ label {
 }
 
 .separator-line {
-  background-color: #eee;
+  background-color: #F2F4F7;
   height: 1px;
   width: 100%;
   display: block;
 }
 
 .separator.separator-gray {
-  background-color: #eeeeee;
+  background-color: #F2F4F7;
 }
 
 .social-buttons-demo .btn {
@@ -16584,7 +16591,7 @@ h2.title {
 .blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
-  border-left: 5px solid #eee;
+  border-left: 5px solid #F2F4F7;
 }
 
 .blockquote p {
@@ -18748,7 +18755,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .bootstrap-datetimepicker-widget a[data-action]:hover span {
-  background-color: #eee;
+  background-color: #F2F4F7;
   color: #209a68;
 }
 
@@ -18909,7 +18916,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   thead
   tr:first-child
   th.picker-switch:hover {
-  background: #eee;
+  background: #F2F4F7;
 }
 
 .bootstrap-datetimepicker-widget table td > div {
@@ -18949,7 +18956,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .bootstrap-datetimepicker-widget table td.hour:hover > div,
 .bootstrap-datetimepicker-widget table td.minute:hover > div,
 .bootstrap-datetimepicker-widget table td.second:hover > div {
-  background: #eee;
+  background: #F2F4F7;
   cursor: pointer;
 }
 
@@ -18993,7 +19000,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .bootstrap-datetimepicker-widget table td span:hover {
-  background: #eee;
+  background: #F2F4F7;
 }
 
 .bootstrap-datetimepicker-widget table td span.active {
@@ -21031,13 +21038,13 @@ footer a:hover {
   z-index: 6;
 }
 .light_theme .dashboard_container {
-  background: #eeeeee !important;
+  background: #F2F4F7 !important;
 }
 .contact_form .form-control option {
   background: #000 !important;
 }
 .light_theme .contact_form .form-control option {
-  background: #eeeeee !important;
+  background: #F2F4F7 !important;
 }
 .dash_title {
   font-size: 24px;
@@ -21087,7 +21094,7 @@ footer a:hover {
 }
 
 .dash_table th {
-  color: #eee;
+  color: #F2F4F7;
   font-weight: normal;
   border: none !important;
   font-size: 14px;
@@ -21639,7 +21646,7 @@ button.btn.btn-outline:active {
   min-height: 90vh;
 }
 /* .dark_theme .userPages {
- background: #eee;
+ background: #F2F4F7;
 } */
 .light_theme .userPages {
   background: var(--white-bg);
@@ -21837,7 +21844,7 @@ button.btn.btn-outline:active {
   text-decoration: underline;
 }
 .light_theme .settingsNote p a {
-  color: #b4c20c;
+  color: #aff41f;
   font-weight: 700;
 }
 
@@ -21878,13 +21885,13 @@ fieldset[disabled][disabled] .form-control,
 
 .input-group .btnType1 {
   box-shadow: none !important;
-  background: #fff !important;
+  background: transparent !important;
   color: #5a5a5a !important;
   font-size: 12px !important;
   display: flex;
   align-items: center;
   padding: 0 10px;
-  border: 1px solid #aff41f;
+  border: 1px solid #59615f;
   border-radius: 0 5px 5px 0;
 }
 
@@ -22488,7 +22495,7 @@ color: #aff41f;
 
 .supportTicketList {
   /* background: #f7f7f7; */
-  background: #f7f7f712;
+  background: #19181c;
   padding: 15px;
 }
 
@@ -22743,7 +22750,7 @@ ul.ticketComments li:last-child {
 }
 .light_theme .supporTicketAccordian .card-header {
   border: 1px solid #80808087;
-  background: #eeeeeeee;
+  background: #F2F4F7;
 }
 .stHeadText small {
   /* color: #787878; */
@@ -22957,7 +22964,7 @@ nav.place_order_nav_tabs {
 }
 
 .light_theme .notificationDropdown {
-  background: #eeeeee;
+  background: #F2F4F7;
 }
 
 .notificationDropdown ul {
@@ -24031,7 +24038,7 @@ nav.place_order_nav_tabs {
   top: 9px;
 }
 .light_theme .login_title_8::before {
-  background: #b4c20c;
+  background: #aff41f;
 }
 .flex_inpur_sect {
   display: flex;
@@ -25682,7 +25689,7 @@ h4.profileDetailView1 small {
   background-color: #000 !important;
 }
 .light_theme .select_option select option {
-  background-color: #eeeeee !important;
+  background-color: #F2F4F7 !important;
 }
 .wallwt_balance {
   padding: 12px 10px;
@@ -26864,7 +26871,7 @@ body.light_theme {
 .light_theme .regGroupInput .input-group-append {
   align-items: center;
   padding: 0 20px;
-  background: #1a1b1c;
+  background: transparent;
   border-radius: 5px;
 }
 
@@ -27511,7 +27518,7 @@ body.light_theme {
 }
 
 .light_theme .selectoption .form-select option {
-  background: #eeeeee !important;
+  background: #F2F4F7 !important;
   color: gray !important;
 }
 
@@ -27550,11 +27557,11 @@ body.light_theme {
 }
 
 .light_theme .yellow {
-  color: #b4c20c !important;
+  color: #aff41f !important;
   font-weight: 700;
 }
 .dark_theme .MuiMenu-list li:hover {
-  background-color: gray;
+  background-color: #19181c;
 }
 .dark_theme .notes_section {
   color: #fff;
@@ -27643,7 +27650,7 @@ body.light_theme {
 
 .light_theme .online {
   /* background: transparent !important; */
-  background: #eeeeee !important;
+  background: #F2F4F7 !important;
   color: black !important;
 }
 
@@ -27730,8 +27737,8 @@ body.light_theme {
 }
 
 .light_theme .table_p2p_section .nav li a.active {
-  border-bottom: 3px solid #b4c20c;
-  color: #b4c20c !important;
+  border-bottom: 3px solid #aff41f;
+  color: #aff41f !important;
 }
 
 .light_theme .profileDetailView .alert.alert-info {
@@ -28257,7 +28264,7 @@ body.light_theme {
 .light_theme .rdt_Table > div,
 .light_theme .rdt_Table,
 .light_theme .rdt_Pagination {
-  background-color: #eeeeee00;
+  background-color: #F2F4F7;
   color: #000 !important;
 }
 
@@ -28309,7 +28316,7 @@ body.light_theme {
 }
 
 a:hover {
-  color: #9ed9c2 !important;
+  color: #b1f41fe0 !important;
 }
 
 .error-message {
@@ -28492,7 +28499,7 @@ button.otp_btn {
 
 button.otp_btn:hover {
   background: #9ed9c2;
-  border: 2px solid #eee;
+  border: 2px solid #F2F4F7;
   color: #000;
 }
 
@@ -30481,7 +30488,7 @@ select {
 }
 
 .light_theme .supportTicketList ul li a:hover {
-  color: #b4c20c !important;
+  color: #aff41f !important;
 }
 
 .settingsSelect .input_minw_selc .MuiInput-underline {
@@ -30653,7 +30660,7 @@ select {
   left: 50px;
 }
 .light_theme .mobile_nav {
-  background-color: #eeeeee !important;
+  background-color: #F2F4F7 !important;
 }
 .proj_intro_text {
   font-size: 17px !important;
@@ -30912,7 +30919,7 @@ select {
 }
 .dark_theme .changing_table div,
 .dark_theme .rdt_Pagination {
-  background-color: #000 !important;
+  background-color: transparent !important;
   color: #fff !important;
 }
 
@@ -31172,7 +31179,7 @@ select {
   color: #aff41f !important;
 }
 .light_theme .regGroupInput i {
-  color: #b4c20c !important;
+  color: #aff41f !important;
   font-weight: 600;
 }
 .afterlogin_hr li {
@@ -31213,7 +31220,7 @@ select {
 
   #profile_menu1 .light_theme .MuiMenu-list {
     background: #090909;
-    color: #eee;
+    color: #F2F4F7;
     width: 250px;
   }
 
@@ -31577,7 +31584,7 @@ select {
 }
 .light_theme .MuiMenu-list a.all_noti_link_green,
 .mark_read_link {
-  color: #b4c20c !important;
+  color: #aff41f !important;
   font-size: 14px !important;
   cursor: pointer;
 }
@@ -31803,7 +31810,15 @@ li.unread .lighttxt {
   background: #313131;
 }
 .light_theme .newnotify li:nth-child(even) {
-  background: #313131b8;
+  background: #31313180;
+}
+
+.light_theme .newnotify .btn-link {
+  color: #2a2727;
+}
+
+.light_theme .newnotify li.read svg {
+  fill: #2a2727;
 }
 
 .f-12 {
@@ -31831,7 +31846,7 @@ li.unread .lighttxt {
   padding: 6px 10px;
   border-radius: 9px;
   border: 1px solid #59615f;
-  color: #eee !important;
+  color: #F2F4F7 !important;
   text-transform: capitalize;
   font-size: 14px;
 }
@@ -31885,7 +31900,7 @@ li.unread .lighttxt {
   border: 1px solid #e4dbdd !important;
 }
 .light_theme .themenav {
-  background-color: #eeeeee8a !important;
+  background-color: #F2F4F7 !important;
   box-shadow: 0 3px 10px rgb(0 0 0 / 14%) !important;
 }
 .light_theme .graybtn:hover {
@@ -31984,7 +31999,7 @@ li.unread .lighttxt {
 }
 
 .support_header_new {
-  background-color: #1a1b1c;
+  background-color: #19181c;
 }
 
 .btn-sm-close {
@@ -32146,7 +32161,7 @@ li.unread .lighttxt {
   padding-top: 180px;
   padding-bottom: 30px;
   margin: unset !important;
-  background: #eeeeee !important;
+  background: #F2F4F7 !important;
   overflow: hidden;
 } */
 
@@ -32277,6 +32292,7 @@ li.unread .lighttxt {
 
 .bannersec .buyselltab img.grayconnect {
   filter: opacity(0.5) !important;
+  display: none;
 }
 .light_theme #footer .container .input-group .themebtn {
   /* box-shadow: -20px 0 7px 0px #0b0b0b85 !important; */
@@ -33591,7 +33607,7 @@ option {
 }
 
 .light_theme .logi_show_div_bc_company {
-  background: #eee0;
+  background: #F2F4F7;
 }
 
 .light_theme .logi_show_div_bc_company .floatinglabel {
@@ -33635,7 +33651,7 @@ option {
 }
 
 .light_theme .iner_dropmenu_versiotwo {
-  background-color: #eeeeee;
+  background-color: #F2F4F7;
 }
 .light_theme .iner_drop_versiotwo button.btcc,
 .light_theme .iner_drop_versiotwo button {

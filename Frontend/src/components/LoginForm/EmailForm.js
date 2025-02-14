@@ -109,7 +109,7 @@ const EmailForm = () => {
     const generateToken = (data) => {
         return new Promise((resolve, reject) => {
             const latetsBatch = document.getElementById('recaptchaValidator')
-          const badge = document.querySelector('.grecaptcha-badge');
+          const badge = document.querySelector('.grecaptcha-badge') ? document.querySelector('.grecaptcha-badge') : document.querySelector('.grecaptcha-badge');
           console.log("badgebadgebadgebadge1" , document.querySelector('.grecaptcha-badge'));
           if (badge) {
             badge.style.visibility = 'visible';
@@ -209,6 +209,7 @@ const EmailForm = () => {
     }
 
     useEffect(() => {
+        document.querySelector('.grecaptcha-badge')
         getGeoInfo()
         let formData = {};
         if (localStorage.getItem("remember") == "true") {

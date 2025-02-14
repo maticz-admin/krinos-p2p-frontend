@@ -461,7 +461,7 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
 }
 
 .light_theme .limits {
-    color: #B4C20C !important;
+    color: #aff41f !important;
     font-weight: 600 !important;
 }
 
@@ -716,7 +716,8 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
 }
 .light_theme .dateformat{
     /* color: #eaeaea !important; */
-    color: #dbdbdb !important;
+    /* color: #dbdbdb !important; */
+    color: #2a2727 !important;
 }
 .light_theme .descc{
     /* color: #8c8c8c !important; */
@@ -800,6 +801,7 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
     top: 0%;
     left: 0%;
     z-index: 2;
+    display: none;
 }
 
 .modal-dialog .modal-header {

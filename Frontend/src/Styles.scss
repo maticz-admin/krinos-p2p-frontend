@@ -571,7 +571,7 @@ button:hover{
         }
       }
     .themetable{
-        @include mixins.themetable(#000,#000,#000,#eee,#fff3f6 ,#000)
+        @include mixins.themetable(#000,#000,#000,#F2F4F7,#fff3f6 ,#000)
     }
    .blackandwhiteimg{
     filter: invert(0);
@@ -579,7 +579,7 @@ button:hover{
     .createoff{ 
         .bordbox{
         overflow-x: auto;
-        @include mixins.steps(#eee, #000, #d9d9d9);
+        @include mixins.steps(#F2F4F7, #000, #d9d9d9);
        
     }}
     .bordbox {
@@ -593,6 +593,10 @@ button:hover{
     // header{
     //     box-shadow: 0 0 10px 5px #e1e1e1;
     // }
+
+    // .btn.btn-default.btn-link {
+    //     color: #2a2727 !important;
+    //   }
    
     .themeselect {
         @include mixins.themeselect(#ff40, #F2F4F7)
@@ -675,6 +679,7 @@ button:hover{
             top: -233px;
             bottom: 0;
             max-width: 483px;
+            display: none;
         }
 
         img.connect {
@@ -749,7 +754,7 @@ button:hover{
 
 
 .light_theme .MuiMenu-list {
-    background-color: #eeeeee;
+    background-color: #F2F4F7;
 }
 
 .MuiListItem-root.Mui-selected,
@@ -1173,7 +1178,7 @@ a[aria-expanded="true"] .fa-plus:before {
     }
 }
 .light_theme .tabrightbtn .dropdown-menu {
-    background: #eee !important;
+    background: #F2F4F7 !important;
     a{
         color: #000;
     }
