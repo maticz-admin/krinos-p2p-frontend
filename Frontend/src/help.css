@@ -135,15 +135,15 @@
 }
 
 .graybtn:hover {
-    background-color: #ECFF03 !important;
-    border: 1px solid #ECFF03 !important;
+    background-color: #aff41f !important;
+    border: 1px solid #aff41f !important;
     color: black !important;
     transition: 0.5s;
 }
 
 .graybtn.active {
-    background-color: #ECFF03 !important;
-    border: 1px solid #ECFF03 !important;
+    background-color: #aff41f !important;
+    border: 1px solid #aff41f !important;
     color: black !important;
     transition: 0.5s;
 }
@@ -161,10 +161,10 @@
    color: #000;
 }
 .dark_theme .themebtn a:hover, .dark_theme .themebtn:hover a{
-    color: #ecff03 !important;
+    color: #aff41f !important;
 }
 a.buyhover:hover .tradelists{
-    border-color: #ecff03 !important;
+    border-color: #aff41f !important;
 }
 .themebtn a:hover{
     color: #000 !important;
@@ -208,7 +208,7 @@ a.buyhover:hover .tradelists{
 }
 
 .boxarrow {
-    background-color: #ecff03;
+    background-color: #aff41f;
     color: black;
     width: 18px;
     height: 18px;
@@ -309,7 +309,7 @@ body .makeStyles-dark-15, body .jss25 {
 }
 
 .btc-amount {
-    color: #ECFF03;
+    color: #aff41f;
     font-size: 14px;
     word-break: break-all;
 }
@@ -349,12 +349,12 @@ body .makeStyles-dark-15, body .jss25 {
 }
 
 .btborder .dropdown-menu a:hover {
-    background-color: #ecff03 !important;
+    background-color: #aff41f !important;
     color: #000 !important;
 }
 
 .buyborder .input-group-text {
-    background: #ecff03 !important;
+    background: #aff41f !important;
     border-radius: 0px 12px 12px 0px !important;
 }
 
@@ -381,7 +381,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
-    background-color: #eee !important;
+    background-color: #F2F4F7 !important;
 }
 
 .light_theme .tableborder .tradelists {
@@ -393,7 +393,7 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
 }
 
 .light_theme .btborder .dropdown-menu {
-    background: #eee !important;
+    background: #F2F4F7 !important;
 }
 
 .light_theme .btborder .dropdown-menu a {
@@ -425,7 +425,7 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
 }
 
 .light_theme .modal-content {
-    background: #eeeeeee0 !important;
+    background: #F2F4F7 !important;
 }
 
 .light_theme .borders p {
@@ -437,7 +437,7 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
 }
 
 .light_theme .btc-amount {
-    color: #ECFF03;
+    color: #aff41f;
     font-weight: 600 !important;
 }
 
@@ -478,8 +478,8 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
 }
 
 .bitcoins .graybtn:hover {
-    background-color: #ECFF03 !important;
-    border: 1px solid #ECFF03 !important;
+    background-color: #aff41f !important;
+    border: 1px solid #aff41f !important;
     color: black !important;
 }
 
@@ -638,7 +638,7 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
 }
 
 .back:hover {
-    color: #ecff03 !important;
+    color: #aff41f !important;
 }
 
 .modal-header {
@@ -702,7 +702,7 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
     color: black;
 }
 .light_theme #footer {
-    background: #eeeeee;
+    background: #F2F4F7;
     margin-top: 0px !important;
 }
 .beforelog .MuiList-padding{
@@ -730,7 +730,7 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
     z-index: 2;
 }
 .light_theme .docus .labelname{
-    background: #eeeeee !important;
+    background: #F2F4F7 !important;
     width: fit-content !important;
     z-index: 2;
 }
@@ -746,12 +746,12 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
     width: fit-content !important;
 }
 .light_theme .floatinglabel label {
-    background: #eeeeee !important;
+    background: #F2F4F7 !important;
     width: fit-content !important;
 }
 .vendorbtn:hover {
-    background-color: #ECFF03 !important;
-    border: 1px solid #ECFF03 !important;
+    background-color: #aff41f !important;
+    border: 1px solid #aff41f !important;
     color: black !important;
 }
 
@@ -801,8 +801,8 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
 }
 
 .modalbtns:hover {
-    border: 1px solid #ECFF03 !important;
-    background: #ECFF03 !important;
+    border: 1px solid #aff41f !important;
+    background: #aff41f !important;
     color: black !important;
 }
 
@@ -1034,7 +1034,7 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
     border-radius: 6px;
 }
 .light_theme .buyss .dropdown-menu {
-    background: #eeeeee;
+    background: #F2F4F7;
 }
 .buyss .dropdown-menu a{
     color: #fff;
@@ -1059,7 +1059,7 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
 .headerdropdown .dropdown-menu a:focus
 
 {
-     background: #ecff03 !important;
+     background: #aff41f !important;
 }
 .buyss .iconss{
     max-width: 25px !important;

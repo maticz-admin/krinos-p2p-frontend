@@ -1,6 +1,6 @@
 $themeyellow: #aff41f;
 
-@mixin floating($bg: #fff, $borderclr: #636363, $label: #fff,$inputbg: transparent,$inputclr: #c7c7c7,$dropbg: #000,$dropspanclr:#fff,$drophover:#1d1c1c,$drophighlight:#1d1c1c,$righthover:#ecff03 ) {
+@mixin floating($bg: #fff, $borderclr: #636363, $label: #fff,$inputbg: transparent,$inputclr: #c7c7c7,$dropbg: #000,$dropspanclr:#fff,$drophover:#1d1c1c,$drophighlight:#1d1c1c,$righthover:#aff41f ) {
     position: relative;
     .flag {
         // position: absolute;
@@ -111,11 +111,12 @@ $themeyellow: #aff41f;
                             font-size: 14px;
                             color: $linkclr ;
                             text-transform: capitalize;
+                            font-weight: 500;
                            &:hover{
                             padding: 6px 18px;
-                            background: #ecff03;
+                            // background: #aff41f;
                             border-radius: 10px;
-                                color: #000 !important;
+                                // color: #000 !important;
                            }
                             &.home_menu_btn1 {
                                 @include themebtn
@@ -193,7 +194,7 @@ $themeyellow: #aff41f;
 
 }
 
-@mixin buysellnav($bg: #000000E0, $borderbg: #fefefe9e, $navcolor: #fff,$linkclr:#ECFF03,$hoverclr:#fff) {
+@mixin buysellnav($bg: #000000E0, $borderbg: #fefefe9e, $navcolor: #fff,$linkclr:#aff41f,$hoverclr:#fff) {
     border: 1px solid $borderbg;
     border-radius: 30px;
     background-color: $bg;
@@ -411,7 +412,7 @@ $themeyellow: #aff41f;
              color: $blackandwhite;
              white-space: nowrap;
              &.active,&:hover{
-                 background: #ecff03 !important;
+                 background: #aff41f !important;
                  color:#000 !important;
              }
          }
@@ -601,7 +602,7 @@ $themeyellow: #aff41f;
                 &.active,
                 &:hover {
                     img {
-                        border-color: #ECFF03;
+                        border-color: #aff41f;
                     }
                 }
             }
@@ -899,20 +900,20 @@ $themeyellow: #aff41f;
         }
     }
 
-    &:after {
-        content: "";
-        background-image: linear-gradient(134deg, rgb(248, 101, 141), rgb(0, 163, 251), rgb(3, 255, 72));
-        width: 50%;
-        height: 50%;
-        position: absolute;
-        top: 0;
-        border-radius: 50%;
-        left: 0;
-        right: 0;
-        margin: auto;
-        z-index: -1;
-        filter: blur(86px) brightness(0.4);
-    }
+    // &:after {
+    //     content: "";
+    //     background-image: linear-gradient(134deg, rgb(248, 101, 141), rgb(0, 163, 251), rgb(3, 255, 72));
+    //     width: 50%;
+    //     height: 50%;
+    //     position: absolute;
+    //     top: 0;
+    //     border-radius: 50%;
+    //     left: 0;
+    //     right: 0;
+    //     margin: auto;
+    //     z-index: -1;
+    //     filter: blur(86px) brightness(0.4);
+    // }
 
     .linksec {
         padding: 25px;
@@ -949,7 +950,9 @@ $themeyellow: #aff41f;
             }
 
             .socialLinks li a {
-                background-image: linear-gradient(134deg, rgb(203, 66, 104), rgb(11, 107, 158), rgb(3, 139, 40));
+                // background-image: linear-gradient(134deg, rgb(203, 66, 104), rgb(11, 107, 158), rgb(3, 139, 40));
+                background-color: #aff41f !important;
+                border: 1px solid #aff41f !important;
                 padding: 5px;
                 height: 25px;
                 width: 25px;
@@ -957,17 +960,21 @@ $themeyellow: #aff41f;
                 border-radius: 3px;
                 color: #fff;
                 font-weight: 500;
-                filter: $socialbright ;
+                // filter: $socialbright ;
+                color: black !important;
 
                 &:hover {
-                    background-image: linear-gradient(180deg, rgb(203, 66, 104), rgb(11, 107, 158), rgb(3, 139, 40));
-                    transform: scale(1.05);
+                    // background-image: linear-gradient(180deg, rgb(203, 66, 104), rgb(11, 107, 158), rgb(3, 139, 40));
+                    // transform: scale(1.05);
+                    background-color: transparent !important;
+                    border: 1px solid #aff41f !important;
+                    color: white !important;
                 }
 
-                i {
-                    color: #fff;
-                    margin: auto;
-                }
+                // i {
+                //     color: #000;
+                //     margin: auto;
+                // }
             }
         }
     }
@@ -980,19 +987,19 @@ $themeyellow: #aff41f;
 @mixin gradcircle($size: 300px, $top: -5%, $right: auto) {
     position: relative;
 
-    &:after {
-        content: "";
-        background-image: linear-gradient(134deg, rgb(248 101 141 / 20%), rgb(0 163 251 / 19%), rgb(3 255 72 / 3%));
-        height: $size;
-        width: $size;
-        position: absolute;
-        z-index: 999;
-        border-radius: 50%;
-        filter: blur(78px);
-        top: $top;
-        right: $right;
-        z-index: -1;
-    }
+    // &:after {
+    //     content: "";
+    //     background-image: linear-gradient(134deg, rgb(248 101 141 / 20%), rgb(0 163 251 / 19%), rgb(3 255 72 / 3%));
+    //     height: $size;
+    //     width: $size;
+    //     position: absolute;
+    //     z-index: 999;
+    //     border-radius: 50%;
+    //     filter: blur(78px);
+    //     top: $top;
+    //     right: $right;
+    //     z-index: -1;
+    // }
 }
 
 @mixin themebtn($btnhoverbg: #aff41f, $shadow: 0 0 5px 5px #222121) {

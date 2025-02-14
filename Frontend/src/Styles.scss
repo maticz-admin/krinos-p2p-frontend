@@ -83,7 +83,7 @@ a{
 .otp_btn {
     border-radius: 0 9px 9px 0;
     height: 45px !important;
-    background: #ecff03 !important;
+    background: #aff41f !important;
     color: #000;
 }
 .text-left,
@@ -112,18 +112,18 @@ a{
 }
 
 .tradetab .esbtn:hover {
-    // background-color: #ECFF03 !important;
-    // border: 1px solid #ECFF03;
+    // background-color: #aff41f !important;
+    // border: 1px solid #aff41f;
     // color: black !important;
     background-color: transparent !important;
-    border: 1px solid #ECFF03;
+    border: 1px solid #aff41f;
     color: white !important;
 }
 .light_theme .page_wrap header .home_page_menu .menu_main_navbar li a.nav-link.themebtn:hover {
     color: #000 !important;
 }
 .dark_theme .page_wrap header .home_page_menu .menu_main_navbar li a.nav-link.themebtn:hover {
-    color: #ECFF03 !important;
+    color: #aff41f !important;
 }
 .light_theme .page_wrap header .home_page_menu .menu_main_navbar li a.nav-link.themebtn:hover {
     color: #000 !important;
@@ -216,7 +216,7 @@ a{
     gap:2%;
     button{
         &:hover,&.active {
-             background: #ecff03;
+             background: #aff41f;
              h6{
                 color: #000;
              }
@@ -308,8 +308,8 @@ a{
     font-weight: 700;
     box-shadow: 0 0 5px 5px #222121;
     &:hover{
-        background-color: #ECFF03;
-        border-color: #ECFF03;
+        background-color: #aff41f;
+        border-color: #aff41f;
         color: #000;
     }
 }
@@ -592,7 +592,7 @@ button:hover{
         @include mixins.themeselect(#ff40, #eeeeee)
     }
 
-    @include mixins.header(#f0f0f0, #757272, #000);
+    @include mixins.header(#F2F4F7, #757272, #000);
 
     // $bg: #090909, $linkclr: #cccccc, $active: #fff
     .floatinglabel {
@@ -773,6 +773,7 @@ button:hover{
             text-align: center;
             color: #000 !important;
             margin-left: 15px;
+            font-weight: 500 !important;
 
             &:hover {
                 color: $themeyellow !important;
@@ -781,6 +782,7 @@ button:hover{
 
         .mobilereg {
             margin-left: 15px;
+
 
             &:hover {
                 color: #000 !important;
@@ -819,6 +821,7 @@ button:hover{
     font-size: 11px;
     border: 1px solid #fff;
     text-align: center !important;
+    font-weight: 500 !important;
 }
 
 @media(max-width:991px) {
