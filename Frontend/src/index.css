@@ -11931,7 +11931,11 @@ legend {
 }
 
 a {
-  color: #209a68;
+  color: #aff41f;
+}
+
+.light_theme a {
+  color: #8fd300;
 }
 
 a:hover,
@@ -24084,9 +24088,14 @@ nav.place_order_nav_tabs {
   position: relative;
 }
 
+.input_box_poa .form-control {
+  background-color: transparent !important;
+}
+
 .input_box_poa span {
   position: absolute;
-  top: 16px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 13px;
   color: #118659;
   cursor: pointer;
@@ -25420,8 +25429,9 @@ img.marketIcon {
 
 .contacy_s textarea {
   height: 100px !important;
-  border: 1px solid #118659 !important;
+  /* border: 1px solid #118659 !important; */
   border-radius: 5px;
+  padding: 10px;
 }
 
 .for_conatnt_btn button {
@@ -31899,8 +31909,12 @@ li.unread .lighttxt {
   color: #000;
   border: 1px solid #e4dbdd !important;
 }
+.themenav {
+  position: relative;
+  z-index: 1;
+}
 .light_theme .themenav {
-  background-color: #F2F4F7 !important;
+  background-color: #fff !important;
   box-shadow: 0 3px 10px rgb(0 0 0 / 14%) !important;
 }
 .light_theme .graybtn:hover {
@@ -32804,7 +32818,7 @@ input:checked ~ .checkmark {
 }
 
 .offerbtn {
-  background-color: #2e2e2ecc;
+  background-color: #19181c;
   border: 1px solid #70707099;
   color: #fff;
   border-radius: 5px;
@@ -32813,6 +32827,12 @@ input:checked ~ .checkmark {
   text-decoration: none;
   transition: all 0.2s;
 }
+
+.light_theme .offerbtn {
+  background-color: #F2F4F7;
+  color: #000;
+}
+
 
 .offerbtn:is(:hover, :focus) {
   color: #000 !important;
@@ -32824,6 +32844,7 @@ input:checked ~ .checkmark {
   padding: 20px 20px;
   max-height: 340px;
   overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .tableborder .chatbox ul {
@@ -33243,7 +33264,7 @@ option {
 }
 
 .dark_theme .MuiAppBar-positionFixed {
-  background-color: #000 !important;
+  /* background-color: #000 !important; */
 }
 .btn-bordered.white.btn {
   z-index: 2;

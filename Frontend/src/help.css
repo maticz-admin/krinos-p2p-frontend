@@ -186,6 +186,7 @@ a.buyhover:hover .tradelists{
     max-width: 70px;
     right: -1%;
     z-index: -1;
+    display: none;
 }
 
 .connect {
@@ -289,7 +290,7 @@ a.buyhover:hover .tradelists{
 }
 
 body .makeStyles-dark-15, body .jss25 {
-    background-color: #000 !important;
+    background-color: #0a090d !important;
 }
 .dark_theme .makeStyles-dark-69{
     background: #000 !important;
@@ -298,10 +299,10 @@ body .makeStyles-dark-15, body .jss25 {
     background: #000 !important;
 }
 .border1 {
-    border: 1px solid gray;
+    border: 1px solid #19181c;
     padding: 14px 10px;
     border-radius: 16px;
-    background: #3939399C 0% 0% no-repeat padding-box;
+    background: #19181c;
     text-align: center;
     min-height: 120px;
     max-height: 120px;
@@ -361,6 +362,11 @@ body .makeStyles-dark-15, body .jss25 {
 .buyborder .input-group-text {
     background: #aff41f !important;
     border-radius: 0px 12px 12px 0px !important;
+}
+
+.light_theme .buyborder .input-group-text {
+    background: #F2F4F7 !important;
+   
 }
 
 .jj .form-control {
@@ -451,8 +457,8 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
 }
 
 .light_theme .border1 {
-    border: 1px solid #8080806b;
-    background: #39393926 0% 0% no-repeat padding-box;
+    border: 1px solid #F2F4F7;
+    background: #F2F4F7;
 }
 
 .light_theme .btcc {
@@ -823,6 +829,7 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
     bottom: 0;
     max-width: 500px;
     z-index: 0;
+    display: none;
 }
 
 .allbtn::before {

@@ -197,7 +197,7 @@ $themeyellow: #aff41f;
 @mixin buysellnav($bg: #000000E0, $borderbg: #fefefe9e, $navcolor: #fff,$linkclr:#aff41f,$hoverclr:#fff) {
     border: 1px solid $borderbg;
     border-radius: 30px;
-    background-color: $bg;
+    background-color: transparent;
     nav {
         padding: 0;
         border-bottom: 1px solid #706C6C42;
