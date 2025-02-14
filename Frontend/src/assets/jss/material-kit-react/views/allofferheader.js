@@ -22,7 +22,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import isLogin from 'lib/isLogin';
 import config from '../../../../config/index';
 import { useSelector } from 'react-redux';
-import { Getsingleuserhook } from 'actions/P2PorderAction';
+import { Getsingleuserhook } from '../../../../actions/P2PorderAction';
 import { toastAlert } from 'lib/toastAlert';
 // import HeaderLinks1 from 'components/Header/HeaderLinksAfterlogin';
 
