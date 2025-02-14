@@ -4,7 +4,6 @@ import { Switch, BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { I18nextProvider } from 'react-i18next';
-
 // import component
 import ConditionRoute from './components/Route/ConditionRoute';
 import i18n from './components/i18next/i18n';
@@ -121,7 +120,7 @@ import Messagenotification from "./pages/MessageNotification";
 
 import {Getsingleuserhook, updateuserstatushooks} from './actions/P2PorderAction'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
+require('dotenv').config();
 const App = () => {
     const { isAuth } = store.getState().auth;
     const userdata = localStorage.getItem("userId")
