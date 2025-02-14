@@ -15,15 +15,14 @@ export const getNotification = async (dispatch) => {
             'url': `/api/get-notification`,
         })
         const response = decodedata(respData.data)
-        console.log('responseresponse----', response)
         return {
             status: "success",
             loading: false,
             ReadMsg: response.result,
         }
     } catch (err) {
-        handleResp(err, 'error')
-        const response = decodedata(err.data)
+        handleResp(err, 'error');
+    const response = decodedata(err.response.data);
 
         return {
             status: "failed",
@@ -114,7 +113,6 @@ export const readsingelNotification = async (data) => {
             // data: {encode: data}
             data
         });
-        // console.log('readsingel-----', decodedata(respData.data));
         return {
             status: "success",
             loading: false,

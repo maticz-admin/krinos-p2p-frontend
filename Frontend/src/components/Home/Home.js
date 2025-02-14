@@ -112,6 +112,7 @@ const Home = (props) => {
             setPrefferedcurrency(precurrency?.data[0]?.symbol);
             setPreimg(`${config.API_URL}/images/currency/${precurrency?.data[0]?.image}`)
             var paytype = await getpaymenttypeshook();
+            console.log('paytype----',paytype)
             setPaymenttypelist(paytype?.data);
             setCoinimg(`${config.API_URL}/images/currency/${precurrency?.data[0]?.image}`);
             setPaymenttype(paytype?.data[0]?.value);

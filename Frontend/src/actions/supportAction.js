@@ -57,13 +57,12 @@ export const createNewTicket = async (data) => {
     } catch (err) {
         // Handle errors with response
         handleResp(err, 'error');
-
-        // Return error details
+        const response = decodedata(err.response.data);
         return {
             status: "failed",
             loading: false,
-            message: err.response?.data?.message || "An error occurred.",
-            error: err.response?.data?.errors || err.message,
+            message: response?.message || "An error occurred.",
+            error: response?.errors || err.message,
         };
     }
 };
@@ -84,11 +83,12 @@ export const getTicketList = async () => {
         }
     }
     catch (err) {
-        handleResp(err, 'error')
+        handleResp(err, 'error');
+        const response = decodedata(err.response.data);
         return {
             status: "failed",
             loading: false,
-            message: err.response.message
+            message: response.message
         }
     }
 }
@@ -135,8 +135,8 @@ export const closeTicket = async (data) => {
     }
     catch (err) {
 
-        handleResp(err, 'error')
-        const response = decodedata(err.data)
+        handleResp(err, 'error');
+        const response = decodedata(err.response.data);
         return {
             status: "failed",
             loading: false,
@@ -160,11 +160,12 @@ export const getMessageList = async (data) => {
         }
     }
     catch (err) {
-        handleResp(err, 'error')
+        handleResp(err, 'error');
+        const response = decodedata(err.response.data);
         return {
             status: "failed",
             loading: false,
-            error: err.response.data.errors
+            error: response.errors
         }
     }
 }

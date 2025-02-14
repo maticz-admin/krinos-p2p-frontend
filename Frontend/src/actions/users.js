@@ -33,7 +33,7 @@ export const createUser = async (data) => {
       data: { encode: data },
     });
     const response = decodedata(respData.data)
-    console.log('datadata-----', response);
+    // console.log('datadata-----', response);
     return {
       status: "success",
       loading: false,
@@ -41,13 +41,14 @@ export const createUser = async (data) => {
       // userToken: respData.data.userToken,
     };
   } catch (err) {
-    console.log('err-----', err?.response);
-    handleResp(err, 'error')
+
+    handleResp(err, 'error');
+    const response = decodedata(err.response.data);
     return {
       status: "failed",
       loading: false,
-      message: err.response.message,
-      error: err.response.errors,
+      message: response.message,
+      error: response.errors,
     };
   }
 };
@@ -97,6 +98,7 @@ export const createUserPhone = async (data) => {
 
 export const userEmailActivation = async (data) => {
   try {
+    // console.log('datadata-----', data)
     let respData = await axios({
       method: "post",
       url: `/api/confirm-mail`,
@@ -164,14 +166,18 @@ export const login = async (data, dispatch) => {
     };
     // }
   } catch (err) {
+    console.log('err-----', err)
+
     handleResp(err, 'error')
+    console.log('err--err---', err.response)
+    const response = decodedata(err.response.data)
     try {
       return {
         status: "failed",
         loading: false,
-        message: err.response.message,
-        error: err.response.errors,
-        authToken: err.response.authToken,
+        message: response.message,
+        error: response.errors,
+        authToken: response.authToken,
       };
     } catch (err) {
       handleResp(err, 'error')
@@ -214,7 +220,7 @@ export const viewUserProfile = async (dispatch) => {
       method: "get",
       url: `/api/userProfile`,
     });
-    console.log('respData-----', decodedata(respData.data));
+    // console.log('respData-----', decodedata(respData.data));
     const response = decodedata(respData.data)
     dispatch(setAccountData(response.result));
     return {
@@ -603,11 +609,12 @@ export const editUserSetting = async (data, dispatch) => {
     };
   } catch (err) {
     handleResp(err, 'error')
+    const response = decodedata(err.response.data)
     return {
       status: "failed",
       loading: false,
-      message: err.response.data.message,
-      error: err.response.data.errors,
+      message: response.message,
+      error: response.errors,
     };
   }
 };
@@ -627,10 +634,11 @@ export const upgradeUser = async (data, dispatch) => {
     };
   } catch (err) {
     handleResp(err, 'error')
+    const response = decodedata(err.response.data)
     return {
       status: "failed",
       loading: false,
-      message: err.response.data.message,
+      message: response.message,
     };
   }
 };
@@ -650,11 +658,12 @@ export const changeNewPhone = async (data) => {
     };
   } catch (err) {
     handleResp(err, 'error')
+    const response = decodedata(err.response.data)
     return {
       status: "failed",
       loading: false,
-      message: err.response.data.message,
-      error: err.response.data.errors,
+      message: response.message,
+      error: response.errors,
     };
   }
 };
@@ -674,6 +683,7 @@ export const verifyNewPhone = async (data) => {
     };
   } catch (err) {
     handleResp(err, 'error')
+    
     return {
       status: "failed",
       loading: false,
@@ -799,20 +809,22 @@ export const sentOTP = async (data) => {
     let respData = await axios({
       method: "post",
       url: `/api/sentOTP`,
-      data,
+      data:{encode: encodedata(data)},
     });
+    const response = decodedata(respData.data)
     return {
       status: "success",
       loading: false,
-      message: respData.data.message,
+      message: response.message,
     };
   } catch (err) {
-    handleResp(err, 'error')
+    handleResp(err, 'error');
+    const response = decodedata(err.response.data);
     return {
       status: "failed",
       loading: false,
-      message: err.response.data.message,
-      error: err.response.data.errors,
+      message: response.message,
+      error: response.errors,
     };
   }
 };
@@ -1048,21 +1060,23 @@ export const resendOtp = async (data) => {
     let respData = await axios({
       method: "post",
       url: `/api/resend-otp`,
-      data,
+      data: {encode: decodedata(data)},
     });
+    const response = decodedata(respData.data)
     return {
       status: "success",
       loading: false,
-      message: respData.data.message,
+      message: response.message,
       // userToken: respData.data.userToken,
     };
   } catch (err) {
     handleResp(err, 'error')
+    const response = decodedata(err.response.data)
     return {
       status: "failed",
       loading: false,
-      message: err.response.data.message,
-      error: err.response.data.errors,
+      message: response.message,
+      error: response.errors,
     };
   }
 }
