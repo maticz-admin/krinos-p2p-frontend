@@ -59,11 +59,11 @@ export default function Kyc(props) {
                   <Announcement />
                 </GridItem>
               </GridContainer>
-              <UserKycDetail />
+              {/* <UserKycDetail /> */}
               {/* <UpgradeProfile /> */}
 
-              <IDProof />
-              <AddressProof />
+              {/* <IDProof /> */}
+              {/* <AddressProof /> */}
 
             </div>
           </div>

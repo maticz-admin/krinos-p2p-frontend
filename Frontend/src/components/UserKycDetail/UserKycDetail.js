@@ -13,11 +13,23 @@ import { kycStatus, userStatus } from '../../lib/displayStatus';
 import isEmpty from '../../lib/isEmpty';
 
 import ResonModal from 'assets/jss/material-kit-react/views/Modals/ReasonModal';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import isLogin from 'lib/isLogin';
+import { Getsingleuserhook } from 'actions/P2PorderAction';
+import { toastAlert } from 'lib/toastAlert';
+import { fetchClientToken } from 'config/DiditHooks';
+import { createSession } from 'config/DiditHooks';
+import { getSessionDecision } from 'config/DiditHooks';
 
 const UserKycDetail = () => {
     const { t, i18n } = useTranslation();
+    const navigate = useHistory();
+    const userdata = useSelector(state => state);
     const [fullview , setFullview] = useState(false)
     const [isrejectreasonmodal , setIsrejectreasonmodal] = useState(false);
+    const [loader , setLoader] = useState(false);
+    const [userdetail , setUserdetail] = useState({});
+    const [url , setUrl] = useState();
 
 
     // redux-state
@@ -25,6 +37,57 @@ const UserKycDetail = () => {
     // console.log('addressProofaddressProof----', useSelector(state => state));
     const accountData = useSelector(state => state.account);
     const { userId, firstName, lastName, email, emailStatus, phoneStatus, phoneCode, phoneNo, type, createAt, bankDetail } = accountData;
+
+    useEffect(() => {
+        handleverify();
+    } , [])
+
+    const handleverify = async () => {
+        if (isLogin()) {
+            let userpayload = {
+                userid: userdata?.account?.userId //redux usr data
+            }
+            var userresult = await Getsingleuserhook(userpayload);
+            console.log("userresultuserresult" , userresult?.data);
+            
+            if (userresult?.status) {
+                setUserdetail(userresult?.result);
+            }
+            if (!userresult?.result?.kycId?.sessionId) { console.log("check if");
+            
+                let result = await fetchClientToken();
+                let sessionresult = await createSession("", "https://verify.didit.me/api/session/callback", userdetail?._id);
+                console.log("Result in geyt token", sessionresult);
+                setUrl(sessionresult?.url);
+            }
+            else{console.log("check else");
+                let res = await getSessionDecision(userresult?.result?.kycId?.sessionId);
+                if (res?.status == "Declined" || res?.status == "Expired") {
+                    let sessionresult = await createSession("", "https://verify.didit.me/api/session/callback", userdetail?._id);
+                    console.log("Result in geyt token", sessionresult);
+                    setUrl(sessionresult?.url);
+                }
+                else{
+                    setUrl(res?.session_url);
+                }
+            }
+
+            // setUserverification(userresult?.data?.data);
+            // if (userresult?.data?.kyc?.idProof?.status == "approved") {
+            //     navigate.push("/createoffer");
+            // }
+            // else {
+            //     toastAlert("error", "Complete your kyc and update fullname");
+            // }
+        }
+        else {
+            navigate.push("/login");
+        }
+    }
+
+
+
+
 
     return (
         <div className="">
@@ -79,59 +142,22 @@ const UserKycDetail = () => {
                             <div className="profileDetailView">
                                 <ul>
                                     <li>
-                                        <label>{t('ID_DOCUMENT')}</label>
-                                       
-                                        {isrejectreasonmodal && <ResonModal onDismiss={() => {setIsrejectreasonmodal(false)}} reason={idProof.reason} />}
-            
-                                        
-                                        <span>
-                                            {idProof.status == "rejected" ? 
-                                            // `${t(kycStatus(idProof.status))}  : 
-                                            // ${idProof.status == "rejected"?
-                                                // .length > 50 ? 
-                                            // (!fullview ?  idProof.reason?.slice(0 , 50)+ "..." : idProof.reason) 
-                                            <>
-                                        {/* <span className='mr-2'>Rejected</span> */}
-                                            <a href="javascript:void(0)" onClick={()=>{setIsrejectreasonmodal(true)}}>{"View Reason"}</a>
-                                            </>
-                                            : 
-                                            idProof.reason
-                                            } 
-                                            {/* : 
-                                            t(kycStatus(idProof.status))}  */}
-                                        
-                                            { <><span className='mr-2'>{idProof.status== "new" ? "Not Verified" : idProof.status == "approved" ? "Approved" : idProof.status}</span><i className={clsx({ "fas fa-check-circle enableGreen pl-2": idProof.status == 'approved' }, {  "fas fa-times-circle disabledRed pl-2": ['new', 'pending', 'rejected'].includes(idProof.status) })}></i></>}
-                                            </span>
-                                           {/* {idProof.status == "rejected"&& idProof.reason.length > 50  &&<a href="javascript:void(0)" onClick={()=>{setIsrejectreasonmodal(true)}}>{"View Reason"}</a>
-                                           } */}
+                                        <label>Kyc</label>
+                                        <div className="form-group green-button">
+                                            <button
+                                                type="button" className="themebtn text-uppercase py-2 my-0"
+                                                // onClick={handleFormSubmit}
+                                                disabled={loader}
+                                            >
+                                                {loader && <i class="fas fa-spinner fa-spin"></i>}
+                                                {"Complete Now"}
+                                            </button>
+                                        </div>
                                     </li>
-                                    <li>
-                                        <label>{t('ADDRESS_PROOF')}</label>
-                                        <span>{addressProof.status == "rejected" ? `${t(kycStatus(addressProof.status))}  : ${addressProof.reason}` : t(kycStatus(addressProof.status))} <i className={clsx({ "fas fa-check-circle enableGreen pl-2": addressProof.status == 'approved' }, { "fas fa-times-circle disabledRed pl-2": ['new', 'pending', 'rejected'].includes(addressProof.status) })}></i></span>
-                                    </li>
-                                    {/* <li>
-                                        <label>Advanced User Verification:</label>
-                                        {
-                                            type != 'advanced_verified' && <span>{t("NOT_VERIFIED")}</span>
-                                        }
-                                        {
-                                            ['advanced_verified', 'pro_verified'].includes(type) && <span>{t("VERIFIED")}</span>
-                                        }
 
-                                    </li>
-                                    <li>
-                                        <label>Pro User Verification:</label>
-                                        {
-                                            type != 'pro_verified' && <span>{t("NOT_VERIFIED")}</span>
-                                        }
-                                        {
-                                            ['pro_pending', 'pro_verified'].includes(type) && <span>{t("VERIFIED")}</span>
-                                        }
-                                    </li> */}
                                 </ul>
                             </div>
                             {/* <h6>{t("ID_ADDRESS_PROOF")}f</h6> */}
-
                             {/* Address Proof Pending Verified */}
                             {/* Advanced user verification: Pending/Verified */}
                             {/* Pro user verification: Pending/Verified */}
@@ -178,6 +204,8 @@ const UserKycDetail = () => {
                             </ul> */}
                         </div>
                     </GridItem>
+
+                    
                     {/*<GridItem xs={12} sm={12} md={4} lg={4}>
                         {
                             !isEmpty(bankDetail) && <div className="kycCardStatus">

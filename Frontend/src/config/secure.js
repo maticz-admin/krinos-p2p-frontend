@@ -1,6 +1,6 @@
 import CryptoJS from "crypto-js";
 import config from "./index";
-
+const ENDTOENDSECRET = "1234567812345678"
 
 
 export const encodedata = (data) => {

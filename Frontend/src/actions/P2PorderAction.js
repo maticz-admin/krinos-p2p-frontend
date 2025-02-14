@@ -120,7 +120,7 @@ export const Getsingleuserhook = async (datas, dispatch) => {
             'params': { encode: encodedata(datas) }
         });
         const response = decodedata(respData.data)
-        // console.log('respData-----', {data: response});
+        console.log('respData-----', {data: response});
         return { data: response };
     }
     catch (err) {
