@@ -31821,7 +31821,7 @@ li.unread .lighttxt {
 }
 
 .light_theme .themeselect {
-  background: #e7e5e6;
+  background: #F2F4F7;
   border: 1px solid #ffff !important;
   color: #000 !important;
 }
@@ -31832,7 +31832,7 @@ li.unread .lighttxt {
 }
 
 .light_theme .themeselect option {
-  background-color: #e7e5e6 !important;
+  background-color: #F2F4F7 !important;
   color: #000 !important;
 }
 
@@ -31850,7 +31850,7 @@ li.unread .lighttxt {
 }
 
 .light_theme .graybtn {
-  background: #d6d6d6e5;
+  background: #F2F4F7;
   color: #000;
   border: 1px solid #e4dbdd !important;
 }
@@ -32249,7 +32249,16 @@ li.unread .lighttxt {
   filter: opacity(0.5) !important;
 }
 .light_theme #footer .container .input-group .themebtn {
-  box-shadow: -20px 0 7px 0px #0b0b0b85 !important;
+  /* box-shadow: -20px 0 7px 0px #0b0b0b85 !important; */
+  box-shadow: none !important;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.dark_theme #footer .container .input-group .themebtn {
+  /* box-shadow: -20px 0 7px 0px #0b0b0b85 !important; */
+  box-shadow: none !important;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 .light_theme #careprivacy .container-fluid .bannerconnect,
 .light_theme #careprivacy .container-fluid .connectr {
@@ -33699,7 +33708,7 @@ option {
   color: #000 !important;
 }
 .light_theme .themeselect .dropdown-menu.iner_dropmenu_versiotwo {
-  background: #eeeeee !important;
+  background: #F2F4F7 !important;
 }
 .themeselect .dropdown-menu.iner_dropmenu_versiotwo {
   transform: translate(0px, 50px) !important;

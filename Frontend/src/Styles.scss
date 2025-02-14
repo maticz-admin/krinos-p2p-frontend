@@ -246,7 +246,7 @@ a{
         color:#000000a4 !important;
     }
     #footer .container .input-group input {
-        background: rgba(168, 168, 168, 0.36) !important;
+        background: rgb(167 155 155 / 10%) !important;
     }
     .userdash .gradbox::before {
         background: rgba(136, 172, 230, 0.36);
@@ -596,7 +596,7 @@ button:hover{
 
     // $bg: #090909, $linkclr: #cccccc, $active: #fff
     .floatinglabel {
-        @include mixins.floating(#fff, #fff, #fff,#e4dddf,#000,#fff,#000,#ebebeb,#ebebeb, #000);
+        @include mixins.floating(#fff, #fff, #fff,#F2F4F7,#000,#fff,#000,#ebebeb,#ebebeb, #000);
     }
 
     #careprivacy {
