@@ -106,8 +106,37 @@ const EmailForm = () => {
         }
     };
 
+    const generateToken = (data) => {
+        return new Promise((resolve, reject) => {
+            const latetsBatch = document.getElementById('recaptchaValidator')
+          const badge = document.querySelector('.grecaptcha-badge');
+          console.log("badgebadgebadgebadge1" , document.querySelector('.grecaptcha-badge'));
+          if (badge) {
+            badge.style.visibility = 'visible';
+          }
+          console.log("badgebadgebadgebadge" , badge,window.grecaptcha);
+          const script = document.createElement('script');
+          script.src = `https://www.google.com/recaptcha/api.js?render=${"6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1"}`;
+          script.onload = () => {
+            window.grecaptcha.ready(() => {
+              window.grecaptcha.execute("6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1").then((token) => {
+                resolve(token);
+              }).catch((error) => {
+                reject(error);
+              });
+            });
+          };
+          script.onerror = (error) => {
+            reject(error);
+          };
+          document.body.appendChild(script);
+        });
+      };
+
     const handleFormSubmit = async (e) => {
-        e.preventDefault();
+        let recaptcha = await generateToken()
+        if(recaptcha){
+            e.preventDefault();
         setLoader(true)
         let reqData = {
             email,
@@ -172,6 +201,11 @@ const EmailForm = () => {
                 }
                 toastAlert('error', message, 'login');
             }
+        }
+        else {
+            toastAlert('error', 'Invalid ReCaptcha', 'signup', 'TOP_RIGHT');
+            return
+        }
     }
 
     useEffect(() => {
@@ -283,7 +317,7 @@ const EmailForm = () => {
             <div className='text-center'>
                 <button className='themebtn big my-3'
                     onClick={handleFormSubmit}
-                    disabled={!isEmpty(validateError) || loader}
+                    // disabled={!isEmpty(validateError) || loader}
                 >
                     {loader && <i class="fas fa-spinner fa-spin"></i>} Login
                 </button>

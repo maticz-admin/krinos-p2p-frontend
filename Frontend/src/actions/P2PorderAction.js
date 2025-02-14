@@ -12,7 +12,6 @@ export const Createp2porderhooks = async (datas, dispatch) => {
             'method': 'post',
             data: { encode: encodedata(datas) },
         });
-        console.log('decodedata(respData----', decodedata(respData.data));
         const response = decodedata(respData.data);
         return { data: response };
     }
@@ -120,7 +119,7 @@ export const Getsingleuserhook = async (datas, dispatch) => {
             'params': { encode: encodedata(datas) }
         });
         const response = decodedata(respData.data)
-        // console.log('respData-----', {data: response});
+        console.log('respData-----', {data: response});
         return { data: response };
     }
     catch (err) {
@@ -257,7 +256,6 @@ export const updateorderstatushooks = async (datas, dispatch) => {
             'method': 'post',
             'data': {encode: encodedata(datas)}
         });
-        console.log('respData-------', respData)
         const response = decodedata(respData.data)
         return {data: response};
     }
@@ -489,8 +487,10 @@ export const updateuserprofilepichooks = async (datas, dispatch) => {
     catch (err) {
         console.log("error", err);
         handleResp(err, 'error')
+        const response = decodedata(err.response.data)
         return {
             status: "failed",
+            message: response.message
         }
     }
 }
@@ -524,11 +524,11 @@ export const getpaymenttypeshook = async (datas, dispatch) => {
             'method': 'get',
             // 'params' : datas
         });
-        console.log('respDatarespData-----', respData);
         // return false;
-        respData = decodedata(respData.data);
+        const response = decodedata(respData.data);
+        console.log('respDatarespData-----', response);
 
-        return respData;
+        return  response;
     }
     catch (err) {
         console.log("error", err);
@@ -653,6 +653,27 @@ export const Checkdeposithooks = async (datas, dispatch) => {
     }
     catch (err) {
         console.log("error", err);
+        handleResp(err, 'error')
+        return {
+            status: "failed",
+        }
+    }
+}
+
+
+export const AddSessionId = async (datas, dispatch) => {
+    try {
+        // console.log('datasdatasdatas---datas-', datas);
+        // return false
+        let respData = await axios({
+            'url': `p2papi/add-session-id`,
+            'method': 'post',
+            data: { encode: encodedata(datas) },
+        });
+        const response = decodedata(respData.data);
+        return { data: response };
+    }
+    catch (err) {
         handleResp(err, 'error')
         return {
             status: "failed",
