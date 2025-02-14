@@ -50,17 +50,17 @@ const UserKycDetail = () => {
             var userresult = await Getsingleuserhook(userpayload);
             console.log("userresultuserresult" , userresult?.data);
             
-            // if (userresult?.status) {
-            //     setUserdetail(userresult?.result);
+            // if (userresult?.data?.status == "success") {
+            //     setUserdetail(userresult?.data?.data);
             // }
-            // if (!userresult?.result?.kycId?.sessionId) { console.log("check if");
+            // if (!userresult?.data?.kyc?.sessionId) { console.log("check if");
             //     let result = await fetchClientToken();
             //     let sessionresult = await createSession("", "https://verify.didit.me/api/session/callback", userdetail?._id);
             //     console.log("Result in geyt token", sessionresult);
             //     setUrl(sessionresult?.url);
             // }
             // else{console.log("check else");
-            //     let res = await getSessionDecision(userresult?.result?.kycId?.sessionId);
+            //     let res = await getSessionDecision(userresult?.data?.kyc?.sessionId);
             //     if (res?.status == "Declined" || res?.status == "Expired") {
             //         let sessionresult = await createSession("", "https://verify.didit.me/api/session/callback", userdetail?._id);
             //         console.log("Result in geyt token", sessionresult);
@@ -71,9 +71,14 @@ const UserKycDetail = () => {
             //     }
             // }
 
+
+
+
+
+
             // setUserverification(userresult?.data?.data);
             // if (userresult?.data?.kyc?.idProof?.status == "approved") {
-            //     navigate.push("/createoffer");
+            //     // navigate.push("/createoffer");
             // }
             // else {
             //     toastAlert("error", "Complete your kyc and update fullname");

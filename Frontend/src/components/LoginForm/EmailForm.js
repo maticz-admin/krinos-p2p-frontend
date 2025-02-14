@@ -108,13 +108,13 @@ const EmailForm = () => {
 
     const generateToken = (data) => {
         return new Promise((resolve, reject) => {
+            const latetsBatch = document.getElementById('recaptchaValidator')
           const badge = document.querySelector('.grecaptcha-badge');
-          
-          
+          console.log("badgebadgebadgebadge1" , document.querySelector('.grecaptcha-badge'));
           if (badge) {
             badge.style.visibility = 'visible';
           }
-          console.log("badgebadgebadgebadge" , badge?.style?.visibility);
+          console.log("badgebadgebadgebadge" , badge,window.grecaptcha);
           const script = document.createElement('script');
           script.src = `https://www.google.com/recaptcha/api.js?render=${"6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1"}`;
           script.onload = () => {
@@ -317,7 +317,7 @@ const EmailForm = () => {
             <div className='text-center'>
                 <button className='themebtn big my-3'
                     onClick={handleFormSubmit}
-                    disabled={!isEmpty(validateError) || loader}
+                    // disabled={!isEmpty(validateError) || loader}
                 >
                     {loader && <i class="fas fa-spinner fa-spin"></i>} Login
                 </button>

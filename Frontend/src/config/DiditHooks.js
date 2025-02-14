@@ -1,4 +1,5 @@
 // import { ApiConstants } from "../api/ApiConstants";
+import { AddSessionId } from "actions/P2PorderAction";
 import config from "../config/index";
 // import { AddSessionIdkyc } from "./axios";
 // import { GetDiditToken, SetDiditToken } from "./usestorage";
@@ -69,6 +70,7 @@ export const fetchClientToken = async () => {
     callback = config?.fronturl , // ApiConstants.BASE_URL,
     vendor_data 
   ) => {
+    debugger
     const BASE_URL = "https://verification.didit.me"
     const url = `${BASE_URL}/v1/session/`;
     const token = GetDiditToken();
@@ -96,14 +98,14 @@ export const fetchClientToken = async () => {
         const data = await response.json();console.log("data" , data);
         
         if (response.status === 201 && data) {
-        //   let result = await AddSessionIdkyc({sessionid : data?.session_id});
-        //   console.log("resultresult" , result);
-        //   if(result?.status){
-        //     return data;
-        //   }
-        //   else{
-        //     return false;
-        //   }
+          let result = await AddSessionId({sessionid : data?.session_id});
+          console.log("resultresult" , result);
+          if(result?.status){
+            return data;
+          }
+          else{
+            return false;
+          }
         } else {
           console.error('Error creating session:', data);
           throw new Error(data.message);
@@ -116,7 +118,7 @@ export const fetchClientToken = async () => {
   };
 
   export const getSessionDecision = async (sessionId) => {
-    const BASE_URL = "https://verification.didit.me"
+    const BASE_URL = "https://verification.didit.me";
     const endpoint = `${BASE_URL}/v1/session/${sessionId}/decision/`;
     const token =  GetDiditToken();
     if (!token) {

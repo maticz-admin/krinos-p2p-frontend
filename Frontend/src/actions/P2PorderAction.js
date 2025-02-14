@@ -659,3 +659,24 @@ export const Checkdeposithooks = async (datas, dispatch) => {
         }
     }
 }
+
+
+export const AddSessionId = async (datas, dispatch) => {
+    try {
+        // console.log('datasdatasdatas---datas-', datas);
+        // return false
+        let respData = await axios({
+            'url': `p2papi/add-session-id`,
+            'method': 'post',
+            data: { encode: encodedata(datas) },
+        });
+        const response = decodedata(respData.data);
+        return { data: response };
+    }
+    catch (err) {
+        handleResp(err, 'error')
+        return {
+            status: "failed",
+        }
+    }
+}

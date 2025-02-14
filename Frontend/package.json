@@ -90,7 +90,7 @@
     "typescript": "3.9.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HTTPS=true react-scripts start",
     "start_demo": "REACT_APP_MODE='demo' react-scripts start",
     "livestart": "set REACT_APP_MODE='production' && react-scripts start",
     "build": "react-scripts --max_old_space_size=4092 build",
