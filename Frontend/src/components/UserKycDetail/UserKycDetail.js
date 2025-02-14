@@ -39,7 +39,7 @@ const UserKycDetail = () => {
     const { userId, firstName, lastName, email, emailStatus, phoneStatus, phoneCode, phoneNo, type, createAt, bankDetail } = accountData;
 
     useEffect(() => {
-        // handleverify();
+        handleverify();
     } , [])
 
     const handleverify = async () => {
@@ -50,26 +50,26 @@ const UserKycDetail = () => {
             var userresult = await Getsingleuserhook(userpayload);
             console.log("userresultuserresult" , userresult?.data);
             
-            if (userresult?.status) {
-                setUserdetail(userresult?.result);
-            }
-            if (!userresult?.result?.kycId?.sessionId) { console.log("check if");
-                let result = await fetchClientToken();
-                let sessionresult = await createSession("", "https://verify.didit.me/api/session/callback", userdetail?._id);
-                console.log("Result in geyt token", sessionresult);
-                setUrl(sessionresult?.url);
-            }
-            else{console.log("check else");
-                let res = await getSessionDecision(userresult?.result?.kycId?.sessionId);
-                if (res?.status == "Declined" || res?.status == "Expired") {
-                    let sessionresult = await createSession("", "https://verify.didit.me/api/session/callback", userdetail?._id);
-                    console.log("Result in geyt token", sessionresult);
-                    setUrl(sessionresult?.url);
-                }
-                else{  
-                    setUrl(res?.session_url);
-                }
-            }
+            // if (userresult?.status) {
+            //     setUserdetail(userresult?.result);
+            // }
+            // if (!userresult?.result?.kycId?.sessionId) { console.log("check if");
+            //     let result = await fetchClientToken();
+            //     let sessionresult = await createSession("", "https://verify.didit.me/api/session/callback", userdetail?._id);
+            //     console.log("Result in geyt token", sessionresult);
+            //     setUrl(sessionresult?.url);
+            // }
+            // else{console.log("check else");
+            //     let res = await getSessionDecision(userresult?.result?.kycId?.sessionId);
+            //     if (res?.status == "Declined" || res?.status == "Expired") {
+            //         let sessionresult = await createSession("", "https://verify.didit.me/api/session/callback", userdetail?._id);
+            //         console.log("Result in geyt token", sessionresult);
+            //         setUrl(sessionresult?.url);
+            //     }
+            //     else{  
+            //         setUrl(res?.session_url);
+            //     }
+            // }
 
             // setUserverification(userresult?.data?.data);
             // if (userresult?.data?.kyc?.idProof?.status == "approved") {
