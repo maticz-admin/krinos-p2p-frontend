@@ -6,7 +6,7 @@ if (env === "production") {
         fronturl : "http://localhost:3000/",
         secretOrKey: "vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3",
         CRYPTO_SECRET_KEY: "1234567812345678",
-        RECAPTCHA_SITE_KEY: "6Lc0jA4jAAAAADmNtnnGw7Px86Pscz2sgpavPIcn", //local
+        RECAPTCHA_SITE_KEY: "6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1", //local
         API_URL: 'https://api.tossvtoss.com/',
         FRONT_URL: "https://www.tossvtoss.com/",
         ADMIN_URL: 'https://contorls.tossvtoss.com',
@@ -23,7 +23,7 @@ if (env === "production") {
     key = {
         secretOrKey: "vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3",
         CRYPTO_SECRET_KEY: "1234567812345678",
-        RECAPTCHA_SITE_KEY: "6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1", 
+        RECAPTCHA_SITE_KEY: "6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1",    //"6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1", 
         API_URL: `${API_URL}:2053`,
         FRONT_URL: 'http://localhost', //'http://localhost:3000',
         ADMIN_URL: 'http://localhost:3001/admin',

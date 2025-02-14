@@ -130,14 +130,16 @@ export const login = async (data, dispatch) => {
     });
     // console.log('respData------', decodedata(respData.data));
     const response = decodedata(respData.data);
-    if (respData.data.status == "TWO_FA") {
+    console.log("response in login" , response);
+    
+    if (response?.status == "TWO_FA") {
       return {
         status: "TWO_FA",
         loading: false,
         message: response.message,
       };
     }
-    else if (respData.data.message == "OTP send to your mail id") {
+    else if (response?.message == "OTP send to your mail id") {
       return {
         status: "success",
         loading: false,
