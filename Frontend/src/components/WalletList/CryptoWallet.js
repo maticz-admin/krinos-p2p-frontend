@@ -46,8 +46,8 @@ const CryptoWallet = () => {
 
   // redux-state
   const walletData = useSelector((state) => state.wallet);
+  console.log('walletData---', walletData)
   const currencyDoc = useSelector((state) => state.currency);
-  // console.log('currencyDoc------', useSelector((state) => state));
   // function
   const handleChange = (e) => {
     e.preventDefault();
@@ -79,6 +79,8 @@ const CryptoWallet = () => {
   const onSearch = (e) => {
     e.preventDefault();
     const { value } = e.target;
+    console.log('searchData----', value);
+
     let searchData = filterData;
     let arrayData = [];
     searchData &&
@@ -103,6 +105,7 @@ const CryptoWallet = () => {
     updatedeposit();
     gethideZeroSatus();
     getSpotPair();
+    console.log('walletData-----', walletData)
     if (walletData && walletData.length > 0) {
       setOriginal(walletData);
       setFilter(walletData);
@@ -117,7 +120,6 @@ const CryptoWallet = () => {
 
   const getSpotPair = async () => {
     const { result } = await getPairList();
-
     setPairList(result);
   };
   const gethideZeroSatus = async () => {
@@ -188,12 +190,14 @@ const CryptoWallet = () => {
         </div>
       </div>
       <div className="fialt_wallet_sectoin  table-responsive">
+      
         {currencyDoc &&
           currencyDoc.length > 0 &&
           originalData &&
           originalData.length > 0 &&
           originalData.map((item, key) => {
             let curData = currencyDoc.find((el) => el.coin == item.coin);
+            console.log('curData-----', curData)
             //redirect particular currency
             
             let pair = "",

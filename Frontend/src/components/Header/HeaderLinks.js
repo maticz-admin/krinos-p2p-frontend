@@ -138,7 +138,8 @@ themechange(data)
 
   const fetchcoin = async()=>{
     var result = await Getcoinlisthooks();
-    setCoinlist(result?.data?.data);
+    console.log('resulresultresult-----t, result', result)
+    setCoinlist(result?.data);
   }
 
   return (

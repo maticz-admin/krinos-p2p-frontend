@@ -22,6 +22,8 @@ import {
     changeTradeTheme as changeTradeThemeLocal,
     setTradeTheme as setTradeThemeLocal
 } from '../lib/localStorage'
+import { decodedata } from 'config/secure';
+import { encodedata } from 'config/secure';
 
 
 export const getLanguage = async (dispatch) => {
@@ -73,11 +75,12 @@ export const getCurrency = async (dispatch) => {
             'method': 'get',
             'url': `/api/getCurrency`,
         });
-        dispatch(setCurrencyOption(respData.data.result))
+        const response = decodedata(respData.data)
+        dispatch(setCurrencyOption(response.result))
         return {
             status: 'success',
             loading: false,
-            result: respData.data.result,
+            result: response.result,
         }
     }
     catch (err) {
@@ -149,10 +152,11 @@ export const getCMSPage = async (identifier) => {
             'method': 'get',
             'url': `/api/cms/${identifier}`,
         });
+        const response = decodedata(respData.data)
         return {
             status: 'success',
             loading: false,
-            result: respData.data.result,
+            result: response.result,
         }
     }
     catch (err) {
@@ -381,21 +385,24 @@ export const newContact = async (data) => {
         let respData = await axios({
             'method': 'post',
             'url': `/api/contact`,
-            data
+            data: {encode: encodedata(data)}
         });
+        const response = decodedata(respData.data)
         return {
             status: 'success',
             loading: false,
-            message: respData.data.message,
+            message: response.message,
         }
     }
     catch (err) {
         handleResp(err, 'error')
+        const response = decodedata(err.response.data)
+
         return {
             status: 'failed',
             loading: false,
-            message: err.response.data.message,
-            error: err.response.data.errors
+            message: response.message,
+            error: response.errors
         }
     }
 }

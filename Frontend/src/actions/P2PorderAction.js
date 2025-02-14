@@ -331,9 +331,10 @@ export const Getcmshooks = async (datas, dispatch) => {
         let respData = await axios({
             'url': `p2papi/get-cms`,
             'method': 'get',
-            'params': datas
+            'params': {encode: encodedata(datas)}
         });
-        return respData;
+        const response = decodedata(respData.data)
+        return {data: response};
     }
     catch (err) {
         console.log("error", err);
