@@ -33353,6 +33353,11 @@ option {
 
 .borderbox_img_wi img {
   max-height: 50px;
+  filter: brightness(0) invert(1);
+}
+
+.light_theme .borderbox_img_wi img {
+  filter: brightness(0);
 }
 
 .h-100vh.bodyheight.heigh_unst_hom {
