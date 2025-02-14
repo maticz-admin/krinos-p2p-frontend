@@ -21,7 +21,8 @@ body {
   background: var(--dark-bg);
   font-family: "Roboto", sans-serif !important;
   overflow-x: hidden;
-  color: #41423d;
+  /* color: #41423d; */
+  color: var(--white);
 }
 
 body.light_theme {
@@ -9921,6 +9922,11 @@ button:focus {
 .btn.btn-primary.btn-link:active {
   background-color: transparent;
   color: #209a68;
+}
+
+.light_theme .btn.btn-primary:hover {
+border: 1px solid #000 !important;
+color: #000 !important;
 }
 
 .btn.btn-secondary {
@@ -21216,7 +21222,7 @@ button.btn.btn-outline:active {
   color: gray !important;
 }
 .MuiMenu-list i {
-  background: transparent
+  /* background: transparent
     linear-gradient(
       158deg,
       #00a3fbd8 0%,
@@ -21226,7 +21232,12 @@ button.btn.btn-outline:active {
     )
     0% 0% no-repeat padding-box;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: white;
+}
+
+.light_theme .MuiMenu-list i {
+  color: black;
 }
 #profile_menu .MuiListItem-button:hover {
   /* background-color: #193e2f; */
@@ -21631,7 +21642,7 @@ button.btn.btn-outline:active {
  background: #eee;
 } */
 .light_theme .userPages {
-  background: #eeeeee;
+  background: var(--white-bg);
 }
 
 .userPages.tradePages {
@@ -21967,6 +21978,10 @@ fieldset[disabled][disabled] .form-control,
   color: #22b87b;
 }
 
+.dark_theme .verifiedDocument h3 {
+color: #aff41f;
+}
+
 .verifiedDocument p {
   margin-bottom: 0;
 }
@@ -21974,6 +21989,11 @@ fieldset[disabled][disabled] .form-control,
 .verifiedDocument p a {
   color: #22b87b;
 }
+
+.dark_theme .verifiedDocument p a {
+  color: #aff41f;
+}
+
 
 .verifiedDocument p a:hover {
   text-decoration: underline;
@@ -25518,7 +25538,7 @@ h4.profileDetailView1 {
   margin: 0 0 15px 0;
   padding-bottom: 15px;
   border-bottom: 0px solid #F2F4F7;
-  background: #f8f8f8;
+  background: transparent;
   padding: 6px 12px;
   font-weight: 500;
 }
@@ -27686,7 +27706,7 @@ body.light_theme {
 } */
 
 .dark_theme .dashboard_container {
-  background: #050505 !important;
+  background: var(--dark-bg) !important;
 }
 
 .light_theme .p2p_card .dashboard_box {
@@ -27697,7 +27717,7 @@ body.light_theme {
 
 .dark_theme .p2p_card {
   /* background: #1a1b1c; */
-  background: #1a1b1c26 !important;
+  background: #19181c !important;
 }
 .light_theme .p2p_card {
   background: transparent !important;
@@ -27716,7 +27736,7 @@ body.light_theme {
 
 .light_theme .profileDetailView .alert.alert-info {
   /* background: #1b1e1e; */
-  background: #1b1e1e24;
+  background: #F2F4F7;
 }
 .dark_theme .profileDetailView ul li span {
   color: #fff;
@@ -30394,10 +30414,19 @@ header .container-fluid-full {
   color: #fff !important;
 }
 
-.otp_inp_grp .btn {
-  border-radius: 0px 8px 8px 0px !important;
+.otp_inp_grp  .btn {
+  border-radius: 8px 8px 8px 8px !important;
 }
 
+.otp_inp_grp .input-group-append .btn {
+  border-radius: 8px 8px 8px 8px !important;
+}
+
+.dark_theme .otp_inp_grp .btn:hover {
+  background: #aff41f;
+  border: 1px solid #aff41f;
+  color: #aff41f !important;
+}
 .profile_dash li {
   word-break: break-all;
 }
@@ -33164,6 +33193,11 @@ option {
   min-height: 49px;
   border-radius: 8px;
   object-fit: cover;
+  filter: brightness(0) invert(1);
+}
+
+.light_theme .img_prof_runded {
+  filter: brightness(0);
 }
 .selct_padd_ned {
   padding-left: 0.75rem;
@@ -33451,6 +33485,11 @@ option {
 }
 .mes_icon_header {
   max-width: 25px;
+  filter: brightness(0) invert(1);
+}
+.light_theme .mes_icon_header {
+  max-width: 25px;
+  filter: brightness(0);
 }
 .profileDetailView.view_prof_aig ul li {
   align-items: center;

@@ -125,6 +125,7 @@
     bottom: 0;
     max-width: 483px;
     z-index: -1;
+    display: none;
 }
 .spring11{
     top: 8% !important;
@@ -156,6 +157,7 @@
     max-width: 75px;
     top: -5%;
     z-index: -1;
+    display: none;
 }
 .themebtn a{ 
    color: #000;
@@ -177,6 +179,7 @@ a.buyhover:hover .tradelists{
     max-width: 80px !important;
     top: 16% !important;
     z-index: -1 !important;
+    display: none;
 }
 .connect1 {
     position: absolute;
@@ -191,6 +194,7 @@ a.buyhover:hover .tradelists{
     max-width: 80px;
     top: 50%;
     z-index: -1;
+    display: none;
 }
 
 .connectright {
@@ -200,6 +204,7 @@ a.buyhover:hover .tradelists{
     right: -3%;
     max-width: 50px;
     z-index: -1;
+    display: none;
 }
 
 .bitcoincompany .prof1 {
@@ -1073,10 +1078,19 @@ body.light_theme .makeStyles-dark-15,body.light_theme .jss25 {
     margin-right: 8px;
 }
 .fa-bell{
-    background: transparent linear-gradient(158deg, #00A3FBD8 0%, #F8658DC9 36%, #03FF48D3 78%, #03FFE0 100%) 0% 0% no-repeat padding-box;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    /* background: transparent linear-gradient(158deg, #00A3FBD8 0%, #F8658DC9 36%, #03FF48D3 78%, #03FFE0 100%) 0% 0% no-repeat padding-box; */
+    /* -webkit-background-clip: text; */
+    /* -webkit-text-fill-color: transparent; */
 }
+
+.fa-bell {
+    color: white;
+}
+
+.light_theme .fa-bell {
+    color: black;
+}
+
 .buyss .dropdown-menu a:hover .iconss{
     color: #000 !important;
     filter: unset;

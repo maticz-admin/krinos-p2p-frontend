@@ -617,7 +617,7 @@ button:hover{
         @include mixins.buysellnav(#F2F4F7, #a7a1a1, #000,#0f9a6c,#000)
     }
     .themebtn {
-        @include mixins.themebtn(#000,0 0 5px 5px #e0e0e0);
+        @include mixins.themebtn(#000,none);
     }
     .borderbtn {
         @include mixins.borderbtn(#000, #000)
