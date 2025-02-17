@@ -14,7 +14,7 @@ import RegisterForm from '../components/RegisterForm';
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title="TOSSVTOSS"
+    document.title="KrinosP2P"
   }, []);
   return null;
 }

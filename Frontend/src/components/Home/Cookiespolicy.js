@@ -69,7 +69,7 @@ const Cookiespolicy = (props) => {
                     {ReactHtmlParser(cmsdata)}
                         {/* <h2 className='cms_h3_m'>Public Cookies Policy</h2>
                         <p>
-At TOSSvTOSS. ("TOSSvTOSS", "we", "we", or "us") we take all necessary steps to protect your
+At Krinos P2P. ("Krinos P2P", "we", "we", or "us") we take all necessary steps to protect your
 privacy. In this Cookie Policy ("Policy"), we aim to explain what cookies are and how we handle cookies
 on our web platforms, online wallets, mobile applications, social media pages, or other online properties
 and services. This policy has been written so that you can easily understand our cookie-handling
@@ -100,13 +100,13 @@ settings of cookies in the "Help" section of your browser.</p>
 cookies are turned off.</p>
 <h5>Disable Cookies</h5>
 <p>You can disable cookies by editing your browser settings. Please note that disabling cookies may affect
-the functionality of TOSSvTOSS and other websites you visit. In this context, we recommend that you
+the functionality of Krinos P2P and other websites you visit. In this context, we recommend that you
 do not disable cookies.</p>
 <h5>Third Party Cookies</h5>
 <p>In special cases, we also use cookies provided by trusted third parties. The following section details the
 third-party cookies you may experience on this website.</p>
 <p>Our website uses third party analytics tools such as Google Analytics to help us understand how you
-use TOSSvTOSS and how we can improve your experience. These cookies can track information such
+use Krinos P2P and how we can improve your experience. These cookies can track information such
 as how long you have been on the website and which pages you have visited. For more information on
 Google Analytics cookies, please visit the Google Analytics official page.</p>
 <p>From time to time we test new features on our website and make small changes to the way our website

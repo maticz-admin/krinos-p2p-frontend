@@ -62,7 +62,7 @@ const ProfilePage = (props) => {
   useEffect(() => {
     fetchdata()
     getKycDetail(dispatch)
-    document.title = "TOSSVTOSS"
+    document.title = "KrinosP2P"
   }, [])
 
   const fetchdata = async() => {

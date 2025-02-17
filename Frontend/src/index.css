@@ -5,6 +5,8 @@
   --secondary-bg: #19181c;
   --dark-secondary-btnBg:#121116;
   --dark-clr: #a3a3b7;
+  --dark-sub-head:#A3A3B7;
+  --light-sub-head:#808080;
   --white-bg: #fff;
   --white-clr: #0d0d0d;
   --btn-bg: #aff41f;
@@ -21244,7 +21246,7 @@ button.btn.btn-outline:active {
     0% 0% no-repeat padding-box;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
-  color: white;
+  /* color: white; */
 }
 
 .light_theme .MuiMenu-list i {
@@ -21254,6 +21256,10 @@ button.btn.btn-outline:active {
   /* background-color: #193e2f; */
   background-color: #aff41f;
   color: black;
+}
+
+.light_theme #profile_menu .MuiListItem-button:hover .fa-user {
+color: #000;
 }
 
 .form-control .react-tel-input {

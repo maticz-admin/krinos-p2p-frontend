@@ -157,7 +157,7 @@ export default function BeforeLogin(props) {
               <li><NavLink to="/terms">Terms & Conditions</NavLink></li>
               <li><NavLink to="/privacy-policy">Privacy Policy</NavLink></li>
             </ul>
-            <p class="mt-2 cpy_txt">&copy; Copyright 2022 <NavLink to="/home">Toss V Toss</NavLink> All rights reserved</p>
+            <p class="mt-2 cpy_txt">&copy; Copyright 2022 <NavLink to="/home">Krinos P2Ps</NavLink> All rights reserved</p>
           </div>  
           <div className="footerMidd_right">
             <h3>Social Media With Us:</h3>

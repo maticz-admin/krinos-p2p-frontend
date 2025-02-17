@@ -392,7 +392,7 @@ const Bitcoincompany = (props) => {
                                     </div>
                                     <div className='col-md-3 col-sm-6'>
                                         <div className='border1 mt-2'>
-                                            <p className='amount'>TossVToss fee</p>
+                                            <p className='amount'>Krinos P2P fee</p>
                                             <p className='btc-amount'>{currencies?.commisionfee}%</p>
                                         </div>
                                     </div>

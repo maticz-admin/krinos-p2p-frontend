@@ -37,9 +37,12 @@ a{
     width:100%;
 }
 .subhead {
-    color: #757272;
+    color: #A3A3B7;
     text-align: center;
     font-family: "Roboto",sans-serif !important;
+}
+.light_theme .subhead {
+    color: #808080;
 }
 .themecontainer {
     width: 95%;
