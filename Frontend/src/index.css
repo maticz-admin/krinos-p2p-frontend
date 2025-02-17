@@ -32314,12 +32314,29 @@ li.unread .lighttxt {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
+
+
+.light_theme #footer .container .input-group .themebtn:hover {
+  background-color: #aff41f !important;
+  border: 1px solid #aff41f !important;
+  color: #000 !important;
+}
+
 .dark_theme #footer .container .input-group .themebtn {
   /* box-shadow: -20px 0 7px 0px #0b0b0b85 !important; */
   box-shadow: none !important;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+
 }
+
+.dark_theme #footer .container .input-group .themebtn:hover {
+  background-color: #aff41f !important;
+  border: 1px solid #aff41f !important;
+  color: #000 !important;
+}
+
+
 .light_theme #careprivacy .container-fluid .bannerconnect,
 .light_theme #careprivacy .container-fluid .connectr {
   filter: opacity(0.5) !important;
