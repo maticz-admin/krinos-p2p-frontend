@@ -20853,7 +20853,7 @@ footer a:hover {
 .submit_btn button:hover {
   background: transparent !important;
   border: 1px solid #aff41f !important;
-  color: #fff !important;
+  color: #aff41f !important;
 }
 
 .light_theme .submit_btn button:hover {
@@ -27938,7 +27938,11 @@ body.light_theme {
 }
 
 .light_theme .wallwt_balance {
-  background: #121212;
+  background: #808080;
+  color: white;
+}
+ .wallwt_balance p {
+  color: white;
 }
 
 .light_theme .statisctic::after {
@@ -28357,6 +28361,14 @@ a:hover {
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
   font-family: "Roboto", sans-serif !important;
+}
+
+.dark_theme .MuiInputBase-root {
+  color: white;
+}
+
+.light_theme .MuiInputBase-root {
+  color: black !important;
 }
 
 .MuiMenu-list li {
