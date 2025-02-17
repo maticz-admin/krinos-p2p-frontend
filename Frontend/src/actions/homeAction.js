@@ -28,7 +28,6 @@ export const getCmsData = async () => {
             'method': 'get',
             'url': `/api/getCmsData`,
         });
-        // console.log('respData------', respData);
         return {
             status: 'success',
             loading: false,

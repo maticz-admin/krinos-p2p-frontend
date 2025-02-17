@@ -41,7 +41,6 @@ const MobileForm = () => {
     const { t, i18n } = useTranslation();
     const { executeRecaptcha } = useGoogleReCaptcha();
     const query = useQuery();
-
     // state
     const [formValue, setFormValue] = useState(initialFormValue);
     // const [reCaptcha, setReCaptcha] = useState('');

@@ -1,4 +1,5 @@
 // import config
+import { decodedata } from 'config/secure';
 import axios , {handleResp} from '../config/axios'
 
 // import constant
@@ -9,6 +10,7 @@ import {
     UPDATE_USER_WALLET_STAKE,
     HIDE_ZERO
 } from '../constant';
+import { encodedata } from 'config/secure';
 
 export const getAssetData = async (dispatch) => {
     try {
@@ -16,8 +18,8 @@ export const getAssetData = async (dispatch) => {
             'method': 'get',
             'url': `/api/getAssetsDetails`,
         });
-
-        dispatch(userWalletList(respData.data.result))
+        const response = decodedata(respData.data);
+        dispatch(userWalletList(response.result))
        
         return true
     }
@@ -146,25 +148,28 @@ export const fiatRequestVerify = async (data) => {
 
 export const withdrawRequestCoin = async (data) => {
     try {
+
         let respData = await axios({
             'method': 'post',
             'url': `/api/coinWithdraw`,
-            'data': data
+            'data': {encode: encodedata(data)}
         });
+        const response = decodedata(respData.data)
         return {
             status: "success",
             loading: false,
-            message: respData.data.message,
-            result: respData.data.result
+            message: response.message,
+            result: response.result
         }
     }
     catch (err) {
         handleResp(err, 'error')
+        const response = decodedata(err.response.data)
         return {
             status: "failed",
             loading: false,
-            message: err.response.data.message,
-            error: err.response.data.errors
+            message: response.message,
+            error: response.errors
         }
     }
 }
@@ -348,15 +353,17 @@ export const setUserSecondCurrency = (assetData, dispatch) => {
 
 export const getTrnxHistory = async (params, query) => {
     try {
+        
         let respData = await axios({
             'method': 'get',
             'url': `/api/history/transaction/` + params,
-            'params': query
+            'params': {encode: encodedata(query)}
         });
+        const response = decodedata(respData.data)
         return {
             status: "success",
             loading: false,
-            result: respData.data.result
+            result: response.result
         }
     }
     catch (err) {
