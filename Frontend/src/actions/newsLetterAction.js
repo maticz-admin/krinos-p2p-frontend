@@ -1,26 +1,30 @@
 // import config
+import { decodedata } from 'config/secure';
 import axios,{  handleResp} from '../config/axios';
+import { encodedata } from 'config/secure';
 
 export const subscribe = async (reqData) => {
     try {
         const respData = await axios({
             'url': `/api/newsLetter/subscribe`,
             'method': 'post',
-            'data': reqData
+            'data': {encode: encodedata(reqData)}
         })
-        
+        const response = decodedata(respData.data)
         return {
             status: "success",
             loading: false,
-            message:respData.data.message
+            message:response.message
         }
     } catch (err) {
         handleResp(err, 'error')
+        const response = decodedata(err.response.data)
+
         return {
             status: 'failed',
             loading: false,
-            message: err.response.data.message,
-            error: err.response.data.errors,
+            message: response.message,
+            error: response.errors,
         }
     }
 }

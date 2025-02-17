@@ -125,7 +125,6 @@ export const Getsingleuserhook = async (datas, dispatch) => {
             'params': { encode: encodedata(datas) }
         });
         const response = decodedata(respData.data)
-        console.log('respData-----', {data: response});
         return { data: response };
     }
     catch (err) {
@@ -441,9 +440,10 @@ export const getuserbalancehook = async (datas, dispatch) => {
         let respData = await axios({
             'url': `p2papi/get-user-balance`,
             'method': 'get',
-            'params': datas
+            'params': {encode: encodedata(datas)}
         });
-        return respData;
+        const response = decodedata(respData.data)
+        return {data: response};
     }
     catch (err) {
         console.log("error", err);
@@ -536,7 +536,6 @@ export const getpaymenttypeshook = async (datas, dispatch) => {
         });
         // return false;
         const response = decodedata(respData.data);
-        console.log('respDatarespData-----', response);
 
         return  response;
     }

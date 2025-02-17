@@ -6,11 +6,13 @@ import Images  from 'Images';
 // import lib
 import { toFixed } from '../../lib/roundOf';
 import { currencySymbol } from '../../lib/pairHelper'
-import { getuserbalancehook } from 'actions/P2PorderAction';
+import { getuserbalancehook } from '../../actions/P2PorderAction';
 
 const Section2 = (props) => {
     const { t, i18n } = useTranslation();
-    const userdata = (setTimeout(useSelector(state => state) , 5000));
+    // const userdata = (setTimeout(useSelector(state => state) , 5000));
+
+    const userdata = useSelector(state => state);
 
     // props
     const { firstCoin, secondCoin, walletType } = props;
@@ -78,7 +80,8 @@ const Section2 = (props) => {
             var payload = {
                 userid : userdata?.account?.userId,
             }
-            var result = await getuserbalancehook(payload)
+            var result = await getuserbalancehook(payload);
+            
             if(result?.data?.type == "success"){
                 setBalances(result?.data?.data);
             }

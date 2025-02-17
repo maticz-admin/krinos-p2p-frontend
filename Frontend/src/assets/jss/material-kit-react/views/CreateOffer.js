@@ -165,7 +165,6 @@ const CreateOffer = (props) => {
     useEffect(() => {
         async function fetchdata() {
             var result = await Getcoinlisthooks();
-            console.log('result----', result.data);
             setCrypto(result?.data);
             setCoin(result?.data[0].symbol)
             var precurrency = await Getpreferedcurrency()
@@ -176,7 +175,6 @@ const CreateOffer = (props) => {
             var ofrtg = await Getalloffertaghook();
             setOffertaglist(ofrtg?.data?.data);
             var paytype = await getpaymenttypeshook();
-            console.log('paytype------', paytype)
             setMydata(paytype?.data);
             // setPaymentmethod(paytype?.data?.data[0]?.value);
         }

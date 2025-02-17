@@ -24,7 +24,7 @@ import Footer from "../components/Footer/Footer"
 // import action
 import { getKycDetail } from '../actions/userKyc'
 import { updateuserprofilepichooks } from "../actions/P2PorderAction";
-import { Getsingleuserhook } from "actions/P2PorderAction";
+import { Getsingleuserhook } from "../actions/P2PorderAction";
 import config from "../config/index";
 import { toastAlert } from "lib/toastAlert";
 import { updateAcctData } from "actions/users";
