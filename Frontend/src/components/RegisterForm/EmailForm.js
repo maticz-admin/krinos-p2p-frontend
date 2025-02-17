@@ -112,8 +112,8 @@ const EmailForm = () => {
         setValidateError(err);
         if(isEmpty(err)){
             e.preventDefault();
-        // let reCaptcha = await handleReCaptcha()
-        let reCaptcha  = await generateToken();
+        let reCaptcha = await handleReCaptcha()
+        // let reCaptcha  = await generateToken();
         console.log("reCaptchareCaptchareCaptcha" , reCaptcha);
         
         if (isEmpty(reCaptcha)) {

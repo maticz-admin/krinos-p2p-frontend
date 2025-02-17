@@ -106,11 +106,15 @@ const EmailForm = () => {
         catch (err) {
         }
     };
-
+    
     const generateToken = (data) => {
         return new Promise((resolve, reject) => {
           const badge = document.querySelector('.grecaptcha-badge');
+          console.log("badgebadgebadge" , badge);
+          
           if (badge) {
+            console.log("badge visible" , badge , badge.style);
+            
             badge.style.visibility = 'visible';
           }
           const script = document.createElement('script');
@@ -180,7 +184,6 @@ const EmailForm = () => {
     const handleFormSubmit = async (e) => {
         let recaptcha = await generateToken();
         console.log("recaptcharecaptcha" , recaptcha);
-        
         if(recaptcha){
             e.preventDefault();
         setLoader(true)
@@ -283,12 +286,12 @@ const EmailForm = () => {
         <Fragment>
 {/* <div className="g-recaptcha" data-size="invisible"> */}
 
-<div
+{/* <div
         className="g-recaptcha"
         data-sitekey={config.RECAPTCHA_SITE_KEY}
         
        
-      >
+      > */}
             <div className='floatinglabel my-4'>
 
                 <label>{t('EMAIL_PLACEHOLDER')}</label>
@@ -462,7 +465,7 @@ const EmailForm = () => {
                 </Button>
             </div> */}
             {ipmodal && <IprestrictModal login={(e) => handleFormSubmit(e)} setotp={(data) => setOtp(data)} request={requestdata} email={email} onDismiss={() => { setIpmodal(false); setOtp("") }} />}
-            </div>
+            {/* </div> */}
         </Fragment>
         
     )
