@@ -113,6 +113,12 @@ export const Getpreferedcurrency = async (datas, dispatch) => {
 export const Getsingleuserhook = async (datas, dispatch) => {
     try {
         console.log("wallet payload", datas);
+        // let value;
+        // if (!datas) {
+        //     value =  encodedata(datas);
+        // } else {
+        //     value = encodedata('');
+        // }
         let respData = await axios({
             'url': `p2papi/getsingleuser`,
             'method': 'get',
@@ -123,7 +129,7 @@ export const Getsingleuserhook = async (datas, dispatch) => {
         return { data: response };
     }
     catch (err) {
-        console.log("error", err);
+        console.log("error", err.response);
         handleResp(err, 'error')
         return {
             status: "failed",
@@ -337,7 +343,6 @@ export const Getcmshooks = async (datas, dispatch) => {
         return {data: response};
     }
     catch (err) {
-        console.log("error", err);
         handleResp(err, 'error')
         return {
             status: "failed",
@@ -451,19 +456,23 @@ export const getuserbalancehook = async (datas, dispatch) => {
 
 export const gettradespeedhook = async (datas, dispatch) => {
     try {
-        // console.log("wallet payload" , datas);
+        console.log("wallet payload" , datas);
         let respData = await axios({
             'url': `p2papi/get-trade-speed`,
             'method': 'get',
-            'params': datas
+            'params': {encode: encodedata(datas)}
         });
-        return respData;
+        const response = decodedata(respData.data)
+        return {data: response};
     }
     catch (err) {
         console.log("error", err);
-        handleResp(err, 'error')
+        handleResp(err, 'error');
+        const response = decodedata(err.response.data)
+
         return {
             status: "failed",
+            message: response.message
         }
     }
 }

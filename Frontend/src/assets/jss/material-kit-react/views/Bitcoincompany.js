@@ -22,10 +22,10 @@ import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.m
 import { useSelector } from 'react-redux';
 import { createroom } from 'actions/P2PorderAction';
 import { getsingletradehooks } from '../../../../actions/P2PorderAction';
-import { Getsingleuserhook } from 'actions/P2PorderAction';
-import { getcurrencydatahooks } from 'actions/P2PorderAction';
+import { Getsingleuserhook } from '../../../../actions/P2PorderAction';
+import { getcurrencydatahooks } from '../../../../actions/P2PorderAction';
 import { toastAlert } from 'lib/toastAlert';
-import { gettradespeedhook } from 'actions/P2PorderAction';
+import { gettradespeedhook } from '../../../../actions/P2PorderAction';
 import config from 'config';
 
 const dashboardRoutes = [];
@@ -72,11 +72,13 @@ const Bitcoincompany = (props) => {
             setLoader(true);
             var payload = { id: window.location.pathname.split('/')[2]?.toString() }
             let result = await getsingletradehooks(payload);
-            // console.log('resultresult-----', result)
+            console.log('resultresult-----', result.data.data)
             let ownerdata = await Getsingleuserhook({ userid: result?.data?.data?.createrid })
+            console.log('ownerdata---', ownerdata)
             setOwnerdata(ownerdata?.data?.data);
             setOwnerkyc(ownerdata?.data?.kyc);
             var tradespeedresult = await gettradespeedhook({ userid: result?.data?.data?.createrid });
+            console.log('tradespeedresult----', tradespeedresult)
             var speed = parseFloat(tradespeedresult?.data?.data) / 60000
             setTradespeed(speed);
             var wallets = ownerdata?.data?.wallet?.assets?.find(e => e.coin == result?.data?.data?.coin);
@@ -248,6 +250,7 @@ const Bitcoincompany = (props) => {
         //     receive : receive,
         //     tradedata : tradedata
         // }
+        console.log('userdata?.account?.userId---',userdata?.account?.userId, ownerdata?.userId )
         if (userdata?.account?.userId == ownerdata?.userId) {
             toastAlert("error", "You can't trade this order")
         }
