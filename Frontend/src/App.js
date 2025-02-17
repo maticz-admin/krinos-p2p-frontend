@@ -4,7 +4,6 @@ import { Switch, BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { I18nextProvider } from 'react-i18next';
-
 // import component
 import ConditionRoute from './components/Route/ConditionRoute';
 import i18n from './components/i18next/i18n';
@@ -103,9 +102,7 @@ import Bitcoins from "assets/jss/material-kit-react/views/Buybitcoin";
 import Sellbitcoins from "assets/jss/material-kit-react/views/sellbitcoin"; 
 import Bitcoincompany from "assets/jss/material-kit-react/views/Bitcoincompany";
 import Sellbitcoincompany from "assets/jss/material-kit-react/views/Sellbitcoincompany";
-
 import "../src/help.css";
-
 import UserDashboard from "assets/jss/material-kit-react/views/UserDashboard";
 import Trade from "components/P2P/Trade";
 import Displayownerdata from "./components/P2P/Displayownerdata";
@@ -118,12 +115,14 @@ import Restrictedcountries from "./components/Home/Restrictedcountries";
 import Risk from "./components/Home/Risk";
 import Messagenotification from "./pages/MessageNotification";
 
+import MyAppp from "pages/TestPage";
+
 
 
 
 import {Getsingleuserhook, updateuserstatushooks} from './actions/P2PorderAction'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
+require('dotenv').config();
 const App = () => {
     const { isAuth } = store.getState().auth;
     const userdata = localStorage.getItem("userId")
@@ -210,8 +209,8 @@ const App = () => {
                             <ConditionRoute exact path='/support-ticket' component={SupportPage} type={"public"} />
                             <ConditionRoute exact path='/chat/:orderId' component={Chat} type={"public"} />
                             <ConditionRoute exact path='/contact' component={Contact} type={"public"} />
-
-
+                            
+                            {/* <ConditionRoute exact path='/test' component={MyAppp} type={"public"} /> */}
                             <ConditionRoute exact path='/email-verification/:authToken' component={EmailVerification} type={"public"} />
                             <ConditionRoute exact path='/verify-old-email/:authToken' component={EmailVerification} type={"public"} />
                             <ConditionRoute exact path='/verify-new-email/:authToken' component={EmailVerification} type={"public"} />

@@ -7,6 +7,7 @@ import Checkbox from 'rc-checkbox';
 import { useTranslation } from 'react-i18next';
 import { useHistory, Link } from 'react-router-dom';
 import clsx from 'classnames';
+import config from "../../config/index";
 
 // import action
 import { getGeoInfoData, login } from '../../actions/users';
@@ -105,9 +106,86 @@ const EmailForm = () => {
         catch (err) {
         }
     };
-
+    
+    const generateToken = (data) => {
+        return new Promise((resolve, reject) => {
+          const badge = document.querySelector('.grecaptcha-badge');
+          console.log("badgebadgebadge" , badge);
+          
+          if (badge) {
+            console.log("badge visible" , badge , badge.style);
+            
+            badge.style.visibility = 'visible';
+          }
+          const script = document.createElement('script');
+          script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`;
+          script.onload = () => {
+            window.grecaptcha.ready(() => {
+              window.grecaptcha.execute(config.RECAPTCHA_SITE_KEY).then((token) => {
+                resolve(token);
+              }).catch((error) => {
+                reject(error);
+              });
+            });
+          };
+          script.onerror = (error) => {
+            reject(error);
+          };
+          document.body.appendChild(script);
+        });
+      };
+      
+    // const generateToken = async (data) => {
+    //     try {
+    //         var tkn ;
+    //       // Dynamically load the reCAPTCHA script if it's not already loaded
+    //       if (!document.querySelector('script[src="https://www.google.com/recaptcha/api.js?render=6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1"]')) {
+    //         const script = document.createElement('script');
+    //         script.src = `https://www.google.com/recaptcha/api.js?render=6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1`;
+    //         document.body.appendChild(script);
+      
+    //         // Wait for the script to load
+    //         await new Promise((resolve, reject) => {
+    //           script.onload = resolve;
+    //           script.onerror = reject;
+    //         });
+    //       }
+      
+    //       // Wait for reCAPTCHA to be fully ready
+    //       await new Promise((resolve, reject) => {
+    //         window.grecaptcha.ready(() => {
+    //           window.grecaptcha.execute('6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1', { action: 'homepage' })
+    //             .then((token) => {
+    //                 console.log("tokenddasfasdfads" , token);
+    //                 tkn = token
+    //               resolve(token);
+    //             })
+    //             .catch((error) => {
+    //               reject(error);
+    //             });
+    //         });
+    //       });
+      
+    //       // Access the badge after executing reCAPTCHA
+    //       const badge = document.querySelector('.grecaptcha-badge');
+    //       if (badge) {
+    //         badge.style.visibility = 'visible';
+    //         console.log('Badge found:', badge);
+    //         return tkn
+    //       } else {
+    //         console.log('Badge not found');
+    //       }
+    //     } catch (error) {
+    //       console.error('Error in generating token or loading reCAPTCHA:', error);
+    //       throw error; // Re-throw the error to be handled by the caller
+    //     }
+    //   };
+      
     const handleFormSubmit = async (e) => {
-        e.preventDefault();
+        let recaptcha = await generateToken();
+        console.log("recaptcharecaptcha" , recaptcha);
+        if(recaptcha){
+            e.preventDefault();
         setLoader(true)
         let reqData = {
             email,
@@ -172,6 +250,11 @@ const EmailForm = () => {
                 }
                 toastAlert('error', message, 'login');
             }
+        }
+        else {
+            toastAlert('error', 'Invalid ReCaptcha', 'signup', 'TOP_RIGHT');
+            return
+        }
     }
 
     useEffect(() => {
@@ -199,10 +282,16 @@ const EmailForm = () => {
     }, [])
     var india = <img src={Images.india} />
     return (
+        
         <Fragment>
+{/* <div className="g-recaptcha" data-size="invisible"> */}
 
-
-
+{/* <div
+        className="g-recaptcha"
+        data-sitekey={config.RECAPTCHA_SITE_KEY}
+        
+       
+      > */}
             <div className='floatinglabel my-4'>
 
                 <label>{t('EMAIL_PLACEHOLDER')}</label>
@@ -283,7 +372,7 @@ const EmailForm = () => {
             <div className='text-center'>
                 <button className='themebtn big my-3'
                     onClick={handleFormSubmit}
-                    disabled={!isEmpty(validateError) || loader}
+                    // disabled={!isEmpty(validateError) || loader}
                 >
                     {loader && <i class="fas fa-spinner fa-spin"></i>} Login
                 </button>
@@ -376,7 +465,9 @@ const EmailForm = () => {
                 </Button>
             </div> */}
             {ipmodal && <IprestrictModal login={(e) => handleFormSubmit(e)} setotp={(data) => setOtp(data)} request={requestdata} email={email} onDismiss={() => { setIpmodal(false); setOtp("") }} />}
+            {/* </div> */}
         </Fragment>
+        
     )
 }
 

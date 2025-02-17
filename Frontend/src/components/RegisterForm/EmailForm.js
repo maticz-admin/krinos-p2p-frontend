@@ -7,6 +7,7 @@ import clsx from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { GoogleReCaptchaProvider, GoogleReCaptcha } from "react-google-recaptcha-v3";
 
 // import action
 import { createUser } from '../../actions/users';
@@ -48,6 +49,10 @@ const EmailForm = () => {
     const { email, formType, password, confirmPassword, isTerms, showPassword, showConfirmPassword, referenceCode } = formValue;
     const [emailchecked, setemailchecked] = useState(true);
     const [mobilechecked, setmobilechecked] = useState(false);
+    //recaptcha
+    const [token, setToken] = useState("");
+    const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
+    //
 
     // function
     const handleChange = (e) => {
@@ -69,7 +74,32 @@ const EmailForm = () => {
         setFormValue(formData)
         // setValidateError(validation(formData,t))
     }
-
+    const generateToken = (data) => {
+        return new Promise((resolve, reject) => {
+          const badge = document.querySelector('.grecaptcha-badge');
+          
+          
+          if (badge) {
+            badge.style.visibility = 'visible';
+          }
+          console.log("badgebadgebadgebadge" , badge?.style?.visibility);
+          const script = document.createElement('script');
+          script.src = `https://www.google.com/recaptcha/api.js?render=${"6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1"}`;
+          script.onload = () => {
+            window.grecaptcha.ready(() => {
+              window.grecaptcha.execute("6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1").then((token) => {
+                resolve(token);
+              }).catch((error) => {
+                reject(error);
+              });
+            });
+          };
+          script.onerror = (error) => {
+            reject(error);
+          };
+          document.body.appendChild(script);
+        });
+      };
     const handleFormSubmit = async (e) => {
         // setValidateError()
         var err = validation(formValue,t);
@@ -83,6 +113,9 @@ const EmailForm = () => {
         if(isEmpty(err)){
             e.preventDefault();
         let reCaptcha = await handleReCaptcha()
+        // let reCaptcha  = await generateToken();
+        console.log("reCaptchareCaptchareCaptcha" , reCaptcha);
+        
         if (isEmpty(reCaptcha)) {
             toastAlert('error', 'Invalid ReCaptcha', 'signup', 'TOP_RIGHT');
             return
@@ -109,6 +142,7 @@ const EmailForm = () => {
         } else {
             if (error) {
                 setValidateError(error);
+                setRefreshReCaptcha(!refreshReCaptcha);
             }
             toastAlert('error', message, 'signup', 'TOP_RIGHT');
         }
@@ -157,6 +191,15 @@ const EmailForm = () => {
         //     })
         // }
     }, [])
+
+
+    const setTokenFunc = (getToken) => {
+        setToken(getToken);
+      };
+
+      
+
+      
 
     return (
         <Fragment>
@@ -278,6 +321,16 @@ const EmailForm = () => {
                 <Link to="/login" className="mr-auto linkclr">
                         {t('ALREADY_HAVE_ACCOUNT')}?
                     </Link>
+
+
+
+                    {/* <GoogleReCaptchaProvider reCaptchaKey={"6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1"}>
+          <GoogleReCaptcha
+            className="google-recaptcha-custom-class"
+            onVerify={setTokenFunc}
+            refreshReCaptcha={refreshReCaptcha}
+          />
+        </GoogleReCaptchaProvider> */}
             </div>
         </Fragment>
     )

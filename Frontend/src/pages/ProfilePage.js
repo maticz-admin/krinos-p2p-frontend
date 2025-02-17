@@ -149,7 +149,7 @@ const ProfilePage = (props) => {
             color="transparent"
             routes={dashboardRoutes}
             brand={<img src={require("../assets/images/logo.png")} alt="logo" className="img-fluid" />}
-            rightLinks={<HeaderLinksAfterlogin />}
+            rightLinks = {<HeaderLinksAfterlogin />}
             fixed
             changeColorOnScroll={{
               height: 20,
@@ -244,9 +244,9 @@ const ProfilePage = (props) => {
                       <BankAccount />
                     </div> */}
                     <div id="KYC" class="tab-pane fade">
-                      <UserKycDetail />
-                      <IDProof />
-                      <AddressProof />
+                      <UserKycDetail/>
+                      {/* <IDProof /> */}
+                      {/* <AddressProof /> */}
                     </div>
                   </div>
 

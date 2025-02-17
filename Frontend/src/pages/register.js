@@ -43,6 +43,8 @@ const RegisterPage = (props) => {
         {/* <h2 className="text-center mb-md-4 pb-3" data-aos="fade-up">{t("REGISTER_TITLE_1")}</h2> */}
         {/* <div className="row w-100">
           <div className="col-lg-8 col-md-10 col-sm-12 flexColumn m-auto"> */}
+          {console.log("config.RECAPTCHA_SITE_KEY" , config.RECAPTCHA_SITE_KEY)
+          }
             <GoogleReCaptchaProvider reCaptchaKey={config.RECAPTCHA_SITE_KEY}>
               <RegisterForm />
             </GoogleReCaptchaProvider>

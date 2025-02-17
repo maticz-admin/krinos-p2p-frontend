@@ -129,14 +129,16 @@ export const login = async (data, dispatch) => {
       data: { encode: data },
     });
     const response = decodedata(respData.data);
-    if (response.status == "TWO_FA") {
+    console.log("response in login" , response);
+    
+    if (response?.status == "TWO_FA") {
       return {
         status: "TWO_FA",
         loading: false,
         message: response.message,
       };
     }
-    else if (response.message == "OTP send to your mail id") {
+    else if (response?.message == "OTP send to your mail id") {
       return {
         status: "success",
         loading: false,
@@ -168,6 +170,7 @@ export const login = async (data, dispatch) => {
 
     handleResp(err, 'error')
     const response = decodedata(err.response.data)
+    console.log("response in error" , err?.response);
     try {
       return {
         status: "failed",
@@ -807,12 +810,15 @@ export const getTranList = async () => {
 
 export const sentOTP = async (data) => {
   try {
+    console.log("inputtttttttt" , data);
+    
     let respData = await axios({
       method: "post",
       url: `/api/sentOTP`,
       data: { encode: encodedata(data) },
     });
     const response = decodedata(respData.data)
+    console.log("inputtttttttt response" , response);
     return {
       status: "success",
       loading: false,
@@ -821,6 +827,7 @@ export const sentOTP = async (data) => {
   } catch (err) {
     handleResp(err, 'error');
     const response = decodedata(err.response.data);
+    console.log("inputtttttttt error" , err.response);
     return {
       status: "failed",
       loading: false,
