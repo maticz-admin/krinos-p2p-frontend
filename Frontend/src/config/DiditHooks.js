@@ -5,8 +5,8 @@ import config from "../config/index";
 // import { GetDiditToken, SetDiditToken } from "./usestorage";
 
 const DidItUrl = "https://apx.didit.me";
-const clientID = "gFiNlIkjnkiDw9jnYBVgRw";
-const clientSecret = "Ijdlky0S-wEgDQcMSUkw-asOGzGpulyT0h7TBFQH-oI";
+const clientID = "I4IagB5uz3Be_YBC6raDXA";
+const clientSecret = "WW034e9HXnxvd01ab2IXyaxu80BhtUl3C3ZVuFVbWKI";
 
 const SetDiditToken = (tkn) => {
     localStorage.setItem("didittoken" , tkn)
@@ -67,10 +67,11 @@ export const fetchClientToken = async () => {
 
   export const createSession = async (
     features,
-    callback = config?.fronturl , // ApiConstants.BASE_URL,
+    callback ,
     vendor_data 
   ) => {
-    debugger
+    // debugger
+    console.log("didit token" ,  GetDiditToken());
     const BASE_URL = "https://verification.didit.me"
     const url = `${BASE_URL}/v1/session/`;
     const token = GetDiditToken();

@@ -120,7 +120,7 @@ const EmailForm = () => {
           const script = document.createElement('script');
           script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`;
           script.onload = () => {
-            window.grecaptcha.ready(() => {
+             window.grecaptcha.ready(() => {
               window.grecaptcha.execute(config.RECAPTCHA_SITE_KEY).then((token) => {
                 resolve(token);
               }).catch((error) => {
