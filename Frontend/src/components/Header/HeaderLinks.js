@@ -212,7 +212,7 @@ themechange(data)
 
             {
               <ListItem className={classes.listItem}>
-                <NavLink to="/" color="transparent" className="nav-link">{t('HOME')}</NavLink>
+                <NavLink to="/" exact color="transparent" className="nav-link">{t('HOME')}</NavLink>
               </ListItem>
 
             }
@@ -488,7 +488,7 @@ themechange(data)
 
               {isAuth && (
                 <li>
-                  <NavLink to="/profile">Profile</NavLink>
+                  <NavLink to="/profile">Profilee</NavLink>
                 </li>
               )}
               {/* {

@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { useRouteMatch } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -22,17 +22,16 @@ import DeclineOfferModal from "assets/jss/material-kit-react/views/Modals/Declin
 import { socket } from "config/socketConnectivity";
 import { useSelector } from "react-redux";
 
-
 const useStyles = makeStyles(styles);
 
 export default function Header(props) {
-  const userdata = useSelector(state => state);
+  const userdata = useSelector((state) => state);
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [isacceptoffermodal , setIsacceptoffermodal] = useState(false);
-  const [isdeclineoffermodal , setIsdeclineoffermodal] = useState(false);
-  const [offerdata , setOfferdata] = useState({});
-  const [declinedata , setDeclinedata] = useState({});
+  const [isacceptoffermodal, setIsacceptoffermodal] = useState(false);
+  const [isdeclineoffermodal, setIsdeclineoffermodal] = useState(false);
+  const [offerdata, setOfferdata] = useState({});
+  const [declinedata, setDeclinedata] = useState({});
 
   const routeMatch = useRouteMatch();
   const { t, i18n } = useTranslation();
@@ -46,28 +45,25 @@ export default function Header(props) {
         window.removeEventListener("scroll", headerColorChange);
       }
     };
-  },[]);
+  }, []);
 
   useEffect(() => {
-    socket.on('REQUEST' , (data) => {
-      if(data?.ordercreator == userdata?.account?.userId){
+    socket.on("REQUEST", (data) => {
+      if (data?.ordercreator == userdata?.account?.userId) {
         setOfferdata(data);
         setIsacceptoffermodal(true);
       }
-    })
+    });
 
-    socket.on('DECLINE' , (data) => {
-      if(userdata?.account?.userId === data?.user){
+    socket.on("DECLINE", (data) => {
+      if (userdata?.account?.userId === data?.user) {
         setDeclinedata(data);
         setIsdeclineoffermodal(true);
       }
-    })
+    });
 
-    socket.on('messagenotice' , (data) =>{
-      
-    })
-    
-  },[socket])
+    socket.on("messagenotice", (data) => {});
+  }, [socket]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -92,100 +88,114 @@ export default function Header(props) {
     }
   };
   const { color, rightLinks, leftLinks, brand, fixed, absolute } = props;
+
+  console.log('rightlink',rightLinks);
+  
   const appBarClasses = classNames({
     [classes.appBar]: true,
     [classes[color]]: color,
     [classes.absolute]: absolute,
-    [classes.fixed]: fixed
+    [classes.fixed]: fixed,
   });
-  const brandComponent = 
-  <><Link to="/" className="logo_div">
-    {/* {brand} */}
-    <img src={require("../../assets/images/logo.png")} alt="logo" className="img-fluid black" /> 
-    <img src={require("../../assets/images/blck.png")} alt="logo" className="img-fluid white" />
-  </Link>
-  
+  const brandComponent = (
+    <>
+      <Link to="/" className="logo_div">
+        {/* {brand} */}
+        <img
+          src={require("../../assets/images/logo.png")}
+          alt="logo"
+          className="img-fluid black"
+        />
+        <img
+          src={require("../../assets/images/blck.png")}
+          alt="logo"
+          className="img-fluid white"
+        />
+      </Link>
+    </>
+  );
 
-</>
+  const viji = (
+    <>
+      <button>kjhdgu</button>
+    </>
+  );
 
-const viji = 
-  <>
-  <button>kjhdgu</button>
-  
-
-</>
-  
   return (
     <>
-            {isacceptoffermodal && <AcceptOfferModal  
-            onDismiss={() => {setIsacceptoffermodal(false)}}
-            offer = {offerdata}
-            />}
-            {isdeclineoffermodal && <DeclineOfferModal  
-            onDismiss={() => setIsdeclineoffermodal(false)}
-            offer = {declinedata}
-            />}
-
-
- 
-    <AppBar className={appBarClasses}>
-      <Toolbar className={classes.container + " container-fluid-full"}>
-        {leftLinks !== undefined ? brandComponent : null}
-       
-        <div className={classes.flex + " jhdgj"}>
-          {leftLinks !== undefined ? (
-            <Hidden smDown implementation="css">
-              {leftLinks}
-            </Hidden>
-          ) : (
-            brandComponent 
-          )}
-          
-          <Hidden mdDown>
-          <div className="showOnlyforUsers">
-            {/* <Link to={routeMatch.path === "/spot/:tikerRoot?" ? routeMatch.url : "/spot"}>{t('SPOT')}</Link> */}
-            {/* <Link to="/derivative">{t('DERIVATIVE')}</Link>
-            <Link to="/p2p">{t('P2P')}</Link> */}
-          </div>
-            </Hidden>
-         
-        </div>
-        <Hidden mdDown implementation="css">
-          {rightLinks}
-        </Hidden>
-        <Hidden lgUp>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerToggle}
-            className="hamburger_btn" >
-            <Menu />
-          </IconButton>
-        </Hidden>
-      </Toolbar>
-      <Hidden lgUp implementation="js">
-        <Drawer
-          variant="temporary"
-          anchor={"right"}
-          open={mobileOpen}
-          classes={{
-            paper: classes.drawerPaper + " mobile_nav"
+      {isacceptoffermodal && (
+        <AcceptOfferModal
+          onDismiss={() => {
+            setIsacceptoffermodal(false);
           }}
-          onClose={handleDrawerToggle}
-        >
-          <div className={classes.appResponsive}>
-            {leftLinks}
-            {rightLinks}
+          offer={offerdata}
+        />
+      )}
+      {isdeclineoffermodal && (
+        <DeclineOfferModal
+          onDismiss={() => setIsdeclineoffermodal(false)}
+          offer={declinedata}
+        />
+      )}
+
+      <AppBar className={appBarClasses}>
+        <Toolbar className={classes.container + " container-fluid-full"}>
+          {leftLinks !== undefined ? brandComponent : null}
+
+          <div className={classes.flex + " jhdgj"}>
+            {leftLinks !== undefined ? (
+              <Hidden smDown implementation="css">
+                {leftLinks}
+              </Hidden>
+            ) : (
+              brandComponent
+            )}
+
+            <Hidden mdDown>
+              <div className="showOnlyforUsers">
+                {/* <Link to={routeMatch.path === "/spot/:tikerRoot?" ? routeMatch.url : "/spot"}>{t('SPOT')}</Link> */}
+                {/* <Link to="/derivative">{t('DERIVATIVE')}</Link>
+            <Link to="/p2p">{t('P2P')}</Link> */}
+              </div>
+            </Hidden>
           </div>
-        </Drawer>
-      </Hidden>
-    </AppBar >
+          <Hidden mdDown implementation="css">
+            {rightLinks}
+          </Hidden>
+          {/* <Hidden lgUp>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerToggle}
+              className="hamburger_btn"
+            >
+              <Menu />
+            </IconButton>
+          </Hidden> */}
+        </Toolbar>
+        {/* <Hidden lgUp implementation="js">
+          <Drawer
+            variant="temporary"
+            anchor={"right"}
+            open={mobileOpen}
+            classes={{
+              paper: classes.drawerPaper + " mobile_nav",
+            }}
+            onClose={handleDrawerToggle}
+          >
+            <div className={classes.appResponsive}>
+              {leftLinks}
+              {rightLinks}
+            </div>
+          </Drawer>
+        </Hidden> */}
+      </AppBar>
     </>
   );
 }
 
 Header.defaultProp = {
-  color: "white"
+  color: "white",
 };
 
 Header.propTypes = {
@@ -198,7 +208,7 @@ Header.propTypes = {
     "transparent",
     "white",
     "rose",
-    "dark"
+    "dark",
   ]),
   rightLinks: PropTypes.node,
   leftLinks: PropTypes.node,
@@ -222,7 +232,7 @@ Header.propTypes = {
       "transparent",
       "white",
       "rose",
-      "dark"
-    ]).isRequired
-  })
+      "dark",
+    ]).isRequired,
+  }),
 };

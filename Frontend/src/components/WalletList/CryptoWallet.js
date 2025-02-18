@@ -132,7 +132,7 @@ const CryptoWallet = () => {
         show={model.type == "walletTransfer"}
         assetData={model.assetData}
         onHide={modalClose}
-      />
+      />  
       <FundTransfer
         show={model.type == "fundTransfer"}
         assetData={model.assetData}

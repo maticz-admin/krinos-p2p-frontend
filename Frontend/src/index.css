@@ -18,6 +18,7 @@
   --white: #ffffff;
   --black: #000;
   --secondary-whtBg:#F2F4F7;
+  --white-ylw-shadow:#8cc516;
 }
 
 body {
@@ -11937,7 +11938,8 @@ a {
 }
 
 .light_theme a {
-  color: #8fd300;
+  /* color: #8fd300; */
+  color: #8cc516;
 }
 
 a:hover,
@@ -21854,7 +21856,7 @@ color: #000;
   text-decoration: underline;
 }
 .light_theme .settingsNote p a {
-  color: #aff41f;
+  color: #8cc516;
   font-weight: 700;
 }
 
@@ -27573,7 +27575,8 @@ body.light_theme {
 }
 
 .light_theme .yellow {
-  color: #aff41f !important;
+  /* color: #aff41f !important; */
+  color: #8cc516 !important;
   font-weight: 700;
 }
 .dark_theme .MuiMenu-list li:hover {
@@ -27598,8 +27601,9 @@ body.light_theme {
 }
 
 .light_theme .aqua {
-  color: #03ffe0 !important;
-  font-weight: 700;
+  /* color: #03ffe0 !important; */
+  color: #aff41f !important;
+  font-weight: 600;
 }
 
 .light_theme .gray1 {
@@ -27753,8 +27757,10 @@ body.light_theme {
 }
 
 .light_theme .table_p2p_section .nav li a.active {
-  border-bottom: 3px solid #aff41f;
-  color: #aff41f !important;
+  /* border-bottom: 3px solid #aff41f;
+  color: #aff41f !important; */
+  border-bottom: 3px solid #8cc516;
+  color: #8cc516 !important;
 }
 
 .light_theme .profileDetailView .alert.alert-info {
@@ -31059,6 +31065,10 @@ select {
   font-size: 14px !important;
 }
 
+.logo_div {
+  display: inline-block;
+}
+
 .heading_whte_modal_dark {
   color: #fff !important;
   font-size: 16px;
@@ -31612,7 +31622,7 @@ select {
 }
 .light_theme .MuiMenu-list a.all_noti_link_green,
 .mark_read_link {
-  color: #aff41f !important;
+  color: #8cc516 !important;
   font-size: 14px !important;
   cursor: pointer;
 }
@@ -32159,6 +32169,11 @@ li.unread .lighttxt {
 
 .dark_theme #footer .linksec .footerMidd_right .socialLinks li a i {
   margin: unset !important;
+  
+}
+
+.dark_theme #footer .linksec .footerMidd_right .socialLinks li a:hover i {
+  color: #fff;
 }
 
 /* 
@@ -33154,6 +33169,24 @@ input:checked ~ .checkmark {
   font-size: 12px !important;
   background: #585858;
 }
+
+.dark_theme .themebadge {
+background: #8080803b;
+}
+
+.light_theme .themebadge {
+  background: #Fff;
+  color: gray !important;
+  }
+
+.light_theme .dropdown-toggle:after {
+  color: #808080;
+}
+
+.light_theme .iner_drop_versiotwo .dropdown-toggle::after {
+  color: #808080;
+}
+
 .reviews ul {
   padding-left: 0;
 }
