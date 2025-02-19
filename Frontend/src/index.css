@@ -1,3 +1,5 @@
+
+
 :root {
   --themeclr: #2db281;
   --themeclr1: #eaffba;
@@ -21,10 +23,25 @@
   --white-ylw-shadow:#8cc516;
 }
 
+
+/* font import */
+
+@font-face {
+  font-family: "satoshi_bold";
+  src: url("./assets/satoshi_fonts/Satoshi-Bold.otf");
+}
+
+@font-face {
+  font-family: "satoshi";
+  src: url("./assets/satoshi_fonts/Satoshi-Regular.otf");
+}
+
+
 body {
   font-size: 14px;
   background: var(--dark-bg);
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
+  font-family: 'satoshi';
   overflow-x: hidden;
   /* color: #41423d; */
   color: var(--white);
@@ -197,7 +214,7 @@ kbd,
 samp {
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   font-size: 1em;
 }
 
@@ -257,7 +274,7 @@ select,
 optgroup,
 textarea {
   margin: 0;
-  font-family: inherit;
+  /* font-family: inherit; */
   font-size: inherit;
   line-height: inherit;
 }
@@ -689,7 +706,7 @@ kbd,
 samp {
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   font-size: 1em;
 }
 
@@ -749,7 +766,7 @@ select,
 optgroup,
 textarea {
   margin: 0;
-  font-family: inherit;
+  /* font-family: inherit; */
   font-size: inherit;
   line-height: inherit;
 }
@@ -870,7 +887,7 @@ h6,
 .h5,
 .h6 {
   margin-bottom: 0.5rem;
-  font-family: inherit;
+  /* font-family: inherit; */
   font-weight: 400;
   line-height: 1.2;
   color: inherit;
@@ -1027,7 +1044,7 @@ pre,
 samp {
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
 }
 
 code {
@@ -20441,7 +20458,7 @@ ul,
 li {
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
 }
 
 header {
@@ -21040,7 +21057,7 @@ footer a:hover {
   /* font-family: 'Source Sans Pro', sans-serif; */
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   min-height: 100vh;
   position: relative;
   z-index: 6;
@@ -21719,7 +21736,7 @@ color: #000;
 
 .toggleMode span:after {
   content: "\f185";
-  font-family: "Font Awesome 5 Free";
+  /* font-family: "Font Awesome 5 Free"; */
   position: absolute;
   font-size: 14px;
   top: 1px;
@@ -24035,7 +24052,7 @@ nav.place_order_nav_tabs {
   position: relative;
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   font-size: 21px;
   font-weight: 500;
 }
@@ -25002,7 +25019,7 @@ span.msg_admin {
 label {
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
 }
 
 .profile_name {
@@ -25209,7 +25226,7 @@ input:checked + .slider:before {
   text-transform: capitalize !important;
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
 }
 .Subscribe button.btn-primary:hover {
   background: transparent;
@@ -26228,7 +26245,7 @@ footer {
 .landingBannerText {
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   color: #fff;
   text-align: left;
 }
@@ -26441,7 +26458,7 @@ footer {
   text-transform: uppercase;
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   width: 120%;
 }
 
@@ -26469,7 +26486,7 @@ footer {
   font-size: 132px;
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   font-weight: 500;
 }
 
@@ -26478,7 +26495,7 @@ footer {
   font-size: 24px;
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   font-weight: 500;
   text-transform: uppercase;
   margin-bottom: 15px;
@@ -26506,7 +26523,7 @@ footer {
   font-size: 26px;
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   color: #fff;
   border: 3px solid #ffb535;
   border-radius: 50%;
@@ -26563,7 +26580,7 @@ footer {
   font-size: 24px;
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   color: #848484;
   font-weight: 400;
 }
@@ -26670,7 +26687,7 @@ width: 35%
   font-size: 20px;
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   font-weight: 400;
   color: #21b77a;
 }
@@ -27927,7 +27944,7 @@ body.light_theme {
   color: #c7c7c7;
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
 }
 
 .light_theme .statisctic > div .label,
@@ -27940,7 +27957,7 @@ body.light_theme {
   color: #848484;
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
 }
 
 .light_theme .wallwt_balance {
@@ -28366,7 +28383,7 @@ a:hover {
 .MuiInputBase-root {
   /* font-family: 'Orbitron', sans-serif; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
 }
 
 .dark_theme .MuiInputBase-root {
@@ -28549,7 +28566,7 @@ button.otp_btn span {
 }
 
 .react-tel-input {
-  font-family: inherit !important;
+  /* font-family: inherit !important; */
 }
 
 .rdt_TableCol_Sortable {
@@ -31235,7 +31252,8 @@ select {
 }
 
 #profile_menu1 .MuiPopover-paper {
-  top: 102px !important;
+  /* top: 102px !important; */
+  top: 65px !important;
 }
 
 @media only screen and (max-width: 959px) {
@@ -33253,7 +33271,7 @@ background: #8080803b;
 option {
   /* font-family:  'Orbitron', sans-serif !important; */
   /* font family changed A - B */
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   /* font: -moz-pull-down-menu; */
 }
 .light_theme input {
@@ -33941,14 +33959,14 @@ option {
 }
 .mdoalcs p,
 .mdoalcs span {
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   color: #fff !important;
   font-size: 14px !important;
 }
 
 .light_theme .mdoalcs p,
 .light_theme .mdoalcs span {
-  font-family: "Roboto", sans-serif !important;
+  /* font-family: "Roboto", sans-serif !important; */
   color: #000 !important;
 }
 .createoffer_modal_whole.hide_sec {
