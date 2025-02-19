@@ -113,17 +113,22 @@ export const Getpreferedcurrency = async (datas, dispatch) => {
 export const Getsingleuserhook = async (datas, dispatch) => {
     try {
         console.log("wallet payload", datas);
+        // let value;
+        // if (!datas) {
+        //     value =  encodedata(datas);
+        // } else {
+        //     value = encodedata('');
+        // }
         let respData = await axios({
             'url': `p2papi/getsingleuser`,
             'method': 'get',
             'params': { encode: encodedata(datas) }
         });
         const response = decodedata(respData.data)
-        console.log('respData-----', {data: response});
         return { data: response };
     }
     catch (err) {
-        console.log("error", err);
+        console.log("error", err.response);
         handleResp(err, 'error')
         return {
             status: "failed",
@@ -337,7 +342,6 @@ export const Getcmshooks = async (datas, dispatch) => {
         return {data: response};
     }
     catch (err) {
-        console.log("error", err);
         handleResp(err, 'error')
         return {
             status: "failed",
@@ -436,9 +440,10 @@ export const getuserbalancehook = async (datas, dispatch) => {
         let respData = await axios({
             'url': `p2papi/get-user-balance`,
             'method': 'get',
-            'params': datas
+            'params': {encode: encodedata(datas)}
         });
-        return respData;
+        const response = decodedata(respData.data)
+        return {data: response};
     }
     catch (err) {
         console.log("error", err);
@@ -451,19 +456,23 @@ export const getuserbalancehook = async (datas, dispatch) => {
 
 export const gettradespeedhook = async (datas, dispatch) => {
     try {
-        // console.log("wallet payload" , datas);
+        console.log("wallet payload" , datas);
         let respData = await axios({
             'url': `p2papi/get-trade-speed`,
             'method': 'get',
-            'params': datas
+            'params': {encode: encodedata(datas)}
         });
-        return respData;
+        const response = decodedata(respData.data)
+        return {data: response};
     }
     catch (err) {
         console.log("error", err);
-        handleResp(err, 'error')
+        handleResp(err, 'error');
+        const response = decodedata(err.response.data)
+
         return {
             status: "failed",
+            message: response.message
         }
     }
 }
@@ -527,7 +536,6 @@ export const getpaymenttypeshook = async (datas, dispatch) => {
         });
         // return false;
         const response = decodedata(respData.data);
-        console.log('respDatarespData-----', response);
 
         return  response;
     }
@@ -680,6 +688,7 @@ export const AddSessionId = async (datas, dispatch) => {
             status: "failed",
         }
     }
+
 }
 
 export const Checkdidit = async (datas, dispatch) => {
@@ -701,3 +710,4 @@ export const Checkdidit = async (datas, dispatch) => {
         }
     }
 }
+

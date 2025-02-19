@@ -1,6 +1,6 @@
 // import config
 import { decodedata } from 'config/secure';
-import axios , {handleResp} from '../config/axios'
+import axios, { handleResp } from '../config/axios'
 
 // import constant
 import {
@@ -20,7 +20,7 @@ export const getAssetData = async (dispatch) => {
         });
         const response = decodedata(respData.data);
         dispatch(userWalletList(response.result))
-       
+
         return true
     }
     catch (err) {
@@ -29,37 +29,37 @@ export const getAssetData = async (dispatch) => {
     }
 }
 
-export const gethideZeroStatus=async()=>{
+export const gethideZeroStatus = async () => {
 
-    try{
+    try {
         let respData = await axios({
             'method': 'get',
             'url': `/api/getHideoZeroStatus`,
         });
-
+        const response = decodedata(respData.data)
         return {
-            result:respData.data.hideZeroStatus
+            result: response
         }
-    }catch(err){
+    } catch (err) {
         handleResp(err, 'error')
         return false
 
     }
 }
 
-export const updateHideZeroStatus=async(data)=>{
+export const updateHideZeroStatus = async (data) => {
 
-    try{
+    try {
         let respData = await axios({
             'method': 'put',
             'url': `/api/getHideoZeroStatus`,
-            data:data
+            data: data
         });
         return {
-            status:true,
-            message:respData.data.message
+            status: true,
+            message: respData.data.message
         }
-    }catch(err){
+    } catch (err) {
         handleResp(err, 'error')
         return false
 
@@ -71,7 +71,6 @@ export const checkDeposit = async (dispatch) => {
             'method': 'get',
             'url': `/api/check-deposit`,
         });
-        console.log('respData------', respData);
         return true
     }
     catch (err) {
@@ -152,7 +151,7 @@ export const withdrawRequestCoin = async (data) => {
         let respData = await axios({
             'method': 'post',
             'url': `/api/coinWithdraw`,
-            'data': {encode: encodedata(data)}
+            'data': { encode: encodedata(data) }
         });
         const response = decodedata(respData.data)
         return {
@@ -353,11 +352,11 @@ export const setUserSecondCurrency = (assetData, dispatch) => {
 
 export const getTrnxHistory = async (params, query) => {
     try {
-        
+
         let respData = await axios({
             'method': 'get',
             'url': `/api/history/transaction/` + params,
-            'params': {encode: encodedata(query)}
+            'params': { encode: encodedata(query) }
         });
         const response = decodedata(respData.data)
         return {
@@ -375,7 +374,7 @@ export const getTrnxHistory = async (params, query) => {
     }
 }
 
-export const checkEmail =async()=>{
+export const checkEmail = async () => {
     let respData = await axios({
         'method': 'post',
         'url': `/api/checkEmail`,

@@ -129,8 +129,8 @@ export const login = async (data, dispatch) => {
       data: { encode: data },
     });
     const response = decodedata(respData.data);
-    console.log("response in login" , response);
-    
+    console.log("response in login", response);
+
     if (response?.status == "TWO_FA") {
       return {
         status: "TWO_FA",
@@ -170,7 +170,7 @@ export const login = async (data, dispatch) => {
 
     handleResp(err, 'error')
     const response = decodedata(err.response.data)
-    console.log("response in error" , err?.response);
+    console.log("response in error", response);
     try {
       return {
         status: "failed",
@@ -300,9 +300,9 @@ export const forgotPassword = async (data) => {
     let respData = await axios({
       method: "post",
       url: `/api/forgotPassword`,
-      data: {encode: encodedata(data)},
+      data: { encode: encodedata(data) },
     });
-    
+
     const response = decodedata(respData.data)
     console.log('datdata----a', response)
     return {
@@ -327,7 +327,7 @@ export const resetPassword = async (data) => {
     let respData = await axios({
       method: "post",
       url: `/api/resetPassword`,
-      data: {encode: encodedata(data)},
+      data: { encode: encodedata(data) },
     });
     const response = decodedata(respData.data);
     console.log('response reset', response)
@@ -649,24 +649,30 @@ export const upgradeUser = async (data, dispatch) => {
 
 export const changeNewPhone = async (data) => {
   try {
+
     let respData = await axios({
       method: "post",
       url: `/api/phoneChange`,
-      data,
+      data: { encode: encodedata(data) },
     });
-
+    const response = decodedata(respData.data);
+    console.log('response-----', response)
     return {
       status: "success",
       loading: false,
-      message: respData.data.message,
+      message: response.message,
     };
   } catch (err) {
-    handleResp(err, 'error')
+    console.log('err.response.data----', err.response.data)
+    handleResp(err, 'error');
+
     const response = decodedata(err.response.data)
+    console.log('err.response----', response.errors)
+
     return {
       status: "failed",
       loading: false,
-      message: response.message,
+      message: response.errors || response.errors.phoneNo,
       error: response.errors,
     };
   }
@@ -677,22 +683,24 @@ export const verifyNewPhone = async (data) => {
     let respData = await axios({
       method: "put",
       url: `/api/phoneChange`,
-      data,
+      data:{encode: encodedata(data)},
     });
+    const response = decodedata(respData.data)
     return {
       status: "success",
       loading: false,
-      message: respData.data.message,
-      result: respData.data.result,
+      message: response.message,
+      result: response.result,
     };
   } catch (err) {
     handleResp(err, 'error')
-
+    const response = decodedata(err.response.data)
+    
     return {
       status: "failed",
       loading: false,
-      message: err.response.data.message,
-      error: err.response.data.errors,
+      message: response.message,
+      error: response.errors,
     };
   }
 };
@@ -810,15 +818,13 @@ export const getTranList = async () => {
 
 export const sentOTP = async (data) => {
   try {
-    console.log("inputtttttttt" , data);
-    
     let respData = await axios({
       method: "post",
       url: `/api/sentOTP`,
       data: { encode: encodedata(data) },
     });
     const response = decodedata(respData.data)
-    console.log("inputtttttttt response" , response);
+    console.log("inputtttttttt response", response);
     return {
       status: "success",
       loading: false,
@@ -827,7 +833,7 @@ export const sentOTP = async (data) => {
   } catch (err) {
     handleResp(err, 'error');
     const response = decodedata(err.response.data);
-    console.log("inputtttttttt error" , err.response);
+    console.log("inputtttttttt error", response);
     return {
       status: "failed",
       loading: false,
