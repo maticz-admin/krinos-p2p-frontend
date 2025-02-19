@@ -1,9 +1,9 @@
 @use "mixins";
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
-.roboto {
-    font-family: 'Roboto', sans-serif;
-}
+// .roboto {
+//     font-family: 'Roboto', sans-serif;
+// }
 
 $themeyellow: #aff41f;
 $grayss: #9E9E9E;
@@ -39,7 +39,7 @@ a{
 .subhead {
     color: #A3A3B7;
     text-align: center;
-    font-family: "Roboto",sans-serif !important;
+    // font-family: "Roboto",sans-serif !important;
 }
 .light_theme .subhead {
     color: #808080;
@@ -292,7 +292,7 @@ a{
     font-size: 26px;
     // font-family: 'Orbitron', sans-serif;
   /* font family changed A - B */
-  font-family: "Roboto",sans-serif !important;
+//   font-family: "Roboto",sans-serif !important;
     text-align: center;
     margin-bottom: 15px;
     font-weight: 500;
@@ -323,7 +323,7 @@ a{
 .tradeprice .choosecrypt {
     p {
     font-size: 12px !important;
-    font-family: "Roboto",sans-serif !important;
+    // font-family: "Roboto",sans-serif !important;
     line-height: 1.4;
 }
 button:hover{
@@ -394,7 +394,7 @@ button:hover{
     }
     .grayandblack{
         color: #B4AEAE !important;
-        font-family: "Roboto",sans-serif !important;
+        // font-family: "Roboto",sans-serif !important;
     }
     #careprivacy {
         @include mixins.privacycare;
@@ -652,7 +652,7 @@ button:hover{
     }
     .grayandblack{
         color: #000 !important;
-        font-family: "Roboto",sans-serif !important;
+        // font-family: "Roboto",sans-serif !important;
     }
 
     .title1 {
@@ -715,7 +715,7 @@ button:hover{
     #aboutsec {
         color: #ffff;
         p{
-            font-family: "Roboto",sans-serif !important;
+            // font-family: "Roboto",sans-serif !important;
         }
     }
     .themetable{
@@ -1205,7 +1205,7 @@ a[aria-expanded="true"] .fa-plus:before {
     padding: 8px;
     border-radius: 10px;
     p{
-        font-family: "Roboto",sans-serif !important;
+        // font-family: "Roboto",sans-serif !important;
         font-size: 14px;
         color: #9d9d9d;
     }
