@@ -258,6 +258,7 @@ const EmailForm = () => {
     }
 
     useEffect(() => {
+        document.querySelector('.grecaptcha-badge')
         getGeoInfo()
         let formData = {};
         if (localStorage.getItem("remember") == "true") {

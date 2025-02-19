@@ -195,7 +195,7 @@ const Home = (props) => {
                                 <div className='banner_ad_wrapper'>
 
                                     <div>
-                                        <h1 className='blackandwhite'>Welcome to TOSSvTOSS</h1>
+                                        <h1 className='blackandwhite'>Welcome to Krinos P2P</h1>
                                         <p className='roboto subhead'>Anonymous P2P deals on your teams. Trade globaly using for any payment system for any currency. </p>
                                         {/* <button className='mt-3 borderbtn'><i class="fa fa-video-camera" aria-hidden="true"></i> Learn To Trade</button> */}
                                         <Link to="/details/demo_videos" className="navlink_pos_zin borderbtn mt-3 d-block"><i class="fa fa-video-camera" aria-hidden="true"></i> Learn To Trade</Link>
@@ -1073,7 +1073,7 @@ const Home = (props) => {
                                 <div className='borderbox'>
                                 <img src={Images.homefaq2} />
                                 <h3>INVITE FRIENDS </h3>
-                                <p>Help your friends and family <Link to="/register">Sign up for TOSSvTOSS</Link></p>
+                                <p>Help your friends and family <Link to="/register">Sign up for Krinos P2P</Link></p>
 
                                 {/* <p>{ReactHtmlParser(marginhall)}</p> */}
                             </div> 
@@ -1083,7 +1083,7 @@ const Home = (props) => {
                                 <div className='borderbox'>
                                 <img src={Images.homefaq3} />
                                 <h3>VALUABLE FEEDBACK</h3>
-                                <p>TOSSvTOSS's feedback system highlights reliable and experienced users, helping you trade smoothly</p>
+                                <p>Krinos P2P's feedback system highlights reliable and experienced users, helping you trade smoothly</p>
 
                                 {/* <p>{ReactHtmlParser(learnandpractice)}</p> */}
                             </div>

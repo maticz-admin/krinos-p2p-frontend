@@ -36,8 +36,8 @@ const ViewDetail = (props) => {
             <div class="alert alert-info" role="alert">
                 <Trans
                     i18nKey="PROFILE_DESCRIPTION1"
-                    values={{ 'SUPPORT_MAIL': 'support@tossvtoss.com' }}
-                    components={{ a: <a href="mailto:support@tossvtoss.com" />, b: <b /> }}
+                    values={{ 'SUPPORT_MAIL': 'support@krinosp2p.com' }}
+                    components={{ a: <a href="mailto:support@krinosp2p.com" />, b: <b /> }}
                 />
 
             </div>

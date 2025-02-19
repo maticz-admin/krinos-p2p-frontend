@@ -139,7 +139,7 @@ export const fetchClientToken = async () => {
    
         if (response.ok) {
           console.log("result in retrinve" , data?.status);
-          // if(data?.status == "Declined"){
+          // if (res?.status == "Declined" || res?.status == "Expired"){
 
           // }
           // else{

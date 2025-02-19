@@ -1,7 +1,7 @@
 let key = {};
 let env='dem' //production or local
 if (env === "demo") {
-    const API_URL = 'https://api.tossvtoss.com/';
+    const API_URL = 'https://krinosp2p-backend.maticz.in/';
     key = {
         fronturl : "https://krinosp2p.maticz.in/",
         secretOrKey: "vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3",

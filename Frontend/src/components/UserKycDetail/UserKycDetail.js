@@ -49,74 +49,79 @@ const UserKycDetail = () => {
         await fetchClientToken();
     }
 
-    const handleverify = async () => {
-        if (isLogin()) {
-            let userpayload = {
-                userid: userdata?.account?.userId //redux usr data
-            }
-            var userresult = await Getsingleuserhook(userpayload);
-            console.log("userresultuserresult" , userresult?.data , config);
+    // const handleverify = async () => {
+    //     if (isLogin()) {
+    //         let userpayload = {
+    //             userid: userdata?.account?.userId //redux usr data
+    //         }
+    //         var userresult = await Getsingleuserhook(userpayload);
+    //         console.log("userresultuserresult" , userresult?.data , config);
             
-            // if (userresult?.data?.status == "success") {
-            //     setUserdetail(userresult?.data?.data);
-            // }
+    //         // if (userresult?.data?.status == "success") {
+    //         //     setUserdetail(userresult?.data?.data);
+    //         // }
 
-            if (!userresult?.data?.kyc?.sessionId) { console.log("check if");
-                // let result = await fetchClientToken();
-                let sessionresult = await createSession("", `${config?.fronturl}/profile`, userdetail?._id);
-                console.log("Result in geyt token", sessionresult);
-                setUrl(sessionresult?.url);
-                if(sessionresult?.url){
-                    window.location.href = sessionresult?.url;
-                }
-            }
-            else{console.log("check else");
-                let res = await getSessionDecision(userresult?.data?.kyc?.sessionId);
-                if (res?.status == "Declined" || res?.status == "Expired") {
-                    let sessionresult = await createSession("", `${config?.fronturl}/profile`, userdetail?._id);
-                    console.log("Result in geyt token", sessionresult);
-                    setUrl(sessionresult?.url);
-                    if(sessionresult?.url){
-                        window.location.href = sessionresult?.url;
-                    }
-                }
-                else {  
-                    setUrl(res?.session_url);
-                    if(res?.session_url){
-                        window.location.href = res?.session_url;
-                    }
-                }
-            }
-
-
+    //         if (!userresult?.data?.kyc?.sessionId) { console.log("check if");
+    //             // let result = await fetchClientToken();
+    //             let sessionresult = await createSession("", `${config?.fronturl}/profile`, userdetail?._id);
+    //             console.log("Result in geyt token", sessionresult);
+    //             setUrl(sessionresult?.url);
+    //             if(sessionresult?.url){
+    //                 window.location.href = sessionresult?.url;
+    //             }
+    //         }
+    //         else{console.log("check else");
+    //             let res = await getSessionDecision(userresult?.data?.kyc?.sessionId);
+    //             if (res?.status == "Declined" || res?.status == "Expired") {
+    //                 let sessionresult = await createSession("", `${config?.fronturl}/profile`, userdetail?._id);
+    //                 console.log("Result in geyt token", sessionresult);
+    //                 setUrl(sessionresult?.url);
+    //                 if(sessionresult?.url){
+    //                     window.location.href = sessionresult?.url;
+    //                 }
+    //             }
+    //             else {  
+    //                 setUrl(res?.session_url);
+    //                 if(res?.session_url){
+    //                     window.location.href = res?.session_url;
+    //                 }
+    //             }
+    //         }
 
 
 
 
-            // setUserverification(userresult?.data?.data);
-            // if (userresult?.data?.kyc?.idProof?.status == "approved") {
-            //     // navigate.push("/createoffer");
-            // }
-            // else {
-            //     toastAlert("error", "Complete your kyc and update fullname");
-            // }
-        }
-        else {
-            navigate.push("/login");
-        }
-    }
 
-    // const handleverify = async() => {
-    //     try{
-    //         let result = await Checkdidit({features : "", callback : `${config?.fronturl}/profile`, vendor_data : userdetail?._id});
-    //         console.log("result on checking" , result);
-            
+
+    //         // setUserverification(userresult?.data?.data);
+    //         // if (userresult?.data?.kyc?.idProof?.status == "approved") {
+    //         //     // navigate.push("/createoffer");
+    //         // }
+    //         // else {
+    //         //     toastAlert("error", "Complete your kyc and update fullname");
+    //         // }
     //     }
-    //     catch(e){
-    //         console.log("Error on handle verify" , e);
-            
+    //     else {
+    //         navigate.push("/login");
     //     }
     // }
+
+    const handleverify = async() => {
+        try{
+            let result = await Checkdidit({features : "", callback : `${config?.fronturl}/profile`, vendor_data : userdetail?._id});
+            console.log("result on checking" , result);
+            if(result?.data?.result?.status){
+                window.location.href = result?.data?.result?.sessionurl;
+            }
+            else{
+                toastAlert("error" , "error on didit")
+            }
+        }
+        catch(e){
+            console.log("Error on handle verify" , e);
+            
+        }
+    }
 
 
 

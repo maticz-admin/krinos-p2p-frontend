@@ -68,9 +68,9 @@ const Amlpolicy = (props) => {
 
                         {/* <h2 className='cms_h3_m'>AML Policy</h2>
                         <p>
-WEME POLAND LTD is a legal entity under Polish and EU law. and TOSSVTOSS (individually and collectively "we") provide services through an internet-enabled "peer-to-peer" (P2P) marketplace for buying and selling digital assets.</p>
-<p>TOSSvTOSS has anti-money laundering ("AML") policies and procedures in place to prevent illegal activity on the platform and to protect users, businesses, digital currency and financial services communities from abuse by criminals. We comply with the requirements of the Bank Secrecy Act and related FinCEN regulations and guidelines.</p>
-<p>As part of its KYC and AML compliance, TOSSvTOSS has taken a risk-based approach to:</p>
+WEME POLAND LTD is a legal entity under Polish and EU law. and Krinos P2P (individually and collectively "we") provide services through an internet-enabled "peer-to-peer" (P2P) marketplace for buying and selling digital assets.</p>
+<p>Krinos P2P has anti-money laundering ("AML") policies and procedures in place to prevent illegal activity on the platform and to protect users, businesses, digital currency and financial services communities from abuse by criminals. We comply with the requirements of the Bank Secrecy Act and related FinCEN regulations and guidelines.</p>
+<p>As part of its KYC and AML compliance, Krinos P2P has taken a risk-based approach to:</p>
 <p>Appoint a Chief Compliance Officer (CCO) with sufficient expertise, independence and responsibility to oversee compliance with applicable laws, regulations, rules and industry guidelines.</p>
 <p>Establish and maintain risk-based KYC, customer identification system (CDD) and enhanced customer identification (EDD) policies</p>
 <ul>
@@ -96,9 +96,9 @@ User Activity Pattern Analysis: User activity patterns are analyzed to detect su
 <p>Education and Training: The platform offers education on AML policies and money laundering prevention to its employees and customers.</p>
 <p>These policies play a vital role in maintaining the safety and reliability of the financial system. Anti-money laundering measures are recognized as crucial internationally, prompting financial institutions to comply with regulations to prevent criminal activities and safeguard the integrity of the financial system.</p>
 
-<p>TOSSvTOSS actively cooperates with all OFAC, Specially Designated Nationals (SDN), and sanction lists of blocked people. Please refer to the list maintained by TOSSvTOSS of countries that have banned the use of the platform for risk reasons.</p>
+<p>Krinos P2P actively cooperates with all OFAC, Specially Designated Nationals (SDN), and sanction lists of blocked people. Please refer to the list maintained by Krinos P2P of countries that have banned the use of the platform for risk reasons.</p>
 
-<p>If TOSSvTOSS provides you with a translated version of the English version of this Policy, you agree that such translation is provided for your convenience only and that the English version of this Policy shall prevail in your relationship with TOSSvTOSS. In the event of any conflict between the English version and any translation of this policy, the English version shall prevail.
+<p>If Krinos P2P provides you with a translated version of the English version of this Policy, you agree that such translation is provided for your convenience only and that the English version of this Policy shall prevail in your relationship with Krinos P2P. In the event of any conflict between the English version and any translation of this policy, the English version shall prevail.
                         </p> */}
                      
 

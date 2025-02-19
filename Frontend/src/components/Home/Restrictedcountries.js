@@ -71,7 +71,7 @@ const Restrictedcountries = (props) => {
                         <p>
                         Our core principle is centered on the notion that Bitcoin should be available and open to all
 individuals, regardless of their geographical location. However, we recognize that in some nations,
-the use of our platform, TOSSvTOSS, may be limited due to economic sanctions imposed by
+the use of our platform, Krinos P2P, may be limited due to economic sanctions imposed by
 governing bodies.</p>
 
 <h5>Prohibited Countries List, OFAC</h5>
@@ -83,7 +83,7 @@ Weapons of mass destruction and other threats to the national security, foreign 
 the United States. As such, some are broad and geographically oriented (eg Cuba, Iran). Others are
 “targeted” and focused on specific individuals and groups.</p>
 <h5>OFAC banned countries</h5>
-<p>Users and traffic from the following countries are prohibited on TOSSvTOSS</p>
+<p>Users and traffic from the following countries are prohibited on Krinos P2P</p>
 <ul>
 <li>Belarus</li>
 <li>Burundi</li>
@@ -132,11 +132,11 @@ the regions of:</p>
 <li>Zimbabwe-related sanctions</li>
 </ul>
 <h5>Restrictions for users in Canada and some US states</h5>
-<p>Due to regulatory restrictions, TOSSvTOSS cannot serve individuals residing in Canada, Alaska,
+<p>Due to regulatory restrictions, Krinos P2P cannot serve individuals residing in Canada, Alaska,
 Arkansas, California, Connecticut, Delaware, Florida, Hawaii, Idaho, Illinois, Kentucky, Louisiana,
 Maine, Maryland, or Massachusetts. Minnesota, Nevada, New Jersey, New York, North Carolina, Ohio,
 South Carolina, South Dakota, Texas, Utah, Vermont, Washington, and West Virginia (collectively
-known as the "Restricted States"). If you live in any of these regions, your TOSSvTOSS account will be
+known as the "Restricted States"). If you live in any of these regions, your Krinos P2P account will be
 banned and you will not be able to access it while there.</p>
 <p>All accounts with registered IPs in Canada and restricted states and all accounts with verified addresses
 within Canada and restricted states are prohibited.</p>
@@ -145,7 +145,7 @@ are prohibited.</p>
 
 <h5>USDT and USDC Restrictions</h5>
 <p>Due to regulatory restrictions, we must prohibit access to Tether (USDT) and USD Coin (USDC) for
-TOSSvTOSS users residing in Texas. This includes trading, withdrawing, depositing, and converting
+Krinos P2P users residing in Texas. This includes trading, withdrawing, depositing, and converting
 USDT/USDC.</p>
 <p>We understand that this may cause some inconvenience, and we apologize for any inconvenience this
 may cause. However, we are fully committed to complying with all relevant laws and regulations and

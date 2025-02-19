@@ -574,11 +574,13 @@ export default function HeaderLinks1(props) {
                   keepMounted
                   open={Boolean(anchorEl)}
                   onClose={handleClose}>
-                  <NavLink to="/profile"><MenuItem className="px-2">
+                  {/* <NavLink to="/profile"> */}
+                    <div className="px-2">
                     <div className="d-flex afterlogin_profile"><div><img src={accountData?.profileImage ? accountData?.profileImage : Profileicon}  /> </div><div><p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
                       <p className="second mb-0 mx-3">{email}</p></div> </div>
                       {/* alt="profileicon" */}
-                  </MenuItem></NavLink>
+                  </div>
+                  {/* </NavLink> */}
 
                   <NavLink to="/profile">
                     <MenuItem>

@@ -212,7 +212,7 @@ const MarketTrend = () => {
                     <div className="col-md-12 text-center content-container">
                         <div className="coinTableMain">
                             <h1 className="mb-4 title1 mt-5">{t('TRADE LIKE A PRO')}</h1>
-                            <p className='roboto'>At Toss V Toss, you can trade multiple ways either with BTC, or ETH, or USDT. Our listed coins are sold at market prices without any hidden costs. Trade instantly without any hassles.</p>
+                            <p className='roboto'>At Krinos P2P, you can trade multiple ways either with BTC, or ETH, or USDT. Our listed coins are sold at market prices without any hidden costs. Trade instantly without any hassles.</p>
                             <div className="pb-4">
                                 <div className="row">
                                     <div className="col-lg-12">
