@@ -170,6 +170,7 @@ const MobileForm = () => {
 
     const handlePhoneNumber = (value, country) => {
         const { dialCode } = country;
+        console.log('value, country----', value, country)
         let newPhoneNo = value;
         let formData = formValue;
         if (dialCode) {
@@ -199,7 +200,8 @@ const MobileForm = () => {
             password,
             type: 'login',
 
-        }
+        };
+        console.log('reqDatareqData-----', reqData)
         try {
             let { status, loading, error, message } = await sentOTP(reqData);
             if (status == "success") {
