@@ -281,9 +281,35 @@ const EmailForm = () => {
         // setValidateError(validation(formData))
 
     }, [])
+
+
+
+    const handleLoaded = _ => {
+        window.grecaptcha.ready(_ => {
+          window.grecaptcha
+            .execute(config.RECAPTCHA_SITE_KEY, { action: "login" })
+            .then(token => {
+            console.log("***********",token)
+             sessionStorage.setItem("CAPTCHA_TOKEN",token);
+            }).catch((e)=>{
+                console.log("***********",e)
+                sessionStorage.removeItem("CAPTCHA_TOKEN");
+            })
+        })
+      }
+      useEffect(() => {
+        const script = document.createElement("script")
+        script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`
+        script.addEventListener("load", handleLoaded)
+        document.body.appendChild(script)
+      } , [])
     var india = <img src={Images.india} />
     return (
-        
+        <div
+        className="g-recaptcha"
+        data-sitekey={config.RECAPTCHA_SITE_KEY}
+        data-size="invisible"
+    >
         <Fragment>
 {/* <div className="g-recaptcha" data-size="invisible"> */}
 
@@ -467,7 +493,7 @@ const EmailForm = () => {
             </div> */}
             {ipmodal && <IprestrictModal login={(e) => handleFormSubmit(e)} setotp={(data) => setOtp(data)} request={requestdata} email={email} onDismiss={() => { setIpmodal(false); setOtp("") }} />}
             {/* </div> */}
-        </Fragment>
+        </Fragment></div>
         
     )
 }

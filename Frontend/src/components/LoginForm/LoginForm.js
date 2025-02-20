@@ -86,7 +86,6 @@ const LoginForm = () => {
                             <Tabs defaultActiveKey="email" id="uncontrolled-tab-example">
                                 <Tab eventKey="email" title="EMAIL" className='px-3 py-3'> 
                                 <EmailForm />
-                                   
                                  </Tab>
                                 <Tab eventKey="mobile" title="MOBILE"  className='px-3 py-3'> 
                                 {/* <div className='row my-4'>
