@@ -89,8 +89,8 @@ export default function Header(props) {
   };
   const { color, rightLinks, leftLinks, brand, fixed, absolute } = props;
 
-  console.log('rightlink',rightLinks);
-  
+  console.log("rightlink", rightLinks);
+
   const appBarClasses = classNames({
     [classes.appBar]: true,
     [classes[color]]: color,
@@ -162,7 +162,7 @@ export default function Header(props) {
           <Hidden mdDown implementation="css">
             {rightLinks}
           </Hidden>
-          {/* <Hidden lgUp>
+          <Hidden lgUp>
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -171,9 +171,9 @@ export default function Header(props) {
             >
               <Menu />
             </IconButton>
-          </Hidden> */}
+          </Hidden>
         </Toolbar>
-        {/* <Hidden lgUp implementation="js">
+        <Hidden lgUp implementation="js">
           <Drawer
             variant="temporary"
             anchor={"right"}
@@ -184,11 +184,23 @@ export default function Header(props) {
             onClose={handleDrawerToggle}
           >
             <div className={classes.appResponsive}>
+              <div className="hidden_nav_logo">
+                <img
+                  src={require("../../assets/images/logo.png")}
+                  alt="logo"
+                  className="img-fluid black imgSrc"
+                />
+                <img
+                  src={require("../../assets/images/blck.png")}
+                  alt="logo"
+                  className="img-fluid white imgSrc"
+                />
+              </div>
               {leftLinks}
               {rightLinks}
             </div>
           </Drawer>
-        </Hidden> */}
+        </Hidden>
       </AppBar>
     </>
   );

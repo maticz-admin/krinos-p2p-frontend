@@ -26999,7 +26999,7 @@ body.light_theme {
 
 .light_theme .home_menu_btn {
   color: #fff !important;
-  border: 1px solid #000000 !important;
+  border: 1px solid gray !important;
 }
 
 .light_theme .bg-gray {
@@ -28749,6 +28749,26 @@ button.otp_btn span {
   border: 1px solid #22b87b;
 }
 
+.light_theme .hidden_nav_logo .white {
+display: block;
+}
+
+.light_theme .hidden_nav_logo .black {
+  display: none;
+}
+
+.dark_theme .hidden_nav_logo .white {
+  display: none;
+}
+  
+.dark_theme .hidden_nav_logo .black {
+    display: block;
+}
+
+.hidden_nav_logo .imgSrc {
+  height: 29px;
+  margin: 0px 0px 10px 15px;
+}
 .support_attach {
   position: absolute;
   top: 42px;
@@ -31329,7 +31349,7 @@ select {
 }
 
 .MuiPaper-root {
-  background-color: #000000 !important;
+  background-color: var(--dark-bg) !important;
 }
 
 .notificationDropdown {
