@@ -21780,6 +21780,16 @@ color: #000;
   justify-content: flex-start;
 }
 
+.light_theme .profileDetailView ul li .title-txt {
+  color: var(--black);
+  font-weight: 500 !important;
+}
+
+.dark_theme .profileDetailView ul li .title-txt {
+  color: var(--white);
+  font-weight: 500 !important;
+}
+
 .profileDetailView ul li label {
   display: inline-block;
   margin-right: 15px;
