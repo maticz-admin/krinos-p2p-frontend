@@ -175,7 +175,7 @@ export const login = async (data, dispatch) => {
       return {
         status: "failed",
         loading: false,
-        message: response.errors.password,
+        message: response.errors.password || response.errors.reCAPTCHA,
         error: response.errors.password,
         authToken: response.authToken,
       };
