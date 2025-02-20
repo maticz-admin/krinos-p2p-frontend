@@ -834,8 +834,19 @@ button:hover{
     color: #8cc516 !important;
 }
 
+.light_theme .mobilelog ul li a.nav-link.active.mobilereg {
+    color: #757272 !important;
+}
+
 .dark_theme .mobilelog ul li a.nav-link.active {
     color: #aff41f !important;
+    // background-color: transparent !important;
+    // box-shadow: none !important;
+    // border: none !important;
+}
+
+.dark_theme .mobilelog ul li a.nav-link.active.themebtn {
+    color: #000 !important;
 }
 
 .mobilereg {
