@@ -175,13 +175,14 @@ const UserKycDetail = () => {
                             </div>
                         </div>
                     </GridItem>
-                    <GridItem xs={12} sm={12} md={6} lg={6}>
+                    <GridItem xs={12} sm={12} md={12} lg={12}>
                         <div className="kycCardStatus labelWidth">
                             <div className="profileDetailView">
                                 <ul>
-                                    <li>
-                                        <label>Kyc</label>
-                                        <div className="form-group green-button">
+                                    <li className='flex-column'>
+                                        <h5 className='title-txt my-0'>Kyc</h5>
+                                        <p className='mt-2 des mb-0 '>Lorem ipsum</p>
+                                        <div className="form-group green-button mt-2">
                                             <button
                                                 type="button" className="themebtn text-uppercase py-2 my-0"
                                                 onClick={handleverify}
