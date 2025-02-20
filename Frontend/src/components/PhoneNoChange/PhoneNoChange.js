@@ -140,7 +140,7 @@ const PhoneNoChange = () => {
         }
         try {
             let { status, loading, error, message } = await changeNewPhone(reqData);
-
+            console.log('error----', status, error, message)
             if (status == "success") {
                 setMobileDetail({
                     ...mobileDetail, ...{

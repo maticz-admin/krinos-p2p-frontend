@@ -154,10 +154,10 @@ const RegisterForm = () => {
                     
                 </div>
             </form>
-            <GoogleReCaptcha
-                onVerify={handleReCaptcha}
-            />
-        </GoogleReCaptchaProvider>
+             <GoogleReCaptcha
+                 onVerify={handleReCaptcha}
+             />
+         </GoogleReCaptchaProvider>
     )
 }
 

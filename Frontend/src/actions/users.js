@@ -128,16 +128,17 @@ export const login = async (data, dispatch) => {
       url: `/api/login`,
       data: { encode: data },
     });
-    // console.log('respData------', decodedata(respData.data));
     const response = decodedata(respData.data);
-    if (respData.data.status == "TWO_FA") {
+    console.log("response in login", response);
+
+    if (response?.status == "TWO_FA") {
       return {
         status: "TWO_FA",
         loading: false,
         message: response.message,
       };
     }
-    else if (respData.data.message == "OTP send to your mail id") {
+    else if (response?.message == "OTP send to your mail id") {
       return {
         status: "success",
         loading: false,
@@ -155,7 +156,6 @@ export const login = async (data, dispatch) => {
     }
     // setTradeThemeLocal(response.userSetting.theme);
     // alert("Success")
-    console.log('response------', response);
 
     return {
       status: "success",
@@ -166,17 +166,17 @@ export const login = async (data, dispatch) => {
     };
     // }
   } catch (err) {
-    console.log('err-----', err)
+    // console.log('err-----', err)
 
     handleResp(err, 'error')
-    console.log('err--err---', err.response)
     const response = decodedata(err.response.data)
+    console.log("response in error", response);
     try {
       return {
         status: "failed",
         loading: false,
-        message: response.message,
-        error: response.errors,
+        message: response.errors.password,
+        error: response.errors.password,
         authToken: response.authToken,
       };
     } catch (err) {
@@ -243,7 +243,6 @@ export const showBtn = async () => {
       url: `/api/hide-btn`,
     });
     const response = decodedata(respData.data);
-    console.log('response-----', response);
     return {
       status: "success",
       loading: false,
@@ -260,7 +259,7 @@ export const showBtn = async () => {
 };
 
 export const setAccountData = (data) => {
-  console.log('data-------', data);
+
   return {
     type: SET_USER_ACCOUNT,
     data: {
@@ -301,13 +300,16 @@ export const forgotPassword = async (data) => {
     let respData = await axios({
       method: "post",
       url: `/api/forgotPassword`,
-      data,
+      data: { encode: encodedata(data) },
     });
+
+    const response = decodedata(respData.data)
+    console.log('datdata----a', response)
     return {
       status: "success",
       loading: false,
-      message: respData.data.message,
-      result: respData.data.result,
+      message: response.message,
+      result: response.result,
     };
   } catch (err) {
     handleResp(err, 'error')
@@ -325,13 +327,14 @@ export const resetPassword = async (data) => {
     let respData = await axios({
       method: "post",
       url: `/api/resetPassword`,
-      data,
+      data: { encode: encodedata(data) },
     });
-
+    const response = decodedata(respData.data);
+    console.log('response reset', response)
     return {
       status: "success",
       loading: false,
-      message: respData.data.message,
+      message: response.message,
     };
   } catch (err) {
     handleResp(err, 'error')
@@ -472,21 +475,22 @@ export const changePassword = async (data) => {
     let respData = await axios({
       method: "post",
       url: `/api/changePassword`,
-      data,
+      data: { encode: encodedata(data) },
     });
-
+    const response = decodedata(respData.data)
     return {
       status: "success",
       loading: false,
-      message: respData.data.message,
+      message: response.message,
     };
   } catch (err) {
-    handleResp(err, 'error')
+    handleResp(err, 'error');
+    const response = decodedata(err.response.data)
     return {
       status: "failed",
       loading: false,
-      message: err.response.data.message,
-      error: err.response.data.errors,
+      message: response.message,
+      error: response.errors,
     };
   }
 };
@@ -645,24 +649,30 @@ export const upgradeUser = async (data, dispatch) => {
 
 export const changeNewPhone = async (data) => {
   try {
+
     let respData = await axios({
       method: "post",
       url: `/api/phoneChange`,
-      data,
+      data: { encode: encodedata(data) },
     });
-
+    const response = decodedata(respData.data);
+    console.log('response-----', response)
     return {
       status: "success",
       loading: false,
-      message: respData.data.message,
+      message: response.message,
     };
   } catch (err) {
-    handleResp(err, 'error')
+    console.log('err.response.data----', err.response.data)
+    handleResp(err, 'error');
+
     const response = decodedata(err.response.data)
+    console.log('err.response----', response.errors)
+
     return {
       status: "failed",
       loading: false,
-      message: response.message,
+      message: response.errors || response.errors.phoneNo,
       error: response.errors,
     };
   }
@@ -673,22 +683,24 @@ export const verifyNewPhone = async (data) => {
     let respData = await axios({
       method: "put",
       url: `/api/phoneChange`,
-      data,
+      data:{encode: encodedata(data)},
     });
+    const response = decodedata(respData.data)
     return {
       status: "success",
       loading: false,
-      message: respData.data.message,
-      result: respData.data.result,
+      message: response.message,
+      result: response.result,
     };
   } catch (err) {
     handleResp(err, 'error')
+    const response = decodedata(err.response.data)
     
     return {
       status: "failed",
       loading: false,
-      message: err.response.data.message,
-      error: err.response.data.errors,
+      message: response.message,
+      error: response.errors,
     };
   }
 };
@@ -809,9 +821,10 @@ export const sentOTP = async (data) => {
     let respData = await axios({
       method: "post",
       url: `/api/sentOTP`,
-      data:{encode: encodedata(data)},
+      data: { encode: encodedata(data) },
     });
     const response = decodedata(respData.data)
+    console.log("inputtttttttt response", response);
     return {
       status: "success",
       loading: false,
@@ -820,6 +833,7 @@ export const sentOTP = async (data) => {
   } catch (err) {
     handleResp(err, 'error');
     const response = decodedata(err.response.data);
+    console.log("inputtttttttt error", response);
     return {
       status: "failed",
       loading: false,
@@ -1060,7 +1074,7 @@ export const resendOtp = async (data) => {
     let respData = await axios({
       method: "post",
       url: `/api/resend-otp`,
-      data: {encode: decodedata(data)},
+      data: { encode: decodedata(data) },
     });
     const response = decodedata(respData.data)
     return {

@@ -31,7 +31,6 @@ export const getLoginHistory = async () => {
             'method': 'get',
             'url': `/api/loginHistory`,
         });
-        console.log('loginHistoryloginHistory-----', respData);
         return {
             status: 'success',
             loading: false,

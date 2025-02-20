@@ -132,10 +132,10 @@ const EmailForm = () => {
                 </div>
             </Fragment >
 
-            <GoogleReCaptcha
-                onVerify={handleReCaptcha}
-            />
-        </GoogleReCaptchaProvider>
+              <GoogleReCaptcha
+                 onVerify={handleReCaptcha}
+             />
+         </GoogleReCaptchaProvider> 
     )
 }
 

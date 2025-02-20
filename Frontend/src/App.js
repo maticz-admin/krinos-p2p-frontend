@@ -115,6 +115,8 @@ import Restrictedcountries from "./components/Home/Restrictedcountries";
 import Risk from "./components/Home/Risk";
 import Messagenotification from "./pages/MessageNotification";
 
+import MyAppp from "pages/TestPage";
+
 
 
 
@@ -207,8 +209,8 @@ const App = () => {
                             <ConditionRoute exact path='/support-ticket' component={SupportPage} type={"public"} />
                             <ConditionRoute exact path='/chat/:orderId' component={Chat} type={"public"} />
                             <ConditionRoute exact path='/contact' component={Contact} type={"public"} />
-
-
+                            
+                            {/* <ConditionRoute exact path='/test' component={MyAppp} type={"public"} /> */}
                             <ConditionRoute exact path='/email-verification/:authToken' component={EmailVerification} type={"public"} />
                             <ConditionRoute exact path='/verify-old-email/:authToken' component={EmailVerification} type={"public"} />
                             <ConditionRoute exact path='/verify-new-email/:authToken' component={EmailVerification} type={"public"} />

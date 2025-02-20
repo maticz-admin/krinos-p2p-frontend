@@ -153,7 +153,7 @@ const MobileForm = () => {
                   {validateError && validateError.phone && <p className="error-message">{validateError.phone}</p>}
                 {validateError && validateError.phoneNo && <p className="error-message">{validateError.phoneNo}</p>}
              </div>
-            {/* <div className="form-group">
+            <div className="form-group">
                 
                
 
@@ -165,7 +165,7 @@ const MobileForm = () => {
                     {t('SEND_CODE')}
                 </Button>
 
-            </div> */}
+            </div>
             {optStatus && optStatus == true ?
                 <>
                     <div className="form-group">

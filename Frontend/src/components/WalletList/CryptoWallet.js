@@ -47,7 +47,6 @@ const CryptoWallet = () => {
   // redux-state
   const walletData = useSelector((state) => state.wallet);
   const currencyDoc = useSelector((state) => state.currency);
-  // console.log('currencyDoc------', useSelector((state) => state));
   // function
   const handleChange = (e) => {
     e.preventDefault();
@@ -62,23 +61,33 @@ const CryptoWallet = () => {
       currency: {},
     });
   };
+
+
   const handleCheckBox = async (e) => {
     e.preventDefault();
+    
     const { name, checked } = e.target;
+
     let reqData = {
       hideZeroStatus: checked,
     };
+
     const { message, status } = await updateHideZeroStatus(reqData);
+
     if (status) {
       setCheckValue(checked);
+
       toastAlert("success", message, "checkValue");
       gethideZeroSatus();
+    } else {
+      toastAlert("error", message, "checkValue");
     }
   };
 
   const onSearch = (e) => {
     e.preventDefault();
     const { value } = e.target;
+
     let searchData = filterData;
     let arrayData = [];
     searchData &&
@@ -91,7 +100,7 @@ const CryptoWallet = () => {
     if (arrayData && arrayData.length > 0) {
       setOriginal(arrayData);
     }
-    else{
+    else {
       setOriginal(arrayData);
     }
     if (isEmpty(value)) {
@@ -107,17 +116,15 @@ const CryptoWallet = () => {
       setOriginal(walletData);
       setFilter(walletData);
     }
-
     // getWallet();
   }, [walletData]);
 
-  const updatedeposit = async() =>{
-    let checkdeposit  =  await Checkdeposithooks();
+  const updatedeposit = async () => {
+    let checkdeposit = await Checkdeposithooks();
   }
 
   const getSpotPair = async () => {
     const { result } = await getPairList();
-
     setPairList(result);
   };
   const gethideZeroSatus = async () => {
@@ -152,10 +159,10 @@ const CryptoWallet = () => {
         onHide={modalClose}
       />
       <div className="d-flex justify-content-between gk showe_flex_div">
-         <img className='spring' src={spring} alt="spring"/>
-         <img src={Images.connect} className='connect' />
+        <img className='spring' src={spring} alt="spring" />
+        <img src={Images.connect} className='connect' />
         <h3 className="login_title_8">{t("CRYPTO_WALLET")}</h3>
-            
+
         {/* <Checkbox
           name="CheckValue"
           onChange={handleCheckBox}
@@ -171,7 +178,7 @@ const CryptoWallet = () => {
               onChange={handleCheckBox}
               checked={checkValue}
             />
-            <input class="form-check-input novisible" type="checkbox" value={checkValue}  name={"checkValue"} checked={checkValue} onChange={handleCheckBox}  />
+            <input class="form-check-input novisible" type="checkbox" value={checkValue} name={"checkValue"} checked={checkValue} onChange={handleCheckBox} />
             <label className="ml-1">Hide Zero Balance</label>
           </div>
 
@@ -188,14 +195,16 @@ const CryptoWallet = () => {
         </div>
       </div>
       <div className="fialt_wallet_sectoin  table-responsive">
+
         {currencyDoc &&
           currencyDoc.length > 0 &&
           originalData &&
           originalData.length > 0 &&
           originalData.map((item, key) => {
             let curData = currencyDoc.find((el) => el.coin == item.coin);
+
             //redirect particular currency
-            
+
             let pair = "",
               seconCurrencyPair,
               firstCurrencyPair;
@@ -216,17 +225,17 @@ const CryptoWallet = () => {
 
             pair =
               !isEmpty(firstCurrencyPair) &&
-              firstCurrencyPair.firstCurrencySymbol == item.coin
+                firstCurrencyPair.firstCurrencySymbol == item.coin
                 ? `${item.coin}_${firstCurrencyPair.secondCurrencySymbol}`
                 : !isEmpty(seconCurrencyPair) &&
                   seconCurrencyPair.secondCurrencySymbol == item.coin
-                ? `${seconCurrencyPair.firstCurrencySymbol}_${item.coin}`
-                : "";
+                  ? `${seconCurrencyPair.firstCurrencySymbol}_${item.coin}`
+                  : "";
             if (curData && ["crypto", "token"].includes(curData.type)) {
               return item.p2pBal == 0 ? (
                 checkValue ? (
                   <>
-                  {""}
+                    {""}
                   </>
                 ) : (
                   <div className="fiat_wallet_list" key={key}>
@@ -250,7 +259,7 @@ const CryptoWallet = () => {
                         <div className="Subscribe">
                           <Button
                             className="btn-primary"
-                            onClick={async() => {
+                            onClick={async () => {
                               const emailvlaid = await checkEmail();
                               if (emailvlaid.email) {
                                 setModal({
@@ -350,71 +359,71 @@ const CryptoWallet = () => {
                                         {walletType == 'p2p' && <p>{item.p2pBal}</p>} */}
                     </div>
                     <div className="button_lst_section item_last_wallet_width">
-                    <div className="button_lst_section d-flex ">
-                      {curData.depositStatus == "On" && (
-                        <div className="Subscribe">
-                          <Button
-                            className="btn-primary"
-                            onClick={async() => {
-                              const emailvlaid = await checkEmail();
-                              if (emailvlaid.email) {
+                      <div className="button_lst_section d-flex ">
+                        {curData.depositStatus == "On" && (
+                          <div className="Subscribe">
+                            <Button
+                              className="btn-primary"
+                              onClick={async () => {
+                                const emailvlaid = await checkEmail();
+                                if (emailvlaid.email) {
+                                  setModal({
+                                    type: "deposit",
+                                    assetData: item,
+                                    currency: curData,
+                                  });
+                                }
+                                else {
+                                  toastAlert("error", "Please submit email details", "email");
+                                }
+                                // setModal({
+                                //   type: "deposit",
+                                //   assetData: item,
+                                //   currency: curData,
+                                // });
+                              }}
+                            >
+                              {t("DEPOSIT")}
+                            </Button>
+                          </div>
+                        )}
+                        {curData.depositStatus == "Off" && (
+                          <div className="Subscribe">
+                            <Button className="btn-primary" disabled="true">
+                              {t("DEPOSIT")}
+                            </Button>
+                          </div>
+                        )}
+                        {curData.withdrawStatus == "On" && (
+                          <div className="Subscribe">
+                            <Button
+                              className="btn-primary"
+                              onClick={() => {
                                 setModal({
-                                  type: "deposit",
+                                  type: "withdraw",
                                   assetData: item,
                                   currency: curData,
                                 });
-                              }
-                              else {
-                                toastAlert("error", "Please submit email details", "email");
-                              }
-                              // setModal({
-                              //   type: "deposit",
-                              //   assetData: item,
-                              //   currency: curData,
-                              // });
-                            }}
-                          >
-                            {t("DEPOSIT")}
-                          </Button>
-                        </div>
-                      )}
-                      {curData.depositStatus == "Off" && (
-                        <div className="Subscribe">
-                          <Button className="btn-primary" disabled="true">
-                            {t("DEPOSIT")}
-                          </Button>
-                        </div>
-                      )}
-                      {curData.withdrawStatus == "On" && (
-                        <div className="Subscribe">
-                          <Button
-                            className="btn-primary"
-                            onClick={() => {
-                              setModal({
-                                type: "withdraw",
-                                assetData: item,
-                                currency: curData,
-                              });
-                            }}
-                          >
-                            {t("WITHDRAW")}
-                          </Button>
-                        </div>
-                      )}
-                      {curData.withdrawStatus == "Off" && (
-                        <div className="Subscribe">
-                          <Button className="btn-primary" disabled="true">
-                            {t("WITHDRAW")}
-                          </Button>
-                        </div>
-                      )}
+                              }}
+                            >
+                              {t("WITHDRAW")}
+                            </Button>
+                          </div>
+                        )}
+                        {curData.withdrawStatus == "Off" && (
+                          <div className="Subscribe">
+                            <Button className="btn-primary" disabled="true">
+                              {t("WITHDRAW")}
+                            </Button>
+                          </div>
+                        )}
 
-                      {/* <div className="Subscribe">
+                        {/* <div className="Subscribe">
                         <Button className="btn-primary">
                           <Link to={`/spot/${pair}`}>{t("TRADE")}</Link>
                         </Button>
                       </div> */}
-                      {/* <div className="Subscribe">
+                        {/* <div className="Subscribe">
                                             <Button className="btn-primary" onClick={() => {
                                                 setModal({
                                                     type: 'walletTransfer',
@@ -432,8 +441,8 @@ const CryptoWallet = () => {
                                                 })
                                             }}>{t("FUND")}</Button>
                                         </div> */}
-                      {/* <div className="Subscribe"><Button className="btn-primary" data-toggle="modal" data-target="buyModalCenter">Stake</Button></div> */}
-                    </div>
+                        {/* <div className="Subscribe"><Button className="btn-primary" data-toggle="modal" data-target="buyModalCenter">Stake</Button></div> */}
+                      </div>
                     </div>
                   </div>
                 </>

@@ -1,4 +1,5 @@
 // import config
+import { decodedata } from 'config/secure';
 import axios,{handleResp} from '../config/axios';
 
 // import constant
@@ -16,10 +17,11 @@ export const getPairList = async () => {
             'method': 'get',
             'url': `/api/spot/tradePair`,
         });
+        const response = decodedata(respData.data)
         return {
             status: 'success',
             loading: false,
-            result: respData.data.result,
+            result: response.result,
         }
     }
     catch (err) {

@@ -1,5 +1,6 @@
 // import config
-import axios , {handleResp} from '../config/axios'
+import { decodedata } from 'config/secure';
+import axios, { handleResp } from '../config/axios'
 
 // import constant
 import {
@@ -9,6 +10,7 @@ import {
     UPDATE_USER_WALLET_STAKE,
     HIDE_ZERO
 } from '../constant';
+import { encodedata } from 'config/secure';
 
 export const getAssetData = async (dispatch) => {
     try {
@@ -16,9 +18,9 @@ export const getAssetData = async (dispatch) => {
             'method': 'get',
             'url': `/api/getAssetsDetails`,
         });
+        const response = decodedata(respData.data);
+        dispatch(userWalletList(response.result))
 
-        dispatch(userWalletList(respData.data.result))
-       
         return true
     }
     catch (err) {
@@ -27,37 +29,37 @@ export const getAssetData = async (dispatch) => {
     }
 }
 
-export const gethideZeroStatus=async()=>{
+export const gethideZeroStatus = async () => {
 
-    try{
+    try {
         let respData = await axios({
             'method': 'get',
             'url': `/api/getHideoZeroStatus`,
         });
-
+        const response = decodedata(respData.data)
         return {
-            result:respData.data.hideZeroStatus
+            result: response
         }
-    }catch(err){
+    } catch (err) {
         handleResp(err, 'error')
         return false
 
     }
 }
 
-export const updateHideZeroStatus=async(data)=>{
+export const updateHideZeroStatus = async (data) => {
 
-    try{
+    try {
         let respData = await axios({
             'method': 'put',
             'url': `/api/getHideoZeroStatus`,
-            data:data
+            data: data
         });
         return {
-            status:true,
-            message:respData.data.message
+            status: true,
+            message: respData.data.message
         }
-    }catch(err){
+    } catch (err) {
         handleResp(err, 'error')
         return false
 
@@ -69,7 +71,6 @@ export const checkDeposit = async (dispatch) => {
             'method': 'get',
             'url': `/api/check-deposit`,
         });
-        console.log('respData------', respData);
         return true
     }
     catch (err) {
@@ -146,25 +147,28 @@ export const fiatRequestVerify = async (data) => {
 
 export const withdrawRequestCoin = async (data) => {
     try {
+
         let respData = await axios({
             'method': 'post',
             'url': `/api/coinWithdraw`,
-            'data': data
+            'data': { encode: encodedata(data) }
         });
+        const response = decodedata(respData.data)
         return {
             status: "success",
             loading: false,
-            message: respData.data.message,
-            result: respData.data.result
+            message: response.message,
+            result: response.result
         }
     }
     catch (err) {
         handleResp(err, 'error')
+        const response = decodedata(err.response.data)
         return {
             status: "failed",
             loading: false,
-            message: err.response.data.message,
-            error: err.response.data.errors
+            message: response.message,
+            error: response.errors
         }
     }
 }
@@ -348,15 +352,17 @@ export const setUserSecondCurrency = (assetData, dispatch) => {
 
 export const getTrnxHistory = async (params, query) => {
     try {
+
         let respData = await axios({
             'method': 'get',
             'url': `/api/history/transaction/` + params,
-            'params': query
+            'params': { encode: encodedata(query) }
         });
+        const response = decodedata(respData.data)
         return {
             status: "success",
             loading: false,
-            result: respData.data.result
+            result: response.result
         }
     }
     catch (err) {
@@ -368,7 +374,7 @@ export const getTrnxHistory = async (params, query) => {
     }
 }
 
-export const checkEmail =async()=>{
+export const checkEmail = async () => {
     let respData = await axios({
         'method': 'post',
         'url': `/api/checkEmail`,
