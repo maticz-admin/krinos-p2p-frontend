@@ -126,7 +126,6 @@ const Bitcoincompany = (props) => {
         }
 
         if (tradedata?.ordertype == "Sell") {
-
             var onepercent = prefferedcurrencyvalue / 100;
             var uservalonepercent = val / 100;
             var margin = tradedata?.offermargin ? tradedata?.offermargin : variablepercentage;

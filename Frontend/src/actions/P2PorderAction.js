@@ -468,7 +468,7 @@ export const gettradespeedhook = async (datas, dispatch) => {
     catch (err) {
         console.log("error", err);
         handleResp(err, 'error');
-        const response = decodedata(err.response.data)
+        const response = decodedata(err?.response?.data)
 
         return {
             status: "failed",
@@ -711,3 +711,6 @@ export const Checkdidit = async (datas, dispatch) => {
     }
 }
 
+// diditapi , twilo issue
+
+// changelly language , forgot passsword issue

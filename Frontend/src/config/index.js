@@ -1,5 +1,5 @@
 let key = {};
-let env='dem' //production or local
+let env='demo' //production or local
 if (env === "demo") {
     const API_URL = 'https://krinosp2p-backend.maticz.in/';
     key = {
@@ -10,7 +10,7 @@ if (env === "demo") {
         API_URL: ' https://krinosp2p-backend.maticz.in/',
         FRONT_URL: "https://krinosp2p.maticz.in/",
         ADMIN_URL: 'https://contorls.tossvtoss.com',
-        SOCKET_URL: 'https://api.tossvtoss.com/',
+        SOCKET_URL: 'https://krinosp2p-backend.maticz.in/',
         getGeoInfo: "https://ipapi.co/json/",
         AUTHENTICATOR_URL: {
             PLAY_STORE: "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2",

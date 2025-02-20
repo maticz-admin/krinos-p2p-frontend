@@ -1071,7 +1071,6 @@ const Home = (props) => {
                                         <h3>SAFE TRANSACTION</h3>
                                         <p>Bitcoins are held in safe escrow until the transaction is fully concluded</p>
                                         {/* <p>{ReactHtmlParser(transparentfee)}</p> */}
-
                                     </div>
                                 </div>
 
