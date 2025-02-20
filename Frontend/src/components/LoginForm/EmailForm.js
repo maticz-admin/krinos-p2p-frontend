@@ -116,6 +116,7 @@ const EmailForm = () => {
             console.log("badge visible" , badge , badge.style);
             
             badge.style.visibility = 'visible';
+            badge.style.dispplay = ""
           }
           const script = document.createElement('script');
           script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`;
@@ -258,7 +259,8 @@ const EmailForm = () => {
     }
 
     useEffect(() => {
-        document.querySelector('.grecaptcha-badge')
+        // document.querySelector('.grecaptcha-badge')
+        generateToken()
         getGeoInfo()
         let formData = {};
         if (localStorage.getItem("remember") == "true") {
@@ -297,12 +299,12 @@ const EmailForm = () => {
             })
         })
       }
-      useEffect(() => {
-        const script = document.createElement("script")
-        script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`
-        script.addEventListener("load", handleLoaded)
-        document.body.appendChild(script)
-      } , [])
+    //   useEffect(() => {
+    //     const script = document.createElement("script")
+    //     script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`
+    //     script.addEventListener("load", handleLoaded)
+    //     document.body.appendChild(script)
+    //   } , [])
     var india = <img src={Images.india} />
     return (
         <div
