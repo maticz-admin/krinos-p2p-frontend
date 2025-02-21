@@ -25675,7 +25675,13 @@ h4.profileDetailView1 small {
   align-items: center;
   padding: 8px 0px;
   border-bottom: 1px solid #515151ab;
+  margin-bottom: 10px;
 }
+
+.fialt_wallet_sectoin .fiat_wallet_list:last-child {
+  margin-bottom: 0px;
+}
+
 
 .fialt_wallet_sectoin .fiat_wallet_list > div {
   display: flex;
@@ -29703,6 +29709,10 @@ header .container-fluid-full {
   background: #0d211e;
   height: 40px;
   z-index: 10;
+}
+
+.fialt_wallet_sectoin {
+padding: 15px 0px;
 }
 
 .notices_tag {

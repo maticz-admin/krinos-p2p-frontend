@@ -1,5 +1,5 @@
 let key = {};
-let env='demo' //production or local
+let env='dem' //production or local
 if (env === "demo") {
     const API_URL = 'https://krinosp2p-backend.maticz.in/';
     key = {
