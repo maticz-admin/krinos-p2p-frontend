@@ -207,6 +207,7 @@ const Trade = (props) => {
 
   // setTimeout(socket.emit('CHECKPING' , tag) , 5000)
   // setTimeout(setUserstatus("Offline") , 5000);
+  
   useEffect(() => {
     const dataID = setInterval(() => {
       socket.emit('CHECKPING', {

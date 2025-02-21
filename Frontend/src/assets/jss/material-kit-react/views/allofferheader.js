@@ -242,10 +242,6 @@ const Buybitcoin = (props) => {
 
                                         <Dropdown.Menu className="iner_dropmenu_versiotwo iner_dropmenu_versiotwo_wid_frix">
 
-
-
-
-
                                             {coindata && coindata?.length > 0 && coindata.map((val, ind) => {
                                                 return (
 
@@ -254,7 +250,6 @@ const Buybitcoin = (props) => {
                                                             await handleChange(val.coin)
                                                         }}><span>{val.coin}</span></p></Dropdown.Item>)
                                             })}
-
                                         </Dropdown.Menu>
                                     </Dropdown>
 

@@ -178,7 +178,8 @@ const Bitcoincompany = (props) => {
                 var result = await createroom(payload);
                 if (result?.data?.type == "success") {
                     var room = result?.data?.data?.roomid
-                    navigate.push(`/trade/${result?.data?.data?.roomid}`, { state: payload });
+                    // navigate.push(`/trade/${result?.data?.data?.roomid}`, { state: payload });
+                    window.location.href = window.location.origin + `/trade/${result?.data?.data?.roomid}`
                 }
             }
             else {
@@ -304,7 +305,6 @@ const Bitcoincompany = (props) => {
                 {...rest} />
 
             <div className={loader ? "bitcoincompany login_container login_box logi_show_div_bc_company" : "bitcoincompany login_container login_box"}>
-
                 {loader && <div id='loadercontainer'>
                     <div className='themeloader'>
                     </div>

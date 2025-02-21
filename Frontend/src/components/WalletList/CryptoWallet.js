@@ -175,7 +175,7 @@ const CryptoWallet = () => {
             <Checkbox
               class="form-control"
               name="checkValue"
-              onChange={handleCheckBox}
+              onChange={() => {handleCheckBox()}}
               checked={checkValue}
             />
             <input class="form-check-input novisible" type="checkbox" value={checkValue} name={"checkValue"} checked={checkValue} onChange={handleCheckBox} />

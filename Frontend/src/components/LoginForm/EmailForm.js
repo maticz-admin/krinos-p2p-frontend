@@ -183,9 +183,9 @@ const EmailForm = () => {
     //   };
       
     const handleFormSubmit = async (e) => {
-        let recaptcha = await generateToken();
-        console.log("recaptcharecaptcha" , recaptcha);
-        if(recaptcha){
+        // let recaptcha = await generateToken();
+        // console.log("recaptcharecaptcha" , recaptcha);
+        // if(recaptcha){
             e.preventDefault();
         setLoader(true)
         let reqData = {
@@ -251,11 +251,11 @@ const EmailForm = () => {
                 }
                 toastAlert('error', message, 'login');
             }
-        }
-        else {
-            toastAlert('error', 'Invalid ReCaptcha', 'signup', 'TOP_RIGHT');
-            return
-        }
+        // }
+        // else {
+        //     toastAlert('error', 'Invalid ReCaptcha', 'signup', 'TOP_RIGHT');
+        //     return
+        // }
     }
 
     useEffect(() => {
