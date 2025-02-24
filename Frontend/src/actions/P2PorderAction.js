@@ -468,7 +468,7 @@ export const gettradespeedhook = async (datas, dispatch) => {
     catch (err) {
         console.log("error", err);
         handleResp(err, 'error');
-        const response = decodedata(err.response.data)
+        const response = decodedata(err?.response?.data)
 
         return {
             status: "failed",
@@ -688,4 +688,29 @@ export const AddSessionId = async (datas, dispatch) => {
             status: "failed",
         }
     }
-} 
+
+}
+
+export const Checkdidit = async (datas, dispatch) => {
+    try {
+        // console.log('datasdatasdatas---datas-', datas);
+        // return false
+        let respData = await axios({
+            'url': `p2papi/check-didit`,
+            'method': 'post',
+            data: { encode: encodedata(datas) },
+        });
+        const response = decodedata(respData.data);
+        return { data: response };
+    }
+    catch (err) {
+        handleResp(err, 'error')
+        return {
+            status: "failed",
+        }
+    }
+}
+
+// diditapi , twilo issue
+
+// changelly language , forgot passsword issue

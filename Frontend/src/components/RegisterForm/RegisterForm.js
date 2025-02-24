@@ -17,6 +17,7 @@ import { getCmsData } from '../../actions/homeAction';
 import { toastAlert } from '../../lib/toastAlert'
 import { Tab, Tabs } from 'react-bootstrap';
 import Images from 'Images';
+import config from 'config';
 
 const RegisterForm = () => {
     const { t, i18n } = useTranslation();
@@ -62,6 +63,7 @@ const RegisterForm = () => {
         setFormType(value)
     }
 
+  
     useEffect(() => {
         loadScript()
         fetchCmsData()
@@ -83,7 +85,11 @@ const RegisterForm = () => {
     return (
 
         <>
-        
+         <div
+            className="g-recaptcha"
+            data-sitekey={config.RECAPTCHA_SITE_KEY}
+            data-size="invisible"
+        >
             <div className='bannersec mt-0 h-100vh bodyheight'>
             <div className='container'>
                 <div className='text-center mb-5'>
@@ -153,6 +159,7 @@ const RegisterForm = () => {
                     <Link to="/login" className="ml-auto">{t('ALREADY_HAVE_ACCOUNT')}</Link>
                 </div>
             </form>
+            </div>
         </>
     )
 }

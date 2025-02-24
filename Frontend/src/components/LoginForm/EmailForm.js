@@ -25,6 +25,7 @@ import { Checkdeposithooks } from '../../actions/P2PorderAction';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { toast } from 'react-toastify';
 
+
 const initialFormValue = {
     'email': '',
     'formType': 'email',
@@ -52,13 +53,12 @@ const EmailForm = () => {
     const [requestdata, setRequestdata] = useState({});
     const [recaptchaValue, setRecaptchaValue] = useState(null);
 
-    const RECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 
     const { email, password, formType, showPassword, remember, twoFACode } = formValue;
 
     const handleChange = (e) => {
         e.preventDefault();
-       
+
         const { name, value } = e?.target;
 
         if (name == 'twoFACode') {
@@ -123,12 +123,14 @@ const EmailForm = () => {
                 console.log("badge visible", badge, badge.style);
 
                 badge.style.visibility = 'visible';
-            }
+            };
+
             const script = document.createElement('script');
             script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`;
             script.onload = () => {
                 window.grecaptcha.ready(() => {
                     window.grecaptcha.execute(config.RECAPTCHA_SITE_KEY).then((token) => {
+                        localStorage.setItem('captcha_token', token)
                         resolve(token);
                     }).catch((error) => {
                         reject(error);
@@ -141,6 +143,7 @@ const EmailForm = () => {
             document.body.appendChild(script);
         });
     };
+
 
     // const generateToken = async (data) => {
     //     try {
@@ -191,15 +194,15 @@ const EmailForm = () => {
     const handleFormSubmit = async (e) => {
         let recaptcha = await generateToken();
         console.log("recaptcharecaptcha", recaptcha);
-        console.log('recaptchaValue----', recaptchaValue)
-        if (!recaptchaValue) {
+        if (!recaptcha) {
             toast.error('Please complete the reCAPTCHA');
             return;
-          }
+        }
         // return false;
         if (recaptcha) {
             e.preventDefault();
             setLoader(true)
+
             let reqData = {
                 email,
                 password,
@@ -208,7 +211,7 @@ const EmailForm = () => {
                 loginHistory,
                 langCode: getLang(),
                 formType: "email", //formValue.formType == "null" ? "email" : formValue.formType
-                recaptcha: recaptchaValue
+                recaptcha: JSON.stringify(recaptcha)
             }
             if (Otp && Otp.length > 0) {
                 reqData.otp = Otp;
@@ -272,6 +275,8 @@ const EmailForm = () => {
     }
 
     useEffect(() => {
+        // document.querySelector('.grecaptcha-badge')
+        generateToken()
         getGeoInfo()
         let formData = {};
         if (localStorage.getItem("remember") == "true") {
@@ -294,175 +299,88 @@ const EmailForm = () => {
         // setValidateError(validation(formData))
 
     }, [])
+
+
+
+    const handleLoaded = _ => {
+        window.grecaptcha.ready(_ => {
+            window.grecaptcha
+                .execute(config.RECAPTCHA_SITE_KEY, { action: "login" })
+                .then(token => {
+                    console.log("***********", token)
+                    sessionStorage.setItem("CAPTCHA_TOKEN", token);
+                }).catch((e) => {
+                    console.log("***********", e)
+                    sessionStorage.removeItem("CAPTCHA_TOKEN");
+                })
+        })
+    }
+ 
     var india = <img src={Images.india} />
     return (
 
-        <Fragment>
-            {/* <div className="g-recaptcha" data-size="invisible"> */}
+        <div
+            className="g-recaptcha"
+            data-sitekey={config.RECAPTCHA_SITE_KEY}
+            data-size="invisible"
+        >
+            <Fragment>
+                {/* <div className="g-recaptcha" data-size="invisible"> */}
 
-            {/* <div
+                {/* <div
         className="g-recaptcha"
         data-sitekey={config.RECAPTCHA_SITE_KEY}
         
        
       > */}
 
-            <div>
-                <ReCAPTCHA
-                    sitekey={RECAPTCHA_SITE_KEY}
-                    onChange={(value) => setRecaptchaValue(value)} // This will store the reCAPTCHA response
-                />
-            </div>
 
-            <div className='floatinglabel my-4'>
-
-                <label>{t('EMAIL_PLACEHOLDER')}</label>
-                {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter Email ID"
-                    name="email"
-                    value={email}
-                    // autoComplete="off"
-                    autoComplete="new-password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-                <span className='fa fa-envelope right'></span>
-                {toched.email && validateError?.email && <p className="error-message">{t(validateError?.email)}</p>}
-            </div>
-            <div className='floatinglabel my-4'>
-                <label>{t('PASSWORD')}</label>
-                <input
-                    type={showPassword ? "text" : "password"}
-                    className="form-control mt-2"
-                    placeholder={t('PASSWORD_PLACEHOLDER')}
-                    name="password"
-                    value={password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    autoComplete="new-password"
-                />
-                <Link className='right' onClick={(e) => {
-                    e.preventDefault();
-                    setFormValue((el => {
-                        return { ...el, ...{ showPassword: !el.showPassword } }
-                    }))
-                }}>
-                    <span className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></span>
-                </Link>
-                {toched.password && validateError?.password && <p className="error-message">{t(validateError?.password)}</p>}
-                {/* <span className='fa fa-eye'></span> */}
-            </div>
-            {/* <div className="form-check">
-    <Checkbox className='custom_checkbox'
-        name="remember"
-        onChange={handleCheckBox}
-        checked={remember} 
-    />
-    <label className="ml-2 blackandwhite f-12" for="flexCheckDefault">
-        {t('KEEP_SIGN_COMPUTER')}
-    </label>
-</div> */}
-            <label class="custcheck ml-2 blackandwhite f-12">
-                <input type="checkbox"
-                    onChange={handleCheckBox}
-                //   checked={remember} 
-                />
-                <span class="checkmark"></span> {t('KEEP_SIGN_COMPUTER')}
-            </label>
-            {
-                showTwoFA &&
 
                 <div className='floatinglabel my-4'>
-                    <label>{t('ENTER_TWO_FA_CODE')}</label>
+
+                    <label>{t('EMAIL_PLACEHOLDER')}</label>
+                    {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
                     <input
                         type="text"
-                        className="form-control mt-2"
-                        placeholder={t('ENTER_TWO_FA_CODE')}
-                        name="twoFACode"
-                        value={twoFACode}
+                        className="form-control"
+                        placeholder="Enter Email ID"
+                        name="email"
+                        value={email}
+                        // autoComplete="off"
+                        autoComplete="new-password"
                         onChange={handleChange}
                         onBlur={handleBlur}
                     />
-                    <span className='fa fa-lock right'></span>
-                    {validateError?.twoFACode && <p className="error-message">{t(validateError?.twoFACode)}</p>}
-                    {/* <span className='fa fa-eye'></span> */}
+                    <span className='fa fa-envelope right'></span>
+                    {toched.email && validateError?.email && <p className="error-message">{t(validateError?.email)}</p>}
                 </div>
-            }
-            <div className='text-center'>
-                <button className='themebtn big my-3'
-                    onClick={handleFormSubmit}
-                // disabled={!isEmpty(validateError) || loader}
-                >
-                    {loader && <i class="fas fa-spinner fa-spin"></i>} Login
-                </button>
-                {/* <button className='graybtn my-3'>View Offer</button> */}
-
-            </div>
-
-
-
-            <div className="form-group d-none">
-
-                <span className="login_label">{t('EMAIL_PLACEHOLDER')}</span>
-                <input
-                    type="text"
-                    className="form-control mt-2"
-                    placeholder={t('EMAIL_PLACEHOLDER')}
-                    name="email"
-                    value={email}
-                    // autoComplete="off"
-                    autoComplete="new-password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-                {toched?.email && validateError?.email && <p className="error-message">{t(validateError?.email)}</p>}
-                {/* <span style={{ color: 'red' }}>{validateError && t(validateError.email)}</span>          */}
-            </div>
-            <div className="form-group d-none">
-                <span className="login_label">{t('PASSWORD')}</span>
-                <div className="input-group regGroupInput mt-2">
+                <div className='floatinglabel my-4'>
+                    <label>{t('PASSWORD')}</label>
                     <input
                         type={showPassword ? "text" : "password"}
                         className="form-control mt-2"
                         placeholder={t('PASSWORD_PLACEHOLDER')}
                         name="password"
                         value={password}
-                        // autoComplete= "new-password" //"off"
-                        autoComplete="new-password"
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        autoComplete="new-password"
                     />
-                    <div className="input-group-append">
-                        <Link onClick={(e) => {
-                            e.preventDefault();
-                            setFormValue((el => {
-                                return { ...el, ...{ showPassword: !el.showPassword } }
-                            }))
-                        }}>
-                            <i className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></i>
-                        </Link>
-                    </div>
+                    <Link className='right' onClick={(e) => {
+                        e.preventDefault();
+                        setFormValue((el => {
+                            return { ...el, ...{ showPassword: !el.showPassword } }
+                        }))
+                    }}>
+                        <span className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></span>
+                    </Link>
+                    {toched.password && validateError?.password && <p className="error-message">{t(validateError?.password)}</p>}
+                    {/* <span className='fa fa-eye'></span> */}
 
 
 
 
                 </div>
-                {toched?.password && validateError?.password && <p className="error-message">{t(validateError?.password)}</p>}
-                {/* <span style={{ color: 'red' }}>{validateError && validateError.password}</span>   */}
-            </div>
-
-
-
-
-
-            <div className="form-group d-none">
-                {/* <div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="customCheck1" />
-<label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
-</div> */}
                 {/* <div className="form-check">
     <Checkbox className='custom_checkbox'
         name="remember"
@@ -473,8 +391,6 @@ const EmailForm = () => {
         {t('KEEP_SIGN_COMPUTER')}
     </label>
 </div> */}
-
-
                 <label class="custcheck ml-2 blackandwhite f-12">
                     <input type="checkbox"
                         onChange={handleCheckBox}
@@ -482,10 +398,120 @@ const EmailForm = () => {
                     />
                     <span class="checkmark"></span> {t('KEEP_SIGN_COMPUTER')}
                 </label>
-            </div>
+                {
+                    showTwoFA &&
+
+                    <div className='floatinglabel my-4'>
+                        <label>{t('ENTER_TWO_FA_CODE')}</label>
+                        <input
+                            type="text"
+                            className="form-control mt-2"
+                            placeholder={t('ENTER_TWO_FA_CODE')}
+                            name="twoFACode"
+                            value={twoFACode}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        <span className='fa fa-lock right'></span>
+                        {validateError?.twoFACode && <p className="error-message">{t(validateError?.twoFACode)}</p>}
+                        {/* <span className='fa fa-eye'></span> */}
+                    </div>
+                }
+                <div className='text-center'>
+                    <button className='themebtn big my-3'
+                        onClick={handleFormSubmit}
+                    // disabled={!isEmpty(validateError) || loader}
+                    >
+                        {loader && <i class="fas fa-spinner fa-spin"></i>} Login
+                    </button>
+                    {/* <button className='graybtn my-3'>View Offer</button> */}
+
+                </div>
 
 
-            {/* <div className="form-group">
+
+                <div className="form-group d-none">
+
+                    <span className="login_label">{t('EMAIL_PLACEHOLDER')}</span>
+                    <input
+                        type="text"
+                        className="form-control mt-2"
+                        placeholder={t('EMAIL_PLACEHOLDER')}
+                        name="email"
+                        value={email}
+                        // autoComplete="off"
+                        autoComplete="new-password"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    {toched?.email && validateError?.email && <p className="error-message">{t(validateError?.email)}</p>}
+                    {/* <span style={{ color: 'red' }}>{validateError && t(validateError.email)}</span>          */}
+                </div>
+                <div className="form-group d-none">
+                    <span className="login_label">{t('PASSWORD')}</span>
+                    <div className="input-group regGroupInput mt-2">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            className="form-control mt-2"
+                            placeholder={t('PASSWORD_PLACEHOLDER')}
+                            name="password"
+                            value={password}
+                            // autoComplete= "new-password" //"off"
+                            autoComplete="new-password"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        <div className="input-group-append">
+                            <Link onClick={(e) => {
+                                e.preventDefault();
+                                setFormValue((el => {
+                                    return { ...el, ...{ showPassword: !el.showPassword } }
+                                }))
+                            }}>
+                                <i className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></i>
+                            </Link>
+                        </div>
+
+
+
+
+                    </div>
+                    {toched?.password && validateError?.password && <p className="error-message">{t(validateError?.password)}</p>}
+                    {/* <span style={{ color: 'red' }}>{validateError && validateError.password}</span>   */}
+                </div>
+
+
+
+
+
+                <div className="form-group d-none">
+                    {/* <div class="custom-control custom-checkbox">
+<input type="checkbox" class="custom-control-input" id="customCheck1" />
+<label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+</div> */}
+                    {/* <div className="form-check">
+    <Checkbox className='custom_checkbox'
+        name="remember"
+        onChange={handleCheckBox}
+        checked={remember} 
+    />
+    <label className="ml-2 blackandwhite f-12" for="flexCheckDefault">
+        {t('KEEP_SIGN_COMPUTER')}
+    </label>
+</div> */}
+
+
+                    <label class="custcheck ml-2 blackandwhite f-12">
+                        <input type="checkbox"
+                            onChange={handleCheckBox}
+                        //   checked={remember} 
+                        />
+                        <span class="checkmark"></span> {t('KEEP_SIGN_COMPUTER')}
+                    </label>
+                </div>
+
+
+                {/* <div className="form-group">
 
 <Button
     onClick={handleFormSubmit}
@@ -494,13 +520,10 @@ const EmailForm = () => {
     {loader && <i class="fas fa-spinner fa-spin"></i>} {t('SIGN_IN_BUTTON')}
 </Button>
 </div> */}
-            {ipmodal && <IprestrictModal login={(e) => handleFormSubmit(e)} setotp={(data) => setOtp(data)} request={requestdata} email={email} onDismiss={() => { setIpmodal(false); setOtp("") }} />}
-            {/* </div> */}
+                {ipmodal && <IprestrictModal login={(e) => handleFormSubmit(e)} setotp={(data) => setOtp(data)} request={requestdata} email={email} onDismiss={() => { setIpmodal(false); setOtp("") }} />}
+                {/* </div> */}
 
-
-
-
-        </Fragment>
+            </Fragment></div>
 
     )
 }

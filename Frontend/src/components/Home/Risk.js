@@ -79,22 +79,22 @@ you acknowledge that you should use the services of a professional interpreter b
 to the relevant terms and conditions contained in the document. If you do not agree with the
 above statements and/or documents, please leave this website immediately. Your continued
 use of our website confirms your consent to the above statements and documents.</p>
-<p>TOSSvTOSS (P2P) direct trading parties are exposed to risks such as capital loss, illiquidity,
+<p>Krinos P2P (P2P) direct trading parties are exposed to risks such as capital loss, illiquidity,
 lack of dividends and dilution and should only be undertaken as part of a diversified portfolio.
-Lose risk warning before investing and trading. Only TOSSvTOSS (P2P) direct trading parties
+Lose risk warning before investing and trading. Only Krinos P2P (P2P) direct trading parties
 who understand these risks should invest and trade. Tax treatment depends on individual
-circumstances and may change in the future. TOSSvTOSS does not solicit investment or
-trading from its members. Any communication by TOSSvTOSS through this website or other
+circumstances and may change in the future. Krinos P2P does not solicit investment or
+trading from its members. Any communication by Krinos P2P through this website or other
 media should not be construed as an investment or trading recommendation. Further, nothing
 on this website constitutes an offer to sell or a solicitation to purchase securities to any person
-in any jurisdiction, and any such offer, solicitation, or sale is illegal. TOSSvTOSS does not
+in any jurisdiction, and any such offer, solicitation, or sale is illegal. Krinos P2P does not
 provide legal, financial or tax advice of any kind. If you have any questions about any legal,
-financial or tax matters related to your interactions with TOSSvTOSS, you should consult with
-professional legal counsel in your country. TOSSvTOSS is not responsible for capital loss,
+financial or tax matters related to your interactions with Krinos P2P, you should consult with
+professional legal counsel in your country. Krinos P2P is not responsible for capital loss,
 illiquidity, lack of dividends, etc. due to your investment or trading.</p>
 <p>You should seek advice from an independent and suitably licensed financial advisor and
 ensure that you have a risk appetite, relevant experience and knowledge before deciding to
-trade. IN NO EVENT SHALL TOSSvTOSS BE LIABLE TO ANY PERSON OR ENTITY FOR
+trade. IN NO EVENT SHALL Krinos P2P BE LIABLE TO ANY PERSON OR ENTITY FOR
 ANY DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL OR INCIDENTAL DAMAGES. The
 cryptocurrency market is an unregulated service that is not governed by any specific European
 regulatory framework. Therefore, when using our cryptocurrency trading services, you cannot
@@ -103,23 +103,23 @@ as the Cyprus Investor Compensation Fund/Financial Services Compensation Scheme 
 use of Financial Ombudsman services for dispute resolution. These risks include the risk of
 following or copying the trading decisions of inexperienced or unprofessional traders, or traders
 whose ultimate purpose, intent or financial condition may differ from yours. Past performance
-of TOSSvTOSS community members is not a reliable indicator of future performance. The
-content on TOSSvTOSS' social trading platform is created by community members and does
+of Krinos P2P community members is not a reliable indicator of future performance. The
+content on Krinos P2P' social trading platform is created by community members and does
 not constitute advice or recommendations.</p>
-<p>The TOSSvTOSS word and logo are EU-registered trademarks (registration numbers pending
-trademark). Virtual Asset Service Provider RDWW-710. All Rights Reserved. TOSSvTOSS is a
-joint venture consisting of several legal and natural persons (collectively TOSSvTOSS) whose
+<p>The Krinos P2P word and logo are EU-registered trademarks (registration numbers pending
+trademark). Virtual Asset Service Provider RDWW-710. All Rights Reserved. Krinos P2P is a
+joint venture consisting of several legal and natural persons (collectively Krinos P2P) whose
 primary purpose is to combine marketing and other efforts to better serve potential customers
 and contribute to the development of the global blockchain and fintech sector.
 (Agreement/Partnership). The products and services described on this website may be
 provided by the Company or its affiliates and agents subject to local regulations and
-agreements with certain parties. TOSSvTOSS is not affiliated with any other payment
+agreements with certain parties. Krinos P2P is not affiliated with any other payment
 methods. We do not provide direct support as a social gateway for such services. All
 trademarks and logos are the property of their respective companies. If you are interested in a
 particular service, please contact our operations team for details on the exact legal entity and
 each license.</p>
 
-<p className='text-center'><b>© Copyright 2023 TOSSvTOSS</b> - Your P2P Investment or Trading Network, All rights
+<p className='text-center'><b>© Copyright 2023 Krinos P2P</b> - Your P2P Investment or Trading Network, All rights
 reserved.</p> */}
 
                      

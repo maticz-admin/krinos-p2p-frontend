@@ -15,6 +15,7 @@ import Statistics from './Statistic';
 
 const Dashboard = () => {
     const { t, i18n } = useTranslation();
+    // console.log('sessionStorage.setItem("CAPTCHA_TOKEN",token)----', localStorage.getItem("CAPTCHA_TOKEN"))
 
     return (
         <div className="dashboardContent userPages">

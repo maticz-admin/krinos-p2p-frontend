@@ -20,6 +20,8 @@ import { toastAlert } from 'lib/toastAlert';
 import { fetchClientToken } from 'config/DiditHooks';
 import { createSession } from 'config/DiditHooks';
 import { getSessionDecision } from 'config/DiditHooks';
+import config from "../../config/index";
+import { Checkdidit } from 'actions/P2PorderAction';
 
 const UserKycDetail = () => {
     const { t, i18n } = useTranslation();
@@ -39,53 +41,85 @@ const UserKycDetail = () => {
     const { userId, firstName, lastName, email, emailStatus, phoneStatus, phoneCode, phoneNo, type, createAt, bankDetail } = accountData;
 
     useEffect(() => {
-        handleverify();
+        // handleverify();
+        handlefetchtkn();
     } , [])
 
-    const handleverify = async () => {
-        if (isLogin()) {
-            let userpayload = {
-                userid: userdata?.account?.userId //redux usr data
-            }
-            var userresult = await Getsingleuserhook(userpayload);
-            console.log("userresultuserresult" , userresult?.data);
+    const handlefetchtkn = async() => {
+        await fetchClientToken();
+    }
+
+    // const handleverify = async () => {
+    //     if (isLogin()) {
+    //         let userpayload = {
+    //             userid: userdata?.account?.userId //redux usr data
+    //         }
+    //         var userresult = await Getsingleuserhook(userpayload);
+    //         console.log("userresultuserresult" , userresult?.data , config);
             
-            // if (userresult?.data?.status == "success") {
-            //     setUserdetail(userresult?.data?.data);
-            // }
-            // if (!userresult?.data?.kyc?.sessionId) { console.log("check if");
-            //     let result = await fetchClientToken();
-            //     let sessionresult = await createSession("", "https://verify.didit.me/api/session/callback", userdetail?._id);
-            //     console.log("Result in geyt token", sessionresult);
-            //     setUrl(sessionresult?.url);
-            // }
-            // else{console.log("check else");
-            //     let res = await getSessionDecision(userresult?.data?.kyc?.sessionId);
-            //     if (res?.status == "Declined" || res?.status == "Expired") {
-            //         let sessionresult = await createSession("", "https://verify.didit.me/api/session/callback", userdetail?._id);
-            //         console.log("Result in geyt token", sessionresult);
-            //         setUrl(sessionresult?.url);
-            //     }
-            //     else{  
-            //         setUrl(res?.session_url);
-            //     }
-            // }
+    //         // if (userresult?.data?.status == "success") {
+    //         //     setUserdetail(userresult?.data?.data);
+    //         // }
+
+    //         if (!userresult?.data?.kyc?.sessionId) { console.log("check if");
+    //             // let result = await fetchClientToken();
+    //             let sessionresult = await createSession("", `${config?.fronturl}/profile`, userdetail?._id);
+    //             console.log("Result in geyt token", sessionresult);
+    //             setUrl(sessionresult?.url);
+    //             if(sessionresult?.url){
+    //                 window.location.href = sessionresult?.url;
+    //             }
+    //         }
+    //         else{console.log("check else");
+    //             let res = await getSessionDecision(userresult?.data?.kyc?.sessionId);
+    //             if (res?.status == "Declined" || res?.status == "Expired") {
+    //                 let sessionresult = await createSession("", `${config?.fronturl}/profile`, userdetail?._id);
+    //                 console.log("Result in geyt token", sessionresult);
+    //                 setUrl(sessionresult?.url);
+    //                 if(sessionresult?.url){
+    //                     window.location.href = sessionresult?.url;
+    //                 }
+    //             }
+    //             else {  
+    //                 setUrl(res?.session_url);
+    //                 if(res?.session_url){
+    //                     window.location.href = res?.session_url;
+    //                 }
+    //             }
+    //         }
 
 
 
 
 
 
-            // setUserverification(userresult?.data?.data);
-            // if (userresult?.data?.kyc?.idProof?.status == "approved") {
-            //     // navigate.push("/createoffer");
-            // }
-            // else {
-            //     toastAlert("error", "Complete your kyc and update fullname");
-            // }
+    //         // setUserverification(userresult?.data?.data);
+    //         // if (userresult?.data?.kyc?.idProof?.status == "approved") {
+    //         //     // navigate.push("/createoffer");
+    //         // }
+    //         // else {
+    //         //     toastAlert("error", "Complete your kyc and update fullname");
+    //         // }
+    //     }
+    //     else {
+    //         navigate.push("/login");
+    //     }
+    // }
+
+    const handleverify = async() => {
+        try{
+            let result = await Checkdidit({features : "", callback : `${config?.fronturl}/profile`, vendor_data : userdetail?._id});
+            console.log("result on checking" , result);
+            if(result?.data?.result?.status){
+                window.location.href = result?.data?.result?.sessionurl;
+            }
+            else{
+                toastAlert("error" , "error on didit")
+            }
         }
-        else {
-            navigate.push("/login");
+        catch(e){
+            console.log("Error on handle verify" , e);
+            
         }
     }
 
@@ -141,16 +175,17 @@ const UserKycDetail = () => {
                             </div>
                         </div>
                     </GridItem>
-                    <GridItem xs={12} sm={12} md={6} lg={6}>
+                    <GridItem xs={12} sm={12} md={12} lg={12}>
                         <div className="kycCardStatus labelWidth">
                             <div className="profileDetailView">
                                 <ul>
-                                    <li>
-                                        <label>Kyc</label>
-                                        <div className="form-group green-button">
+                                    <li className='flex-column'>
+                                        <h5 className='title-txt my-0'>Kyc</h5>
+                                        <p className='mt-2 des mb-0 '>Lorem ipsum</p>
+                                        <div className="form-group green-button mt-2">
                                             <button
                                                 type="button" className="themebtn text-uppercase py-2 my-0"
-                                                // onClick={handleFormSubmit}
+                                                onClick={handleverify}
                                                 disabled={loader}
                                             >
                                                 {loader && <i class="fas fa-spinner fa-spin"></i>}

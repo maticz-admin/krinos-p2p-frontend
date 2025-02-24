@@ -123,6 +123,7 @@ export const userEmailActivation = async (data) => {
 export const login = async (data, dispatch) => {
   try {
     data = encodedata(data)
+    // console.log('data-datadata----', data)
     let respData = await axios({
       method: "post",
       url: `/api/login`,
@@ -166,7 +167,6 @@ export const login = async (data, dispatch) => {
     };
     // }
   } catch (err) {
-    // console.log('err-----', err)
 
     handleResp(err, 'error')
     const response = decodedata(err.response.data)
@@ -175,12 +175,14 @@ export const login = async (data, dispatch) => {
       return {
         status: "failed",
         loading: false,
-        message: response.errors.password || response.errors.reCAPTCHA,
+        message: response?.errors?.password,
         error: response.errors.password,
         authToken: response.authToken,
       };
     } catch (err) {
+      
       handleResp(err, 'error')
+      console.log('err-----', err)
       return {
         status: "failed",
         loading: false,

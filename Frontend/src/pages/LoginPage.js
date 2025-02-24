@@ -25,7 +25,7 @@ const useStyles = makeStyles(styles);
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title="TOSSVTOSS"
+    document.title="KrinosP2P"
   }, []);
   return null;
 }

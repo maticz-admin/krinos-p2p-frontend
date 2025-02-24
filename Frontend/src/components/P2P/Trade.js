@@ -312,7 +312,7 @@ const Trade = (props) => {
                   <p>
                     Keep all conversation within the trade chat. Moderator won't
                     be able assist you if something goes wrong outeside of
-                    TossXToss
+                    Krinos P2P
                   </p>
                   <button className="btn btn-link" onClick={() => setOfferheader(false)}>x</button>
                 </div>}
@@ -375,7 +375,7 @@ const Trade = (props) => {
                   {canceltrade && <div className="notes">
                     <span className="fa fa-info"></span>
                     <p>
-                      Keep trades within TossVToss. Some users may ask you to trade outside the TossVToss platform. This is against our Terms of Service and likely a scam attempt. You must insist on keeping all trade conversations within TossVToss. If you choose to proceed outside TossVToss, note that we cannot help or support you if you are scammed during such trades
+                      Keep trades within Krinos P2P. Some users may ask you to trade outside the Krinos P2P platform. This is against our Terms of Service and likely a scam attempt. You must insist on keeping all trade conversations within Krinos P2P. If you choose to proceed outside Krinos P2P, note that we cannot help or support you if you are scammed during such trades
                     </p>
                     <button className="btn btn-link" onClick={() => setCanceltrade(false)}>x</button>
                   </div>}
@@ -392,7 +392,7 @@ const Trade = (props) => {
                   <h6 className="roboto followtag">Trade Information</h6>
                   <p className="roboto offercontent">
                     12457.5 BTC has been reserved for this trade. This includes
-                    TossvToss fee of 0 BTC.
+                    Krinos P2P fee of 0 BTC.
                   </p>
                   <div className="row tradeinfo">
                     <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">

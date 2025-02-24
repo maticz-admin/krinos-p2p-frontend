@@ -57,8 +57,8 @@ const Launchpaddetails = (props) => {
         <div class="dashboard_box launchpad_box py-5">
                 <div className='row align-items-center'>
                     <div className='col-12 col-lg-5 col-xl-4'>
-                        <p className='text_big_white'>Toss V Toss token launch platform</p>
-                        <p className='text_sm_white mb-0'>Buy or earn new tokens directly on Toss V Toss</p>
+                        <p className='text_big_white'>Krinos P2P token launch platform</p>
+                        <p className='text_sm_white mb-0'>Buy or earn new tokens directly on Krinos P2P</p>
 
 
                     </div>

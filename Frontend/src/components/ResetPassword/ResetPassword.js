@@ -16,6 +16,8 @@ import { resetPassword } from '../../actions/users';
 import validation from './validation';
 import isEmpty from '../../lib/isEmpty';
 import { toastAlert } from '../../lib/toastAlert';
+import config from '../../config/index';
+import { toast } from 'react-toastify';
 
 const initialFormValue = {
     'password': '',
@@ -34,7 +36,7 @@ const ResetPassword = () => {
     const [validateError, setValidateError] = useState({});
     const [loader, setLoader] = useState();
 
-    const { password, confirmPassword,showPassword, showConfirmPassword } = formValue;
+    const { password, confirmPassword, showPassword, showConfirmPassword } = formValue;
 
     // function
     const handleChange = (e) => {
@@ -50,13 +52,50 @@ const ResetPassword = () => {
         setToched({ ...toched, ...{ [name]: true } })
     }
 
+
+    const generateToken = (data) => {
+        return new Promise((resolve, reject) => {
+            const badge = document.querySelector('.grecaptcha-badge');
+            console.log("badgebadgebadge", badge);
+
+            if (badge) {
+                console.log("badge visible", badge, badge.style);
+
+                badge.style.visibility = 'visible';
+            };
+
+            const script = document.createElement('script');
+            script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`;
+            script.onload = () => {
+                window.grecaptcha.ready(() => {
+                    window.grecaptcha.execute(config.RECAPTCHA_SITE_KEY).then((token) => {
+                        localStorage.setItem('captcha_token', token)
+                        resolve(token);
+                    }).catch((error) => {
+                        reject(error);
+                    });
+                });
+            };
+            script.onerror = (error) => {
+                reject(error);
+            };
+            document.body.appendChild(script);
+        });
+    };
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        setLoader(true)
+        setLoader(true);
+        let recaptcha = await generateToken();
+        if (!recaptcha) {
+            toast.error('Please complete the reCAPTCHA');
+            return;
+        }
         let reqData = {
             password,
             confirmPassword,
-            authToken
+            authToken,
+            recaptcha: JSON.stringify(recaptcha)
         }
         let { status, loading, error, message } = await resetPassword(reqData);
         setLoader(loading);
@@ -76,95 +115,96 @@ const ResetPassword = () => {
     }
 
     useEffect(() => {
+        generateToken();
         setValidateError(validation(formValue))
     }, [])
 
     return (
-<div className='login_container login_box'>
-        <div className='bannersec mt-0 h-100vh bodyheight'>
-        <div className='container'>
-            <div className='text-center mb-5'>
-                <h3 className="blackandwhite">{t('PASSSWORD_RESET')}</h3>
-                <p className='subhead'>Anonymous P2P deals on your terms. Trade globally.</p>
-            </div>
-        <div className='buyselltab'>
-        <img src={Images.bitcoin} className='bannerbitcoin'/>
-        <img src={Images.bannerbg} className='bannerbg'/>
-        <img src={Images.connect} className='grayconnect'/>
-        <img src={Images.connect1} className='tgrayconnect'/>
-        <img src={Images.connectx} className='connectx'/>
-              <div className='row jc-center'>
-                <div className='col-lg-7'>
-                    <div  className="themenav">
-                    <img src={Images.connect} className='connect'/>
-                  
-                         
-        <div className="">
-        {/* <h2 className="text-center mb-md-4 pb-3" data-aos="fade-up">Reset Password</h2> */}
-        <div className="row w-100 mx-0">
-            <div className="col-lg-12 col-md-12 m-auto">
-                <form className="login_form mb-4" data-aos="fade-up">
-                    {/* <p className="paraLabel text-center mb-3">Input your registered email address, we’ll send you reset password.</p> */}
+        <div className='login_container login_box'>
+            <div className='bannersec mt-0 h-100vh bodyheight'>
+                <div className='container'>
+                    <div className='text-center mb-5'>
+                        <h3 className="blackandwhite">{t('PASSSWORD_RESET')}</h3>
+                        <p className='subhead'>Anonymous P2P deals on your terms. Trade globally.</p>
+                    </div>
+                    <div className='buyselltab'>
+                        <img src={Images.bitcoin} className='bannerbitcoin' />
+                        <img src={Images.bannerbg} className='bannerbg' />
+                        <img src={Images.connect} className='grayconnect' />
+                        <img src={Images.connect1} className='tgrayconnect' />
+                        <img src={Images.connectx} className='connectx' />
+                        <div className='row jc-center'>
+                            <div className='col-lg-7'>
+                                <div className="themenav">
+                                    <img src={Images.connect} className='connect' />
 
 
-                    <div className='floatinglabel my-4'>
-
-<label>{t('NEW_PASSWORD')}</label>
-{/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
-<input
-                                className="form-control mt-2"
-                                placeholder={t('NEW_PASSWORD')}
-                                name="password"
-                                type={showPassword ? "text" : "password"}
-                                value={password}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-
-<Link className='right' onClick={(e) => {
-                                    e.preventDefault();
-                                    setFormValue((el => {
-                                        return { ...el, ...{ showPassword: !el.showPassword } }
-                                    }))
-                                }}>
-                                    <i className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></i>
-                                </Link>
-
-                                {toched.password && validateError.password && <p className="error-message">{t(validateError.password)}</p>}
-
-</div>
+                                    <div className="">
+                                        {/* <h2 className="text-center mb-md-4 pb-3" data-aos="fade-up">Reset Password</h2> */}
+                                        <div className="row w-100 mx-0">
+                                            <div className="col-lg-12 col-md-12 m-auto">
+                                                <form className="login_form mb-4">
+                                                    {/* <p className="paraLabel text-center mb-3">Input your registered email address, we’ll send you reset password.</p> */}
 
 
-<div className='floatinglabel my-4'>
+                                                    <div className='floatinglabel my-4'>
 
-<label>{t('CONFIRM_PASSWORD')}</label>
-{/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
-<input
-                                className="form-control mt-2"
-                                placeholder={t('CONFIRM_PASSWORD')}
-                                name="confirmPassword"
-                                type={showConfirmPassword ? "text" : "password"}
-                                value={confirmPassword}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
+                                                        <label>{t('NEW_PASSWORD')}</label>
+                                                        {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
+                                                        <input
+                                                            className="form-control mt-2"
+                                                            placeholder={t('NEW_PASSWORD')}
+                                                            name="password"
+                                                            type={showPassword ? "text" : "password"}
+                                                            value={password}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                        />
 
-<Link className="right" onClick={(e) => {
-                                    e.preventDefault();
-                                    setFormValue((el => {
-                                        return { ...el, ...{ showConfirmPassword: !el.showConfirmPassword } }
-                                    }))
-                                }}>
-                                    <i className={clsx("fa", { "fa-eye": showConfirmPassword }, { "fa-eye-slash": !showConfirmPassword })} aria-hidden="true"></i>
-                                </Link>
+                                                        <Link className='right' onClick={(e) => {
+                                                            e.preventDefault();
+                                                            setFormValue((el => {
+                                                                return { ...el, ...{ showPassword: !el.showPassword } }
+                                                            }))
+                                                        }}>
+                                                            <i className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></i>
+                                                        </Link>
 
-                            {toched.confirmPassword && validateError.confirmPassword && <p className="error-message">{t(validateError.confirmPassword)}</p>}
+                                                        {toched.password && validateError.password && <p className="error-message">{t(validateError.password)}</p>}
 
-</div>
+                                                    </div>
+
+
+                                                    <div className='floatinglabel my-4'>
+
+                                                        <label>{t('CONFIRM_PASSWORD')}</label>
+                                                        {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
+                                                        <input
+                                                            className="form-control mt-2"
+                                                            placeholder={t('CONFIRM_PASSWORD')}
+                                                            name="confirmPassword"
+                                                            type={showConfirmPassword ? "text" : "password"}
+                                                            value={confirmPassword}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                        />
+
+                                                        <Link className="right" onClick={(e) => {
+                                                            e.preventDefault();
+                                                            setFormValue((el => {
+                                                                return { ...el, ...{ showConfirmPassword: !el.showConfirmPassword } }
+                                                            }))
+                                                        }}>
+                                                            <i className={clsx("fa", { "fa-eye": showConfirmPassword }, { "fa-eye-slash": !showConfirmPassword })} aria-hidden="true"></i>
+                                                        </Link>
+
+                                                        {toched.confirmPassword && validateError.confirmPassword && <p className="error-message">{t(validateError.confirmPassword)}</p>}
+
+                                                    </div>
 
 
 
-                    {/* <div className="form-group">
+                                                    {/* <div className="form-group">
                         <span className="login_label">{t('NEW_PASSWORD')}</span>
                         <div className="input-group regGroupInput mt-2">
                             <input
@@ -190,7 +230,7 @@ const ResetPassword = () => {
                         {toched.password && validateError.password && <p className="error-message">{t(validateError.password)}</p>}
                         
                     </div> */}
-                    {/* <div className="form-group">
+                                                    {/* <div className="form-group">
                         <span className="login_label">{t('CONFIRM_PASSWORD')}</span>
                         <div className="input-group regGroupInput mt-2">
                             <input
@@ -216,32 +256,32 @@ const ResetPassword = () => {
                             {toched.confirmPassword && validateError.confirmPassword && <p className="error-message">{t(validateError.confirmPassword)}</p>}
                     </div> */}
 
-                    <div className="form-group text-center">
-                        <Button className='themebtn big my-3'
-                            onClick={handleFormSubmit}
-                            disabled={!isEmpty(validateError)}
-                        >
-                            {loader && <i class="fas fa-spinner fa-spin"></i>}{t('Submit')}
-                        </Button>
-                    </div>
-                    {/* <div className="d-flex">
+                                                    <div className="form-group text-center">
+                                                        <Button className='themebtn big my-3'
+                                                            onClick={handleFormSubmit}
+                                                            disabled={!isEmpty(validateError)}
+                                                        >
+                                                            {loader && <i class="fas fa-spinner fa-spin"></i>}{t('Submit')}
+                                                        </Button>
+                                                    </div>
+                                                    {/* <div className="d-flex">
                         <Link to="/login" className="ml-auto">Login</Link>
                     </div> */}
-                </form>
-            </div>
-        </div>
-    </div>
-               
-                    </div>
-                   
-                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-        </div>
-        </div>
-      
+
     )
 }
 

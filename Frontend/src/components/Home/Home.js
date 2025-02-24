@@ -195,7 +195,7 @@ const Home = (props) => {
                                 <div className='banner_ad_wrapper'>
 
                                     <div>
-                                        <h1 className='blackandwhite'>Welcome to TOSSvTOSS</h1>
+                                        <h1 className='blackandwhite'>Welcome to Krinos P2P</h1>
                                         <p className='roboto subhead'>Anonymous P2P deals on your teams. Trade globaly using for any payment system for any currency. </p>
                                         {/* <button className='mt-3 borderbtn'><i class="fa fa-video-camera" aria-hidden="true"></i> Learn To Trade</button> */}
                                         <Link to="/details/demo_videos" className="navlink_pos_zin borderbtn mt-3 d-block"><i class="fa fa-video-camera" aria-hidden="true"></i> Learn To Trade</Link>
@@ -1071,25 +1071,24 @@ const Home = (props) => {
                                         <h3>SAFE TRANSACTION</h3>
                                         <p>Bitcoins are held in safe escrow until the transaction is fully concluded</p>
                                         {/* <p>{ReactHtmlParser(transparentfee)}</p> */}
-
                                     </div>
                                 </div>
 
                                 <div className='col-12 col-md-4'>
-                                    <div className='borderbox'>
-                                        <img src={Images.homefaq2} />
-                                        <h3>INVITE FRIENDS </h3>
-                                        <p>Help your friends and family <Link to="/register">Sign up for TOSSvTOSS</Link></p>
+                                <div className='borderbox'>
+                                <img src={Images.homefaq2} />
+                                <h3>INVITE FRIENDS </h3>
+                                <p>Help your friends and family <Link to="/register">Sign up for Krinos P2P</Link></p>
 
                                         {/* <p>{ReactHtmlParser(marginhall)}</p> */}
                                     </div>
                                 </div>
 
                                 <div className='col-12 col-md-4'>
-                                    <div className='borderbox'>
-                                        <img src={Images.homefaq3} />
-                                        <h3>VALUABLE FEEDBACK</h3>
-                                        <p>TOSSvTOSS's feedback system highlights reliable and experienced users, helping you trade smoothly</p>
+                                <div className='borderbox'>
+                                <img src={Images.homefaq3} />
+                                <h3>VALUABLE FEEDBACK</h3>
+                                <p>Krinos P2P's feedback system highlights reliable and experienced users, helping you trade smoothly</p>
 
                                         {/* <p>{ReactHtmlParser(learnandpractice)}</p> */}
                                     </div>

@@ -17,6 +17,8 @@ import validation from './validation';
 import isEmpty from '../../lib/isEmpty';
 import { toastAlert } from '../../lib/toastAlert';
 import { getLang } from '../../lib/localStorage';
+import config from '../../config/index';
+import { toast } from 'react-toastify';
 
 const initialFormValue = {
     'email': '',
@@ -74,80 +76,89 @@ const EmailForm = () => {
         setFormValue(formData)
         // setValidateError(validation(formData,t))
     }
+
     const generateToken = (data) => {
         return new Promise((resolve, reject) => {
-          const badge = document.querySelector('.grecaptcha-badge');
-          
-          
-          if (badge) {
-            badge.style.visibility = 'visible';
-          }
-          console.log("badgebadgebadgebadge" , badge?.style?.visibility);
-          const script = document.createElement('script');
-          script.src = `https://www.google.com/recaptcha/api.js?render=${"6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1"}`;
-          script.onload = () => {
-            window.grecaptcha.ready(() => {
-              window.grecaptcha.execute("6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1").then((token) => {
-                resolve(token);
-              }).catch((error) => {
+            const badge = document.querySelector('.grecaptcha-badge');
+            console.log("badgebadgebadge", badge);
+
+            if (badge) {
+                console.log("badge visible", badge, badge.style);
+
+                badge.style.visibility = 'visible';
+            };
+
+            const script = document.createElement('script');
+            script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`;
+            script.onload = () => {
+                window.grecaptcha.ready(() => {
+                    window.grecaptcha.execute(config.RECAPTCHA_SITE_KEY).then((token) => {
+                        localStorage.setItem('captcha_token', token)
+                        resolve(token);
+                    }).catch((error) => {
+                        reject(error);
+                    });
+                });
+            };
+            script.onerror = (error) => {
                 reject(error);
-              });
-            });
-          };
-          script.onerror = (error) => {
-            reject(error);
-          };
-          document.body.appendChild(script);
+            };
+            document.body.appendChild(script);
         });
-      };
+    };
+
     const handleFormSubmit = async (e) => {
         // setValidateError()
-        var err = validation(formValue,t);
-        if(isEmpty(err)){}
+        var err = validation(formValue, t);
+        if (isEmpty(err)) { }
         if ((isTerms == false)) {
             // setValidateError({ 'isTerms': 'ACCEPT_TERMS_MESSAGE' })
             // return
             err.isTerms = 'ACCEPT_TERMS_MESSAGE'
         }
         setValidateError(err);
-        if(isEmpty(err)){
+        if (isEmpty(err)) {
             e.preventDefault();
-        let reCaptcha = await handleReCaptcha()
-        // let reCaptcha  = await generateToken();
-        console.log("reCaptchareCaptchareCaptcha" , reCaptcha);
-        
-        if (isEmpty(reCaptcha)) {
-            toastAlert('error', 'Invalid ReCaptcha', 'signup', 'TOP_RIGHT');
-            return
-        }
+            // let reCaptcha = await handleReCaptcha()
+            
 
-        setLoader(true)
-
-        let reqData = {
-            email,
-            formType,
-            password,
-            confirmPassword,
-            reCaptcha,
-            isTerms,
-            langCode: getLang(),
-            referenceCode
-        }
-        let { status, loading, message, error } = await createUser(reqData);
-        setLoader(loading);
-        // setReCaptcha('')
-        if (status == 'success') {
-            setFormValue(initialFormValue)
-            toastAlert('success', message, 'signup', 'TOP_RIGHT');
-        } else {
-            if (error) {
-                setValidateError(error);
-                setRefreshReCaptcha(!refreshReCaptcha);
+            // if (isEmpty(reCaptcha)) {
+            //     toastAlert('error', 'Invalid ReCaptcha', 'signup', 'TOP_RIGHT');
+            //     return
+            // }
+            let recaptcha = await generateToken();
+            if (!recaptcha) {
+                toast.error('Please complete the reCAPTCHA');
+                return;
             }
-            toastAlert('error', message, 'signup', 'TOP_RIGHT');
+
+            setLoader(true)
+
+            let reqData = {
+                email,
+                formType,
+                password,
+                confirmPassword,
+                recaptcha: JSON.stringify(recaptcha),
+                isTerms,
+                langCode: getLang(),
+                referenceCode
+            }
+            let { status, loading, message, error } = await createUser(reqData);
+            setLoader(loading);
+            // setReCaptcha('')
+            if (status == 'success') {
+                setFormValue(initialFormValue)
+                toastAlert('success', message, 'signup', 'TOP_RIGHT');
+            } else {
+                if (error) {
+                    setValidateError(error);
+                    setRefreshReCaptcha(!refreshReCaptcha);
+                }
+                toastAlert('error', message, 'signup', 'TOP_RIGHT');
+            }
         }
-        }
-        
+
     }
 
     const handleReCaptcha = async () => {
@@ -183,7 +194,10 @@ const EmailForm = () => {
 
     }
 
+
+
     useEffect(() => {
+        generateToken()
         // setValidateError(validation(formValue,t))
         // if (query && query.get('referenceCode')) {
         //     setFormValue((prev) => {
@@ -195,81 +209,87 @@ const EmailForm = () => {
 
     const setTokenFunc = (getToken) => {
         setToken(getToken);
-      };
+    };
 
-      
 
-      
+
+
 
     return (
-        <Fragment>
-             <div className='floatinglabel my-4'>
-                                       
-                                       <label>{"Email Address"}</label>
-                                       {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
-                                       <input
+
+        <div
+            className="g-recaptcha"
+            data-sitekey={config.RECAPTCHA_SITE_KEY}
+            data-size="invisible"
+        >
+            <Fragment>
+                <div className='floatinglabel my-4'>
+
+                    <label>{"Email Address"}</label>
+                    {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
+                    <input
                         type="text"
                         className="form-control"
                         placeholder={"Email Address"}
                         name="email"
                         value={email}
                         onChange={handleChange}
-                        // onBlur={handleBlur}
+                    // onBlur={handleBlur}
                     />
-                     <i className="fa fa-envelope right" aria-hidden="true"></i>
-                                       {validateError.email && <p className="error-message">{validateError.email}</p>}
-                                   </div>
+                    <i className="fa fa-envelope right" aria-hidden="true"></i>
+                    {validateError.email && <p className="error-message">{validateError.email}</p>}
+                </div>
 
-                                   <div className='floatinglabel my-4'>
-                                        <label>{'PASSWORD'}</label>
-                                        <input
+                <div className='floatinglabel my-4'>
+                    <label>{'PASSWORD'}</label>
+                    <input
                         type={showPassword ? "text" : "password"}
                         className="form-control"
                         placeholder={'PASSWORD'}
                         name="password"
                         value={password}
                         onChange={handleChange}
-                        // onBlur={handleBlur}
+                    // onBlur={handleBlur}
                     />
-                              <Link className='right' onClick={(e) => {
-                            e.preventDefault();
-                            setFormValue((el => {
-                                return { ...el, ...{ showPassword: !el.showPassword } }
-                            }))
-                        }}>
-                            <i className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></i>
-                        </Link>
-                        {validateError.password && <p className="error-message">{validateError.password}</p>}
-                                        {/* <span className='fa fa-eye'></span> */}
-                                    </div>
+                    <Link className='right' onClick={(e) => {
+                        e.preventDefault();
+                        setFormValue((el => {
+                            return { ...el, ...{ showPassword: !el.showPassword } }
+                        }))
+                    }}>
+                        <i className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></i>
+                    </Link>
+                    {validateError.password && <p className="error-message">{validateError.password}</p>}
+                    {/* <span className='fa fa-eye'></span> */}
+                </div>
 
-       
 
-                                    <div className='floatinglabel my-4'>
-                                        <label>{'CONFIRM_PASSWORD'}</label>
-                                        <input
+
+                <div className='floatinglabel my-4'>
+                    <label>{'CONFIRM_PASSWORD'}</label>
+                    <input
                         type={showConfirmPassword ? "text" : "password"}
                         className="form-control"
                         placeholder={'CONFIRM_PASSWORD'}
                         name="confirmPassword"
                         value={confirmPassword}
                         onChange={handleChange}
-                        // onBlur={handleBlur}
+                    // onBlur={handleBlur}
                     />
-                           <Link className='right' onClick={(e) => {
-                            e.preventDefault();
-                            setFormValue((el => {
-                                return { ...el, ...{ showConfirmPassword: !el.showConfirmPassword } }
-                            }))
-                        }}>
-                            <i className={clsx("fa", { "fa-eye": showConfirmPassword }, { "fa-eye-slash": !showConfirmPassword })} aria-hidden="true"></i>
-                        </Link>
-                        {validateError.confirmPassword && <p className="error-message">{validateError.confirmPassword}</p>}
-                                        {/* <span className='fa fa-eye'></span> */}
-                                    </div>
-     
+                    <Link className='right' onClick={(e) => {
+                        e.preventDefault();
+                        setFormValue((el => {
+                            return { ...el, ...{ showConfirmPassword: !el.showConfirmPassword } }
+                        }))
+                    }}>
+                        <i className={clsx("fa", { "fa-eye": showConfirmPassword }, { "fa-eye-slash": !showConfirmPassword })} aria-hidden="true"></i>
+                    </Link>
+                    {validateError.confirmPassword && <p className="error-message">{validateError.confirmPassword}</p>}
+                    {/* <span className='fa fa-eye'></span> */}
+                </div>
 
-            {/* <div className="form-group">
+
+                {/* <div className="form-group">
                 <span className="login_label">{t('REFERRAL_CODE')}</span>
                 <div className="input-group regGroupInput mt-2">
                     <input
@@ -284,7 +304,7 @@ const EmailForm = () => {
                 {validateError.referenceCode && <p className="error-message">{t(validateError.referenceCode)}</p>}
             </div> */}
 
-            {/* <div className="form-group">
+                {/* <div className="form-group">
                 <div className="form-check d-flex">
                     <Checkbox
                         name="isTerms"
@@ -297,28 +317,28 @@ const EmailForm = () => {
                     {validateError.isTerms && <p className="error-message">{t(validateError.isTerms)}</p>}
                 </div>
             </div> */}
-            <>
-            <label class="custcheck ml-2 blackandwhite f-12">
-                    <input type="checkbox"
-                     onChange={handleCheckBox}
-                       checked={isTerms} 
-                       name = "isTerms"
-                      />
-                    <span class="checkmark"></span> {'I AGREE'} <a target = "_blank" href="/details/termsandcondition" className="color_lonks">{'TERMS'}</a> {'AND'} <a target = "_blank" href="/details/privacypolicy" className="color_lonks">{'PRIVACY'}</a>
-                
-                </label>
-                {validateError.isTerms && <p className="error-message">{validateError.isTerms}</p>}
+                <>
+                    <label class="custcheck ml-2 blackandwhite f-12">
+                        <input type="checkbox"
+                            onChange={handleCheckBox}
+                            checked={isTerms}
+                            name="isTerms"
+                        />
+                        <span class="checkmark"></span> {'I AGREE'} <a target="_blank" href="/details/termsandcondition" className="color_lonks">{'TERMS'}</a> {'AND'} <a target="_blank" href="/details/privacypolicy" className="color_lonks">{'PRIVACY'}</a>
+
+                    </label>
+                    {validateError.isTerms && <p className="error-message">{validateError.isTerms}</p>}
                 </>
-            <div className="form-group text-center">
-                <button className='themebtn big my-3'
-                    onClick={handleFormSubmit}
-                    // disabled={!isEmpty(validateError) || loader}
-                    disabled = {loader}
-                >
-                    {loader && <i class="fas fa-spinner fa-spin"></i>} {t('REGISTER')}
-                </button>
-                <br />
-                <Link to="/login" className="mr-auto linkclr">
+                <div className="form-group text-center">
+                    <button className='themebtn big my-3'
+                        onClick={handleFormSubmit}
+                        // disabled={!isEmpty(validateError) || loader}
+                        disabled={loader}
+                    >
+                        {loader && <i class="fas fa-spinner fa-spin"></i>} {t('REGISTER')}
+                    </button>
+                    <br />
+                    <Link to="/login" className="mr-auto linkclr">
                         {t('ALREADY_HAVE_ACCOUNT')}?
                     </Link>
 
@@ -331,8 +351,10 @@ const EmailForm = () => {
             refreshReCaptcha={refreshReCaptcha}
           />
         </GoogleReCaptchaProvider> */}
-            </div>
-        </Fragment>
+                </div>
+            </Fragment>
+
+        </div>
     )
 }
 

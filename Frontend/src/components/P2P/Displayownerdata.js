@@ -10,7 +10,7 @@ import close from "../../assets/images/close.png";
 import { Link } from 'react-router-dom';
 import { HiOutlineArrowSmLeft } from 'react-icons/hi';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
-import { BsBoxArrowUpRight } from 'react-icons/bs';
+// import { BsBoxArrowUpRight } from 'react-icons/bs';
 
 // import Images from "../../../../Images";
 import profs from   "../../assets/images/toss/prof.png";

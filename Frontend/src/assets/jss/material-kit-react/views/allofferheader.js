@@ -165,7 +165,6 @@ const Buybitcoin = (props) => {
 
 
     const LoadMore = async () => {
-
         let datas = {
             coin: coin != '' ? coin : '',
             amount: amount != '' ? amount : '',
@@ -187,6 +186,7 @@ const Buybitcoin = (props) => {
 
         }
     }
+    
     const showloader = () => {
         document.getElementById("loadercontainer").classList.add("d-flex")
         document.getElementById("loadercontainer").classList.remove("d-none")
