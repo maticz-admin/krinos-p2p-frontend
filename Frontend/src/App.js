@@ -16,18 +16,12 @@ import SocketContext from './components/Context/SocketContext'
 import DashboardPage from './pages/DashboardPage';
 import WalletPage from './pages/WalletPage'
 import ProfilePage from './pages/ProfilePage';
-
-
-
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import Register from "pages/register.js";
 import ForgotPwdPage from "./pages/ForgotPwdPage";
 import EmailVerification from './pages/EmailVerification';
-
 import SecurityPage from './pages/SecurityPage';
-
-
 import Staking from './pages/staking';
 import Spot from './pages/spot';
 import Derivative from './pages/derivative';

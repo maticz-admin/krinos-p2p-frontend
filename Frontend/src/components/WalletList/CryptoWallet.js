@@ -64,21 +64,16 @@ const CryptoWallet = () => {
 
 
   const handleCheckBox = async (e) => {
-    e.preventDefault();
-    
+    // e.preventDefault();
     const { name, checked } = e.target;
-
     let reqData = {
       hideZeroStatus: checked,
     };
-
     const { message, status } = await updateHideZeroStatus(reqData);
-
     if (status) {
       setCheckValue(checked);
-
       toastAlert("success", message, "checkValue");
-      gethideZeroSatus();
+      // gethideZeroSatus();
     } else {
       toastAlert("error", message, "checkValue");
     }
@@ -127,8 +122,10 @@ const CryptoWallet = () => {
     const { result } = await getPairList();
     setPairList(result);
   };
+
   const gethideZeroSatus = async () => {
     const { result } = await gethideZeroStatus();
+    console.log("result in hide zero status" , result);
     setCheckValue(result.hideZeroStatus);
   };
 
@@ -158,6 +155,7 @@ const CryptoWallet = () => {
         currency={model.currency}
         onHide={modalClose}
       />
+      
       <div className="d-flex justify-content-between gk showe_flex_div">
         <img className='spring' src={spring} alt="spring" />
         <img src={Images.connect} className='connect' />
@@ -175,7 +173,7 @@ const CryptoWallet = () => {
             <Checkbox
               class="form-control"
               name="checkValue"
-              onChange={() => {handleCheckBox()}}
+              onChange = {(e) => handleCheckBox(e)}
               checked={checkValue}
             />
             <input class="form-check-input novisible" type="checkbox" value={checkValue} name={"checkValue"} checked={checkValue} onChange={handleCheckBox} />

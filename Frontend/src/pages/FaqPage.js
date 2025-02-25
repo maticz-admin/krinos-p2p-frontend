@@ -39,12 +39,12 @@ const CardItem = (props) => {
           <Accordion.Toggle as={Button} variant="link" eventKey={eventKey} onClick={() => {
             if (activeKey == eventKey) setActiveKey('')
             else setActiveKey(eventKey)
-
           }}>
             <span className="question">{categorykey + 1}{'. '}{data.question}</span> <i className={clsx({ "fas fa-plus": activeKey != eventKey }, { "fas fa-minus": activeKey == eventKey })}></i>
           </Accordion.Toggle>
         </h5>
       </Card.Header>
+      
       <Accordion.Collapse eventKey={eventKey}>
         <Card.Body>
           <p>{data.answer}</p>
@@ -85,12 +85,11 @@ const FaqPage = () => {
             brand={<img src={require("../assets/images/logo.png")} alt="logo" className="img-fluid" />}
             rightLinks={<HeaderLinksAfterlogin />}
             fixed
-            changeColorOnScroll={{
+            changeColorOnScroll = {{
               height: 20,
               color: "dark",
             }}
           />
-
           <div className="settingsContent userPages">
             <div className="container">
               <div className="p2p_card p2p_card1 border-none min-h-auto">

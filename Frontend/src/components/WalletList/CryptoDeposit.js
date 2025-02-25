@@ -36,7 +36,7 @@ const CryptoDeposit = (props) => {
     //   }
     //   fetchdata();
     // }
-  })
+  } , [])
 
   // function
   const handleClose = () => {

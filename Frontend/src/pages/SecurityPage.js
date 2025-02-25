@@ -24,18 +24,20 @@ function ScrollToTopOnMount() {
 
 const SecurityPage = (props) => {
   const { t, i18n } = useTranslation();
+
+
   return (
     <div className="dashboard_container page_wrap">
-      <ScrollToTopOnMount />
+      <ScrollToTopOnMount/>
       <div className="dashboardMain">
         <div className="dashboardRight afterLoginHeader">
           <Header className="header"
             color="transparent"
             routes={dashboardRoutes}
             brand={<img src={require("../assets/images/logo.png")} alt="logo" className="img-fluid" />}
-            rightLinks={<HeaderLinksAfterlogin />}
+            rightLinks={<HeaderLinksAfterlogin/>}
             fixed
-            changeColorOnScroll={{
+            changeColorOnScroll = {{
               height: 20,
               color: "dark",
             }}

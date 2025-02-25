@@ -70,7 +70,6 @@ const WalletTransfer = (props) => {
             setLoader(false)
             return
         }
-
         try {
             const { status, loading, message, error } = await walletTransfer(reqData);
             setLoader(loading)
@@ -85,7 +84,10 @@ const WalletTransfer = (props) => {
                 }
                 toastAlert('error', t(message), 'walletTransfer')
             }
-        } catch (err) { }
+        } catch (err) { 
+            console.log("error on handle submit" , err);
+            
+        }
     }
 
     return (

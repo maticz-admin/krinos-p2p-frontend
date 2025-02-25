@@ -50,6 +50,7 @@ export const gethideZeroStatus = async () => {
 export const updateHideZeroStatus = async (data) => {
 
     try {
+        console.log("updateHideZeroStatus");
         let respData = await axios({
             'method': 'put',
             'url': `/api/getHideoZeroStatus`,
