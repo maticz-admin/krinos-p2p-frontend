@@ -127,6 +127,7 @@ const CryptoWallet = () => {
     const { result } = await gethideZeroStatus();
     console.log("result in hide zero status" , result);
     setCheckValue(result.hideZeroStatus);
+
   };
 
   // const
@@ -207,12 +208,12 @@ const CryptoWallet = () => {
               seconCurrencyPair,
               firstCurrencyPair;
             firstCurrencyPair =
-              pairList.length > 0 &&
-              pairList.find((el) => el.firstCurrencySymbol == item.coin);
+              pairList?.length > 0 &&
+              pairList?.find((el) => el.firstCurrencySymbol == item.coin);
             if (isEmpty(firstCurrencyPair)) {
               seconCurrencyPair =
-                pairList.length > 0 &&
-                pairList.find((el) => el.secondCurrencySymbol == item.coin);
+                pairList?.length > 0 &&
+                pairList?.find((el) => el.secondCurrencySymbol == item.coin);
             }
 
             // if(!isEmpty(firstCurrencyPair)){

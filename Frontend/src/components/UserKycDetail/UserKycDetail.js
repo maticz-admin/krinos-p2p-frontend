@@ -119,7 +119,6 @@ const UserKycDetail = () => {
         }
         catch(e){
             console.log("Error on handle verify" , e);
-            
         }
     }
 
@@ -181,7 +180,13 @@ const UserKycDetail = () => {
                                 <ul>
                                     <li className='flex-column'>
                                         <h5 className='title-txt my-0'>Kyc</h5>
-                                        <p className='mt-2 des mb-0 '>Lorem ipsum</p>
+                                        <p className='mt-2 des mb-0 '>To ensure a smooth and secure experience, we require all users to complete their KYC (Know Your Customer) process. This helps us maintain a safe and trusted platform for everyone.
+                                        Navigate to the KYC section under your account settings.
+                                        Fill out the necessary information and upload required documents (such as proof of identity and address).
+                                        Submit your application for verification.
+                                        Once your KYC is approved, you’ll enjoy full access to all our features and services. If you have any questions or need assistance, feel free to reach out to our support team.
+                                        Secure. Simple. Quick. Complete your KYC today and stay ahead with Didit!
+                                        </p>
                                         <div className="form-group green-button mt-2">
                                             <button
                                                 type="button" className="themebtn text-uppercase py-2 my-0"
