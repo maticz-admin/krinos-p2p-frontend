@@ -20998,6 +20998,39 @@ footer a:hover {
   min-height: 52px;
   border-radius: 8px;
 }
+
+
+.light_theme input:-webkit-autofill,
+.light_theme input:-webkit-autofill:hover, 
+.light_theme input:-webkit-autofill:focus,
+.light_theme textarea:-webkit-autofill,
+.light_theme textarea:-webkit-autofill:hover,
+.light_theme textarea:-webkit-autofill:focus,
+.light_theme select:-webkit-autofill,
+.light_theme select:-webkit-autofill:hover,
+.light_theme select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.dark_theme input:-webkit-autofill,
+.dark_theme input:-webkit-autofill:hover, 
+.dark_theme input:-webkit-autofill:focus,
+.dark_theme textarea:-webkit-autofill,
+.dark_theme textarea:-webkit-autofill:hover,
+.dark_theme textarea:-webkit-autofill:focus,
+.dark_theme select:-webkit-autofill,
+.dark_theme select:-webkit-autofill:hover,
+.dark_theme select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #c7c7c7;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+
+
 .light_theme .contact_form .form-control {
   color: #000 !important;
 }
@@ -27635,7 +27668,7 @@ body.light_theme {
 
 .light_theme .aqua {
   /* color: #03ffe0 !important; */
-  color: #aff41f !important;
+  color: var(--white-ylw-shadow) !important;
   font-weight: 600;
 }
 
@@ -28858,9 +28891,6 @@ display: block;
   color: #22b87b !important;
 }
 
-.transbtn {
-  margin-left: 10px !important;
-}
 .langicon {
   margin-left: 10px !important;
   max-width: 40px;
@@ -32611,11 +32641,18 @@ li.unread .lighttxt {
   padding: 8px 10px !important;
   border-radius: 8px;
   color: var(--black) !important;
+  margin-left: 10px !important;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.transbtn .fa-moon {
+
+.transbtn .fa-moon, .transbtn .fa-sun {
   color: black !important;
-  font-size: 14px !important;
+  font-size: 15px !important;
 }
 
 .mobilelog ul li a.nav-link.mobilereg:hover {
@@ -33356,11 +33393,11 @@ option {
   min-height: 49px;
   border-radius: 8px;
   object-fit: cover;
-  filter: brightness(0) invert(1);
+  /* filter: brightness(0) invert(1); */
 }
 
 .light_theme .img_prof_runded {
-  filter: brightness(0);
+  /* filter: brightness(0); */
 }
 .selct_padd_ned {
   padding-left: 0.75rem;
@@ -34157,6 +34194,11 @@ option {
   color: #fff;
   z-index: 1;
   text-transform: uppercase;
+  left: 0px !important;
+  top: 2px !important;
+}
+
+.light_theme .floatinglabel .countrylist.phonenumber label {
   left: 0px !important;
   top: 2px !important;
 }

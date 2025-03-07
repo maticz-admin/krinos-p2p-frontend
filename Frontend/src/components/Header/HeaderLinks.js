@@ -265,7 +265,7 @@ themechange(data)
                   >
                     {/* <div className="d-flex prof_icon_header"> */}
                     {/* <div> */}
-                    <img src={accountData?.profileImage ? accountData?.profileImage : Profileicon} className="prof_icon_header" alt="profileicon" />
+                    <img src={accountData?.profileImage ? accountData?.profileImage : Profileicon} className="prof_icon_header" alt="" />
                     {/* </div> */}
                     {/* </div> */}
 
@@ -281,7 +281,7 @@ themechange(data)
                     onClose={handleClose}
                   >
                     <NavLink to="/"><MenuItem className="px-2">
-                      <div className="d-flex afterlogin_profile"><div><img src={accountData?.profileImage ? accountData?.profileImage : Profileicon} alt="profileicon" /> </div><div><p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
+                      <div className="d-flex afterlogin_profile"><div><img src={accountData?.profileImage ? accountData?.profileImage : Profileicon} alt="" /> </div><div><p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
                         <p className="second mb-0 mx-3">{email}</p></div> </div>
                     </MenuItem></NavLink>
                     <NavLink to="/profile">
