@@ -168,6 +168,7 @@ const PhoneNoChange = () => {
             }
         } catch (err) { }
     }
+console.log("validate error" , validateError);
 
     const handleFormSubmit = async (e) => {
         // debugger
@@ -181,6 +182,8 @@ const PhoneNoChange = () => {
                 otp
             }
             let { status, loading, error, message, result } = await verifyNewPhone(reqData);
+            console.log("status, loading, error, message, result" , status, loading, error, message, result);
+            
             setLoader(loading)
             if (status == "success") {
                 setDisablePh(true)
@@ -276,7 +279,8 @@ const PhoneNoChange = () => {
                     </div>
                 </div>
                 <p className="error-message" style={{ color: 'red' }}>{validateError?.newPhoneNo}</p>
-
+                <p className="error-message" style={{ color: 'red' }}>{validateError?.phoneNo}</p>
+                
             </div>
             <div className="form-group floatinglabel otp_inp_grp mt-4">
                 <label className='otp_lable_float_zind'>{t("ENTER_OTP")}</label>

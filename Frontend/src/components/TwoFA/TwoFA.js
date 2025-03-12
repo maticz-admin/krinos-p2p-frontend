@@ -80,6 +80,7 @@ const TwoFA = () => {
                 toastAlert('success', t(message), 'twoFA')
                 setCode('')
                 setSecretData(result)
+                fetchTwoFA()
             } else {
                 if (error) {
                     setValidateError(error)
@@ -87,6 +88,7 @@ const TwoFA = () => {
                     toastAlert('error', t(message), 'twoFA')
                 }
             }
+            
         } catch (err) { }
     }
 
@@ -113,6 +115,8 @@ const TwoFA = () => {
                 toastAlert('success', t(message), 'twoFA')
                 setCode('')
                 setSecretData(result)
+            fetchTwoFA()
+
             } else {
                 if (error) {
                     setValidateError(error)
@@ -120,6 +124,7 @@ const TwoFA = () => {
                     toastAlert('error', t(message), 'twoFA')
                 }
             }
+
         }
         catch (err) { }
     }

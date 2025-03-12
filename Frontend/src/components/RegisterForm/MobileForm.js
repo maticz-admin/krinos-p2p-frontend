@@ -172,18 +172,29 @@ const MobileForm = () => {
         }
         try {
             let { status, loading, error, message } = await sentOTP(reqData);
+            console.log(" status, loading, error, message" ,  status, loading, error, message);
+            
             if (status == "success") {
+                setValidateError({})
                 setOtpStatus(true)
                 toastAlert('success', message, 'mobileForm');
             } else {
                 if (error) {
                     setValidateError(error)
-                    return
+                    // return
                 }
                 toastAlert('error', message, 'mobileForm');
             }
+            // if(status == "failed"){
+            //     if(error){
+            //         setValidateError(error)
+            //     }
+            //     toastAlert('error', message, 'mobileForm');
+            // }
         } catch (err) { }
     }
+    console.log("validate error" , validateError);
+    
 
 
     useEffect(() => {
@@ -272,6 +283,7 @@ const MobileForm = () => {
                 }
                 <span className='fa fa-mobile-alt right'></span>
                 {validateError.phoneCode && <p className="error-message">{t(validateError.phoneCode)}</p>}
+                {validateError.phoneNo && <p className="error-message">{t(validateError.phoneNo)}</p>}
             </div>
 
             {/* <div className="form-group">

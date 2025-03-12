@@ -185,7 +185,7 @@ const EmailForm = () => {
     const handleFormSubmit = async (e) => {
         // let recaptcha = await generateToken();
         // console.log("recaptcharecaptcha" , recaptcha);
-        // if(recaptcha){
+        if(email && password){
             e.preventDefault();
         setLoader(true)
         let reqData = {
@@ -206,6 +206,8 @@ const EmailForm = () => {
             reqData.reftype = ""
         }
         let { status, loading, message, userSetting, error, authToken, result } = await login(reqData, dispatch);
+        console.log("eerrro on login" , status, loading, message, userSetting, error, authToken, result);
+        
         setLoader(loading);
         if (result == "otpsent") {
             setIpmodal(true);
@@ -251,11 +253,11 @@ const EmailForm = () => {
                 }
                 toastAlert('error', message, 'login');
             }
-        // }
-        // else {
-        //     toastAlert('error', 'Invalid ReCaptcha', 'signup', 'TOP_RIGHT');
-        //     return
-        // }
+        }
+        else {
+            toastAlert('error', 'Fill All the fields', 'signup', 'TOP_RIGHT');
+            return
+        }
     }
 
     useEffect(() => {
@@ -322,7 +324,6 @@ const EmailForm = () => {
        
       > */}
             <div className='floatinglabel my-4'>
-
                 <label>{t('EMAIL_PLACEHOLDER')}</label>
                 {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
                 <input

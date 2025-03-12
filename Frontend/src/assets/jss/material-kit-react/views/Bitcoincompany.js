@@ -258,7 +258,7 @@ const Bitcoincompany = (props) => {
             // if()
             if (tradedata?.verifiyfullname) {
                 if (tradedata?.verifiyid) {
-                    if (userdatas?.firstName && userdatas?.lastName && userdataskyc?.idProof?.status == "approved") {
+                    if (userdatas?.firstName && userdatas?.lastName && userdataskyc?.status == "Approved") {
                         var result = await handletrade();
                     }
                     else {
@@ -274,7 +274,7 @@ const Bitcoincompany = (props) => {
             }
             // else if(!tradedata?.verifiyid && !tradedata?.verifiyfullname){}
             else if (tradedata?.verifiyid) {
-                if (userdataskyc?.idProof?.status == "approved") {
+                if (userdataskyc?.status == "Approved") {
                     var result = await handletrade();
                 }
                 else {

@@ -175,8 +175,8 @@ export const login = async (data, dispatch) => {
       return {
         status: "failed",
         loading: false,
-        message: response.errors.password,
-        error: response.errors.password,
+        message: response?.message,
+        error: response?.errors,
         authToken: response.authToken,
       };
     } catch (err) {
@@ -184,6 +184,7 @@ export const login = async (data, dispatch) => {
       return {
         status: "failed",
         loading: false,
+        message: response?.message,
       };
     }
   }

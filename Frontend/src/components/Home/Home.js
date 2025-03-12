@@ -138,7 +138,9 @@ const Home = (props) => {
             setLearnandpractice(result3?.data?.data?.content);
 
             var result4 = await Getfaqhooks();
-            setFaq(result4?.data?.data);
+            console.log("faqqqq result" , result4);
+            
+            setFaq(result4?.data);
 
         }
         getcms();

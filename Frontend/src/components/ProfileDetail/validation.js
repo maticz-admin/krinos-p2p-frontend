@@ -33,7 +33,7 @@ const validation = value => {
     }
     if (isEmpty(value.state)) {
         errors.state = "REQUIRED"
-    } else if (!letters.test(value.state)) {
+    } else if (!letters2.test(value.state)) {
         errors.state = "STATE_NAME_ALPHABET"
     }
     if (isEmpty(value.city)) {

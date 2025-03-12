@@ -43,12 +43,8 @@ const Buybitcoin = (props) => {
     const [loadmore, setLoadMore] = useState('Load More')
     const [loader, setLoader] = useState(true);
     const [loadbutton, setLoadbutton] = useState(true);
-
     const [userverification, setUserverification] = useState({});
-
     const navigate = useHistory();
-
-
 
     useEffect(() => {
         fetchData()
@@ -151,7 +147,7 @@ const Buybitcoin = (props) => {
             }
             var userresult = await Getsingleuserhook(userpayload);
             setUserverification(userresult?.data?.data);
-            if (userresult?.data?.kyc?.idProof?.status == "approved") {
+            if (userresult?.data?.kyc?.status == "Approved") {
                 navigate.push("/createoffer");
             }
             else {
@@ -191,13 +187,13 @@ const Buybitcoin = (props) => {
         document.getElementById("loadercontainer").classList.add("d-flex")
         document.getElementById("loadercontainer").classList.remove("d-none")
     }
+    
     const hideloader = () => {
         document.getElementById("loadercontainer").classList.remove("d-flex")
         document.getElementById("loadercontainer").classList.add("d-none")
     }
 
     return (
-
         <div className='page_wrap alloffers'>
             {createModal && <CreateoffModal onDismiss={() => setCreateModal(false)} opencreated={() => { setCreated(true); setCreateModal(false) }} />}
             {created && <CreatedModal onDismiss={() => setCreated(false)} />}

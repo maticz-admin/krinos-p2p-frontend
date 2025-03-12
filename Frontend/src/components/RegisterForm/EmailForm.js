@@ -307,7 +307,7 @@ const EmailForm = () => {
                     <span class="checkmark"></span> {'I AGREE'} <a target = "_blank" href="/details/termsandcondition" className="color_lonks">{'TERMS'}</a> {'AND'} <a target = "_blank" href="/details/privacypolicy" className="color_lonks">{'PRIVACY'}</a>
                 
                 </label>
-                {validateError.isTerms && <p className="error-message">{validateError.isTerms}</p>}
+                {validateError.isTerms && <p className="error-message">{t(validateError.isTerms)}</p>}
                 </>
             <div className="form-group text-center">
                 <button className='themebtn big my-3'
