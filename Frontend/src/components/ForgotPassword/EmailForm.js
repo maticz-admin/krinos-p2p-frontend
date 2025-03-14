@@ -99,8 +99,8 @@ const EmailForm = () => {
         <GoogleReCaptchaProvider reCaptchaKey={config.RECAPTCHA_SITE_KEY}>
             <Fragment>
                 <div className='floatinglabel my-4'>
-                                        <label>{t('Email')}</label>
-                                        <input
+                    <label>{t('Email')}</label>
+                    <input
                         className="form-control mt-2"
                         placeholder="Enter Email ID"
                         name="email"
@@ -109,10 +109,10 @@ const EmailForm = () => {
                         onChange={handleChange}
                         onBlur={handleBlur}
                     />
-                      <span style={{ color: 'red' }}>{validateError && t(validateError.email)}</span>
-                                        <span className='fa fa-envelope right'></span>
-                                    </div>
-               
+                    <span style={{ color: 'red' }}>{validateError && t(validateError.email)}</span>
+                    <span className='fa fa-envelope right'></span>
+                </div>
+
                 <div className="form-group text-center">
                     <button className='themebtn my-3'
                         onClick={handleFormSubmit}
@@ -132,10 +132,10 @@ const EmailForm = () => {
                 </div>
             </Fragment >
 
-              <GoogleReCaptcha
-                 onVerify={handleReCaptcha}
-             />
-         </GoogleReCaptchaProvider> 
+            <GoogleReCaptcha
+                onVerify={handleReCaptcha}
+            />
+        </GoogleReCaptchaProvider>
     )
 }
 

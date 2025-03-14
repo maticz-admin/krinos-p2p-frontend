@@ -21,7 +21,11 @@ import IprestrictModal from './iprestrict-otpModal';
 import Images from 'Images';
 import { Form } from 'react-bootstrap';
 
-import {Checkdeposithooks} from '../../actions/P2PorderAction';
+import { Checkdeposithooks } from '../../actions/P2PorderAction';
+// import ReCAPTCHA from 'react-google-recaptcha';
+import { toast } from 'react-toastify';
+
+
 const initialFormValue = {
     'email': '',
     'formType': 'email',
@@ -47,11 +51,14 @@ const EmailForm = () => {
     const [Otp, setOtp] = useState("");
     const [ipmodal, setIpmodal] = useState(false);
     const [requestdata, setRequestdata] = useState({});
+    const [recaptchaValue, setRecaptchaValue] = useState(null);
+
 
     const { email, password, formType, showPassword, remember, twoFACode } = formValue;
 
     const handleChange = (e) => {
         e.preventDefault();
+
         const { name, value } = e?.target;
 
         if (name == 'twoFACode') {
@@ -81,7 +88,7 @@ const EmailForm = () => {
         try {
             let { result } = await getGeoInfoData();
             const browserResult = browser();
-            if(!result.ip){
+            if (!result.ip) {
                 getGeoInfo();
             }
             setLoginHistory({
@@ -106,36 +113,37 @@ const EmailForm = () => {
         catch (err) {
         }
     };
-    
+
     const generateToken = (data) => {
         return new Promise((resolve, reject) => {
-          const badge = document.querySelector('.grecaptcha-badge');
-          console.log("badgebadgebadge" , badge);
-          
-          if (badge) {
-            console.log("badge visible" , badge , badge.style);
-            
-            badge.style.visibility = 'visible';
-            badge.style.dispplay = ""
-          }
-          const script = document.createElement('script');
-          script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`;
-          script.onload = () => {
-             window.grecaptcha.ready(() => {
-              window.grecaptcha.execute(config.RECAPTCHA_SITE_KEY).then((token) => {
-                resolve(token);
-              }).catch((error) => {
+            const badge = document.querySelector('.grecaptcha-badge');
+            console.log("badgebadgebadge", badge , config.RECAPTCHA_SITE_KEY);
+
+            if (badge) {
+                console.log("badge visible", badge, badge.style);
+                badge.style.visibility = 'visible';
+            };
+
+            const script = document.createElement('script');
+            script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`;
+            script.onload = () => {
+                window.grecaptcha.ready(() => {
+                    window.grecaptcha.execute(config.RECAPTCHA_SITE_KEY).then((token) => {
+                        localStorage.setItem('captcha_token', token)
+                        resolve(token);
+                    }).catch((error) => {
+                        reject(error);
+                    });
+                });
+            };
+            script.onerror = (error) => {
                 reject(error);
-              });
-            });
-          };
-          script.onerror = (error) => {
-            reject(error);
-          };
-          document.body.appendChild(script);
+            };
+            document.body.appendChild(script);
         });
-      };
-      
+    };
+
+
     // const generateToken = async (data) => {
     //     try {
     //         var tkn ;
@@ -144,14 +152,14 @@ const EmailForm = () => {
     //         const script = document.createElement('script');
     //         script.src = `https://www.google.com/recaptcha/api.js?render=6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1`;
     //         document.body.appendChild(script);
-      
+
     //         // Wait for the script to load
     //         await new Promise((resolve, reject) => {
     //           script.onload = resolve;
     //           script.onerror = reject;
     //         });
     //       }
-      
+
     //       // Wait for reCAPTCHA to be fully ready
     //       await new Promise((resolve, reject) => {
     //         window.grecaptcha.ready(() => {
@@ -166,7 +174,7 @@ const EmailForm = () => {
     //             });
     //         });
     //       });
-      
+
     //       // Access the badge after executing reCAPTCHA
     //       const badge = document.querySelector('.grecaptcha-badge');
     //       if (badge) {
@@ -181,78 +189,83 @@ const EmailForm = () => {
     //       throw error; // Re-throw the error to be handled by the caller
     //     }
     //   };
-      
+
     const handleFormSubmit = async (e) => {
-        // let recaptcha = await generateToken();
-        // console.log("recaptcharecaptcha" , recaptcha);
-        if(email && password){
+        let recaptcha = await generateToken();
+        console.log("recaptcharecaptcha", recaptcha);
+        if (!recaptcha) {
+            toast.error('Please complete the reCAPTCHA');
+            return;
+        }
+        // return false;
+        if (recaptcha) {
             e.preventDefault();
-        setLoader(true)
-        let reqData = {
-            email,
-            password,
-            remember,
-            twoFACode,
-            loginHistory,
-            langCode: getLang(),
-            formType : "email" //formValue.formType == "null" ? "email" : formValue.formType
-        }
-        if (Otp && Otp.length > 0) {
-            reqData.otp = Otp;
-            reqData.reftype = "ipotp"
-        }
-        else {
-            reqData.otp = ""
-            reqData.reftype = ""
-        }
-        let { status, loading, message, userSetting, error, authToken, result } = await login(reqData, dispatch);
-        console.log("eerrro on login" , status, loading, message, userSetting, error, authToken, result);
-        
-        setLoader(loading);
-        if (result == "otpsent") {
-            setIpmodal(true);
-        } else
-            if (status == 'success') {
-                setLoader(true);
-                setFormValue(initialFormValue)
-                if (remember) {
-                    localStorage.setItem("remember", true);
-                    localStorage.setItem("email_remember", email);
-                    localStorage.setItem("password_remember", password);
-                    localStorage.setItem("formType", formType);
-                } else {
-                    localStorage.removeItem("remember");
-                    localStorage.removeItem("email_remember");
-                    localStorage.removeItem("password_remember");
-                }
-           
-                localStorage.setItem('xyz_cache', btoa(result?.userId))
-                let checkdeposit  =  Checkdeposithooks();
-                setLoader(false);
+            setLoader(true)
 
-                toastAlert('success', message, 'login');
-                if (userSetting && userSetting.afterLogin && userSetting.afterLogin != " ") {
-                    history.push(userSetting.afterLogin.url)
-                } else {
-                    history.push('/profile')
-                }
-            } else if (status == 'TWO_FA') {
-                setIpmodal(false);
-                setOtp("");
-
-                setShowTowFA(true)
-                toastAlert('error', message, 'login');
-            } else {
-                if (error) {
-                    setValidateError(error);
-                }
-                if (message == "Your Password is Old Please Reset Your Password") {
-                    toastAlert('error', message, 'login');
-                    history.push("/reset-password/" + authToken)
-
-                }
-                toastAlert('error', message, 'login');
+            let reqData = {
+                email,
+                password,
+                remember,
+                twoFACode,
+                loginHistory,
+                langCode: getLang(),
+                formType: "email", //formValue.formType == "null" ? "email" : formValue.formType
+                recaptcha: JSON.stringify(recaptcha)
             }
+            if (Otp && Otp.length > 0) {
+                reqData.otp = Otp;
+                reqData.reftype = "ipotp"
+            }
+            else {
+                reqData.otp = ""
+                reqData.reftype = ""
+            }
+            let { status, loading, message, userSetting, error, authToken, result } = await login(reqData, dispatch);
+            setLoader(loading);
+            if (result == "otpsent") {
+                setIpmodal(true);
+            } else
+                if (status == 'success') {
+                    setLoader(true);
+                    setFormValue(initialFormValue)
+                    if (remember) {
+                        localStorage.setItem("remember", true);
+                        localStorage.setItem("email_remember", email);
+                        localStorage.setItem("password_remember", password);
+                        localStorage.setItem("formType", formType);
+                    } else {
+                        localStorage.removeItem("remember");
+                        localStorage.removeItem("email_remember");
+                        localStorage.removeItem("password_remember");
+                    }
+
+                    localStorage.setItem('xyz_cache', btoa(result?.userId))
+                    let checkdeposit = Checkdeposithooks();
+                    setLoader(false);
+
+                    toastAlert('success', message, 'login');
+                    if (userSetting && userSetting.afterLogin && userSetting.afterLogin != " ") {
+                        history.push(userSetting.afterLogin.url)
+                    } else {
+                        history.push('/profile')
+                    }
+                } else if (status == 'TWO_FA') {
+                    setIpmodal(false);
+                    setOtp("");
+
+                    setShowTowFA(true)
+                    toastAlert('error', message, 'login');
+                } else {
+                    if (error) {
+                        setValidateError(error);
+                    }
+                    if (message == "Your Password is Old Please Reset Your Password") {
+                        toastAlert('error', message, 'login');
+                        history.push("/reset-password/" + authToken)
+
+                    }
+                    toastAlert('error', message, 'login');
+                }
         }
         else {
             toastAlert('error', 'Fill All the fields', 'signup', 'TOP_RIGHT');
@@ -290,193 +303,93 @@ const EmailForm = () => {
 
     const handleLoaded = _ => {
         window.grecaptcha.ready(_ => {
-          window.grecaptcha
-            .execute(config.RECAPTCHA_SITE_KEY, { action: "login" })
-            .then(token => {
-            console.log("***********",token)
-             sessionStorage.setItem("CAPTCHA_TOKEN",token);
-            }).catch((e)=>{
-                console.log("***********",e)
-                sessionStorage.removeItem("CAPTCHA_TOKEN");
-            })
+            window.grecaptcha
+                .execute(config.RECAPTCHA_SITE_KEY, { action: "login" })
+                .then(token => {
+                    console.log("***********", token)
+                    sessionStorage.setItem("CAPTCHA_TOKEN", token);
+                }).catch((e) => {
+                    console.log("***********", e)
+                    sessionStorage.removeItem("CAPTCHA_TOKEN");
+                })
         })
-      }
-    //   useEffect(() => {
-    //     const script = document.createElement("script")
-    //     script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`
-    //     script.addEventListener("load", handleLoaded)
-    //     document.body.appendChild(script)
-    //   } , [])
+    }
+ 
     var india = <img src={Images.india} />
     return (
-        <div
-        className="g-recaptcha"
-        data-sitekey={config.RECAPTCHA_SITE_KEY}
-        data-size="invisible"
-    >
-        <Fragment>
-{/* <div className="g-recaptcha" data-size="invisible"> */}
 
-{/* <div
+        <div
+            className="g-recaptcha"
+            data-sitekey={config.RECAPTCHA_SITE_KEY}
+            data-size="invisible"
+        >
+            <Fragment>
+                {/* <div className="g-recaptcha" data-size="invisible"> */}
+
+                {/* <div
         className="g-recaptcha"
         data-sitekey={config.RECAPTCHA_SITE_KEY}
         
        
       > */}
-            <div className='floatinglabel my-4'>
-                <label>{t('EMAIL_PLACEHOLDER')}</label>
-                {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter Email ID"
-                    name="email"
-                    value={email}
-                    // autoComplete="off"
-                    autoComplete="new-password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-                <span className='fa fa-envelope right'></span>
-                {toched.email && validateError?.email && <p className="error-message">{t(validateError?.email)}</p>}
-            </div>
-            <div className='floatinglabel my-4'>
-                <label>{t('PASSWORD')}</label>
-                <input
-                    type={showPassword ? "text" : "password"}
-                    className="form-control mt-2"
-                    placeholder={t('PASSWORD_PLACEHOLDER')}
-                    name="password"
-                    value={password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    autoComplete="new-password"
-                />
-                <Link className='right' onClick={(e) => {
-                    e.preventDefault();
-                    setFormValue((el => {
-                        return { ...el, ...{ showPassword: !el.showPassword } }
-                    }))
-                }}>
-                    <span className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></span>
-                </Link>
-                {toched.password && validateError?.password && <p className="error-message">{t(validateError?.password)}</p>}
-                {/* <span className='fa fa-eye'></span> */}
-            </div>
-            {/* <div className="form-check">
-                    <Checkbox className='custom_checkbox'
-                        name="remember"
-                        onChange={handleCheckBox}
-                        checked={remember} 
-                    />
-                    <label className="ml-2 blackandwhite f-12" for="flexCheckDefault">
-                        {t('KEEP_SIGN_COMPUTER')}
-                    </label>
-                </div> */}
-            <label class="custcheck ml-2 blackandwhite f-12">
-                <input type="checkbox"
-                    onChange={handleCheckBox}
-                //   checked={remember} 
-                />
-                <span class="checkmark"></span> {t('KEEP_SIGN_COMPUTER')}
-            </label>
-            {
-                showTwoFA &&
+
+
 
                 <div className='floatinglabel my-4'>
-                    <label>{t('ENTER_TWO_FA_CODE')}</label>
+
+                    <label>{t('EMAIL_PLACEHOLDER')}</label>
+                    {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
                     <input
                         type="text"
-                        className="form-control mt-2"
-                        placeholder={t('ENTER_TWO_FA_CODE')}
-                        name="twoFACode"
-                        value={twoFACode}
+                        className="form-control"
+                        placeholder="Enter Email ID"
+                        name="email"
+                        value={email}
+                        // autoComplete="off"
+                        autoComplete="new-password"
                         onChange={handleChange}
                         onBlur={handleBlur}
                     />
-                    <span className='fa fa-lock right'></span>
-                    {validateError?.twoFACode && <p className="error-message">{t(validateError?.twoFACode)}</p>}
-                    {/* <span className='fa fa-eye'></span> */}
+                    <span className='fa fa-envelope right'></span>
+                    {toched.email && validateError?.email && <p className="error-message">{t(validateError?.email)}</p>}
                 </div>
-            }
-            <div className='text-center'>
-                <button className='themebtn big my-3'
-                    onClick={handleFormSubmit}
-                    // disabled={!isEmpty(validateError) || loader}
-                >
-                    {loader && <i class="fas fa-spinner fa-spin"></i>} Login
-                </button>
-                {/* <button className='graybtn my-3'>View Offer</button> */}
-
-            </div>
-
-
-
-            <div className="form-group d-none">
-
-                <span className="login_label">{t('EMAIL_PLACEHOLDER')}</span>
-                <input
-                    type="text"
-                    className="form-control mt-2"
-                    placeholder={t('EMAIL_PLACEHOLDER')}
-                    name="email"
-                    value={email}
-                    // autoComplete="off"
-                    autoComplete="new-password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-                {toched?.email && validateError?.email && <p className="error-message">{t(validateError?.email)}</p>}
-                {/* <span style={{ color: 'red' }}>{validateError && t(validateError.email)}</span>          */}
-            </div>
-            <div className="form-group d-none">
-                <span className="login_label">{t('PASSWORD')}</span>
-                <div className="input-group regGroupInput mt-2">
+                <div className='floatinglabel my-4'>
+                    <label>{t('PASSWORD')}</label>
                     <input
                         type={showPassword ? "text" : "password"}
                         className="form-control mt-2"
                         placeholder={t('PASSWORD_PLACEHOLDER')}
                         name="password"
                         value={password}
-                        // autoComplete= "new-password" //"off"
-                        autoComplete="new-password"
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        autoComplete="new-password"
                     />
-                    <div className="input-group-append">
-                        <Link onClick={(e) => {
-                            e.preventDefault();
-                            setFormValue((el => {
-                                return { ...el, ...{ showPassword: !el.showPassword } }
-                            }))
-                        }}>
-                            <i className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></i>
-                        </Link>
-                    </div>
+                    <Link className='right' onClick={(e) => {
+                        e.preventDefault();
+                        setFormValue((el => {
+                            return { ...el, ...{ showPassword: !el.showPassword } }
+                        }))
+                    }}>
+                        <span className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></span>
+                    </Link>
+                    {toched.password && validateError?.password && <p className="error-message">{t(validateError?.password)}</p>}
+                    {/* <span className='fa fa-eye'></span> */}
+
+
+
+
                 </div>
-                {toched?.password && validateError?.password && <p className="error-message">{t(validateError?.password)}</p>}
-                {/* <span style={{ color: 'red' }}>{validateError && validateError.password}</span>   */}
-            </div>
-
-
-
-
-
-            <div className="form-group d-none">
-                {/* <div class="custom-control custom-checkbox">
-  <input type="checkbox" class="custom-control-input" id="customCheck1" />
-  <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
-</div> */}
                 {/* <div className="form-check">
-                    <Checkbox className='custom_checkbox'
-                        name="remember"
-                        onChange={handleCheckBox}
-                        checked={remember} 
-                    />
-                    <label className="ml-2 blackandwhite f-12" for="flexCheckDefault">
-                        {t('KEEP_SIGN_COMPUTER')}
-                    </label>
-                </div> */}
+    <Checkbox className='custom_checkbox'
+        name="remember"
+        onChange={handleCheckBox}
+        checked={remember} 
+    />
+    <label className="ml-2 blackandwhite f-12" for="flexCheckDefault">
+        {t('KEEP_SIGN_COMPUTER')}
+    </label>
+</div> */}
                 <label class="custcheck ml-2 blackandwhite f-12">
                     <input type="checkbox"
                         onChange={handleCheckBox}
@@ -484,20 +397,133 @@ const EmailForm = () => {
                     />
                     <span class="checkmark"></span> {t('KEEP_SIGN_COMPUTER')}
                 </label>
-            </div>
-            {/* <div className="form-group">
+                {
+                    showTwoFA &&
 
-                <Button
-                    onClick={handleFormSubmit}
-                    disabled={!isEmpty(validateError) || loader}
-                >
-                    {loader && <i class="fas fa-spinner fa-spin"></i>} {t('SIGN_IN_BUTTON')}
-                </Button>
-            </div> */}
-            {ipmodal && <IprestrictModal login={(e) => handleFormSubmit(e)} setotp={(data) => setOtp(data)} request={requestdata} email={email} onDismiss={() => { setIpmodal(false); setOtp("") }} />}
-            {/* </div> */}
-        </Fragment></div>
-        
+                    <div className='floatinglabel my-4'>
+                        <label>{t('ENTER_TWO_FA_CODE')}</label>
+                        <input
+                            type="text"
+                            className="form-control mt-2"
+                            placeholder={t('ENTER_TWO_FA_CODE')}
+                            name="twoFACode"
+                            value={twoFACode}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        <span className='fa fa-lock right'></span>
+                        {validateError?.twoFACode && <p className="error-message">{t(validateError?.twoFACode)}</p>}
+                        {/* <span className='fa fa-eye'></span> */}
+                    </div>
+                }
+                <div className='text-center'>
+                    <button className='themebtn big my-3'
+                        onClick={handleFormSubmit}
+                    // disabled={!isEmpty(validateError) || loader}
+                    >
+                        {loader && <i class="fas fa-spinner fa-spin"></i>} Login
+                    </button>
+                    {/* <button className='graybtn my-3'>View Offer</button> */}
+
+                </div>
+
+
+
+                <div className="form-group d-none">
+
+                    <span className="login_label">{t('EMAIL_PLACEHOLDER')}</span>
+                    <input
+                        type="text"
+                        className="form-control mt-2"
+                        placeholder={t('EMAIL_PLACEHOLDER')}
+                        name="email"
+                        value={email}
+                        // autoComplete="off"
+                        autoComplete="new-password"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    {toched?.email && validateError?.email && <p className="error-message">{t(validateError?.email)}</p>}
+                    {/* <span style={{ color: 'red' }}>{validateError && t(validateError.email)}</span>          */}
+                </div>
+                <div className="form-group d-none">
+                    <span className="login_label">{t('PASSWORD')}</span>
+                    <div className="input-group regGroupInput mt-2">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            className="form-control mt-2"
+                            placeholder={t('PASSWORD_PLACEHOLDER')}
+                            name="password"
+                            value={password}
+                            // autoComplete= "new-password" //"off"
+                            autoComplete="new-password"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        <div className="input-group-append">
+                            <Link onClick={(e) => {
+                                e.preventDefault();
+                                setFormValue((el => {
+                                    return { ...el, ...{ showPassword: !el.showPassword } }
+                                }))
+                            }}>
+                                <i className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></i>
+                            </Link>
+                        </div>
+
+
+
+
+                    </div>
+                    {toched?.password && validateError?.password && <p className="error-message">{t(validateError?.password)}</p>}
+                    {/* <span style={{ color: 'red' }}>{validateError && validateError.password}</span>   */}
+                </div>
+
+
+
+
+
+                <div className="form-group d-none">
+                    {/* <div class="custom-control custom-checkbox">
+<input type="checkbox" class="custom-control-input" id="customCheck1" />
+<label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+</div> */}
+                    {/* <div className="form-check">
+    <Checkbox className='custom_checkbox'
+        name="remember"
+        onChange={handleCheckBox}
+        checked={remember} 
+    />
+    <label className="ml-2 blackandwhite f-12" for="flexCheckDefault">
+        {t('KEEP_SIGN_COMPUTER')}
+    </label>
+</div> */}
+
+
+                    <label class="custcheck ml-2 blackandwhite f-12">
+                        <input type="checkbox"
+                            onChange={handleCheckBox}
+                        //   checked={remember} 
+                        />
+                        <span class="checkmark"></span> {t('KEEP_SIGN_COMPUTER')}
+                    </label>
+                </div>
+
+
+                {/* <div className="form-group">
+
+<Button
+    onClick={handleFormSubmit}
+    disabled={!isEmpty(validateError) || loader}
+>
+    {loader && <i class="fas fa-spinner fa-spin"></i>} {t('SIGN_IN_BUTTON')}
+</Button>
+</div> */}
+                {ipmodal && <IprestrictModal login={(e) => handleFormSubmit(e)} setotp={(data) => setOtp(data)} request={requestdata} email={email} onDismiss={() => { setIpmodal(false); setOtp("") }} />}
+                {/* </div> */}
+
+            </Fragment></div>
+
     )
 }
 

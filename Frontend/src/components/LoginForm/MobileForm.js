@@ -21,7 +21,12 @@ import { toastAlert } from '../../lib/toastAlert';
 import { getLang } from '../../lib/localStorage';
 import IprestrictModal from './iprestrict-otpModal';
 import IPrestrictmobileModal from './iprestrict-mobileotpModal';
-import {Checkdeposithooks} from '../../actions/P2PorderAction';
+import { Checkdeposithooks } from '../../actions/P2PorderAction';
+
+import { toast } from 'react-toastify';
+import config from "../../config/index";
+
+
 const initialFormValue = {
     'phoneCode': '',
     'phoneNo': '',
@@ -108,6 +113,11 @@ const MobileForm = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         setLoader(true)
+        let recaptcha = await generateToken();
+        if (!recaptcha) {
+            toast.error('Please complete the reCAPTCHA');
+            return;
+        }
         let reqData = {
             phoneCode,
             phoneNo,
@@ -117,7 +127,8 @@ const MobileForm = () => {
             twoFACode,
             loginHistory,
             langCode: getLang(),
-            formType
+            formType,
+            recaptcha: JSON.stringify(recaptcha)
         }
         if (Otp && Otp.length > 0) {
             reqData.otp = Otp;
@@ -144,7 +155,7 @@ const MobileForm = () => {
                     localStorage.removeItem("password_remember");
                 }
                 localStorage.setItem('xyz_cache', btoa(result?.userId))
-                let checkdeposit  =  Checkdeposithooks();
+                let checkdeposit = Checkdeposithooks();
                 setLoader(false);
                 toastAlert('success', message, 'login');
                 if (userSetting && userSetting.afterLogin && userSetting.afterLogin != " ") {
@@ -227,6 +238,7 @@ const MobileForm = () => {
     }
 
     useEffect(() => {
+        generateToken();
         getGeoInfo()
         let formData = {};
         if (localStorage.getItem("remember") == "true") {
@@ -251,74 +263,111 @@ const MobileForm = () => {
     }, [])
 
     useEffect(() => {
-   
+
         if (counter == 0) {
             setEnablebtn(true);
         }
-        if(optStatus == true){
-        const timer = counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+        if (optStatus == true) {
+            const timer = counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
 
-        const seconds = String(counter % 60).padStart(2, 0);
-        setseconds(seconds)
-        const minutes = String(Math.floor(counter / 60)).padStart(2, 0);
-        setminutes(minutes)
+            const seconds = String(counter % 60).padStart(2, 0);
+            setseconds(seconds)
+            const minutes = String(Math.floor(counter / 60)).padStart(2, 0);
+            setminutes(minutes)
 
-        return () =>
+            return () =>
 
-            clearInterval(timer);
+                clearInterval(timer);
 
         }
 
-    }, [optStatus,counter]);
+    }, [optStatus, counter]);
 
+
+    const generateToken = (data) => {
+        return new Promise((resolve, reject) => {
+            const badge = document.querySelector('.grecaptcha-badge');
+            console.log("badgebadgebadge", badge);
+
+            if (badge) {
+                console.log("badge visible", badge, badge.style);
+
+                badge.style.visibility = 'visible';
+            };
+
+            const script = document.createElement('script');
+            script.src = `https://www.google.com/recaptcha/api.js?render=${config.RECAPTCHA_SITE_KEY}`;
+            script.onload = () => {
+                window.grecaptcha.ready(() => {
+                    window.grecaptcha.execute(config.RECAPTCHA_SITE_KEY).then((token) => {
+                        localStorage.setItem('captcha_token', token)
+                        resolve(token);
+                    }).catch((error) => {
+                        reject(error);
+                    });
+                });
+            };
+            script.onerror = (error) => {
+                reject(error);
+            };
+            document.body.appendChild(script);
+        });
+    };
 
     return (
-        <Fragment>
 
-            <div className='floatinglabel my-4 '>
-                {/* <img src={Images.india} className='flagimg'/> */}
-                <label>{t('MOBILE_NO')}</label>
-                {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
-                <PhoneInput className="form-control p-0"
-                    placeholder="Enter mobile number"
-                    // value={phoneCode + phoneNo}
-                    onChange={handlePhoneNumber}
-                    onBlur={handleBlurPhone}
-                    specialLabel={false}
-                    country={'us'}
-                    autoComplete="new-password"
-                />
-                <span className='fa fa-mobile-alt right'></span>
-                {toched.phoneCode && validateError.phoneNo && <p className="error-message">{t(validateError.phoneNo)}</p>}
-            </div>
+        <div
+            className="g-recaptcha"
+            data-sitekey={config.RECAPTCHA_SITE_KEY}
+            data-size="invisible"
+        >
 
+            <Fragment>
 
-            <div className='floatinglabel my-4'>
-                <label>{t('PASSWORD')}</label>
-                <input
-                    type={showPassword ? "text" : "password"}
-                    className="form-control mt-2 "
-                    placeholder={t('PASSWORD_PLACEHOLDER')}
-                    name="password"
-                    value={password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    autoComplete="off"
-                />
-                <Link className='right' onClick={(e) => {
-                    e.preventDefault();
-                    setFormValue((el => {
-                        return { ...el, ...{ showPassword: !el.showPassword } }
-                    }))
-                }}>
-                    <i className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></i>
-                </Link>
-                {toched.password && validateError.password && <p className="error-message">{t(validateError.password)}</p>}
-                {/* <span className='fa fa-eye'></span> */}
-            </div>
+                <div className='floatinglabel my-4 '>
+                    {/* <img src={Images.india} className='flagimg'/> */}
+                    <label>{t('MOBILE_NO')}</label>
+                    {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
+                    <PhoneInput className="form-control p-0"
+                        placeholder="Enter mobile number"
+                        // value={phoneCode + phoneNo}
+                        onChange={handlePhoneNumber}
+                        onBlur={handleBlurPhone}
+                        specialLabel={false}
+                        country={'us'}
+                        autoComplete="new-password"
+                    />
+                    <span className='fa fa-mobile-alt right'></span>
+                    {toched.phoneCode && validateError.phoneNo && <p className="error-message">{t(validateError.phoneNo)}</p>}
+                </div>
 
 
-            {/* <div className="form-check">
+                <div className='floatinglabel my-4'>
+                    <label>{t('PASSWORD')}</label>
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        className="form-control mt-2 "
+                        placeholder={t('PASSWORD_PLACEHOLDER')}
+                        name="password"
+                        value={password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        autoComplete="off"
+                    />
+                    <Link className='right' onClick={(e) => {
+                        e.preventDefault();
+                        setFormValue((el => {
+                            return { ...el, ...{ showPassword: !el.showPassword } }
+                        }))
+                    }}>
+                        <i className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></i>
+                    </Link>
+                    {toched.password && validateError.password && <p className="error-message">{t(validateError.password)}</p>}
+                    {/* <span className='fa fa-eye'></span> */}
+                </div>
+
+
+                {/* <div className="form-check">
                     <Checkbox
                         name="remember"
                         onChange={handleCheckBox}
@@ -330,113 +379,114 @@ const MobileForm = () => {
                 </div> */}
 
 
-            {
-                optStatus && <div className="floatinglabel my-4">
-                    <label className="login_label">{t('OTP')}</label>
-                    <div className="input-group regGroupInput mt-2">
-
-                        <input
-                            type={"text"}
-                            className="form-control"
-                            placeholder="Verification Code"
-                            name="otp"
-                            value={otp}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                    </div>
-                   
-                    {toched.otp && validateError.otp && <p className="error-message">{t(validateError.otp)}</p>}
-                    {optStatus == true ?<div className='text-right mb-3 mt-3 countdownspan'>
-                          <p className="pr-2 mt-3"> Otp will expire in <b>  <span>{Minutes}:{Seconds}</span></b></p>
-                      </div>:""}
-                </div>
-                
-            }
-            
-
-            <label class="custcheck ml-2 blackandwhite f-12">
-                <input type="checkbox"
-                    name="remember"
-                    onChange={handleCheckBox}
-                    checked={remember}
-                />
-                <span class="checkmark"></span> {t('KEEP_SIGN_COMPUTER')}
-            </label>
-            {/* {
-                    optStatus && */}
-
-            {/* <div className='text-center'>
-                     <button className='themebtn big my-3'
-                        onClick={handleFormSubmit}
-                        disabled={!isEmpty(validateError) || loader}
-                    >
-                        {loader && <i class="fas fa-spinner fa-spin"></i>} Login
-                    </button> */}
-            {/* <br />
-                <Link to="/login" className="mr-auto linkclr">
-                        {t('ALREADY_HAVE_ACCOUNT')}?
-                    </Link> */}
-            {/* </div> */}
-            {/* // } */}
-            {
-                showTwoFA &&
-                <>
-                    <div className="floatinglabel my-4">
+                {
+                    optStatus && <div className="floatinglabel my-4">
                         <label className="login_label">{t('OTP')}</label>
                         <div className="input-group regGroupInput mt-2">
 
                             <input
                                 type={"text"}
                                 className="form-control"
-                                placeholder={t('ENTER_TWO_FA_CODE')}
-                                name="twoFACode"
-                                value={twoFACode}
+                                placeholder="Verification Code"
+                                name="otp"
+                                value={otp}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
                         </div>
+
+                        {toched.otp && validateError.otp && <p className="error-message">{t(validateError.otp)}</p>}
+                        {optStatus == true ? <div className='text-right mb-3 mt-3 countdownspan'>
+                            <p className="pr-2 mt-3"> Otp will expire in <b>  <span>{Minutes}:{Seconds}</span></b></p>
+                        </div> : ""}
                     </div>
 
-                    {validateError.twoFACode && <p className="error-message">{t(validateError.twoFACode)}</p>}
-
-
-                </>
-
-            }
-
-
-
-            
-
-            <div className="form-group text-center">
-                {
-                    !optStatus && <button className='themebtn'
-                        onClick={handleSentOTP}
-                        disabled={validateError && t(validateError.phoneCode)}
-                    >
-                        {
-                            buttonName == true ?
-                                <>
-                                    {loader && <i class="fas fa-spinner fa-spin"></i>} {t('RE_SEND_CODE')}
-                                </> :
-                                <>
-                                    {loader && <i class="fas fa-spinner fa-spin"></i>} {t('SEND_CODE')}
-                                </>
-                        }
-                    </button>
                 }
-                {
-                    optStatus && <button className='themebtn'
+
+
+                <label class="custcheck ml-2 blackandwhite f-12">
+                    <input type="checkbox"
+                        name="remember"
+                        onChange={handleCheckBox}
+                        checked={remember}
+                    />
+                    <span class="checkmark"></span> {t('KEEP_SIGN_COMPUTER')}
+                </label>
+                {/* {
+                    optStatus && */}
+
+                {/* <div className='text-center'>
+                     <button className='themebtn big my-3'
                         onClick={handleFormSubmit}
                         disabled={!isEmpty(validateError) || loader}
                     >
-                        {loader && <i class="fas fa-spinner fa-spin"></i>} {t('SIGN_IN_BUTTON')}
-                    </button>
+                        {loader && <i class="fas fa-spinner fa-spin"></i>} Login
+                    </button> */}
+                {/* <br />
+                <Link to="/login" className="mr-auto linkclr">
+                        {t('ALREADY_HAVE_ACCOUNT')}?
+                    </Link> */}
+                {/* </div> */}
+                {/* // } */}
+                {
+                    showTwoFA &&
+                    <>
+                        <div className="floatinglabel my-4">
+                            <label className="login_label">{t('OTP')}</label>
+                            <div className="input-group regGroupInput mt-2">
+
+                                <input
+                                    type={"text"}
+                                    className="form-control"
+                                    placeholder={t('ENTER_TWO_FA_CODE')}
+                                    name="twoFACode"
+                                    value={twoFACode}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                            </div>
+                        </div>
+
+                        {validateError.twoFACode && <p className="error-message">{t(validateError.twoFACode)}</p>}
+
+
+                    </>
+
                 }
-            </div>
-            {ipmodal && <IPrestrictmobileModal login={(e) => handleFormSubmit(e)} setotp={(data) => setOtp(data)} request={requestdata} setData={formValue} error ={validateError && validateError.invalidip} onDismiss={() => { setIpmodal(false); setOtp("") }} />}
-        </Fragment>
+
+
+
+
+
+                <div className="form-group text-center">
+                    {
+                        !optStatus && <button className='themebtn'
+                            onClick={handleSentOTP}
+                            disabled={validateError && t(validateError.phoneCode)}
+                        >
+                            {
+                                buttonName == true ?
+                                    <>
+                                        {loader && <i class="fas fa-spinner fa-spin"></i>} {t('RE_SEND_CODE')}
+                                    </> :
+                                    <>
+                                        {loader && <i class="fas fa-spinner fa-spin"></i>} {t('SEND_CODE')}
+                                    </>
+                            }
+                        </button>
+                    }
+                    {
+                        optStatus && <button className='themebtn'
+                            onClick={handleFormSubmit}
+                            disabled={!isEmpty(validateError) || loader}
+                        >
+                            {loader && <i class="fas fa-spinner fa-spin"></i>} {t('SIGN_IN_BUTTON')}
+                        </button>
+                    }
+                </div>
+                {ipmodal && <IPrestrictmobileModal login={(e) => handleFormSubmit(e)} setotp={(data) => setOtp(data)} request={requestdata} setData={formValue} error={validateError && validateError.invalidip} onDismiss={() => { setIpmodal(false); setOtp("") }} />}
+            </Fragment>
+        </div>
     )
 }
 

@@ -18,6 +18,8 @@ const ResetPasswordPage = (props) => {
 
     return (
         <div className="page_wrap">
+            <ResetPassword />
+
             <ScrollToTopOnMount />
             <Header className="header"
                 color="transparent"
@@ -30,7 +32,6 @@ const ResetPasswordPage = (props) => {
                     color: "dark",
                 }}
                 {...rest} />
-            <ResetPassword />
         </div>
     );
 }
