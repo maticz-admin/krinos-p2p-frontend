@@ -151,7 +151,7 @@ const Buybitcoin = (props) => {
                 navigate.push("/createoffer");
             }
             else {
-                toastAlert("error", "Complete your kyc and update fullname");
+                toastAlert("error", "Complete your kyc and update full name");
             }
         }
         else {
