@@ -152,9 +152,9 @@ export const withdrawRequestCoin = async (data) => {
         let respData = await axios({
             'method': 'post',
             'url': `/api/coinWithdraw`,
-            'data': { encode: encodedata(data) }
+            'data': data
         });
-        const response = decodedata(respData.data)
+        const response = respData.data
         return {
             status: "success",
             loading: false,
