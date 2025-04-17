@@ -73,7 +73,7 @@ const CryptoWallet = () => {
     if (status) {
       setCheckValue(checked);
       toastAlert("success", message, "checkValue");
-      // gethideZeroSatus();
+      gethideZeroSatus();
     } else {
       toastAlert("error", message, "checkValue");
     }
@@ -126,7 +126,7 @@ const CryptoWallet = () => {
   const gethideZeroSatus = async () => {
     const { result } = await gethideZeroStatus();
     console.log("result in hide zero status" , result);
-    setCheckValue(result.hideZeroStatus);
+    setCheckValue(result?.hideZeroStatus?.hideZeroStatus);
 
   };
 
@@ -177,7 +177,8 @@ const CryptoWallet = () => {
               onChange = {(e) => handleCheckBox(e)}
               checked={checkValue}
             />
-            <input class="form-check-input novisible" type="checkbox" value={checkValue} name={"checkValue"} checked={checkValue} onChange={handleCheckBox} />
+            {console.log("checking" , checkValue)}
+            {/* <input class="form-check-input novisible" type="checkbox" value={checkValue} name={"checkValue"} checked={checkValue} onChange={handleCheckBox} /> */}
             <label className="ml-1">Hide Zero Balance</label>
           </div>
 
@@ -636,6 +637,9 @@ const CryptoWallet = () => {
               // );
             }
           })}
+
+          {!originalData?.length && <p className="d-flex justify-content-center">No Data Found</p>}
+
       </div>
     </div>
   );

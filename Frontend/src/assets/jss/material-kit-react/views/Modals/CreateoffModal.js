@@ -44,17 +44,20 @@ const CreateoffModal = (props) =>{
             userid :  userdata?.userId //redux usr data
           }
           var userresult = await Getsingleuserhook(userpayload);
+          console.log("userresult" , userresult , userresult?.data?.type);
+          
           if(userresult?.data?.type == "success"){
             // setUserdatas(userresult?.data?.data);
             const wallet = userresult?.data?.wallet?.assets
             const balance = wallet?.find(e => e?.coin == props?.payload?.coin)
             const kyc = userresult?.data?.kyc;
             const userdata = userresult?.data?.data;
-            if(props?.payload?.ordertype == "Sell"){
+            if(props?.payload?.ordertype == "Sell"){console.log("kyc?.status" , kyc?.status);
+            
                 if(balance?.p2pBal <= 0){
                     toastAlert("error" , "Insufficient balance!");
                 }
-                else if(kyc?.idProof?.status == "approved" && userdata?.firstName && userdata?.lastName){
+                else if(kyc?.status == "Approved" && userdata?.firstName && userdata?.lastName){
                     var data = {
                         createdata : props?.payload
                     }
@@ -65,10 +68,10 @@ const CreateoffModal = (props) =>{
                     props.onsetdata(result?.data);
                 }
                 else{
-                    toastAlert("error" , "Complete your kyc and update fullname");
+                    toastAlert("error" , "Complete your kyc and update full name");
                 }
             }
-            else if(kyc?.idProof?.status == "approved" && userdata?.firstName && userdata?.lastName){
+            else if(kyc?.status == "Approved" && userdata?.firstName && userdata?.lastName){
                 var data = {
                     createdata : props?.payload
                 }
@@ -78,7 +81,7 @@ const CreateoffModal = (props) =>{
                 props.onsetdata(result?.data);
             }
             else{
-                toastAlert("error" , "Complete your kyc and update fullname");
+                toastAlert("error" , "Complete your kyc and update full name");
             }
           }
     }

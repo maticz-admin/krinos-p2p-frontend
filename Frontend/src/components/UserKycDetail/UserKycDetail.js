@@ -39,10 +39,12 @@ const UserKycDetail = () => {
     // console.log('addressProofaddressProof----', useSelector(state => state));
     const accountData = useSelector(state => state.account);
     const { userId, firstName, lastName, email, emailStatus, phoneStatus, phoneCode, phoneNo, type, createAt, bankDetail } = accountData;
-
+    console.log("userdata"  , accountData);
+    
     useEffect(() => {
         // handleverify();
         handlefetchtkn();
+        Getuserdetail()
     } , [])
 
     const handlefetchtkn = async() => {
@@ -108,6 +110,7 @@ const UserKycDetail = () => {
 
     const handleverify = async() => {
         try{
+            setLoader(true)
             let result = await Checkdidit({features : "", callback : `${config?.fronturl}/profile`, vendor_data : userdetail?._id});
             console.log("result on checking" , result);
             if(result?.data?.result?.status){
@@ -116,9 +119,24 @@ const UserKycDetail = () => {
             else{
                 toastAlert("error" , "error on didit")
             }
+            setLoader(false)
         }
         catch(e){
             console.log("Error on handle verify" , e);
+        }
+    }
+
+    const Getuserdetail = async() => {
+        try{
+            let userpayload = {
+                userid: userdata?.account?.userId //redux usr data
+            }
+            var userresult = await Getsingleuserhook(userpayload);
+            console.log("get user detail" , userresult);
+            setUserdetail(userresult?.data)
+        }
+        catch(e){
+            console.log("Error on get user detail" , e);
         }
     }
 
@@ -181,13 +199,13 @@ const UserKycDetail = () => {
                                     <li className='flex-column'>
                                         <h5 className='title-txt my-0'>Kyc</h5>
                                         <p className='mt-2 des mb-0 '>To ensure a smooth and secure experience, we require all users to complete their KYC (Know Your Customer) process. This helps us maintain a safe and trusted platform for everyone.
-                                        Navigate to the KYC section under your account settings.
-                                        Fill out the necessary information and upload required documents (such as proof of identity and address).
-                                        Submit your application for verification.
+                                        1.Click Complete Now to navigate the KYC section.
+                                        2.Fill out the necessary information and upload required documents (such as proof of identity and address).
+                                        3.Submit your application for verification.
                                         Once your KYC is approved, you’ll enjoy full access to all our features and services. If you have any questions or need assistance, feel free to reach out to our support team.
                                         Secure. Simple. Quick. Complete your KYC today and stay ahead with Didit!
                                         </p>
-                                        <div className="form-group green-button mt-2">
+                                        {!["Approved" , "In Review"]?.includes(userdetail?.kyc?.status) &&<div className="form-group green-button mt-2">
                                             <button
                                                 type="button" className="themebtn text-uppercase py-2 my-0"
                                                 onClick={handleverify}
@@ -196,7 +214,15 @@ const UserKycDetail = () => {
                                                 {loader && <i class="fas fa-spinner fa-spin"></i>}
                                                 {"Complete Now"}
                                             </button>
-                                        </div>
+                                        </div>}
+
+                                        {userdetail?.kyc?.status ==  "Approved" &&<div className="form-group green-button mt-2">
+                                            <p>Your kyc request APPROVED successfully</p>
+                                            </div>}
+
+                                            {userdetail?.kyc?.status ==  "In Review" &&<div className="form-group green-button mt-2">
+                                                <p>Your kyc request under review</p>
+                                            </div>}
                                     </li>
 
                                 </ul>

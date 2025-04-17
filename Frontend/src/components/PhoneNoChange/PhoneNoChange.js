@@ -213,27 +213,38 @@ const PhoneNoChange = () => {
         newPhoneNo: phoneNo,
       });
     }
-  }, [phoneNo]);
+console.log("validate error" , validateError);
 
-  useEffect(() => {
-    if (mobileDetail.timer > 0 && mobileDetail.timerStart == true) {
-      const intervalId = setInterval(() => {
-        setMobileDetail({
-          ...mobileDetail,
-          ...{ timer: mobileDetail.timer - 1 },
-        });
-      }, 1000);
+    const handleFormSubmit = async (e) => {
+        // debugger
+        e.preventDefault();
+        try {
+            setLoader(true)
 
-      return () => clearInterval(intervalId);
-    } else if (mobileDetail.timer == 0 && mobileDetail.timerStart == true) {
-      setMobileDetail({
-        ...mobileDetail,
-        ...{
-          timer: 600,
-          timerStart: false,
-          isDisable: false,
-        },
-      });
+            let reqData = {
+                newPhoneCode,
+                newPhoneNo,
+                otp
+            }
+            let { status, loading, error, message, result } = await verifyNewPhone(reqData);
+            console.log("status, loading, error, message, result" , status, loading, error, message, result);
+            
+            setLoader(loading)
+            if (status == "success") {
+                setDisablePh(true)
+                // setFormValue({
+                //     'newPhoneCode': result?.phoneCode,
+                //     'newPhoneNo': result?.phoneNo,
+                //     'otp': ''
+                // })
+                setMobileDetail(mobileInitialValue)
+                toastAlert('success', message, 'editPhoneNumber');
+            } else {
+                setValidateError(error);
+            }
+        }
+        catch (err) {
+        }
     }
   }, [mobileDetail.timer]);
 
@@ -251,70 +262,63 @@ const PhoneNoChange = () => {
                         specialLabel={false}
                     // disabled={disablePh}
                     /> */}
-          <div className="countrylist phonenumber">
-            <Autocomplete
-              value={newPhoneCode}
-              //  open={open}
-              disablePortal
-              id="combo-box-demo"
-              options={COUNTRY}
-              onChange={(e, val) => handlecode(val?.dial_code)}
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="CODE" />}
-            />
-          </div>
-          <div class="input-group-append append_dir_mov">
-            <input
-              placeholder={t("PHONE_NUMBER")}
-              value={newPhoneNo}
-              onChange={(e) => handleNumber(e?.target?.value)}
-              type="text"
-              className="form-control ml-2 mobile_nout_f"
-            />
+                    <div className='countrylist phonenumber'>
+                     <Autocomplete value={newPhoneCode}
+                    //  open={open}
+      disablePortal
+      id="combo-box-demo"
+      options={COUNTRY}
+      onChange={(e , val) => handlecode(val?.dial_code)}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="CODE" />}
+    /></div>
+                    <div class="input-group-append append_dir_mov">
+                        <input 
+                     placeholder={t("PHONE_NUMBER")}
+                        
+                     value={newPhoneNo}
+                        onChange = {(e) => handleNumber(e?.target?.value)}
+                        type="text" className='form-control ml-2 mobile_nout_f'/>
+                       
+                        <button
+                            type="button"
+                            className="btn btn-primary text-uppercase py-2 my-0"
+                            disabled={mobileDetail.isDisable || !isEmpty(validateError.newPhoneCode) || !isEmpty(validateError.newPhoneNo)}
+                            onClick={handleMobileSubmit}
+                        >
+                            {mobileDetail.isLoading && <i class="fas fa-spinner fa-spin mr-2"></i>}
+                            {mobileDetail.type == 'send' ? t("SEND_OTP") : t("RESEND_OTP")}
+                        </button>
 
-            <button
-              type="button"
-              className="btn btn-primary text-uppercase py-2 ml-2 my-0"
-              disabled={
-                mobileDetail.isDisable ||
-                !isEmpty(validateError.newPhoneCode) ||
-                !isEmpty(validateError.newPhoneNo)
-              }
-              onClick={handleMobileSubmit}
-            >
-              {mobileDetail.isLoading && (
-                <i class="fas fa-spinner fa-spin mr-2"></i>
-              )}
-              {mobileDetail.type == "send" ? t("SEND_OTP") : t("RESEND_OTP")}
-            </button>
-          </div>
-        </div>
-        <p className="error-message" style={{ color: "red" }}>
-          {validateError?.newPhoneNo}
-        </p>
-      </div>
-      <div className="form-group floatinglabel otp_inp_grp mt-4">
-        <label className="otp_lable_float_zind">{t("ENTER_OTP")}</label>
-        <div className="input-group">
-          <input
-            type="text"
-            className="form-control"
-            name="otp"
-            value={otp}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            pattern="[0-9]*"
-          />
-          <div className="input-group-append">
-            <span className="input-group-text themebtn text-uppercase py-2 my-0">
-              {mobileDetail.timer != 0 && mobileDetail.timer != 120 && (
-                <>
-                  {mobileDetail.timer} {t("SEC")}
-                </>
-              )}
-            </span>
-          </div>
-          {/* 
+
+                    </div>
+                </div>
+                <p className="error-message" style={{ color: 'red' }}>{validateError?.newPhoneNo}</p>
+                <p className="error-message" style={{ color: 'red' }}>{validateError?.phoneNo}</p>
+                
+            </div>
+            <div className="form-group floatinglabel otp_inp_grp mt-4">
+                <label className='otp_lable_float_zind'>{t("ENTER_OTP")}</label>
+                <div className="input-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        name="otp"
+                        value={otp}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        pattern="[0-9]*"
+                    />
+                    <div className="input-group-append">
+                        <span className="input-group-text themebtn text-uppercase py-2 my-0">
+                            {
+                                (mobileDetail.timer != 0 && mobileDetail.timer != 120) && <small className="textBlue">
+                                    {mobileDetail.timer} {t("SEC")}
+                                </small>
+                            }
+                        </span>
+                    </div>
+                    {/* 
                     {
                         toched.otp && validateError.otp && <span className="error_text">{t(validateError.otp)}</span>
                     } */}

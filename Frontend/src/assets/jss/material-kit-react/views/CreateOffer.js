@@ -165,8 +165,22 @@ const CreateOffer = (props) => {
     useEffect(() => {
         async function fetchdata() {
             var result = await Getcoinlisthooks();
-            setCrypto(result?.data);
-            setCoin(result?.data[0].symbol)
+            
+            let finalarray = [];
+            // let finaldata = result?.data?.reduce(
+            //     (accumulator, currentValue) => {if(currentValue?.type == "crypto")accumulator.push(currentValue)},
+            //     [],
+            //   );
+
+            for(let i =0 ; i<result?.data?.length; i++){
+                if(result?.data[i]?.type == "crypto"){
+                    finalarray.push(result?.data[i]);
+                }
+            }
+            console.log("Result in get coin list hooks" , result ,finalarray);
+            
+            setCrypto(finalarray);
+            setCoin(finalarray[0].symbol)
             var precurrency = await Getpreferedcurrency()
             setPrefferedcurrencylist(precurrency?.data);
             setPrefferedcurrency(precurrency?.data[0]?.symbol)

@@ -14,7 +14,8 @@
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta http-equiv="X-Frame-Options" content="deny"/>
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon1.ico" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -96,12 +97,12 @@
     
 
     <script>
-      AOS.init({
+      // AOS.init({
         // disable: function() {
         //   var maxWidth = 600;
         //   return window.innerWidth < maxWidth;
         // }
-      });
+      // });
 
       // $(document).ready(function() {
       //   setTimeout(function(){

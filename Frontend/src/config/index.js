@@ -1,18 +1,18 @@
 let key = {};
-let env='local' //production or local
-if (env === "demo") {
+let env='demo' //production or local
+if (env === "dem") {
     const API_URL = 'https://krinosp2p-backend.maticz.in/';
     key = {
         fronturl : "https://krinosp2p.maticz.in/",
         secretOrKey: "vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3",
         CRYPTO_SECRET_KEY: "1234567812345678",
-        RECAPTCHA_SITE_KEY: "6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1", //local
+        RECAPTCHA_SITE_KEY: "6LcK8vEqAAAAAD06JyU22cbe42oqCgZRhjkDbP8L", //local
         API_URL: ' https://krinosp2p-backend.maticz.in/',
         FRONT_URL: "https://krinosp2p.maticz.in/",
         ADMIN_URL: 'https://contorls.tossvtoss.com',
         SOCKET_URL: 'https://krinosp2p-backend.maticz.in/',
         getGeoInfo: "https://ipapi.co/json/",
-        AUTHENTICATOR_URL: {
+        AUTHENTICATOR_URL : {
             PLAY_STORE: "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2",
             APP_STORE: "https://apps.apple.com/us/app/google-authenticator/id388497605",
         },
@@ -24,11 +24,11 @@ if (env === "demo") {
         fronturl : "https://krinosp2p.maticz.in/",
         secretOrKey: "vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3",
         CRYPTO_SECRET_KEY: "1234567812345678",
-        RECAPTCHA_SITE_KEY: "6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1",    //"6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1", 
-        API_URL: `${API_URL}:2053`,
+        RECAPTCHA_SITE_KEY: "6LfUI_IqAAAAAI_l63qv0vh08os6U1qMmQRzgitA",    //"6Lfa3NYqAAAAAOPNURwGG_sO4YqgDX5iwJZmj7T1", 
+        API_URL: `${API_URL}:2054`,
         FRONT_URL: 'http://localhost', //'http://localhost:3000',
         ADMIN_URL: 'http://localhost:3001/admin',
-        SOCKET_URL: `${API_URL}:2053`,
+        SOCKET_URL: `${API_URL}:2054`,
         getGeoInfo:  "https://ipapi.co/json/",
         AUTHENTICATOR_URL: {
             PLAY_STORE: "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2",

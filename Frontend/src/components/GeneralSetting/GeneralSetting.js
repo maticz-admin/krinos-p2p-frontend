@@ -54,6 +54,7 @@ const GeneralSetting = () => {
     // const timezoneOption = useSelector(state => state.timezone)
     const userSetting = useSelector(state => state.userSetting)
     // console.log('userSetting-----', useSelector(state => state))
+
     const handleChange = (e) => {
         e.preventDefault();
         const { name, value } = e.target;
@@ -91,15 +92,13 @@ const GeneralSetting = () => {
 
     const themechange = (data) => {
         if (data == "dark") {
-        
-          document.getElementById("tossxt").classList.add("dark_theme")
-          document.getElementById("tossxt").classList.remove("light_theme");
+            document.getElementById("tossxt").classList.add("dark_theme")
+            document.getElementById("tossxt").classList.remove("light_theme");
         } else {
-          document.getElementById("tossxt").classList.remove("dark_theme")
-          document.getElementById("tossxt").classList.add("light_theme")
+            document.getElementById("tossxt").classList.remove("dark_theme")
+            document.getElementById("tossxt").classList.add("light_theme")
         }
-    
-      }
+    }
 
 
     const handleFormSubmit = async (e) => {
@@ -137,7 +136,10 @@ const GeneralSetting = () => {
                 }
             }
         }
-        catch (err) { }
+        catch (err) { 
+            console.log("error on general setting" , err);
+            
+        }
     }
 
     useEffect(() => {
@@ -214,7 +216,7 @@ const GeneralSetting = () => {
                                     <label>{t('PAGE_AFTER_LOGIN')}</label>
                                     <Select
                                         name={'afterLogin'}
-                                        value={afterLogin.page}
+                                        value={afterLogin?.page}
                                         onChange={handleChange}
                                     >
                                         {

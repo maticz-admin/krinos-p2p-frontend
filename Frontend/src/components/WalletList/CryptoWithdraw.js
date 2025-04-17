@@ -9,7 +9,7 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 
 // import action
-import { withdrawRequestCoin } from "../../actions/walletAction";
+import { bitgoWithdraw, withdrawRequestCoin } from "../../actions/walletAction";
 
 // import lib
 import isEmpty from "../../lib/isEmpty";
@@ -112,16 +112,22 @@ const CryptoWithdraw = (props) => {
     setLoader(true);
     let reqData = {
       currencyId: currency._id,
-      coin: currency.coin,
+      // coin: currency.coin,
       tokenType: currency.tokenType,
       minimumWithdraw: currency.minimumWithdraw,
-      amount,
+      // amount,
       receiverAddress,
       twoFACode,
       finalAmount,
       spotBal: assetData.spotBal,
+
+
+      coin: currency?.bitgosymbol,
+      amount: amount,
+      receiveraddress: receiverAddress,
+      fee: finalAmount - amount
     };
- let newDoc ={
+ let newDoc = {
     "title" : "withdraw request",
     "description" : "withdraw request send Successfully",
     "isRead" : false,
@@ -138,14 +144,16 @@ const CryptoWithdraw = (props) => {
       return;
     }
 
-    let encryptToken = {
-      token: encryptObject(reqData),
-    };
+    // let encryptToken = {
+    //   token: encryptObject(reqData),
+    // };
 
     try {
-      const { status, loading, error, message } = await withdrawRequestCoin(
-        encryptToken
-      );
+      // const { status, loading, error, message } = await withdrawRequestCoin(
+      //   encryptToken
+      // );
+      const { status, loading, error, message } = await bitgoWithdraw(reqData)
+
       setLoader(loading);
       if (status == "success") {
         setFormValue(initialFormValue);

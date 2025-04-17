@@ -123,6 +123,7 @@ export const userEmailActivation = async (data) => {
 export const login = async (data, dispatch) => {
   try {
     data = encodedata(data)
+    // console.log('data-datadata----', data)
     let respData = await axios({
       method: "post",
       url: `/api/login`,
@@ -166,7 +167,6 @@ export const login = async (data, dispatch) => {
     };
     // }
   } catch (err) {
-    // console.log('err-----', err)
 
     handleResp(err, 'error')
     const response = decodedata(err.response.data)
@@ -175,15 +175,18 @@ export const login = async (data, dispatch) => {
       return {
         status: "failed",
         loading: false,
-        message: response.errors.password,
-        error: response.errors.password,
+        message: response?.message,
+        error: response?.errors,
         authToken: response.authToken,
       };
     } catch (err) {
+      
       handleResp(err, 'error')
+      console.log('err-----', err)
       return {
         status: "failed",
         loading: false,
+        message: response?.message,
       };
     }
   }
@@ -1074,7 +1077,7 @@ export const resendOtp = async (data) => {
     let respData = await axios({
       method: "post",
       url: `/api/resend-otp`,
-      data: { encode: decodedata(data) },
+      data: { encode: encodedata(data) },
     });
     const response = decodedata(respData.data)
     return {
@@ -1085,6 +1088,8 @@ export const resendOtp = async (data) => {
     };
   } catch (err) {
     handleResp(err, 'error')
+    console.log("errir uin resend" , err);
+    
     const response = decodedata(err.response.data)
     return {
       status: "failed",

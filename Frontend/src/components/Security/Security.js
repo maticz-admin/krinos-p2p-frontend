@@ -49,7 +49,7 @@ const Security = () => {
                 <div id="twofactor"
                     className={clsx('tab-pane mt-3 fade', { "in active show": activeTab == '2FA' })}
                 >
-                    <TwoFA />
+                    <TwoFA/>
                 </div>
                 <div id="loginpassword"
                     className={clsx('tab-pane mt-3 fade', { "in active show": activeTab == 'password' })}

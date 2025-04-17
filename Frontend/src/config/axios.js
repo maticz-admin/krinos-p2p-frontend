@@ -9,6 +9,22 @@ import isLogin from '../lib/isLogin';
 axios.defaults.baseURL = config.API_URL;
 axios.defaults.headers.common['Authorization'] = getAuthToken();
 
+axios.defaults.headers.common['Content-Security-Policy'] =
+    "default-src 'self'; " +
+    `script-src 'self' ${config.FRONT_URL} 'unsafe-inline' 'unsafe-eval'; ` +
+    `style-src 'self'  ${config.FRONT_URL} 'unsafe-inline'; ` +
+    `img-src 'self' data:  ${config.FRONT_URL}; ` +
+    `font-src 'self'  ${config.FRONT_URL}; ` +
+    `connect-src 'self'  ${config.FRONT_URL}; ` +
+    `media-src 'self'  ${config.FRONT_URL}; ` +
+    `frame-src 'self'  ${config.FRONT_URL}; ` +
+    "object-src 'none'; " +
+    "base-uri 'self'; " +
+    "form-action 'self'; " +
+    "frame-ancestors 'self'; " +
+    "upgrade-insecure-requests; " +
+    "block-all-mixed-content;";
+
 export const setAuthorization = (token) => {
     axios.defaults.headers.common['Authorization'] = token;
 }

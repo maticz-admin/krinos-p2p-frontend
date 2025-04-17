@@ -22,8 +22,8 @@ const Announcement = () => {
             {
                 anncData && anncData.length > 0 && !isEmpty(anncData[0]) && <li>{anncData[0].content} - <span>{t("ADMIN_ANNOUNCEMENT")}</span></li>
             }
-{/* momentFormat(loginHistory.createdDate, 'DD-MM-YYYY HH:mm') */}
-{/* new Date(parseFloat(loginHistory.createdDate)) */}
+        {/* momentFormat(loginHistory.createdDate, 'DD-MM-YYYY HH:mm') */}
+        {/* new Date(parseFloat(loginHistory.createdDate)) */}
             {
                 !isEmpty(loginHistory) && <li>{new Date(loginHistory?.createdDate).getDate()+"-"+new Date(loginHistory?.createdDate).getMonth() +"-"+ new Date(loginHistory?.createdDate).getFullYear() + " " + new Date(loginHistory?.createdDate).getHours() + ":"+new Date(loginHistory?.createdDate).getMinutes()}, {loginHistory.broswername}, {loginHistory.ipaddress}  - <span>{t("LAST_LOGIN")}</span></li>
             }
