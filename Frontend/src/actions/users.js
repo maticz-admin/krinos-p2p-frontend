@@ -1077,7 +1077,7 @@ export const resendOtp = async (data) => {
     let respData = await axios({
       method: "post",
       url: `/api/resend-otp`,
-      data: { encode: decodedata(data) },
+      data: { encode: encodedata(data) },
     });
     const response = decodedata(respData.data)
     return {
@@ -1088,6 +1088,8 @@ export const resendOtp = async (data) => {
     };
   } catch (err) {
     handleResp(err, 'error')
+    console.log("errir uin resend" , err);
+    
     const response = decodedata(err.response.data)
     return {
       status: "failed",

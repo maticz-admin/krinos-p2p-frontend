@@ -118,7 +118,7 @@ const Bitcoincompany = (props) => {
         }
         else if (val < parseFloat(tradedata?.min) || val > parseFloat(tradedata?.max)) {
             setButton(true);
-            setError(`Value must be > ${tradedata?.min} and < ${tradedata?.max}`);
+            setError(`Value must be greater than ${tradedata?.min} and lesser than ${tradedata?.max}`);
         }
         else {
             setError("");
@@ -126,7 +126,7 @@ const Bitcoincompany = (props) => {
         }
 
         if (tradedata?.ordertype == "Sell") {
-            var onepercent = prefferedcurrencyvalue / 100;
+            var onepercent = prefferedcurrencyvalue / 100;                                                                                                                                            
             var uservalonepercent = val / 100;
             var margin = tradedata?.offermargin ? tradedata?.offermargin : variablepercentage;
             var offerpercentage = uservalonepercent * margin;

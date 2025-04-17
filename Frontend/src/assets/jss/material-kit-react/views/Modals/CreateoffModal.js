@@ -68,7 +68,7 @@ const CreateoffModal = (props) =>{
                     props.onsetdata(result?.data);
                 }
                 else{
-                    toastAlert("error" , "Complete your kyc and update fullname");
+                    toastAlert("error" , "Complete your kyc and update full name");
                 }
             }
             else if(kyc?.status == "Approved" && userdata?.firstName && userdata?.lastName){
@@ -81,7 +81,7 @@ const CreateoffModal = (props) =>{
                 props.onsetdata(result?.data);
             }
             else{
-                toastAlert("error" , "Complete your kyc and update fullname");
+                toastAlert("error" , "Complete your kyc and update full name");
             }
           }
     }

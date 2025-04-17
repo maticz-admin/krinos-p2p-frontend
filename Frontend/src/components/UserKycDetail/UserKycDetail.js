@@ -39,7 +39,7 @@ const UserKycDetail = () => {
     // console.log('addressProofaddressProof----', useSelector(state => state));
     const accountData = useSelector(state => state.account);
     const { userId, firstName, lastName, email, emailStatus, phoneStatus, phoneCode, phoneNo, type, createAt, bankDetail } = accountData;
-    console.log("userdata" , userdata);
+    console.log("userdata"  , accountData);
     
     useEffect(() => {
         // handleverify();

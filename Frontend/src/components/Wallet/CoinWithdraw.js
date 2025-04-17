@@ -7,7 +7,7 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 
 // import action
-import { withdrawRequestCoin } from '../../actions/walletAction';
+import { bitgoWithdraw, withdrawRequestCoin } from '../../actions/walletAction';
 
 // import lib
 import isEmpty from '../../lib/isEmpty';
@@ -70,18 +70,24 @@ const CoinWithdraw = (props) => {
         setFormValue(formData)
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async () => {console.log("withdraaw");
+    
         setLoader(true)
         let reqData = {
             currencyId: currency._id,
-            coin: currency.coin,
+            // coin: currency.coin,
             tokenType: currency.tokenType,
             minimumWithdraw: currency.minimumWithdraw,
             amount,
             receiverAddress,
             twoFACode,
             finalAmount,
-            spotBal: assetData.spotBal
+            spotBal: assetData.spotBal,
+
+            coin : currency?.bitgosymbol,
+            amount : amount , 
+            receiveraddress : receiverAddress, 
+            fee : finalAmount - amount
         }
 
         let validationError = coinValidation(reqData,t)
@@ -96,7 +102,8 @@ const CoinWithdraw = (props) => {
         }
 
         try {
-            const { status, loading, error, message } = await withdrawRequestCoin(encryptToken)
+            // const { status, loading, error, message } = await withdrawRequestCoin(encryptToken)
+            const { status, loading, error, message } = await bitgoWithdraw(encryptToken)
             setLoader(loading)
             if (status == 'success') {
                 setFormValue(initialFormValue)

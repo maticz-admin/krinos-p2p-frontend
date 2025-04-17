@@ -11,7 +11,7 @@ const WalletBalance = () => {
 
     return (
         <div className="p2p_card">
-            <h3 className="login_title_8">{t("WALLET_BAL")}</h3>
+            {/* <h3 className="login_title_8">{t("WALLET_BAL")}</h3> */}
             {/*<Section1
                 firstCoin={'BTC'}
                 secondCoin={'USD'}

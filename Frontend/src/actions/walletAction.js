@@ -382,3 +382,32 @@ export const checkEmail = async () => {
     });
     return respData.data.result
 }
+
+
+export const bitgoWithdraw = async (data) => {
+    try {
+
+        let respData = await axios({
+            'method': 'post',
+            'url': `/api/bitgo-withdraw`,
+            'data': { encode: encodedata(data) }
+        });
+        const response = decodedata(respData.data)
+        return {
+            status: "success",
+            loading: false,
+            message: response.message,
+            result: response.result
+        }
+    }
+    catch (err) {
+        handleResp(err, 'error')
+        const response = decodedata(err.response.data)
+        return {
+            status: "failed",
+            loading: false,
+            message: response.message,
+            error: response.errors
+        }
+    }
+}

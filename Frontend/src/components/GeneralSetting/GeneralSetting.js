@@ -136,7 +136,10 @@ const GeneralSetting = () => {
                 }
             }
         }
-        catch (err) { }
+        catch (err) { 
+            console.log("error on general setting" , err);
+            
+        }
     }
 
     useEffect(() => {
@@ -213,7 +216,7 @@ const GeneralSetting = () => {
                                     <label>{t('PAGE_AFTER_LOGIN')}</label>
                                     <Select
                                         name={'afterLogin'}
-                                        value={afterLogin.page}
+                                        value={afterLogin?.page}
                                         onChange={handleChange}
                                     >
                                         {

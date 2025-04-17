@@ -89,7 +89,12 @@ const IprestrictModal = (props) => {
     // }
 
     const handlesubmit = (e) => {
-        props.login(e);
+        if(otp?.length != 4){
+            toastAlert('error', "Enter correct otp", 'login');
+        }
+        else{
+            props.login(e);
+        }
     }
 
 
@@ -97,7 +102,9 @@ const IprestrictModal = (props) => {
         let data = {
             email: props.email
         }
-        var otpData = await resendOtp(data)
+        var otpData = await resendOtp(data);
+        console.log("otp data" , otpData);
+        
         if (otpData.status == 'success') {
             if (otpData.message == "OTP send to your mail id") {
                 toastAlert('success', otpData.message, 'login');
@@ -172,12 +179,11 @@ const IprestrictModal = (props) => {
                 <Modal.Header>
                     <Modal.Title id="contained-modal-title-vcenter">
                         <p className='mb-0'>Login New Device</p>
-                        <p className='submod-title'>Please Enter OTP </p>
+                        <p className='submod-title'>Please Enter the OTP </p>
                     </Modal.Title>
                     <Button variant="secondary" className='modalbtns' onClick={props.onDismiss}> x
                     </Button>
                 </Modal.Header>
-
                 <Modal.Body>
                     <div>
                         <form action="" className="mt-4 mb-2 confirm d-flex flex-1 form_otp_new">
@@ -206,7 +212,7 @@ const IprestrictModal = (props) => {
                             }
                             ></Countdown>} */}
 
-                            <p className="pr-2 mt-3"> Otp will expire in <b>  <span>{Minutes}:{Seconds}</span></b></p>
+                            <p className="pr-2 mt-3">The OTP will expire in <b>  <span>{Minutes}:{Seconds}</span></b></p>
 
 
                         </div>

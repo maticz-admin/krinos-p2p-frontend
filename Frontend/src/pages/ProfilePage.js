@@ -106,13 +106,11 @@ const ProfilePage = (props) => {
     //   toastAlert("success" , "Profileimage updated successfully!");
     // }
     else{
-      toastAlert("error" , "Profileimage is required!");
+      toastAlert("error" , "Profile image is required!");
     }
   }
   const handleFile = async (e) => {
-
     let imageFormat = /\.(jpg|JPG|jpeg|JPEG|png|PNG|pdf|PDF)$/;
-
     const { name, files } = e.target;
     let fileSize = files[0].size
     let filesize = Math.round(( fileSize/ 1024));
@@ -183,7 +181,7 @@ const ProfilePage = (props) => {
 
                   <div class="tab-content">
                     <div id="Profile" class="tab-pane fade in active show">
-                      <ProfileDetail />
+                      <ProfileDetail/>
                       <div className="row align-items-center">
                         <div className="col-lg-12">
                           <h3 className="dash_title mb-3">{t("CONTACT_DETAILS")}</h3>

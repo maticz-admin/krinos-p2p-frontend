@@ -31247,6 +31247,10 @@ select {
   justify-content: center;
 }
 
+.dark_theme .afterlogin_profile {
+  color: #fff;
+}
+
 .afterlogin_profile img {
   border-radius: 25px;
   height: 40px;

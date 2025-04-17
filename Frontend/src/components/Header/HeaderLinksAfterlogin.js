@@ -298,6 +298,10 @@ export default function HeaderLinks1(props) {
               </li>
             )}
 
+              <li>
+                <NavLink to="/" color="transparent" className="nav-link">Home</NavLink>
+              </li>
+
             {/* {isAuth && (
               <li>
               <Dropdown>
