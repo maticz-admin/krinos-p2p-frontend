@@ -250,7 +250,7 @@ a.buyhover:hover .tradelists{
 }
 
 .modal-backdrop.show {
-    opacity: 0.7 !important;
+    opacity: 0.95 !important;
 }
 
 /* .modal-backdrop.show::after {
