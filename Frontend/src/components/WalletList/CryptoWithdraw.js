@@ -191,13 +191,14 @@ const CryptoWithdraw = (props) => {
                 />
                 <i class="">{assetData && assetData.coin == "BNB.BSC" ? "BNB(Binance Coin)" : assetData?.coin}</i>
               </div>
-            </div>
+           
             {validateError.amount && (
               <p className="error-message">{t(validateError.amount)}</p>
             )}
             {amterr && (
               <p className="error-message">{amterr}</p>
             )}
+             </div>
           </GridItem>
           <GridItem xs={12} sm={12} md={12} lg={6} >
           
@@ -260,10 +261,11 @@ const CryptoWithdraw = (props) => {
                   onChange={handleChange}
                 />
               </div>
-            </div>
+            
             {validateError.twoFACode && (
               <p className="error-message">{t(validateError.twoFACode)}</p>
             )}
+            </div>
           </GridItem>
 
           <GridItem xs={12} sm={12} md={12} lg={12}>
