@@ -22,7 +22,7 @@ import { setLang, getLang } from '../../lib/localStorage';
 import { upperCase } from '../../lib/stringCase'
 import config from "../../config/index";
 
-import {Getcoinlisthooks} from "../../actions/P2PorderAction";
+import { Getcoinlisthooks } from "../../actions/P2PorderAction";
 const useStyles = makeStyles(styles);
 
 const HeaderLinks = () => {
@@ -32,7 +32,7 @@ const HeaderLinks = () => {
   const { t, i18n } = useTranslation();
   // const locationsss =  window.location.pathname
   const [anchorEl, setAnchorEl] = React.useState(null);
-  
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -45,8 +45,8 @@ const HeaderLinks = () => {
   useEffect(() => {
     // setTimeout(logout(history, dispatch) , 1800000)
     let data = localStorage.getItem("theme")
-themechange(data)
-  },[])
+    themechange(data)
+  }, [])
 
   // state
   const [langOption, setLangOption] = useState([])
@@ -61,7 +61,7 @@ themechange(data)
   const [theme, settheme] = useState(false);
 
   const [theme1, settheme1] = useState(false);
-  const [coinlist , setCoinlist] = useState([]);
+  const [coinlist, setCoinlist] = useState([]);
 
   // redux-state
   const accountData = useSelector(state => state.account);
@@ -136,9 +136,9 @@ themechange(data)
     fetchcoin();
   }, [language])
 
-  const fetchcoin = async()=>{
+  const fetchcoin = async () => {
     var result = await Getcoinlisthooks();
-    console.log("Getcoinlisthooks----",result)
+    console.log("Getcoinlisthooks----", result)
     setCoinlist(result?.data);
   }
 
@@ -155,232 +155,243 @@ themechange(data)
       <Hidden smDown className="drream">
         <div className="mobilelog">
           <div>
-          {/* {locationsss == "/viewoffers/:id/:id" ? */}
+            {/* {locationsss == "/viewoffers/:id/:id" ? */}
             {/* <div className="d-flex buyss">
              
 
              
             </div>  */}
             {/* // : ""} */}
-          <List className={classes.list + " menu_main_navbar buyss"}>
-            {/* <ListItem className={classes.listItem}>
-          <Select
-            name="language"
-            value={selLang}
-            onChange={handleLanguage}
-          >
-            {
-              langOption && langOption.length > 0 && langOption.map((item, key) => {
-                return (
-                  <option key={key} value={item.code}>{upperCase(item.code)}</option>
-                )
-              })
-            }
-          </Select>
-        </ListItem> */}
-        {
-           <Dropdown className="headerdropdown m-left">
-           <Dropdown.Toggle variant="success" className='btcc' id="dropdown-basic">
-             Buy
-           </Dropdown.Toggle>
-
-           <Dropdown.Menu className="headerdropdown_heght_fix">
-             {coinlist?.map((data , i) => {
-             var img = "crypt" + (i+1);
-             return(<Dropdown.Item href={`/viewoffers/Buy/${data?.coin}`}><img src={`${config.API_URL}/images/currency/${data?.image}`} className="iconss" /> Buy {data?.coin}</Dropdown.Item>)})}
-             {/* <Dropdown.Item href="/viewoffers/Buy/ETH"><img src={Images.crypt2} className="iconss" /> Buy ETH</Dropdown.Item>
-             <Dropdown.Item href="/viewoffers/Buy/USDT"><img src={Images.crypt3} className="iconss" /> Buy USDT</Dropdown.Item>
-             <Dropdown.Item href="/viewoffers/Buy/RIPPLE"><img src={Images.crypt4} className="iconss" /> Buy RIPPLE</Dropdown.Item> */}
-           </Dropdown.Menu>
-         </Dropdown>
-        }
-        {
-           <Dropdown className="headerdropdown m-left">
-           <Dropdown.Toggle variant="success" className='btcc' id="dropdown-basic">
-             Sell
-           </Dropdown.Toggle>
-
-           <Dropdown.Menu className="headerdropdown_heght_fix">
-             {coinlist?.map((data , i) => {
-              var img = "crypt" + (i+1);
-             return(<Dropdown.Item href={`/viewoffers/Sell/${data?.coin}`}><img src={`${config.API_URL}/images/currency/${data?.image}`} className="iconss" /> Sell {data?.coin}</Dropdown.Item>)})}
-             {/* <Dropdown.Item href="/viewoffers/Sell/ETH"><img src={Images.crypt2} className="iconss" /> Sell ETH</Dropdown.Item>
-             <Dropdown.Item href="/viewoffers/Sell/USDT"><img src={Images.crypt3} className="iconss" /> Sell USDT</Dropdown.Item>
-             <Dropdown.Item href="/viewoffers/Sell/RIPPLE"><img src={Images.crypt4} className="iconss" /> Sell RIPPLE</Dropdown.Item> */}
-           </Dropdown.Menu>
-         </Dropdown>
-        }
-
-            {
+            <List className={classes.list + " menu_main_navbar buyss"}>
               <ListItem className={classes.listItem}>
-                <NavLink to="/" exact color="transparent" className="nav-link">{t('HOME')}</NavLink>
+                <Select
+                  name="language"
+                // value={selLang}
+                // onChange={handleLanguage}
+                >
+                  {/* {
+                    langOption && langOption.length > 0 && langOption.map((item, key) => {
+                      return (
+                        <option key={key} value={item.code}>{upperCase(item.code)}</option>
+                      )
+                    })
+                  } */}
+                  <option key={"AAA"} value={"AAA"}>AAA</option>
+                  <option key={"AAA"} value={"AAA"}>AAA</option>
+                  <option key={"AAA"} value={"AAA"}>AAA</option>
+
+                </Select>
               </ListItem>
 
-            }
-              { isAuth &&
-              <ListItem className={classes.listItem}>
-                <NavLink to="/userdash" color="transparent" className="nav-link">Dashboard</NavLink>
-              </ListItem>}
-            {/* <ListItem className={classes.listItem}>
+              {/* <ListItem className={classes.listItem}>
+                  <NavLink to="/" exact color="transparent" className="nav-link">{t('HOME')}</NavLink>
+                </ListItem> */}
+
+              {
+                <Dropdown className="headerdropdown m-left">
+                  <Dropdown.Toggle variant="success" className='btcc' id="dropdown-basic">
+                    Buy
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="headerdropdown_heght_fix">
+                    {coinlist?.map((data, i) => {
+                      var img = "crypt" + (i + 1);
+                      return (<Dropdown.Item href={`/viewoffers/Buy/${data?.coin}`}><img src={`${config.API_URL}/images/currency/${data?.image}`} className="iconss" /> Buy {data?.coin}</Dropdown.Item>)
+                    })}
+                    {/* <Dropdown.Item href="/viewoffers/Buy/ETH"><img src={Images.crypt2} className="iconss" /> Buy ETH</Dropdown.Item>
+             <Dropdown.Item href="/viewoffers/Buy/USDT"><img src={Images.crypt3} className="iconss" /> Buy USDT</Dropdown.Item>
+             <Dropdown.Item href="/viewoffers/Buy/RIPPLE"><img src={Images.crypt4} className="iconss" /> Buy RIPPLE</Dropdown.Item> */}
+                  </Dropdown.Menu>
+                </Dropdown>
+              }
+              {
+                <Dropdown className="headerdropdown m-left">
+                  <Dropdown.Toggle variant="success" className='btcc' id="dropdown-basic">
+                    Sell
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="headerdropdown_heght_fix">
+                    {coinlist?.map((data, i) => {
+                      var img = "crypt" + (i + 1);
+                      return (<Dropdown.Item href={`/viewoffers/Sell/${data?.coin}`}><img src={`${config.API_URL}/images/currency/${data?.image}`} className="iconss" /> Sell {data?.coin}</Dropdown.Item>)
+                    })}
+                    {/* <Dropdown.Item href="/viewoffers/Sell/ETH"><img src={Images.crypt2} className="iconss" /> Sell ETH</Dropdown.Item>
+             <Dropdown.Item href="/viewoffers/Sell/USDT"><img src={Images.crypt3} className="iconss" /> Sell USDT</Dropdown.Item>
+             <Dropdown.Item href="/viewoffers/Sell/RIPPLE"><img src={Images.crypt4} className="iconss" /> Sell RIPPLE</Dropdown.Item> */}
+                  </Dropdown.Menu>
+                </Dropdown>
+              }
+
+              {
+                <ListItem className={classes.listItem}>
+                  <NavLink to="/" exact color="transparent" className="nav-link">{t('HOME')}</NavLink>
+                </ListItem>
+
+              }
+              {isAuth &&
+                <ListItem className={classes.listItem}>
+                  <NavLink to="/userdash" color="transparent" className="nav-link">Dashboard</NavLink>
+                </ListItem>}
+              {/* <ListItem className={classes.listItem}>
               <NavLink to="/" color="transparent" className="nav-link">My contract</NavLink>
             </ListItem> */}
-            <ListItem className={classes.listItem}>
-              <NavLink to="/viewoffers/Buy/BTC" color="transparent" className="nav-link"> Offer</NavLink>
-            </ListItem>
+              <ListItem className={classes.listItem}>
+                <NavLink to="/viewoffers/Buy/BTC" color="transparent" className="nav-link"> Offer</NavLink>
+              </ListItem>
 
-            {isAuth &&<ListItem className={classes.listItem}>
-              <NavLink to="/wallet" color="transparent" className="nav-link">Wallet</NavLink>
-            </ListItem>}
-            {/* {
+              {isAuth && <ListItem className={classes.listItem}>
+                <NavLink to="/wallet" color="transparent" className="nav-link">Wallet</NavLink>
+              </ListItem>}
+              {/* {
             <ListItem className={classes.listItem}>
               <NavLink to="/spot" color="transparent" className="nav-link">{t('MARKET')}</NavLink>
             </ListItem>
 
           } */}
 
-            {/* {
+              {/* {
             <ListItem className={classes.listItem}>
               <NavLink to="/api-management" color="transparent" className="nav-link">API Key</NavLink>
             </ListItem>
 
           } */}
-            {/* <ListItem className={classes.listItem}>
+              {/* <ListItem className={classes.listItem}>
             <NavLink to="/launchpad" color="transparent" className="nav-link">Launchpad</NavLink>
           </ListItem>
           <ListItem className={classes.listItem}>
             <NavLink to="/staking" color="transparent" className="nav-link">Staking</NavLink>
           </ListItem> */}
-            {/* {
+              {/* {
               isAuth && <ListItem className={classes.listItem}>
                 <NavLink to="/wallet" color="transparent" className="nav-link">W allet</NavLink>
               </ListItem>
             } */}
-            {
-              isAuth && <ListItem className={classes.listItem}>
-                <li className="li_ellipse_menu login_header1 ">
-                  <Button
-                    aria-controls="profile_menu1"
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                  >
-                    {/* <div className="d-flex prof_icon_header"> */}
-                    {/* <div> */}
-                    <img src={accountData?.profileImage ? accountData?.profileImage : Profileicon} className="prof_icon_header" alt="profileicon" />
-                    {/* </div> */}
-                    {/* </div> */}
+              {
+                isAuth && <ListItem className={classes.listItem}>
+                  <li className="li_ellipse_menu login_header1 ">
+                    <Button
+                      aria-controls="profile_menu1"
+                      aria-haspopup="true"
+                      onClick={handleClick}
+                    >
+                      {/* <div className="d-flex prof_icon_header"> */}
+                      {/* <div> */}
+                      <img src={accountData?.profileImage ? accountData?.profileImage : Profileicon} className="prof_icon_header" alt="profileicon" />
+                      {/* </div> */}
+                      {/* </div> */}
 
-                    {/* <i className="fas fa-user"></i> */}
-                    {/* <i class="fas fa-ellipsis-h"></i> */}
-                  </Button>
-                  <Menu
-                    id="profile_menu1"
-                    className="afterlogin_hr"
-                    anchorEl={anchorEl}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                  >
-                    <NavLink to="/"><MenuItem className="px-2">
-                      <div className="d-flex afterlogin_profile"><div><img src={accountData?.profileImage ? accountData?.profileImage : Profileicon} alt="profileicon" /> </div><div><p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
-                        <p className="second mb-0 mx-3">{email}</p></div> </div>
-                    </MenuItem></NavLink>
-                    <NavLink to="/profile">
-                      <MenuItem>
-                        <i className="fa fa-user" aria-hidden="true"></i><span>Profile</span>
-                      </MenuItem>
-                    </NavLink>
-                    <hr />
+                      {/* <i className="fas fa-user"></i> */}
+                      {/* <i class="fas fa-ellipsis-h"></i> */}
+                    </Button>
+                    <Menu
+                      id="profile_menu1"
+                      className="afterlogin_hr"
+                      anchorEl={anchorEl}
+                      keepMounted
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                    >
+                      <NavLink to="/"><MenuItem className="px-2">
+                        <div className="d-flex afterlogin_profile"><div><img src={accountData?.profileImage ? accountData?.profileImage : Profileicon} alt="profileicon" /> </div><div><p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
+                          <p className="second mb-0 mx-3">{email}</p></div> </div>
+                      </MenuItem></NavLink>
+                      <NavLink to="/profile">
+                        <MenuItem>
+                          <i className="fa fa-user" aria-hidden="true"></i><span>Profile</span>
+                        </MenuItem>
+                      </NavLink>
+                      <hr />
 
-                    {/* <NavLink to="/"><MenuItem><i className="fa fa-rocket" aria-hidden="true"></i><span>Launchpad</span></MenuItem></NavLink>
+                      {/* <NavLink to="/"><MenuItem><i className="fa fa-rocket" aria-hidden="true"></i><span>Launchpad</span></MenuItem></NavLink>
                     <hr /> */}
-                    {/* <NavLink to="/"><MenuItem><i class="fab fa-stack-exchange"></i><span>Staking</span></MenuItem></NavLink>
+                      {/* <NavLink to="/"><MenuItem><i class="fab fa-stack-exchange"></i><span>Staking</span></MenuItem></NavLink>
                     <hr /> */}
-                    <NavLink to="/security"><MenuItem>
-                      <i className="fa fa-lock" aria-hidden="true"></i><span>Security</span>
-                    </MenuItem></NavLink>
+                      <NavLink to="/security"><MenuItem>
+                        <i className="fa fa-lock" aria-hidden="true"></i><span>Security</span>
+                      </MenuItem></NavLink>
 
-                    <hr />
-                    <NavLink to="/setting">
-                      <MenuItem>
-                        <i className="fa fa-cog" aria-hidden="true"></i><span>Settings</span>
-                      </MenuItem>
-                    </NavLink>
-                    {/* <hr />
+                      <hr />
+                      <NavLink to="/setting">
+                        <MenuItem>
+                          <i className="fa fa-cog" aria-hidden="true"></i><span>Settings</span>
+                        </MenuItem>
+                      </NavLink>
+                      {/* <hr />
                     <NavLink to="/">
                       <MenuItem>
                         <i className="fa fa-key" aria-hidden="true"></i><span>API Key</span>
                       </MenuItem>
                     </NavLink>
                     <hr /> */}
-                    {/* <NavLink to="/">
+                      {/* <NavLink to="/">
                       <MenuItem>
                         <i className="fa fa-list" aria-hidden="true"></i><span>Orders</span>
                       </MenuItem>
                     </NavLink> */}
-                    {/* <hr/> 
+                      {/* <hr/> 
                   <MenuItem>
                     <Link to="/referral"><i className="fa fa-users" aria-hidden="true"></i><span>Referral</span></Link>
                   </MenuItem> */}
-                    <hr />
-                    {/* <MenuItem><Link to="/notification">Notifications</Link></MenuItem> */}
-                    <NavLink to="/history"><MenuItem>
-                      <i className="far fa-clock"></i><span>History</span>
-                    </MenuItem>
-                    </NavLink>
-                    <hr />
-                    <NavLink to="/support-ticket">
-                      <MenuItem>
-                        <i className="fa fa-question-circle" aria-hidden="true"></i><span>Support</span>
+                      <hr />
+                      {/* <MenuItem><Link to="/notification">Notifications</Link></MenuItem> */}
+                      <NavLink to="/history"><MenuItem>
+                        <i className="far fa-clock"></i><span>History</span>
                       </MenuItem>
-                    </NavLink>
-                    {/* <MenuItem>
+                      </NavLink>
+                      <hr />
+                      <NavLink to="/support-ticket">
+                        <MenuItem>
+                          <i className="fa fa-question-circle" aria-hidden="true"></i><span>Support</span>
+                        </MenuItem>
+                      </NavLink>
+                      {/* <MenuItem>
                     <Link to="/orders">Orders</Link>
                   </MenuItem> */}
-                    {/* <MenuItem><Link to="/api-management">API Management</Link></MenuItem> */}
-                    <Link to="#" onClick={() => logout(history, dispatch)}>
-                      <MenuItem>
+                      {/* <MenuItem><Link to="/api-management">API Management</Link></MenuItem> */}
+                      <Link to="#" onClick={() => logout(history, dispatch)}>
+                        <MenuItem>
 
-                        <i className="fas fa-sign-out-alt"></i> <span> Logout</span>
+                          <i className="fas fa-sign-out-alt"></i> <span> Logout</span>
 
-                      </MenuItem>
-                    </Link>
-                  </Menu>
-                </li>
-              </ListItem>
-            }
-            {
-              !isAuth && <ListItem className={classes.listItem}>
-                <NavLink to="/login" color="transparent" className="nav-link px-3 themebtn loginbtn loginhover">{t('LOGIN')}</NavLink>
-              </ListItem>
-            }
+                        </MenuItem>
+                      </Link>
+                    </Menu>
+                  </li>
+                </ListItem>
+              }
+              {
+                !isAuth && <ListItem className={classes.listItem}>
+                  <NavLink to="/login" color="transparent" className="nav-link px-3 themebtn loginbtn loginhover">{t('LOGIN')}</NavLink>
+                </ListItem>
+              }
 
-            {
-              !isAuth && <ListItem className={classes.listItem}>
-                <NavLink to="/register" color="transparent" className="nav-link home_menu_btn mobilereg">{t('REGISTER')}</NavLink>
-              </ListItem>
-            }
+              {
+                !isAuth && <ListItem className={classes.listItem}>
+                  <NavLink to="/register" color="transparent" className="nav-link home_menu_btn mobilereg">{t('REGISTER')}</NavLink>
+                </ListItem>
+              }
 
-            {/* <ListItem className={classes.listItem}>
+              {/* <ListItem className={classes.listItem}>
               <img src={require("../../assets/images/Path 84.png")} className="img-fluid langicon" alt="hh" />
 
             </ListItem> */}
 
-            <ListItem className={classes.listItem}>
-              {/* <div className="toggleMode themetoggle" title="toggle dark mode">
+              <ListItem className={classes.listItem}>
+                {/* <div className="toggleMode themetoggle" title="toggle dark mode">
           <label>
             <input type="checkbox" checked={themeData == 'light' ? true : false} name="" onClick={() => setTheme(dispatch, themeData == 'light' ? 'dark' : 'light')} />
             <span></span>
           </label>
         </div> */}
-              <button className='transbtn theme btn' onClick={() =>  themechange(localStorage.getItem("theme") == "dark" ? "light" : "dark")}><span className={theme ? 'fa fa-sun' : 'fa fa-moon'} ></span></button>
-              {/* <Link to="#" className="mode-switch" onClick={switchTheme}>
+                <button className='transbtn theme btn' onClick={() => themechange(localStorage.getItem("theme") == "dark" ? "light" : "dark")}><span className={theme ? 'fa fa-sun' : 'fa fa-moon'} ></span></button>
+                {/* <Link to="#" className="mode-switch" onClick={switchTheme}>
                 <p className="icon-change"></p>
               </Link> */}
-            </ListItem>
+              </ListItem>
 
 
 
-          </List></div>
+            </List></div>
         </div>
       </Hidden>
       <div className="inner_page_menu">
@@ -424,10 +435,10 @@ themechange(data)
               <ListItem className={classes.listItem}>
                 <NavLink to="/" color="transparent" className="nav-link">Home</NavLink>
               </ListItem>
-              { isAuth &&
-              <ListItem className={classes.listItem}>
-                <NavLink to="/userdash" color="transparent" className="nav-link">Dashboard</NavLink>
-              </ListItem>}
+              {isAuth &&
+                <ListItem className={classes.listItem}>
+                  <NavLink to="/userdash" color="transparent" className="nav-link">Dashboard</NavLink>
+                </ListItem>}
 
               {/* <ListItem className={classes.listItem}>
                 <NavLink to="/" color="transparent" className="nav-link">My offer</NavLink>
@@ -457,7 +468,7 @@ themechange(data)
               </ListItem> */}
 
               <ListItem className={classes.listItem}>
-                <button className='transbtn theme btn lightleft' onClick={() =>  themechange(localStorage.getItem("theme") == "dark" ? "light" : "dark")}><span className={theme ? 'fa fa-sun' : 'fa fa-moon'} ></span></button>
+                <button className='transbtn theme btn lightleft' onClick={() => themechange(localStorage.getItem("theme") == "dark" ? "light" : "dark")}><span className={theme ? 'fa fa-sun' : 'fa fa-moon'} ></span></button>
               </ListItem>
               {/* <ListItem className={classes.listItem}>
         <div className="toggleMode themetoggle" title="toggle dark mode">

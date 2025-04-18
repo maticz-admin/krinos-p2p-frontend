@@ -563,7 +563,8 @@ const UserDashboard = (props) => {
                 return (
                     <>
                         <button className='export' style={{ marginRight: '5px' }} onClick={() => {
-                            navigate.push(`/trade/${record?.roomid}`)
+                            // navigate.push(`/trade/${record?.roomid}`)
+                            window.location.href = window.location.origin + `/trade/${record?.roomid}`
                         }}>
                             <i className="fa fa-eye"></i> View
                         </button>

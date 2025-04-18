@@ -194,12 +194,15 @@ export const login = async (data, dispatch) => {
 
 export const editUserProfile = async (data, dispatch) => {
   try {
+    data = encodedata(data)
     let respData = await axios({
       method: "put",
       url: `/api/userProfile`,
-      data,
+      data: { encode: data },
     });
-    dispatch(setAccountData(respData.data.result));
+
+    respData = decodedata(respData?.data);
+    dispatch(setAccountData(respData.result));
     return {
       status: "success",
       loading: false,
@@ -628,11 +631,13 @@ export const editUserSetting = async (data, dispatch) => {
 
 export const upgradeUser = async (data, dispatch) => {
   try {
+    data = encodedata(data)
     let respData = await axios({
       method: "post",
       url: `/api/upgradeUser`,
-      data,
+      data: { encode: data },
     });
+    respData = decodedata(respData.data)
     dispatch(setAccountData(respData.data.result));
     return {
       status: "success",

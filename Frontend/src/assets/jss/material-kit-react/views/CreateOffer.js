@@ -14,7 +14,7 @@ import OffertagModal from "./Modals/offertagModal";
 // import isEmpty from 'lib/isEmpty';
 import isEmpty from "is-empty";
 import { useSelector } from 'react-redux';
-import { Getcoinlisthooks } from '../../../../actions/P2PorderAction';
+import { Getcoinlisthooks, GetPairExist } from '../../../../actions/P2PorderAction';
 import { Getpreferedcurrency } from '../../../../actions/P2PorderAction';
 import { Getalloffertaghook } from 'actions/P2PorderAction';
 // import { Select } from '@matnpm i --save react-selecterial-ui/core';
@@ -216,7 +216,9 @@ const CreateOffer = (props) => {
             let cur1 = crypto.find(e => e.coin == coin)
             let cur2 = crypto.find(e => e.coin == prefferedcurrency);
 
-            if (cur1?.depositType == "local" || cur2?.depositType == "local") {
+            let pairresult = await GetPairExist(coin , prefferedcurrency)
+
+            if (cur1?.depositType == "local" || cur2?.depositType == "local" || !pairresult) {
                 setPricetype("Fixed Price");
                 setLocal(true);
                 setOffermargin(0)

@@ -222,7 +222,6 @@ export default function HeaderLinks1(props) {
   },[socket])
 
   useEffect(()=>{
-    
     fetchdata();
   } , []);
   async function fetchdata(){
@@ -249,9 +248,6 @@ export default function HeaderLinks1(props) {
       <div className="dashboard_login">
       {/* {locationsss == "/viewoffer"  ?
               <div className="d-flex buyss">
-                
-
-               
               </div> : ""} */}
 
               

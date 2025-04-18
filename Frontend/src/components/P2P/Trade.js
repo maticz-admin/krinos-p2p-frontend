@@ -168,9 +168,11 @@ const Trade = (props) => {
       adminid: "",
       ownerbalance: ownerbalance,
       spenderbalance: spenderbalance,
-      adminbalance: spenderdata?.adminfee,
+      adminbalance: parseFloat(spenderdata?.buyerfee) + parseFloat(spenderdata?.sellerfee),
       coin: offerdata?.coin,
-      roomid: tradechat?.roomid
+      roomid: tradechat?.roomid,
+      sellerfee : spenderdata?.sellerfee,
+      buyerfee : spenderdata?.buyerfee
     };
     console.log('assetpayload-----', assetpayload)
     var assetupdate = await updateAssethooks(assetpayload);
@@ -463,7 +465,7 @@ const Trade = (props) => {
                 </div>
                 <div className="flexb usertime">
                   <div>
-                    <p className="roboto sidetag"> {userstatus == "Online" ? "Online" : `lastseen ${new Date(parseFloat(lastseendata))?.toString()?.slice(4, 21)}`}</p>
+                    <p className="roboto sidetag"> {userstatus == "Online" ? "Online" : `last seen ${new Date(parseFloat(lastseendata))?.toString()?.slice(4, 21)}`}</p>
 
                     {/* <p className="roboto sidetag"> {tradechat?.ordercreator == userdata?.account?.userId ? (userdatas?.lastseen == "online" ? "Online" : `lastseen ${new Date(parseFloat(userdatas?.lastseen))?.toString()?.slice(4 , 21)}`) : (owner?.lastseen == "online" ? "Online" : `lastseen ${new Date(parseFloat(owner?.time))?.toString()?.slice(4 , 21)}`)}</p> */}
                   </div>

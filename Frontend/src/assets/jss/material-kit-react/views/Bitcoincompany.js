@@ -60,6 +60,9 @@ const Bitcoincompany = (props) => {
     const [userwallet, setUserwallet] = useState({});
     const [tradespeed, setTradespeed] = useState(0);
 
+    const [buyerfee , setBuyerfee] = useState(0);
+    const [sellerfee , setSellerfee] = useState(0);
+
 
     const [loader, setLoader] = useState(true);
 
@@ -72,7 +75,7 @@ const Bitcoincompany = (props) => {
             setLoader(true);
             var payload = { id: window.location.pathname.split('/')[2]?.toString() }
             let result = await getsingletradehooks(payload);
-            console.log('resultresult-----', result.data.data)
+            console.log('resultresult-----', result)
             let ownerdata = await Getsingleuserhook({ userid: result?.data?.data?.createrid })
             console.log('ownerdata---', ownerdata)
             setOwnerdata(ownerdata?.data?.data);
@@ -89,8 +92,8 @@ const Bitcoincompany = (props) => {
             setCurrentmarketvalue(result?.data?.currentmarketvalue);
             var payloads = { symbol: result?.data?.data?.coin }
             var currencydatas = await getcurrencydatahooks(payloads);
+            console.log("currencydatas?.data?.data" , currencydatas?.data?.data);
             setCurrencies(currencydatas?.data?.data);
-
 
             let userpayload = {
                 userid: userdata?.account?.userId //redux usr data
@@ -128,29 +131,37 @@ const Bitcoincompany = (props) => {
         if (tradedata?.ordertype == "Sell") {
             var onepercent = prefferedcurrencyvalue / 100;                                                                                                                                            
             var uservalonepercent = val / 100;
-            var margin = tradedata?.offermargin ? tradedata?.offermargin : variablepercentage;
+            var margin = tradedata?.offermargin ? tradedata?.offermargin : variablepercentage;//%
             var offerpercentage = uservalonepercent * margin;
             var userval = val - offerpercentage;
             var calculatedvalue = ((1 / prefferedcurrencyvalue) * val).toFixed(8);
             setReceive(calculatedvalue);
             setGetuser(userval);
-            var adminvalue = (calculatedvalue / 100) * (1 + (parseFloat(currencies?.commisionfee)))
-            setAdminprofit(adminvalue)
+            var adminvalue = (calculatedvalue / 100) * (1 + (parseFloat(currencies?.commisionfee)));
+            var buyerfee = (calculatedvalue / 100) *(parseFloat(currencies?.buyercommisionfee));
+            var sellerfee = (calculatedvalue / 100) *(parseFloat(currencies?.commisionfee));
+            // setAdminprofit(adminvalue)
+            setBuyerfee(buyerfee);
+            setSellerfee(sellerfee)
         }
         if (tradedata?.ordertype == "Buy") {
             var onepercent = prefferedcurrencyvalue / 100;
             var finalvalue = prefferedcurrencyvalue + onepercent;
             var margin = tradedata?.offermargin ? tradedata?.offermargin : variablepercentage;
-            var offerpercentage = uservalonepercent * margin;
             var uservalonepercent = val / 100;
+            var offerpercentage = uservalonepercent * margin;
             var userval = (uservalonepercent * margin);
             setGetuser(userval);
             var calculatedvalue = (1 / prefferedcurrencyvalue) * val;
             setReceive(calculatedvalue);
             var calculateview = val - (val / 100);
             setCalculatedpay(calculateview);
-            var adminvalue = (calculatedvalue / 100) * (1 + (parseFloat(currencies?.commisionfee)))
-            setAdminprofit(adminvalue)
+            var adminvalue = (calculatedvalue / 100) * (1 + (parseFloat(currencies?.commisionfee)));
+            var buyerfee = (calculatedvalue / 100) *(parseFloat(currencies?.buyercommisionfee));
+            var sellerfee = (calculatedvalue / 100) *(parseFloat(currencies?.commisionfee));
+            // setAdminprofit(adminvalue)
+            setBuyerfee(buyerfee);
+            setSellerfee(sellerfee);
         }
         // }
     }
@@ -166,8 +177,11 @@ const Bitcoincompany = (props) => {
                     receive: receive,
                     adminfee: adminprofit,
                     status: "pending",
-                    perprice: prefferedcurrencyvalue
+                    perprice: prefferedcurrencyvalue,
+                    buyerfee : buyerfee,
+                    sellerfee : sellerfee
                 }
+
                 var payload = {
                     creater: ownerdata?.userId,
                     spender: userdata?.account?.userId,
@@ -346,7 +360,7 @@ const Bitcoincompany = (props) => {
                                                 <span class="input-group-text" id="basic-addon2">{tradedata?.preferedcurrency}</span>
                                             </div>
                                             <p className='get'><AiOutlineInfoCircle /> Enter amount to get started</p>
-                                            <p className='get'><AiOutlineInfoCircle /> You get {getuser} {tradedata?.preferedcurrency} worth of {tradedata?.coin}{tradedata?.ordertype == "Buy" && "+ escrow fee 1%"}</p>
+                                            {/* <p className='get'><AiOutlineInfoCircle /> You get {getuser} {tradedata?.preferedcurrency} worth of {tradedata?.coin}{tradedata?.ordertype == "Buy" && "+ escrow fee 1%"}</p> */}
 
                                             <p className='error-message mb-0'>{error}</p>
                                         </div>
@@ -423,7 +437,7 @@ const Bitcoincompany = (props) => {
                                     <div className='one2 one2_alig_widt'>
                                         <div className=''>
                                             <div><p className='namelist'>Id Proof</p></div>
-                                            <div className='text-center'><img src={ownerkyc?.idProof?.status == "approved" ? tick : close} className='prof1' /></div>
+                                            <div className='text-center'><img src={ownerkyc?.status == "Approved" ? tick : close} className='prof1' /></div>
                                         </div>
                                     </div>
 

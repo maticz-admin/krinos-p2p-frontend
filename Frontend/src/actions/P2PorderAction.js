@@ -714,3 +714,18 @@ export const Checkdidit = async (datas, dispatch) => {
 // diditapi , twilo issue
 
 // changelly language , forgot passsword issue
+
+
+export const GetPairExist = async(symbol , symbol2) => {
+    try{
+        let respData = await axios({
+            method: "get",
+            url: `https://min-api.cryptocompare.com/data/price?fsym=${symbol}&tsyms=${symbol2}`,
+            headers: { "Authorization": "Apikey " + "a1118bb37f008f1dfcf5488ab2cd97bf4bed5adb70aa47a0f6250c492d291160" }
+          });
+          return respData.data[symbol2]
+    }
+    catch(e){
+        console.log("error on get pair exist");
+    }
+}

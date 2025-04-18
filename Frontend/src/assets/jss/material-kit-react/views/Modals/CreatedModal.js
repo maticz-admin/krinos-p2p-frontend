@@ -131,9 +131,9 @@ const CreatedModal = (props) => {
                         <input
                             type="text"
                             className="form-control"
-                            value={`${config?.FRONT_URL}:3000/bitcoincompany/${props?.createdata?._id}`}
+                            value={`${config?.FRONT_URL}/bitcoincompany/${props?.createdata?._id}`}
                         />
-                        <CopyToClipboard text={`${config?.FRONT_URL}:3000/bitcoincompany/${props?.createdata?._id}`} onCopy={() => copyUrl()}>
+                        <CopyToClipboard text={`${config?.FRONT_URL}/bitcoincompany/${props?.createdata?._id}`} onCopy={() => copyUrl()}>
                             {/* <button variant='link' className='fa fa-copy' style={{backgroundColor:"transparent", border:0, color:"#848484"}}></button> */}
                             <button className="otp_btn"> <span className='fa fa-copy mr-2'></span> Copy </button>
 

@@ -21,6 +21,7 @@ import AcceptOfferModal from "assets/jss/material-kit-react/views/Modals/AcceptO
 import DeclineOfferModal from "assets/jss/material-kit-react/views/Modals/DeclineOfferModal";
 import { socket } from "config/socketConnectivity";
 import { useSelector } from "react-redux";
+import { GetUserId } from "lib/userdata";
 
 const useStyles = makeStyles(styles);
 
@@ -31,7 +32,7 @@ export default function Header(props) {
   const [isacceptoffermodal, setIsacceptoffermodal] = useState(false);
   const [isdeclineoffermodal, setIsdeclineoffermodal] = useState(false);
   const [offerdata, setOfferdata] = useState({});
-  const [declinedata, setDeclinedata] = useState({});
+  const [declinedata , setDeclinedata] = useState({});
 
   const routeMatch = useRouteMatch();
   const { t, i18n } = useTranslation();
@@ -49,14 +50,17 @@ export default function Header(props) {
 
   useEffect(() => {
     socket.on("REQUEST", (data) => {
-      if (data?.ordercreator == userdata?.account?.userId) {
+      console.log("REQUESTdata" , data , );
+      if (data?.ordercreator == GetUserId()) {
         setOfferdata(data);
         setIsacceptoffermodal(true);
       }
     });
 
     socket.on("DECLINE", (data) => {
-      if (userdata?.account?.userId === data?.user) {
+      console.log("DECLINE data" , data);
+      
+      if (GetUserId() === data?.user) {
         setDeclinedata(data);
         setIsdeclineoffermodal(true);
       }
@@ -68,6 +72,7 @@ export default function Header(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
   const headerColorChange = () => {
     const { color, changeColorOnScroll } = props;
     const windowsScrollTop = window.pageYOffset;
@@ -141,7 +146,6 @@ export default function Header(props) {
       <AppBar className={appBarClasses}>
         <Toolbar className={classes.container + " container-fluid-full"}>
           {leftLinks !== undefined ? brandComponent : null}
-
           <div className={classes.flex + " jhdgj"}>
             {leftLinks !== undefined ? (
               <Hidden smDown implementation="css">
@@ -154,6 +158,7 @@ export default function Header(props) {
             <Hidden mdDown>
               <div className="showOnlyforUsers">
                 {/* <Link to={routeMatch.path === "/spot/:tikerRoot?" ? routeMatch.url : "/spot"}>{t('SPOT')}</Link> */}
+                
                 {/* <Link to="/derivative">{t('DERIVATIVE')}</Link>
             <Link to="/p2p">{t('P2P')}</Link> */}
               </div>
