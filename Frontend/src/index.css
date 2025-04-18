@@ -31427,7 +31427,7 @@ select {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  margin-left: 6px;
+  /* margin-left: 6px; */
 }
 
 #profile_menu1 .MuiListItem-button:hover {

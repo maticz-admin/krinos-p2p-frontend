@@ -434,7 +434,7 @@ const Trade = (props) => {
                   <div>
                     <img src={Images.prof} alt="" className="chatprof" />
                     <span className="chatname roboto">{owner?.firstName ? (owner?.firstName + " " + owner?.lastName) : owner?.userId}</span>
-                    <img src={Images.prof} alt="" className="countryimg" />
+                    {/* <img src={Images.prof} alt="" className="countryimg" /> */}
                   </div>
                   <div>
                     <div className="d-flex align-items-center">
