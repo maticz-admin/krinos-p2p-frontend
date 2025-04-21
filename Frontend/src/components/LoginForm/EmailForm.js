@@ -421,7 +421,9 @@ const EmailForm = () => {
                         onClick={handleFormSubmit}
                     // disabled={!isEmpty(validateError) || loader}
                     >
-                        {loader && <i class="fas fa-spinner fa-spin"></i>} Login
+                        {loader && 
+                        <i class="fas fa-spinner fa-spin"></i>
+                        } <span className='pl-2'> Login</span>
                     </button>
                     {/* <button className='graybtn my-3'>View Offer</button> */}
 

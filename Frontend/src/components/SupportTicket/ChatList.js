@@ -73,7 +73,7 @@ const ChatList = (props) => {
                         <span className="stHeadText subjectWidth"><small>{t('SUBJECT')}</small>{ticketRecord.categoryName}</span>
                         <span className="stHeadText ticketIdWidth"><small>{t('TICKET_ID')}</small>#{ticketRecord.tickerId}</span>
                         <span className="stHeadText statusWidth"><small>{t('STATUS')}</small><small className="yellowText">{capitalize(ticketRecord.status)}</small></span>
-                        { ticketRecord.status == "open" && <button className='themebtn btn-sm-close' onClick={handleCloseTicket}>Close</button> }
+                        { ticketRecord.status == "open" ? <button className='themebtn btn-sm-close' onClick={handleCloseTicket}>Close</button> : <span className='support_ticket_emty'>-</span>}
                        
                   
                 </h5>
