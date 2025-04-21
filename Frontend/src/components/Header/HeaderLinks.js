@@ -195,7 +195,6 @@ const HeaderLinks = () => {
                   <MenuItem value="EN">ENGLISH</MenuItem>
                   <MenuItem value="FR">FRENCH</MenuItem>
                 </Select>
-
               </ListItem>
 
               {/* <ListItem className={classes.listItem}>
@@ -549,7 +548,7 @@ const HeaderLinks = () => {
             </ListItem>
 
           } */}
-<ListItem className={classes.listItem}>
+              <ListItem className={classes.listItem}>
                 {/* <Select
                   name="language"
                   value={selLang}
@@ -569,9 +568,8 @@ const HeaderLinks = () => {
                   <MenuItem value="EN">ENGLISH</MenuItem>
                   <MenuItem value="FR">FRENCH</MenuItem>
                 </Select>
-                
               </ListItem>
-              
+
               <ListItem className={classes.listItem}>
                 <NavLink to="/" color="transparent" className="nav-link">
                   Home
