@@ -3,58 +3,56 @@ import React, { useEffect, useInsertionEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Button, MenuItem } from "@material-ui/core";
 import { Select } from "@material-ui/core";
-import { useSelector, useDispatch } from 'react-redux'
-import Ticker from 'react-ticker'
+import { useSelector, useDispatch } from "react-redux";
+import Ticker from "react-ticker";
 
 // import components
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
-import Home from '../components/Home';
-import P2pTrading from '../components/Home/P2pTrading';
-import FaqTrend from '../components/Home/FaqTrend';
-import { NavLink } from 'react-router-dom';
+import Home from "../components/Home";
+import P2pTrading from "../components/Home/P2pTrading";
+import FaqTrend from "../components/Home/FaqTrend";
+import { NavLink } from "react-router-dom";
 
 // import action
-import { getLanguage, getAllCMSPage } from '../actions/commonAction';
-import { getCmsData } from '../actions/homeAction';
-import { getAncontent } from '../actions/commonAction';
+import { getLanguage, getAllCMSPage } from "../actions/commonAction";
+import { getCmsData } from "../actions/homeAction";
+import { getAncontent } from "../actions/commonAction";
 
 // import lib
 import isEmpty from "../lib/isEmpty";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { setAccountData } from "actions/users";
 const dashboardRoutes = [];
-
 
 // Scroll to Top
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title="KrinosP2P"
+    document.title = "KrinosP2P";
   }, []);
   return null;
 }
 
 const HomePage = () => {
-
   const history = useHistory();
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
-  const [spot, setSpotTrade] = useState('')
-  const [derivative, setDerivative] = useState('')
-  const [p2p, setP2p] = useState('')
-  const [encrypt, setencrypt] = useState('')
-  const [wallet, setWallet] = useState('')
-  const [p2pTrade, setP2pTrade] = useState('')
-  const [coin, setSetCoin] = useState('')
-  const [cmsData, setCmsData] = useState([])
+  const [spot, setSpotTrade] = useState("");
+  const [derivative, setDerivative] = useState("");
+  const [p2p, setP2p] = useState("");
+  const [encrypt, setencrypt] = useState("");
+  const [wallet, setWallet] = useState("");
+  const [p2pTrade, setP2pTrade] = useState("");
+  const [coin, setSetCoin] = useState("");
+  const [cmsData, setCmsData] = useState([]);
   // redux
-  const { isAuth } = useSelector(state => state.auth)
-  const language = useSelector(state => state.language)
-  const socialMedia = useSelector(state => state.socialMedia);
+  const { isAuth } = useSelector((state) => state.auth);
+  const language = useSelector((state) => state.language);
+  const socialMedia = useSelector((state) => state.socialMedia);
   const [tickerclose, setTickerclose] = useState(false);
-  const [anncData,setAnncData]=useState([])
+  const [anncData, setAnncData] = useState([]);
 
   // const closeTicker = () =>
   // {
@@ -63,95 +61,119 @@ const HomePage = () => {
 
   const fetchCmsPage = async () => {
     try {
-      const findLang = localStorage.getItem('lang')
+      const findLang = localStorage.getItem("lang");
       let data = {
-        lang: findLang
-      }
+        lang: findLang,
+      };
       const { status, loading, result } = await getAllCMSPage(data);
-      if (status == 'success') {
-        let spotTrade = result.find(item => item.identifier == 'home_spot')
-        setSpotTrade(spotTrade)
-        let derivativeTraded = result.find(item => item.identifier == 'home_derivative')
-        setDerivative(derivativeTraded)
-        let p2pContent = result.find(item => item.identifier == '2fa_protected')
-        setP2p(p2pContent)
-        let encryption = result.find(item => item.identifier == 'home_encryption')
-        setencrypt(encryption)
-        let wallet = result.find(item => item.identifier == 'home_wallet')
-        setWallet(wallet)
-        let p2pTrading = result.find(item => item.identifier == 'home_p2p')
-        setP2pTrade(p2pTrading)
-        let coinContent = result.find(item => item.identifier == 'home_coin')
-        setSetCoin(coinContent)
+      if (status == "success") {
+        let spotTrade = result.find((item) => item.identifier == "home_spot");
+        setSpotTrade(spotTrade);
+        let derivativeTraded = result.find(
+          (item) => item.identifier == "home_derivative"
+        );
+        setDerivative(derivativeTraded);
+        let p2pContent = result.find(
+          (item) => item.identifier == "2fa_protected"
+        );
+        setP2p(p2pContent);
+        let encryption = result.find(
+          (item) => item.identifier == "home_encryption"
+        );
+        setencrypt(encryption);
+        let wallet = result.find((item) => item.identifier == "home_wallet");
+        setWallet(wallet);
+        let p2pTrading = result.find((item) => item.identifier == "home_p2p");
+        setP2pTrade(p2pTrading);
+        let coinContent = result.find((item) => item.identifier == "home_coin");
+        setSetCoin(coinContent);
       }
-    } catch (err) { }
-  }
+    } catch (err) {}
+  };
 
   // identifier
 
-
-
-  const fetchAnnouncemet = async()=>{
-    const {status,loading,result}=await getAncontent()
-    if(status==="success"){
-        setAnncData(result)
-    }  
-}
-const fetchCmsData = async () => {
-        try {
-            let reqData = {
-
-            }
-            // console.log('status, loading, result----', status, loading, result);
-            const { status, loading, result } = await getCmsData();
-            if (status == 'success') {
-                setCmsData(result)
-            }
-        } catch (err) { }
-}
+  const fetchAnnouncemet = async () => {
+    const { status, loading, result } = await getAncontent();
+    if (status === "success") {
+      setAnncData(result);
+    }
+  };
+  const fetchCmsData = async () => {
+    try {
+      let reqData = {};
+      // console.log('status, loading, result----', status, loading, result);
+      const { status, loading, result } = await getCmsData();
+      if (status == "success") {
+        setCmsData(result);
+      }
+    } catch (err) {}
+  };
   const createMarkup = (a) => {
-
     return { __html: a };
-  }
+  };
   // function
   useEffect(() => {
     if (isEmpty(language)) {
-      getLanguage(dispatch)
+      getLanguage(dispatch);
     }
-  }, [])
+  }, []);
   useEffect(() => {
-    fetchCmsPage()
-    fetchCmsData()
-    fetchAnnouncemet()
-  }, [])
+    fetchCmsPage();
+    fetchCmsData();
+    fetchAnnouncemet();
+  }, []);
   return (
-   
-    <div className={tickerclose?"page_wrap beforelog home_page_header_banner alloffers without_ticker_banner":"page_wrap beforelog alloffers home_page_header_banner"}>
+    <div
+      className={
+        tickerclose
+          ? "page_wrap beforelog home_page_header_banner alloffers without_ticker_banner"
+          : "page_wrap beforelog alloffers home_page_header_banner"
+      }
+    >
       <ScrollToTopOnMount />
-      <div className={tickerclose?"upper_slider d-none":"upper_slider"}>
-      <div className="banner_running_ticker">
-        <i className="fas fa-bullhorn"></i>
-        {anncData && anncData.length>0 && 
-        
-       <Ticker>
-            {({index}) => (
+      <div className={tickerclose ? "upper_slider d-none" : "upper_slider"}>
+        <div className="banner_running_ticker">
+          <i className="fas fa-bullhorn"></i>
+          {anncData && anncData.length > 0 && (
+            <Ticker>
+              {({ index }) => (
                 <>
-                {/* <p>hi </p> */}
-                {anncData && anncData.length >0 ? <p>{anncData && anncData.length >0 && anncData[anncData.length-1].content}
-                      </p> : <p></p> }
-                    
-                    {/* <img src="www.my-image-source.com/" alt="" /> */}
-                </>)}
-        </Ticker> 
-}
-        <span className="close_icon_ticker" onClick={()=>setTickerclose(true)}><i className="fas fa-times"></i></span>
+                  {/* <p>hi </p> */}
+                  {anncData && anncData.length > 0 ? (
+                    <p>
+                      {anncData &&
+                        anncData.length > 0 &&
+                        anncData[anncData.length - 1].content}
+                    </p>
+                  ) : (
+                    <p></p>
+                  )}
 
-    </div>
+                  {/* <img src="www.my-image-source.com/" alt="" /> */}
+                </>
+              )}
+            </Ticker>
+          )}
+          <span
+            className="close_icon_ticker"
+            onClick={() => setTickerclose(true)}
+          >
+            <i className="fas fa-times"></i>
+          </span>
+        </div>
       </div>
-      <Header className="header"
+      <Header
+        className="header"
         color="transparent"
         routes={dashboardRoutes}
-        brand={<img src={require("../assets/images/logo.png")} alt="logo" className="img-fluid" />}
+        brand={
+          <img
+            src={require("../assets/images/logo.png")}
+            alt="logo"
+            className="img-fluid"
+          />
+        }
         rightLinks={<HeaderLinks />}
         fixed
         changeColorOnScroll={{
@@ -159,14 +181,10 @@ const fetchCmsData = async () => {
           color: "dark",
         }}
       />
-    
 
       <Home />
 
-
-
-   
-{/* 
+      {/* 
       <section className="whyUs pt-0 pb-3">
         <div className="container">
           <h2 className="title1 mt-0" data-aos="fade-up" data-aos-duration="1000">Discover Our Products</h2>
@@ -320,11 +338,10 @@ const fetchCmsData = async () => {
       </div>
       </div> */}
       <div className="homefooter">
-      <Footer />
+        <Footer />
       </div>
     </div>
-
   );
-}
+};
 
 export default HomePage;

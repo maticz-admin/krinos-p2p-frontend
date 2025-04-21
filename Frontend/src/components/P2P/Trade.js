@@ -335,24 +335,24 @@ const Trade = (props) => {
 
                   {offerdata?.ordertype == "Sell" && tradechat?.spender != userdata?.account?.userId && tradechat?.paidstatus == "paid" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <><button className="btn themebtn" onClick={() => handleconfirm()}>{console.log("countdown", parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit)))}
                     Confirm <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
-                    <span className="fa fa-check"></span>
+                    <span className="fa fa-check ps-1"></span>
                   </button>
 
-                    <button className="btn themebtn" onClick={() => handlereject()}>
+                    <button className="btn themebtn ms-3" onClick={() => handlereject()}>
                       Reject <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
-                      <span className="fa fa-check"></span>
+                      <span className="fa fa-check ps-1"></span>
                     </button>
 
                   </>}
 
                   {offerdata?.ordertype == "Buy" && tradechat?.spender == userdata?.account?.userId && tradechat?.paidstatus == "paid" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <><button className="btn themebtn" onClick={() => handleconfirm()}>{console.log("countdown", parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit)))}
                     Confirm <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
-                    <span className="fa fa-check"></span>
+                    <span className="fa fa-check ps-1"></span>
                   </button>
 
-                    <button className="btn themebtn" onClick={() => handlereject()}>
+                    <button className="btn themebtn ms-3" onClick={() => handlereject()}>
                       Reject <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
-                      <span className="fa fa-check"></span>
+                      <span className="fa fa-check ps-1"></span>
                     </button>
 
                   </>}
@@ -436,7 +436,7 @@ const Trade = (props) => {
                   <div>
                     <img src={Images.prof} alt="" className="chatprof" />
                     <span className="chatname roboto">{owner?.firstName ? (owner?.firstName + " " + owner?.lastName) : owner?.userId}</span>
-                    <img src={Images.prof} alt="" className="countryimg" />
+                    {/* <img src={Images.prof} alt="" className="countryimg" /> */}
                   </div>
                   <div>
                     <div className="d-flex align-items-center">

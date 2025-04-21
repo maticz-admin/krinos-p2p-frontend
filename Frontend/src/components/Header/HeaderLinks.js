@@ -1,25 +1,25 @@
 // import package
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { List, ListItem, Select, Hidden } from "@material-ui/core";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { Button, Menu, MenuItem } from "@material-ui/core";
 
-import Images from 'Images';
-import Profileicon from "../../assets/images/prifileimg.png"
-import Dropdown from 'react-bootstrap/Dropdown';
+import Images from "Images";
+import Profileicon from "../../assets/images/prifileimg.png";
+import Dropdown from "react-bootstrap/Dropdown";
 // import action
-import { logout } from '../../actions/users';
+import { logout } from "../../actions/users";
 // import { setTradeTheme, setTheme } from '../../actions/commonAction'
 import { setTheme } from "../../lib/localStorage";
 
 // import lib
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 import isEmpty from "../../lib/isEmpty";
-import { setLang, getLang } from '../../lib/localStorage';
-import { upperCase } from '../../lib/stringCase'
+import { setLang, getLang } from "../../lib/localStorage";
+import { upperCase } from "../../lib/stringCase";
 import config from "../../config/index";
 
 import { Getcoinlisthooks } from "../../actions/P2PorderAction";
@@ -33,7 +33,6 @@ const HeaderLinks = () => {
   // const locationsss =  window.location.pathname
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -44,19 +43,18 @@ const HeaderLinks = () => {
 
   useEffect(() => {
     // setTimeout(logout(history, dispatch) , 1800000)
-    let data = localStorage.getItem("theme")
-    themechange(data)
-  }, [])
+    let data = localStorage.getItem("theme");
+    themechange(data);
+  }, []);
 
   // state
-  const [langOption, setLangOption] = useState([])
-  const [selLang, setSelLang] = useState('')
+  const [langOption, setLangOption] = useState([]);
+  const [selLang, setSelLang] = useState("");
 
   // redux-state
-  const { isAuth } = useSelector(state => state.auth);
-  const language = useSelector(state => state.language);
+  const { isAuth } = useSelector((state) => state.auth);
+  const language = useSelector((state) => state.language);
   // const themeData = useSelector(state => state.theme);
-
 
   const [theme, settheme] = useState(false);
 
@@ -64,39 +62,47 @@ const HeaderLinks = () => {
   const [coinlist, setCoinlist] = useState([]);
 
   // redux-state
-  const accountData = useSelector(state => state.account);
-  const { firstName, lastName, email, blockNo, address, state, city, postalCode, country } = accountData;
+  const accountData = useSelector((state) => state.account);
+  const {
+    firstName,
+    lastName,
+    email,
+    blockNo,
+    address,
+    state,
+    city,
+    postalCode,
+    country,
+  } = accountData;
 
   // function
   const handleLanguage = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
-    setSelLang(value)
-    setLang(value)
+    setSelLang(value);
+    setLang(value);
     i18n.changeLanguage(value);
-  }
+  };
 
-  const locationsss = window.location.pathname
+  const locationsss = window.location.pathname;
 
   const themechange = (data) => {
     if (data == "dark") {
-      document.getElementById("tossxt").classList.add("dark_theme")
+      document.getElementById("tossxt").classList.add("dark_theme");
       document.getElementById("tossxt").classList.remove("light_theme");
       // this.setState({theme:false})
       // this.state.theme === false
-      setTheme('dark')
-      settheme(true)
-
+      setTheme("dark");
+      settheme(true);
     } else {
-      document.getElementById("tossxt").classList.remove("dark_theme")
-      document.getElementById("tossxt").classList.add("light_theme")
+      document.getElementById("tossxt").classList.remove("dark_theme");
+      document.getElementById("tossxt").classList.add("light_theme");
       // this.state.theme === true
       // this.setState({theme:true})
-      setTheme('light')
-      settheme(false)
+      setTheme("light");
+      settheme(false);
     }
-
-  }
+  };
 
   // const themechange = () =>  {
   //   if (document.getElementById("tossxt").classList.contains("light_theme")) {
@@ -117,30 +123,32 @@ const HeaderLinks = () => {
 
   // }
 
-
   useEffect(() => {
     if (!isEmpty(language)) {
       setLangOption(language);
       let lang = getLang();
       if (isEmpty(lang)) {
-        let primaryData = language && language.length > 0 && language.find((el => el.isPrimary == true))
+        let primaryData =
+          language &&
+          language.length > 0 &&
+          language.find((el) => el.isPrimary == true);
         if (primaryData) {
-          setSelLang(primaryData.code)
-          setLang(primaryData.code)
+          setSelLang(primaryData.code);
+          setLang(primaryData.code);
           i18n.changeLanguage(primaryData.code);
         }
       } else {
-        setSelLang(lang)
+        setSelLang(lang);
       }
     }
     fetchcoin();
-  }, [language])
+  }, [language]);
 
   const fetchcoin = async () => {
     var result = await Getcoinlisthooks();
     console.log("Getcoinlisthooks----", result)
     setCoinlist(result?.data);
-  }
+  };
 
   return (
     <div className="home_page_menu beforelog alloffers">
@@ -150,7 +158,6 @@ const HeaderLinks = () => {
           {/* <Link to="/derivative">{t('DERIVATIVE')}</Link>
           <Link to="/p2p">{t('P2P')}</Link> */}
         </div>
-
       </Hidden>
       <Hidden smDown className="drream">
         <div className="mobilelog">
@@ -203,14 +210,26 @@ const HeaderLinks = () => {
               }
               {
                 <Dropdown className="headerdropdown m-left">
-                  <Dropdown.Toggle variant="success" className='btcc' id="dropdown-basic">
+                  <Dropdown.Toggle
+                    variant="success"
+                    className="btcc"
+                    id="dropdown-basic"
+                  >
                     Sell
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className="headerdropdown_heght_fix">
                     {coinlist?.map((data, i) => {
                       var img = "crypt" + (i + 1);
-                      return (<Dropdown.Item href={`/viewoffers/Sell/${data?.coin}`}><img src={`${config.API_URL}/images/currency/${data?.image}`} className="iconss" /> Sell {data?.coin}</Dropdown.Item>)
+                      return (
+                        <Dropdown.Item href={`/viewoffers/Sell/${data?.coin}`}>
+                          <img
+                            src={`${config.API_URL}/images/currency/${data?.image}`}
+                            className="iconss"
+                          />{" "}
+                          Sell {data?.coin}
+                        </Dropdown.Item>
+                      );
                     })}
                     {/* <Dropdown.Item href="/viewoffers/Sell/ETH"><img src={Images.crypt2} className="iconss" /> Sell ETH</Dropdown.Item>
              <Dropdown.Item href="/viewoffers/Sell/USDT"><img src={Images.crypt3} className="iconss" /> Sell USDT</Dropdown.Item>
@@ -221,24 +240,52 @@ const HeaderLinks = () => {
 
               {
                 <ListItem className={classes.listItem}>
-                  <NavLink to="/" exact color="transparent" className="nav-link">{t('HOME')}</NavLink>
+                  <NavLink
+                    to="/"
+                    exact
+                    color="transparent"
+                    className="nav-link"
+                  >
+                    {t("HOME")}
+                  </NavLink>
                 </ListItem>
-
               }
-              {isAuth &&
+              {isAuth && (
                 <ListItem className={classes.listItem}>
-                  <NavLink to="/userdash" color="transparent" className="nav-link">Dashboard</NavLink>
-                </ListItem>}
+                  <NavLink
+                    to="/userdash"
+                    color="transparent"
+                    className="nav-link"
+                  >
+                    Dashboard
+                  </NavLink>
+                </ListItem>
+              )}
               {/* <ListItem className={classes.listItem}>
               <NavLink to="/" color="transparent" className="nav-link">My contract</NavLink>
             </ListItem> */}
               <ListItem className={classes.listItem}>
-                <NavLink to="/viewoffers/Buy/BTC" color="transparent" className="nav-link"> Offer</NavLink>
+                <NavLink
+                  to="/viewoffers/Buy/BTC"
+                  color="transparent"
+                  className="nav-link"
+                >
+                  {" "}
+                  Offer
+                </NavLink>
               </ListItem>
 
-              {isAuth && <ListItem className={classes.listItem}>
-                <NavLink to="/wallet" color="transparent" className="nav-link">Wallet</NavLink>
-              </ListItem>}
+              {isAuth && (
+                <ListItem className={classes.listItem}>
+                  <NavLink
+                    to="/wallet"
+                    color="transparent"
+                    className="nav-link"
+                  >
+                    Wallet
+                  </NavLink>
+                </ListItem>
+              )}
               {/* {
             <ListItem className={classes.listItem}>
               <NavLink to="/spot" color="transparent" className="nav-link">{t('MARKET')}</NavLink>
@@ -263,8 +310,8 @@ const HeaderLinks = () => {
                 <NavLink to="/wallet" color="transparent" className="nav-link">W allet</NavLink>
               </ListItem>
             } */}
-              {
-                isAuth && <ListItem className={classes.listItem}>
+              {isAuth && (
+                <ListItem className={classes.listItem}>
                   <li className="li_ellipse_menu login_header1 ">
                     <Button
                       aria-controls="profile_menu1"
@@ -273,7 +320,15 @@ const HeaderLinks = () => {
                     >
                       {/* <div className="d-flex prof_icon_header"> */}
                       {/* <div> */}
-                      <img src={accountData?.profileImage ? accountData?.profileImage : Profileicon} className="prof_icon_header" alt="profileicon" />
+                      <img
+                        src={
+                          accountData?.profileImage
+                            ? accountData?.profileImage
+                            : Profileicon
+                        }
+                        className="prof_icon_header"
+                        alt=""
+                      />
                       {/* </div> */}
                       {/* </div> */}
 
@@ -288,13 +343,30 @@ const HeaderLinks = () => {
                       open={Boolean(anchorEl)}
                       onClose={handleClose}
                     >
-                      <NavLink to="/"><MenuItem className="px-2">
-                        <div className="d-flex afterlogin_profile"><div><img src={accountData?.profileImage ? accountData?.profileImage : Profileicon} alt="profileicon" /> </div><div><p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
-                          <p className="second mb-0 mx-3">{email}</p></div> </div>
-                      </MenuItem></NavLink>
+                      <NavLink to="/">
+                        <MenuItem className="px-2">
+                          <div className="d-flex afterlogin_profile">
+                            <div>
+                              <img
+                                src={
+                                  accountData?.profileImage
+                                    ? accountData?.profileImage
+                                    : Profileicon
+                                }
+                                alt=""
+                              />{" "}
+                            </div>
+                            <div>
+                              <p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
+                              <p className="second mb-0 mx-3">{email}</p>
+                            </div>{" "}
+                          </div>
+                        </MenuItem>
+                      </NavLink>
                       <NavLink to="/profile">
                         <MenuItem>
-                          <i className="fa fa-user" aria-hidden="true"></i><span>Profile</span>
+                          <i className="fa fa-user" aria-hidden="true"></i>
+                          <span>Profile</span>
                         </MenuItem>
                       </NavLink>
                       <hr />
@@ -303,14 +375,18 @@ const HeaderLinks = () => {
                     <hr /> */}
                       {/* <NavLink to="/"><MenuItem><i class="fab fa-stack-exchange"></i><span>Staking</span></MenuItem></NavLink>
                     <hr /> */}
-                      <NavLink to="/security"><MenuItem>
-                        <i className="fa fa-lock" aria-hidden="true"></i><span>Security</span>
-                      </MenuItem></NavLink>
+                      <NavLink to="/security">
+                        <MenuItem>
+                          <i className="fa fa-lock" aria-hidden="true"></i>
+                          <span>Security</span>
+                        </MenuItem>
+                      </NavLink>
 
                       <hr />
                       <NavLink to="/setting">
                         <MenuItem>
-                          <i className="fa fa-cog" aria-hidden="true"></i><span>Settings</span>
+                          <i className="fa fa-cog" aria-hidden="true"></i>
+                          <span>Settings</span>
                         </MenuItem>
                       </NavLink>
                       {/* <hr />
@@ -331,14 +407,20 @@ const HeaderLinks = () => {
                   </MenuItem> */}
                       <hr />
                       {/* <MenuItem><Link to="/notification">Notifications</Link></MenuItem> */}
-                      <NavLink to="/history"><MenuItem>
-                        <i className="far fa-clock"></i><span>History</span>
-                      </MenuItem>
+                      <NavLink to="/history">
+                        <MenuItem>
+                          <i className="far fa-clock"></i>
+                          <span>History</span>
+                        </MenuItem>
                       </NavLink>
                       <hr />
                       <NavLink to="/support-ticket">
                         <MenuItem>
-                          <i className="fa fa-question-circle" aria-hidden="true"></i><span>Support</span>
+                          <i
+                            className="fa fa-question-circle"
+                            aria-hidden="true"
+                          ></i>
+                          <span>Support</span>
                         </MenuItem>
                       </NavLink>
                       {/* <MenuItem>
@@ -347,26 +429,37 @@ const HeaderLinks = () => {
                       {/* <MenuItem><Link to="/api-management">API Management</Link></MenuItem> */}
                       <Link to="#" onClick={() => logout(history, dispatch)}>
                         <MenuItem>
-
-                          <i className="fas fa-sign-out-alt"></i> <span> Logout</span>
-
+                          <i className="fas fa-sign-out-alt"></i>{" "}
+                          <span> Logout</span>
                         </MenuItem>
                       </Link>
                     </Menu>
                   </li>
                 </ListItem>
-              }
-              {
-                !isAuth && <ListItem className={classes.listItem}>
-                  <NavLink to="/login" color="transparent" className="nav-link px-3 themebtn loginbtn loginhover">{t('LOGIN')}</NavLink>
+              )}
+              {!isAuth && (
+                <ListItem className={classes.listItem}>
+                  <NavLink
+                    to="/login"
+                    color="transparent"
+                    className="nav-link px-3 themebtn loginbtn loginhover"
+                  >
+                    {t("LOGIN")}
+                  </NavLink>
                 </ListItem>
-              }
+              )}
 
-              {
-                !isAuth && <ListItem className={classes.listItem}>
-                  <NavLink to="/register" color="transparent" className="nav-link home_menu_btn mobilereg">{t('REGISTER')}</NavLink>
+              {!isAuth && (
+                <ListItem className={classes.listItem}>
+                  <NavLink
+                    to="/register"
+                    color="transparent"
+                    className="nav-link home_menu_btn mobilereg"
+                  >
+                    {t("REGISTER")}
+                  </NavLink>
                 </ListItem>
-              }
+              )}
 
               {/* <ListItem className={classes.listItem}>
               <img src={require("../../assets/images/Path 84.png")} className="img-fluid langicon" alt="hh" />
@@ -380,20 +473,27 @@ const HeaderLinks = () => {
             <span></span>
           </label>
         </div> */}
-                <button className='transbtn theme btn' onClick={() => themechange(localStorage.getItem("theme") == "dark" ? "light" : "dark")}><span className={theme ? 'fa fa-sun' : 'fa fa-moon'} ></span></button>
+                <button
+                  className="transbtn theme btn"
+                  onClick={() =>
+                    themechange(
+                      localStorage.getItem("theme") == "dark" ? "light" : "dark"
+                    )
+                  }
+                >
+                  <span className={theme ? "fa fa-sun" : "fa fa-moon"}></span>
+                </button>
                 {/* <Link to="#" className="mode-switch" onClick={switchTheme}>
                 <p className="icon-change"></p>
               </Link> */}
               </ListItem>
-
-
-
-            </List></div>
+            </List>
+          </div>
         </div>
       </Hidden>
       <div className="inner_page_menu">
         <div className="mobilelog login_header2">
-          <Hidden only={["md", "lg", "xl"]}  >
+          <Hidden only={["md", "lg", "xl"]}>
             <ul className="list-iline">
               {/* {
              <li>
@@ -405,7 +505,6 @@ const HeaderLinks = () => {
                 </div>
               </li>
             } */}
-
 
               {/*<li>
               <Link to="/derivative">Derivative</Link>
@@ -428,20 +527,35 @@ const HeaderLinks = () => {
 
           } */}
 
-
               <ListItem className={classes.listItem}>
-                <NavLink to="/" color="transparent" className="nav-link">Home</NavLink>
+                <NavLink to="/" color="transparent" className="nav-link">
+                  Home
+                </NavLink>
               </ListItem>
-              {isAuth &&
+              {isAuth && (
                 <ListItem className={classes.listItem}>
-                  <NavLink to="/userdash" color="transparent" className="nav-link">Dashboard</NavLink>
-                </ListItem>}
+                  <NavLink
+                    to="/userdash"
+                    color="transparent"
+                    className="nav-link"
+                  >
+                    Dashboard
+                  </NavLink>
+                </ListItem>
+              )}
 
               {/* <ListItem className={classes.listItem}>
                 <NavLink to="/" color="transparent" className="nav-link">My offer</NavLink>
               </ListItem> */}
               <ListItem className={classes.listItem}>
-                <NavLink to="/viewoffers/Buy/BTC" color="transparent" className="nav-link"> Offer</NavLink>
+                <NavLink
+                  to="/viewoffers/Buy/BTC"
+                  color="transparent"
+                  className="nav-link"
+                >
+                  {" "}
+                  Offer
+                </NavLink>
               </ListItem>
 
               {/* <ListItem className={classes.listItem}>
@@ -452,11 +566,23 @@ const HeaderLinks = () => {
               </li> */}
               {!isAuth && (
                 <li className="logg">
-                  <NavLink to="/login" color="transparent" className="nav-link px-3 themebtn loginbtn">{t('LOGIN')}</NavLink>
+                  <NavLink
+                    to="/login"
+                    color="transparent"
+                    className="nav-link px-3 themebtn loginbtn"
+                  >
+                    {t("LOGIN")}
+                  </NavLink>
                 </li>
               )}
               <li>
-                <NavLink to="/register" color="transparent" className="nav-link home_menu_btn mobilereg">{t('REGISTER')}</NavLink>
+                <NavLink
+                  to="/register"
+                  color="transparent"
+                  className="nav-link home_menu_btn mobilereg"
+                >
+                  {t("REGISTER")}
+                </NavLink>
               </li>
 
               {/* <ListItem className={classes.listItem}>
@@ -465,7 +591,16 @@ const HeaderLinks = () => {
               </ListItem> */}
 
               <ListItem className={classes.listItem}>
-                <button className='transbtn theme btn lightleft' onClick={() => themechange(localStorage.getItem("theme") == "dark" ? "light" : "dark")}><span className={theme ? 'fa fa-sun' : 'fa fa-moon'} ></span></button>
+                <button
+                  className="transbtn theme btn lightleft"
+                  onClick={() =>
+                    themechange(
+                      localStorage.getItem("theme") == "dark" ? "light" : "dark"
+                    )
+                  }
+                >
+                  <span className={theme ? "fa fa-sun" : "fa fa-moon"}></span>
+                </button>
               </ListItem>
               {/* <ListItem className={classes.listItem}>
         <div className="toggleMode themetoggle" title="toggle dark mode">
@@ -481,23 +616,9 @@ const HeaderLinks = () => {
                 </li>
               )} */}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
               {isAuth && (
                 <li>
-                  <NavLink to="/profile">Profilee</NavLink>
+                  <NavLink to="/profile">Profile</NavLink>
                 </li>
               )}
               {/* {
@@ -573,6 +694,6 @@ const HeaderLinks = () => {
       </div>
     </div>
   );
-}
+};
 
 export default HeaderLinks;

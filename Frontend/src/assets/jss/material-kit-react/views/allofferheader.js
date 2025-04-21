@@ -267,8 +267,8 @@ const Buybitcoin = (props) => {
 
 
                         <div className='tableborder mt-3'>
-                            <div className='tab-content'>
-                                <div className='tab-content1 tradinglist_sscrl_tabcont1'>
+                            <div className='tab-contents'>
+                                <div className='tab-content tradinglist_sscrl_tabcont1'>
                                     <div class="tradinglist position-relative tradinglist_sscrl">
                                         {loader && <div id='loadercontainer'>
                                             <div className='themeloader'>

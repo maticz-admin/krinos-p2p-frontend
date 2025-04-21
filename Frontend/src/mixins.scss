@@ -100,7 +100,9 @@ $themeyellow: #aff41f;
             background-color: $bg !important;
             padding: 10px 0;
             margin: 0;
-
+            padding-right: 0px !important;
+            position: fixed !important;
+            z-index: 1000 !important;
             // top: 40px !important;
             .home_page_menu {
                 .menu_main_navbar {
@@ -659,7 +661,8 @@ $themeyellow: #aff41f;
     padding: 62px 0;
     position: relative;
     overflow: hidden;
-    margin-top: 135px;
+    margin-top: 100px;
+    margin-bottom: 100px;
 
     .container {
         position: relative;
@@ -774,6 +777,7 @@ $themeyellow: #aff41f;
             background-color: transparent;
             border-bottom: 1px solid #707070;
             border-radius: 0;
+            margin: 4px 0px;
             box-shadow: none;
             .card-header {
                 margin-left: 0;

@@ -172,7 +172,7 @@ const EditDetail = forwardRef((props, ref) => {
     }, [])
 
     return (
-        <form className={clsx("contact_form", { "disabledForm": editForm }, "mb-0")}>
+        <form className={clsx("contact_form p-0", { "disabledForm": editForm }, "mb-0")}>
             <GridContainer>
                 {/* <GridItem xs={12} sm={6} md={6} lg={3}>
                     <div className="profile_name">

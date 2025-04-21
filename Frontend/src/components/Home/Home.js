@@ -1101,7 +1101,7 @@ const Home = (props) => {
 
 
                         </div>
-                        <div className='col-xl-12 col-lg-12 mt-4'>
+                        <div className='col-xl-12 col-lg-12 mt-4 mt-lg-5'>
                             <div className=' '>
                                 <div className='text-start'>
                                     <h1 className="mb-4 title1 heads mt-0 text-lg-left">FAQ</h1>

@@ -328,8 +328,8 @@ const MobileForm = () => {
                 }
                 <span className='fa fa-mobile-alt right'></span>
                 {validateError.phoneCode && <p className="error-message">{t(validateError.phoneCode)}</p>}
-                {validateError.phoneNo && <p className="error-message">{t(validateError.phoneNo)}</p>}
             </div>
+            
 
                 {/* <div className="form-group">
                 <span className="login_label">{t('OTP')}</span>
@@ -520,7 +520,7 @@ const MobileForm = () => {
                         name="isTerms"
                     />
                     <span class="checkmark"></span> {t('I_AGREE')} <a target="_blank" href="/details/termsandcondition" className="color_lonks">{t('TERMS')}</a> {t('AND')} <a target="_blank" href="/details/privacypolicy" className="color_lonks">{t('PRIVACY')}</a>
-                    {validateError.isTerms && <p className="error-message">{t(validateError.isTerms)}</p>}
+                    {validateError.isTerms && <p className="error-message mt-1">{t(validateError.isTerms)}</p>}
                 </label>
 
                 {/* {

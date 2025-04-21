@@ -104,7 +104,7 @@ export default function Header(props) {
   });
   const brandComponent = (
     <>
-      <Link to="/" className="logo_div">
+      <Link to="/" className="logo_div ">
         {/* {brand} */}
         <img
           src={require("../../assets/images/logo.png")}
@@ -143,7 +143,7 @@ export default function Header(props) {
         />
       )}
 
-      <AppBar className={appBarClasses}>
+      <AppBar className={appBarClasses + " " + " common_header"}>
         <Toolbar className={classes.container + " container-fluid-full"}>
           {leftLinks !== undefined ? brandComponent : null}
           <div className={classes.flex + " jhdgj"}>
