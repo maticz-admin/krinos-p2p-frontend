@@ -166,24 +166,21 @@ const HeaderLinks = () => {
               <ListItem className={classes.listItem}>
                 <Select
                   name="language"
-                // value={selLang}
-                // onChange={handleLanguage}
+                  value={selLang}
+                  onChange={handleLanguage}
                 >
-                  {/* {
+                  {
                     langOption && langOption.length > 0 && langOption.map((item, key) => {
                       return (
                         <option key={key} value={item.code}>{upperCase(item.code)}</option>
                       )
                     })
-                  } */}
-                  <option key={"AAA"} value={"AAA"}>AAA</option>
-                  <option key={"AAA"} value={"AAA"}>AAA</option>
-                  <option key={"AAA"} value={"AAA"}>AAA</option>
-
+                  }
+                 
                 </Select>
               </ListItem>
 
-              {/* <ListItem className={classes.listItem}>
+               {/* <ListItem className={classes.listItem}>
                   <NavLink to="/" exact color="transparent" className="nav-link">{t('HOME')}</NavLink>
                 </ListItem> */}
 
