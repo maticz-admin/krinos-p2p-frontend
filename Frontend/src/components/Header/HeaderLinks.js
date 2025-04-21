@@ -35,10 +35,12 @@ const HeaderLinks = () => {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    document.getElementsByTagName("body")[0].classList.add("padi_over_body");
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+    document.getElementsByTagName("body")[0].classList.remove("padi_over_body");
   };
 
   useEffect(() => {
