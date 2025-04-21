@@ -89,7 +89,8 @@ const CreateTicket = (props) => {
                 toastAlert('success', message, 'createTicket')
                 if (formValue.attachment != '') {
                     setFormValue(initialFormValue)
-                    refreshPage()
+                    // refreshPage()
+                    fetchCategory()
                 }
                 // handleTicketList({
                 //     'callFrom': 'createTicket'
