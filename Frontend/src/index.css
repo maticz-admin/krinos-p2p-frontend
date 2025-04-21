@@ -31401,6 +31401,10 @@ select {
 }
 
 @media only screen and (max-width: 1279px) {
+  .home_page_menu ul .m-left{
+margin-left: 20px;
+  }
+
   .home_page_menu ul li {
     padding: 10px 0;
   }
