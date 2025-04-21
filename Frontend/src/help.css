@@ -828,7 +828,7 @@ body.light_theme .jss25 {
 }
 .light_theme .mobilelog li a {
   color: gray !important;
-  margin-left: 12px;
+  /* margin-left: 12px; */
 }
 .modal-body::after {
   content: "";

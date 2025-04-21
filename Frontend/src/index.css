@@ -20489,7 +20489,10 @@ header {
 }
 
 .home_page_menu .MuiSvgIcon-root {
-  display: none;
+  color: #fff;
+  position: relative;
+  /* right: -10px; */
+  width: 20px;
 }
 
 .home_page_menu .MuiSelect-select.MuiSelect-select {
@@ -20500,8 +20503,21 @@ header {
   color: #686a5e !important;
   font-weight: normal !important;
   padding: 0;
-  font-size: 15px;
+  font-size: 13px;
 }
+
+.light_theme .home_page_menu .MuiSelect-select {
+  color: #757272 !important;
+}
+
+.home_page_menu .MuiSelect-select {
+  color: #fff !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  padding: 8px 11px !important;
+  margin-left: 20px;
+}
+
 
 .MuiMenu-list option {
   padding: 7px 15px;
@@ -31385,6 +31401,10 @@ select {
 }
 
 @media only screen and (max-width: 1279px) {
+  .home_page_menu ul .m-left{
+margin-left: 20px;
+  }
+
   .home_page_menu ul li {
     padding: 10px 0;
   }

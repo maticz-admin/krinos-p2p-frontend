@@ -146,8 +146,13 @@ const HeaderLinks = () => {
 
   const fetchcoin = async () => {
     var result = await Getcoinlisthooks();
-    console.log("Getcoinlisthooks----", result)
+    console.log("Getcoinlisthooks----", result);
     setCoinlist(result?.data);
+  };
+
+  const [selLangg, setSelLangg] = useState("EN");
+  const handleLanguagee = (event) => {
+    setSelLangg(event.target.value);
   };
 
   return (
@@ -171,7 +176,7 @@ const HeaderLinks = () => {
             {/* // : ""} */}
             <List className={classes.list + " menu_main_navbar buyss"}>
               <ListItem className={classes.listItem}>
-                <Select
+                {/* <Select
                   name="language"
                   value={selLang}
                   onChange={handleLanguage}
@@ -184,27 +189,41 @@ const HeaderLinks = () => {
                     })
                   }
                  
+                </Select> */}
+
+                <Select value={selLangg} onChange={handleLanguagee}>
+                  <MenuItem value="EN">ENGLISH</MenuItem>
+                  <MenuItem value="FR">FRENCH</MenuItem>
                 </Select>
               </ListItem>
 
-               {/* <ListItem className={classes.listItem}>
+              {/* <ListItem className={classes.listItem}>
                   <NavLink to="/" exact color="transparent" className="nav-link">{t('HOME')}</NavLink>
                 </ListItem> */}
 
               {
                 <Dropdown className="headerdropdown m-left">
-                  <Dropdown.Toggle variant="success" className='btcc' id="dropdown-basic">
+                  <Dropdown.Toggle
+                    variant="success"
+                    className="btcc"
+                    id="dropdown-basic"
+                  >
                     Buy
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className="headerdropdown_heght_fix">
                     {coinlist?.map((data, i) => {
                       var img = "crypt" + (i + 1);
-                      return (<Dropdown.Item href={`/viewoffers/Buy/${data?.coin}`}><img src={`${config.API_URL}/images/currency/${data?.image}`} className="iconss" /> Buy {data?.coin}</Dropdown.Item>)
+                      return (
+                        <Dropdown.Item href={`/viewoffers/Buy/${data?.coin}`}>
+                          <img
+                            src={`${config.API_URL}/images/currency/${data?.image}`}
+                            className="iconss"
+                          />{" "}
+                          Buy {data?.coin}
+                        </Dropdown.Item>
+                      );
                     })}
-                    {/* <Dropdown.Item href="/viewoffers/Buy/ETH"><img src={Images.crypt2} className="iconss" /> Buy ETH</Dropdown.Item>
-             <Dropdown.Item href="/viewoffers/Buy/USDT"><img src={Images.crypt3} className="iconss" /> Buy USDT</Dropdown.Item>
-             <Dropdown.Item href="/viewoffers/Buy/RIPPLE"><img src={Images.crypt4} className="iconss" /> Buy RIPPLE</Dropdown.Item> */}
                   </Dropdown.Menu>
                 </Dropdown>
               }
@@ -231,9 +250,6 @@ const HeaderLinks = () => {
                         </Dropdown.Item>
                       );
                     })}
-                    {/* <Dropdown.Item href="/viewoffers/Sell/ETH"><img src={Images.crypt2} className="iconss" /> Sell ETH</Dropdown.Item>
-             <Dropdown.Item href="/viewoffers/Sell/USDT"><img src={Images.crypt3} className="iconss" /> Sell USDT</Dropdown.Item>
-             <Dropdown.Item href="/viewoffers/Sell/RIPPLE"><img src={Images.crypt4} className="iconss" /> Sell RIPPLE</Dropdown.Item> */}
                   </Dropdown.Menu>
                 </Dropdown>
               }
@@ -526,6 +542,80 @@ const HeaderLinks = () => {
             </ListItem>
 
           } */}
+              <ListItem className={classes.listItem}>
+                {/* <Select
+                  name="language"
+                  value={selLang}
+                  onChange={handleLanguage}
+                >
+                  {
+                    langOption && langOption.length > 0 && langOption.map((item, key) => {
+                      return (
+                        <option key={key} value={item.code}>{upperCase(item.code)}</option>
+                      )
+                    })
+                  }
+                 
+                </Select> */}
+
+                <Select value={selLangg} onChange={handleLanguagee}>
+                  <MenuItem value="EN">ENGLISH</MenuItem>
+                  <MenuItem value="FR">FRENCH</MenuItem>
+                </Select>
+              </ListItem>
+
+              {
+                <Dropdown className="headerdropdown m-left">
+                  <Dropdown.Toggle
+                    variant="success"
+                    className="btcc"
+                    id="dropdown-basic"
+                  >
+                    Buy
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="headerdropdown_heght_fix">
+                    {coinlist?.map((data, i) => {
+                      var img = "crypt" + (i + 1);
+                      return (
+                        <Dropdown.Item href={`/viewoffers/Buy/${data?.coin}`}>
+                          <img
+                            src={`${config.API_URL}/images/currency/${data?.image}`}
+                            className="iconss"
+                          />{" "}
+                          Buy {data?.coin}
+                        </Dropdown.Item>
+                      );
+                    })}
+                  </Dropdown.Menu>
+                </Dropdown>
+              }
+              {
+                <Dropdown className="headerdropdown m-left">
+                  <Dropdown.Toggle
+                    variant="success"
+                    className="btcc"
+                    id="dropdown-basic"
+                  >
+                    Sell
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="headerdropdown_heght_fix">
+                    {coinlist?.map((data, i) => {
+                      var img = "crypt" + (i + 1);
+                      return (
+                        <Dropdown.Item href={`/viewoffers/Sell/${data?.coin}`}>
+                          <img
+                            src={`${config.API_URL}/images/currency/${data?.image}`}
+                            className="iconss"
+                          />{" "}
+                          Sell {data?.coin}
+                        </Dropdown.Item>
+                      );
+                    })}
+                  </Dropdown.Menu>
+                </Dropdown>
+              }
 
               <ListItem className={classes.listItem}>
                 <NavLink to="/" color="transparent" className="nav-link">
