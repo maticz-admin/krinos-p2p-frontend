@@ -21131,6 +21131,10 @@ footer a:hover {
   color: var(--primary-clr);
 }
 
+.light_theme .profile_dash span {
+  color: #8cc516;
+}
+
 .profile_dash li {
   list-style: none;
   color: #fff;
@@ -28327,7 +28331,7 @@ body.light_theme {
   color: #fff !important;
 } */
 .light_theme .dashboard_login a {
-  color: var(--textgrey-clr) !important;
+  color: var(--black-clr) !important;
 }
 
 .light_theme #Bank .dash_title {
