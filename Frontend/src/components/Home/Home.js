@@ -153,7 +153,7 @@ const Home = (props) => {
             data.amount = "Invalid value"
         }
         if (coin == prefferedcurrency) {
-            data.preferedcurrency = "cryptocurrency and prefered currency must be differ"
+            data.preferedcurrency = "cryptocurrency and preferred currency must be differ"
         }
         if (isEmpty(data)) {
             setLoading(true);
