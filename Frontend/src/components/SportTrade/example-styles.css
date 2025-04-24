@@ -107,7 +107,7 @@ li b {
 }
 .headerOverviewStatus h5 small {
     display: block;
-    color: #787878;
+    color: var(--textgrey-clr);
     font-size: 12px;
 }
 .hoPriceConversion h3{
@@ -242,7 +242,7 @@ li b {
 }
 .tradeTableTitle span{
     text-align:left;
-    color:#787878;
+    color:var(--textgrey-clr);
     font-size:12px !important;
     font-weight:600 !important;
     padding-top:0px !important;
@@ -418,7 +418,7 @@ li b {
     border-top:0;
     font-size:14px;
     font-weight:400;
-    color:#787878;
+    color:var(--textgrey-clr);
     padding:5px 15px;
     white-space:nowrap;
 }
@@ -720,7 +720,7 @@ ul.list2ColumnJustify li span a:hover{
 }
 .zoomIcon {
     margin-left: 15px;
-    color: #777a85;
+    color: var(--textgrey-clr);
     position: relative;
     z-index: 99;
 }

@@ -37,7 +37,7 @@ a{
     width:100%;
 }
 .subhead {
-    color: #A3A3B7;
+    color: var(--textgrey-clr);
     text-align: center;
     // font-family: "Roboto",sans-serif !important;
 }
@@ -124,13 +124,13 @@ a{
     color: white !important;
 }
 .light_theme .page_wrap header .home_page_menu .menu_main_navbar li a.nav-link.themebtn:hover {
-    color: #000 !important;
+    color: var(--black-clr) !important;
 }
 .dark_theme .page_wrap header .home_page_menu .menu_main_navbar li a.nav-link.themebtn:hover {
     color: #aff41f !important;
 }
 .light_theme .page_wrap header .home_page_menu .menu_main_navbar li a.nav-link.themebtn:hover {
-    color: #000 !important;
+    color: var(--black-clr) !important;
 }
 .tradetab .esbtn:hover .ess {
     color: white !important;
@@ -244,7 +244,7 @@ a{
 // header
 .light_theme {
     .linkclr{
-        color:#000;
+        color:var(--black-clr);
     }
     .linkclr:hover{
         color:#000000a4 !important;
@@ -267,16 +267,16 @@ a{
       }
     .export,.copy,.delete{ 
         filter: brightness(0.8);
-        color: #000 !important;
+        color: var(--black-clr) !important;
         
     }
     color: #CCCCCC;
     .incrementbtn > *{
-        color:#000;
+        color:var(--black-clr);
     }
     .createoff .bordbox .stepbtns button.active span {
-        border-color: #000 !important;
-        color: #000 !important;
+        border-color: var(--black-clr) !important;
+        color: var(--black-clr) !important;
       }
 }
 
@@ -390,7 +390,8 @@ button:hover{
     }
 
     .blackandwhite {
-        color: #fff
+        // color: #fff
+        color: var(--primary-clr);
     }
     .grayandblack{
         color: #B4AEAE !important;
@@ -403,7 +404,8 @@ button:hover{
         @include mixins.themebtn;
     }
     .title1 {
-        color: #fff;
+        // color: #fff;
+        color: var(--primary-clr)
     }
 
     #tablesec {
@@ -551,12 +553,12 @@ button:hover{
 }
 .light_theme {
     .btn.btn-bordered.white{
-        border-color: #000 !important;
-        color: #000;
+        border-color: #0D0D0D !important;
+        color: #0D0D0D;
     }
     .btn.btn-success.dropdown-toggle:hover,
     .btn.btn-success.dropdown-toggle:focus{
-        color: #000;
+        color: #0D0D0D;
     }
     .tickimg {
         filter: invert(1);
@@ -573,12 +575,12 @@ button:hover{
         
             background: transparent;
             border: 1px solid #313131 !important;
-            color: #000;
+            color: #0D0D0D;
         
         }
       }
     .themetable{
-        @include mixins.themetable(#000,#000,#000,#F2F4F7,#fff3f6 ,#000)
+        @include mixins.themetable(#0D0D0D,#0D0D0D,#0D0D0D,#F2F4F7,#fff3f6 ,var(--black-clr))
     }
    .blackandwhiteimg{
     filter: invert(0);
@@ -586,7 +588,7 @@ button:hover{
     .createoff{ 
         .bordbox{
         overflow-x: auto;
-        @include mixins.steps(#F2F4F7, #000, #d9d9d9);
+        @include mixins.steps(#F2F4F7, var(--black-clr), #d9d9d9);
        
     }}
     .bordbox {
@@ -595,7 +597,7 @@ button:hover{
         padding: 15px;
     }
     .yellowblack{
-        color: #000 !important;
+        color: #0D0D0D !important;
     }
     // header{
     //     box-shadow: 0 0 10px 5px #e1e1e1;
@@ -609,15 +611,15 @@ button:hover{
         @include mixins.themeselect(#ff40, #F2F4F7)
     }
 
-    @include mixins.header(#F2F4F7, #757272, #000);
+    @include mixins.header(#F2F4F7, #757272, #0D0D0D);
 
     // $bg: #090909, $linkclr: #cccccc, $active: #fff
     .floatinglabel {
-        @include mixins.floating(#fff, #fff, #fff,#F2F4F7,#000,#fff,#000,#ebebeb,#ebebeb, #000);
+        @include mixins.floating(#fff, #fff, #fff,#F2F4F7,#0D0D0D,#fff,#000,#ebebeb,#ebebeb, #000);
     }
 
     #careprivacy {
-        @include mixins.privacycare(#F2F4F7, #000, #393939)
+        @include mixins.privacycare(#F2F4F7, #0D0D0D, #393939)
     }
 
     #tablesec {
@@ -625,7 +627,7 @@ button:hover{
     }
 
     .themenav {
-        @include mixins.buysellnav(#F2F4F7, #a7a1a1, #000,#0f9a6c,#000)
+        @include mixins.buysellnav(#F2F4F7, #a7a1a1, #0D0D0D,#0f9a6c,#0D0D0D)
     }
     .themebtn {
         @include mixins.themebtn(#000,none);
@@ -635,19 +637,19 @@ button:hover{
     }
 
     #footer {
-        @include mixins.footersec(#000, #000, #0000005C,brightness(2))
+        @include mixins.footersec(#0D0D0D, #0D0D0D, #0000005C,brightness(2))
     }
 
     #faqsec {
-        @include mixins.faqsec(#000, #000)
+        @include mixins.faqsec(#0D0D0D, #0D0D0D)
     }
 
     #statusssec {
-        @include mixins.statusssec(#000, #000);
+        @include mixins.statusssec(#0D0D0D, #0D0D0D);
     }
 
     .blackandwhite {
-        color: #000 !important;
+        color: var(--black-clr) !important;
       
     }
     .grayandblack{
@@ -656,7 +658,7 @@ button:hover{
     }
 
     .title1 {
-        color: #000;
+        color: var(--black-clr);
     }
     .selectoption .form-select {
         // background-image: url("./assets/images/graycaret.png") !important;
@@ -820,10 +822,10 @@ button:hover{
 
     li {
         a.nav-link {
-            color: #757272 !important;
+            color: var(--black-clr) !important;
 
             &:hover {
-                color: Black !important;
+                color: var(--black-clr) !important;
                 font-weight: 500;
             }
         }
@@ -835,7 +837,7 @@ button:hover{
 }
 
 .light_theme .mobilelog ul li a.nav-link.active.mobilereg {
-    color: #757272 !important;
+    color: var(--textgrey-clr) !important;
 }
 
 .dark_theme .mobilelog ul li a.nav-link.active {
@@ -1230,7 +1232,7 @@ a[aria-expanded="true"] .fa-plus:before {
     p{
         // font-family: "Roboto",sans-serif !important;
         font-size: 14px;
-        color: #9d9d9d;
+        color: var(--textgrey-clr);
     }
     .fa{
         border: 1px solid coral;
@@ -1300,17 +1302,17 @@ a[aria-expanded="true"] .fa-plus:before {
 .light_theme .tableborder .chatbox ul li .chatbg{
     background-color: #e4e4e4;
     .chatcontent {
-      color: #000;
+      color: var(--black-clr);
     }
   }
   .chatfoot img , .chatbg img{
     max-width: 100%;
 }
 .light_theme .likebox span,.light_theme .dislikebox span {
-    color: #000 !important;
+    color: var(--black-clr) !important;
 }
 .light_theme .tableborder .chathead .mobileicon{
-    color: #000;
+    color: var(--black-clr);
 }
 .tradelists {
     margin-bottom: 9px;
@@ -1370,4 +1372,12 @@ a[aria-expanded="true"] .fa-plus:before {
   header.common_header {
     padding: 10px 0;
     margin: 0;
+  }
+
+  .dark_theme .profileContent .floatinglabel label {
+    background-color: #19181c !important;
+  }
+
+  .light_theme .profileContent .floatinglabel label {
+    background-color: var(--white-bg) !important;
   }

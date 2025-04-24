@@ -19,6 +19,13 @@
   --black: #000;
   --secondary-whtBg: #f2f4f7;
   --white-ylw-shadow: #8cc516;
+
+  /* mobile app colors */
+  --primary-clr: #EAFFBA;
+  --secondary-clr: #AFF41F;
+  --textgrey-clr: #A3A3B7;
+  --white-clr: #FFFFFF;
+  --black-clr: #0D0D0D;
 }
 
 /* font import */
@@ -169,9 +176,9 @@ strong {
   font-weight: bolder;
 }
 
-small {
+/* small {
   font-size: 80%;
-}
+} */
 
 sub,
 sup {
@@ -661,9 +668,9 @@ strong {
   font-weight: bolder;
 }
 
-small {
+/* small {
   font-size: 80%;
-}
+} */
 
 sub,
 sup {
@@ -957,8 +964,8 @@ hr {
 
 small,
 .small {
-  font-size: 80%;
-  font-weight: 400;
+  font-size: 100% !important; 
+  font-weight:normal !important
 }
 
 mark,
@@ -12179,7 +12186,7 @@ label {
 }
 
 .tim-white-buttons {
-  background-color: #777777;
+  background-color: var(--textgrey-clr);
 }
 
 .title {
@@ -12787,7 +12794,7 @@ fieldset[disabled] .form-check .form-check-input,
   cursor: pointer;
   padding-left: 8px;
   position: relative;
-  color: #787878;
+  color: var(--primary-clr);
 }
 
 .form-group.is-focused .form-check .form-check-label {
@@ -16517,11 +16524,7 @@ b {
   font-weight: 700;
 }
 
-small,
-.small {
-  font-size: 75%;
-  color: #777;
-}
+
 
 .title,
 .card-title,
@@ -16624,7 +16627,7 @@ h2.title {
   display: block;
   font-size: 80%;
   line-height: 1.42857143;
-  color: #777;
+  color: var(--textgrey-clr);
 }
 
 .nav-tabs {
@@ -16985,7 +16988,7 @@ h2.title {
 }
 
 .dropdown-menu .disabled > a {
-  color: #777;
+  color: var(--textgrey-clr);
 }
 
 .dropdown-menu .disabled > a:focus,
@@ -16993,7 +16996,7 @@ h2.title {
   text-decoration: none;
   background-color: transparent;
   background-image: none;
-  color: #777;
+  color: var(--textgrey-clr);
 }
 
 .dropdown-menu.dropdown-with-icons .dropdown-item {
@@ -17110,7 +17113,7 @@ h2.title {
   padding-top: 0.1875rem;
   padding-bottom: 0.1875rem;
   text-transform: none;
-  color: #777;
+  color: var(--textgrey-clr);
   line-height: 1.428571;
   font-weight: inherit;
 }
@@ -20507,7 +20510,7 @@ header {
 }
 
 .light_theme .home_page_menu .MuiSelect-select {
-  color: #757272 !important;
+  color: var(--black-clr) !important;
 }
 
 .home_page_menu .MuiSelect-select {
@@ -20646,7 +20649,7 @@ button.primary_btn:hover span {
 }
 
 .common-table span {
-  color: #9d9d9d;
+  color: var(--textgrey-clr);
 }
 
 .table_view {
@@ -20928,7 +20931,7 @@ footer a:hover {
 }/*
  
 .login_container .login_label {
-  color: #787878 !important;
+  color: var(--primary-clr) !important;
   font-weight: 500;
   margin-top: 8px;
 }
@@ -20967,7 +20970,7 @@ footer a:hover {
 .login_container a {
   font-size: 15px;
   font-weight: 500;
-  color: #787878;
+  color: var(--primary-clr);
   text-decoration: underline;
 }
 
@@ -20992,7 +20995,7 @@ footer a:hover {
 
 .static_container p {
   font-size: 16px;
-  color: #787878;
+  color: var(--primary-clr);
 }
 
 .contact_form label {
@@ -21005,7 +21008,7 @@ footer a:hover {
 }
 
 .contact_form label span {
-  color: #787878;
+  color: var(--primary-clr);
 }
 
 .contact_form .form-control {
@@ -21076,7 +21079,7 @@ footer a:hover {
 }
 
 .contact-list span {
-  color: #787878;
+  color: var(--primary-clr);
 }
 
 .contact-list p {
@@ -21125,7 +21128,7 @@ footer a:hover {
 }
 
 .profile_dash span {
-  color: #787878;
+  color: var(--primary-clr);
 }
 
 .profile_dash li {
@@ -21268,7 +21271,7 @@ button.btn.btn-outline:active {
   border-radius: 12px;
 }
 .dashboard_login button {
-  color: #787878;
+  color: var(--primary-clr);
   font-size: 18px;
   padding: 2px 8px !important;
 }
@@ -21362,7 +21365,7 @@ button.btn.btn-outline:active {
 /* Dashboard Pages */
 .balance_details_left h3 {
   font-size: 16px;
-  color: #787878;
+  color: var(--primary-clr);
   margin: 0 0 3px;
 }
 
@@ -21468,7 +21471,7 @@ button.btn.btn-outline:active {
 }
 
 .tabelDashBalance td:first-child {
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .tabelDashBalance td {
@@ -21482,7 +21485,7 @@ button.btn.btn-outline:active {
 }
 
 .tabelDashBalance td span a {
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .tabelDashBalance td span a:hover {
@@ -21511,7 +21514,7 @@ button.btn.btn-outline:active {
 
 .dashHistoryTable tr th {
   font-weight: 400;
-  color: #787878;
+  color: var(--textgrey-clr);
   padding: 6px 15px;
   border-bottom: 0;
   white-space: nowrap;
@@ -21668,7 +21671,7 @@ button.btn.btn-outline:active {
 .dudRight ul li label {
   margin: 0;
   font-size: 15px;
-  color: #787878;
+  color: var(--textgrey-clr);
   white-space: nowrap;
 }
 
@@ -21802,7 +21805,7 @@ button.btn.btn-outline:active {
   left: 40px;
   font-size: 14px;
   line-height: 34px;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .toggleMode label {
@@ -21914,7 +21917,7 @@ button.btn.btn-outline:active {
 
 .settingsNote {
   margin: 0 0 30px 0;
-  /* color: #757272; */
+  /* color: var(--textgrey-clr); */
   color: #c7c7c7;
 }
 
@@ -21948,7 +21951,7 @@ button.btn.btn-outline:active {
 .profileDetailView .settingsNote h6 {
   margin: 0 0 10px 0;
   padding: 0;
-  color: #787878;
+  color: var(--textgrey-clr);
   font-size: 14px;
   text-transform: none;
 }
@@ -22201,19 +22204,19 @@ fieldset[disabled][disabled] .form-control,
 .kycTopCard p label {
   margin: 0;
   font-size: 16px;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .kycTopCard h5 {
   font-size: 16px;
-  color: #787878;
+  color: var(--textgrey-clr);
   margin: 12px 0 0 0;
 }
 
 .kycTopCard h5 label {
   margin: 0;
   font-size: 16px;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .kycTopCard h5 span {
@@ -22236,7 +22239,7 @@ fieldset[disabled][disabled] .form-control,
 .kycCardStatus h6 {
   text-transform: none;
   font-size: 14px;
-  color: #787878;
+  color: var(--textgrey-clr);
   margin: 0 0 7px 0;
 }
 
@@ -22258,7 +22261,7 @@ fieldset[disabled][disabled] .form-control,
 .kycCardStatus ul li span {
   margin-left: 10px;
   font-size: 14px;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .walletCard {
@@ -22275,13 +22278,13 @@ fieldset[disabled][disabled] .form-control,
 
 .walletCardRight .textLinkGroup {
   margin-bottom: 0;
-  color: #787878;
+  color: var(--textgrey-clr);
   font-weight: 500;
 }
 
 .walletCardRight .textLinkGroup a {
   font-size: 14px;
-  color: #787878;
+  color: var(--textgrey-clr);
   font-weight: 500;
 }
 
@@ -22294,7 +22297,7 @@ fieldset[disabled][disabled] .form-control,
   min-width: 160px;
   font-size: 18px;
   font-weight: 600;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .currencyName img {
@@ -22360,7 +22363,7 @@ fieldset[disabled][disabled] .form-control,
   text-decoration: none;
   background: #fff !important;
   box-shadow: none !important;
-  color: #787878 !important;
+  color: var(--textgrey-clr) !important;
 }
 
 .walletCardRight ul li a:hover {
@@ -22391,7 +22394,7 @@ fieldset[disabled][disabled] .form-control,
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .csLeft h3 img {
@@ -22423,7 +22426,7 @@ fieldset[disabled][disabled] .form-control,
 .stakingCurrencyList tr th {
   border-bottom: 0;
   font-size: 14px;
-  color: #787878;
+  color: var(--textgrey-clr);
   font-weight: 500;
 }
 
@@ -22692,7 +22695,7 @@ fieldset[disabled][disabled] .form-control,
 }
 
 .supporTicketAccordian #accordion .card-body p.metaChatDetails {
-  color: #787878;
+  color: var(--textgrey-clr);
   font-size: 14px;
 }
 
@@ -22837,7 +22840,7 @@ ul.ticketComments li:last-child {
   background: #f2f4f7;
 }
 .stHeadText small {
-  /* color: #787878; */
+  /* color: var(--textgrey-clr); */
   color: #ababab;
   font-size: 16px;
   text-transform: none;
@@ -23106,7 +23109,7 @@ nav.place_order_nav_tabs {
   background: transparent !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .btnNotification:hover {
@@ -23114,7 +23117,7 @@ nav.place_order_nav_tabs {
 }
 
 .btnNotification:focus {
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .input-group.regGroupInput {
@@ -23142,7 +23145,7 @@ nav.place_order_nav_tabs {
 .profileDetailView .alert.alert-info {
   padding: 15px 15px;
   border-radius: 12px;
-  color: #787878;
+  color: var(--textgrey-clr);
   background: #eef1ff1c;
 }
 
@@ -24150,7 +24153,7 @@ nav.place_order_nav_tabs {
 }
 
 .flex_inpur_sect .custom-control-label {
-  color: #787878;
+  color: var(--textgrey-clr);
   font-size: 16px;
 }
 
@@ -24204,7 +24207,7 @@ nav.place_order_nav_tabs {
 .forhet_txtx {
   text-align: left !important;
   font-size: 14px !important;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .diplay_fl_aa {
@@ -24288,7 +24291,7 @@ nav.place_order_nav_tabs {
 }
 
 .text_color_w {
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .color_green {
@@ -24535,7 +24538,7 @@ nav.place_order_nav_tabs {
 }
 
 .model_content_table .color_Ash_txt {
-  color: #787878;
+  color: var(--textgrey-clr);
   font-weight: 600;
   font-size: 14px;
   padding: 5px 11px;
@@ -24672,7 +24675,7 @@ nav.place_order_nav_tabs {
 }
 
 .colo_ash_secton {
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .chat_box_dark {
@@ -24786,7 +24789,7 @@ span.msg_admin {
 }
 
 .chat_detail_flex p {
-  color: #787878;
+  color: var(--textgrey-clr);
   margin: 0;
   padding: 11px 0px;
 }
@@ -25143,7 +25146,7 @@ label {
 .coin_top_list p {
   margin: 0;
   text-align: center;
-  color: #787878;
+  color: var(--textgrey-clr);
   font-size: 13px;
   margin-top: 6px;
 }
@@ -25254,7 +25257,7 @@ input:checked + .slider:before {
 .coin_section_table > span {
   margin: 0 5px;
   font-weight: 600;
-  color: #787878;
+  color: var(--textgrey-clr);
   margin-left: 27px;
 }
 
@@ -25267,7 +25270,7 @@ input:checked + .slider:before {
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.3px;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 .Subscribe button.btn-primary {
   background: #aff41f;
@@ -25404,7 +25407,7 @@ img.marketIcon {
 
 .entaer_amount .seacr_box_s > span {
   font-weight: 600;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .entaer_amount p {
@@ -25437,7 +25440,7 @@ img.marketIcon {
 
 .contsnt_cls_model > div > span {
   font-weight: 500;
-  color: #787878;
+  color: var(--textgrey-clr);
   font-size: 15px;
 }
 
@@ -25485,7 +25488,7 @@ img.marketIcon {
 }
 
 .font_gray {
-  color: #787878;
+  color: var(--textgrey-clr);
   font-weight: 600;
 }
 
@@ -25542,7 +25545,7 @@ img.marketIcon {
   overflow: visible !important;
   text-overflow: ellipsis;
   font-weight: 600;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .color_red {
@@ -25631,7 +25634,7 @@ img.marketIcon {
 h4.profileDetailView1 {
   font-size: 15px;
   font-weight: 600;
-  color: #787878;
+  color: var(--textgrey-clr);
   margin: 0 0 15px 0;
   padding-bottom: 15px;
   border-bottom: 0px solid #f2f4f7;
@@ -25642,7 +25645,7 @@ h4.profileDetailView1 {
 
 h4.profileDetailView1 small {
   font-size: 14px;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .wallwet_balance_section small {
@@ -25667,7 +25670,7 @@ h4.profileDetailView1 small {
 
 .wallwet_balance_section span {
   font-size: 16px;
-  /* color: #787878; */
+  /* color: var(--textgrey-clr); */
   color: #b4aeae;
   /* font-weight: 6; */
 }
@@ -25686,7 +25689,7 @@ h4.profileDetailView1 small {
 }
 
 .button_clas_wallert .data_inside > span {
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .button_clas_wallert .data_inside > div > span {
@@ -25733,7 +25736,7 @@ h4.profileDetailView1 small {
 }
 
 .fialt_wallet_sectoin .fiat_wallet_list > div > div > span {
-  color: #787878;
+  color: var(--textgrey-clr);
   padding: 1px 7px;
 }
 
@@ -26081,7 +26084,7 @@ h4.profileDetailView1 small {
 }
 
 .statisctic > div .label {
-  color: #787878;
+  color: var(--textgrey-clr);
   font-weight: 500;
   /* margin-bottom: 7px !important; */
 }
@@ -26190,7 +26193,7 @@ h4.profileDetailView1 small {
   padding: 7px 5px;
   font-weight: 600;
   font-size: 14px;
-  color: #787878 !important;
+  color: var(--textgrey-clr) !important;
   cursor: pointer;
 }
 
@@ -27049,7 +27052,7 @@ body.light_theme {
 }
 
 .light_theme .common-table th {
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .light_theme .common-table td {
@@ -27078,7 +27081,7 @@ body.light_theme {
 }
 
 .light_theme .home_calculator p {
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .light_theme .start_trading img {
@@ -27212,7 +27215,7 @@ body.light_theme {
 .light_theme .FMWkK {
   font-size: 13px;
   font-weight: 500;
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .light_theme .rdt_TableBody .rdt_TableRow:nth-child(2n + 1) {
@@ -27233,7 +27236,7 @@ body.light_theme {
 }
 
 .light_theme .MuiSelect-icon {
-  color: #787878 !important;
+  color: var(--textgrey-clr) !important;
 }
 
 .light_theme .newUsersFilter {
@@ -27464,7 +27467,7 @@ body.light_theme {
 }
 
 .light_theme .derivativeTrade .selectPair small {
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .light_theme .tableHead {
@@ -27472,7 +27475,7 @@ body.light_theme {
 }
 
 .light_theme .radioGroup .MuiTypography-root {
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .light_theme .poList {
@@ -27489,7 +27492,7 @@ body.light_theme {
 }
 
 .light_theme .kycCardStatus ul li label {
-  color: #787878;
+  color: var(--textgrey-clr);
 }
 
 .light_theme .showOnlyforUsers a {
@@ -27805,7 +27808,8 @@ body.light_theme {
 }
 
 .dark_theme .login_title_8 {
-  color: #ffff !important;
+  /* color: #ffff !important; */
+  color:var(--primary-clr) !important
 }
 .light_theme .login_title_8 {
   color: black !important;
@@ -28323,7 +28327,7 @@ body.light_theme {
   color: #fff !important;
 } */
 .light_theme .dashboard_login a {
-  color: #757272 !important;
+  color: var(--textgrey-clr) !important;
 }
 
 .light_theme #Bank .dash_title {
@@ -32989,7 +32993,7 @@ input:checked ~ .checkmark {
 }
 
 .tableborder .sidetag {
-  color: #757272;
+  color: var(--textgrey-clr);
   font-size: 16px;
   margin-bottom: 0px;
   position: relative;
@@ -33001,7 +33005,7 @@ input:checked ~ .checkmark {
   position: absolute;
   width: 9px;
   height: 9px;
-  background-color: #757272;
+  background-color: var(--textgrey-clr);
   border-radius: 50px;
   top: 5px;
   left: 4px;
@@ -33024,8 +33028,8 @@ input:checked ~ .checkmark {
 }
 
 .tableborder .unavail {
-  border-top: 1px solid #757272;
-  border-bottom: 1px solid #757272;
+  border-top: 1px solid var(--textgrey-clr);
+  border-bottom: 1px solid var(--textgrey-clr);
   padding: 10px 20px 10px;
   margin-top: 25px;
 }
@@ -33095,7 +33099,7 @@ input:checked ~ .checkmark {
 }
 
 .tableborder .chatbox ul li .lastchat {
-  color: #757272;
+  color: var(--textgrey-clr);
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 500;
@@ -33124,7 +33128,7 @@ input:checked ~ .checkmark {
 
 .tableborder .chatfoot .sendbtn {
   background-color: transparent;
-  border: 1px solid #757272;
+  border: 1px solid var(--textgrey-clr);
   border-radius: 5px;
   color: #fff;
   padding: 7px 18px;
@@ -33138,7 +33142,7 @@ input:checked ~ .checkmark {
 }
 
 .tableborder .chatfoot .flexb .icon span {
-  color: #757272;
+  color: var(--textgrey-clr);
   font-size: 15px;
 }
 
@@ -33156,7 +33160,7 @@ input:checked ~ .checkmark {
   position: absolute;
   top: -3px;
   left: 0px;
-  border: 1px solid #757272;
+  border: 1px solid var(--textgrey-clr);
   width: 40px;
   height: 35px;
   display: grid;
@@ -33174,7 +33178,7 @@ input:checked ~ .checkmark {
 }
 
 .offerpage .offercontent {
-  color: #757272;
+  color: var(--textgrey-clr);
   line-height: 26px;
 }
 
@@ -34324,4 +34328,16 @@ option {
 
 .light_theme .support_ticket_emty {
   color: #000;
+}
+
+.otp_grp_btn .input-group-text {
+  border: 1px solid #59615f !important;
+  background-color: #aff41f;
+    border: 1px solid #aff41f;
+    border-radius: 10px;
+    padding: 10px 30px !important;
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: none;
 }

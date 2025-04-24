@@ -282,7 +282,7 @@ console.log("validate error" , validateError);
                        
                         <button
                             type="button"
-                            className="btn btn-primary text-uppercase py-2 my-0"
+                            className="btn btn-primary text-uppercase py-2 my-0 ml-2"
                             disabled={mobileDetail.isDisable || !isEmpty(validateError.newPhoneCode) || !isEmpty(validateError.newPhoneNo)}
                             onClick={handleMobileSubmit}
                         >
@@ -309,12 +309,12 @@ console.log("validate error" , validateError);
                         onBlur={handleBlur}
                         pattern="[0-9]*"
                     />
-                    <div className="input-group-append">
-                        <span className="input-group-text themebtn text-uppercase py-2 my-0">
+                    <div className="input-group-append otp_grp_btn">
+                        <span className="input-group-text py-2 my-0">
                             {
-                                (mobileDetail.timer != 0 && mobileDetail.timer != 120) && <small className="textBlue">
-                                    {mobileDetail.timer} {t("SEC")}
-                                </small>
+                                (mobileDetail.timer != 0 && mobileDetail.timer != 120) && <span className="textBlue">
+                                    {mobileDetail.timer} {t("Sec")}
+                                </span>
                             }
                         </span>
                     </div>

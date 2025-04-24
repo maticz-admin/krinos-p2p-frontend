@@ -139,7 +139,7 @@ const Messagenotification = () => {
                                   </div>
                                 ))}
                               </>
-                            ) : (<p>There is no data</p>)}
+                            ) : (<p className='text-center'>There is no data</p>)}
                           </ul>
                         </div>
                       </GridItem>

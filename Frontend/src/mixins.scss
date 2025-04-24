@@ -696,7 +696,8 @@ $themeyellow: #aff41f;
 
         p {
             // font-family: "Roboto",sans-serif !important;
-            color: $pcolor;
+            // color: $pcolor;
+            color: var(--textgrey-clr);
 
             @media(max-width:767px) {
                 font-size: 14px;

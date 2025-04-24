@@ -1,5 +1,6 @@
 .bit_text {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
+  text-transform: capitalize;
   margin-bottom: 18px;
 }
 
@@ -277,7 +278,8 @@ a.buyhover:hover .tradelists {
 
 .bit1 {
   color: #fff;
-  font-size: 32px;
+  font-size: 23px;
+  /* font-size: 32px; */
   font-weight: 600;
 }
 
@@ -461,8 +463,8 @@ body.light_theme .jss25 {
 }
 
 .light_theme .btcc {
-  border: 1px solid gray !important;
-  color: black !important;
+  border: 1px solid var(--black-clr) !important;
+  color: var(--black-clr) !important;
 }
 
 .light_theme .limits {
@@ -718,7 +720,8 @@ body.light_theme .jss25 {
 }
 
 .modal-title {
-  color: #ffff;
+  /* color: #ffff; */
+  color: var(--primary-clr);
   font-size: 16px;
 }
 
