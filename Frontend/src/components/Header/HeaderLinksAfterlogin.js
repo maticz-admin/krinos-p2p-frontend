@@ -208,7 +208,7 @@ export default function HeaderLinks1(props) {
     // })
   }, [socket]);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchdata();
   }, []);
   async function fetchdata() {
@@ -306,7 +306,7 @@ export default function HeaderLinks1(props) {
 
               {isAuth && (
                 <li>
-                  <NavLink to="/userdash">{t("DASHBOARD")}</NavLink>
+                  <NavLink to="/userdash" className="nav-link">{t("DASHBOARD")}</NavLink>
                 </li>
               )}
               {isAuth && (
@@ -316,7 +316,7 @@ export default function HeaderLinks1(props) {
               )}
 
               <li>
-                <NavLink to="/" color="transparent" className="nav-link">
+                <NavLink to="/" exact>
                   Home
                 </NavLink>
               </li>

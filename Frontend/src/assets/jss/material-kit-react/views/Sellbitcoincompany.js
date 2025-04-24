@@ -66,7 +66,7 @@ const Bitcoincompany = (props) => {
                                     />
                                     <span class="input-group-text" id="basic-addon2">ETH</span>
                                 </div>
-                                <p className='get'><AiOutlineInfoCircle/> Enter amount to get started</p>
+                                <p className='get d-flex align-items-center'><AiOutlineInfoCircle/> Enter amount to get started</p>
                             </div>
                             <div className='col-md-6 col-sm-6'>
                                 <div className='input-group mb-1 jj floatinglabel mt-4 h-54'>

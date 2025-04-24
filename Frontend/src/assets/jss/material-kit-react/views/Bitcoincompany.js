@@ -305,7 +305,7 @@ const Bitcoincompany = (props) => {
 
 
     return (
-        <div>
+        <div className='page_wrap home_page_header_banner'>
             <Header className="header"
                 color="transparent"
                 routes={dashboardRoutes}
@@ -326,7 +326,7 @@ const Bitcoincompany = (props) => {
                 <div className='loader_hide_op'>
 
                     <div>
-                        <h1 className='blackandwhite bit_text text-center bit1'>{tradedata?.ordertype?.toUpperCase()} BITCOIN With company</h1>
+                        <h1 className='blackandwhite bit_text text-center bit1'>{tradedata?.ordertype} Bitcoin With Company</h1>
                         <p className='roboto subhead'>{tradedata?.ordertype == "Sell" ? "Buy" : "Sell"} Bitcoin from other users using any payment<br></br>method and currency.</p>
                     </div>
 
@@ -359,7 +359,7 @@ const Bitcoincompany = (props) => {
                                                 />
                                                 <span class="input-group-text" id="basic-addon2">{tradedata?.preferedcurrency}</span>
                                             </div>
-                                            <p className='get'><AiOutlineInfoCircle /> Enter amount to get started</p>
+                                            <p className='get d-flex align-items-center gap-1'><AiOutlineInfoCircle /> Enter amount to get started</p>
                                             {/* <p className='get'><AiOutlineInfoCircle /> You get {getuser} {tradedata?.preferedcurrency} worth of {tradedata?.coin}{tradedata?.ordertype == "Buy" && "+ escrow fee 1%"}</p> */}
 
                                             <p className='error-message mb-0'>{error}</p>

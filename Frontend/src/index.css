@@ -21263,16 +21263,18 @@ button.btn.btn-outline:active {
 .dashboard_login a:hover {
   /* color: #21b77a !important; */
   /* color: #aff41f !important; */
-  background: #aff41f !important;
+  /* background: #aff41f !important;
   color: #000 !important;
-  border-radius: 12px;
+  border-radius: 12px; */
+  color: #aff41f !important;
 }
 .light_theme .dashboard_login a:hover {
   /* color: #21b77a !important; */
   /* color: #aff41f !important; */
-  background: #aff41f !important;
+  /* background: #aff41f !important;
   color: black !important;
-  border-radius: 12px;
+  border-radius: 12px; */
+  color: #8cc516 !important;
 }
 .dashboard_login button {
   color: var(--primary-clr);
@@ -31491,6 +31493,7 @@ margin-left: 20px;
   padding-left: 20px !important;
   margin-top: 8px;
   width: 100%;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 959px) {
@@ -31804,12 +31807,16 @@ body.padi_over_body.modal-open {
   cursor: pointer;
 }
 
-.dashboard_login a.active,
-.light_theme .dashboard_login a.active {
+.dashboard_login a.active {
   /* color: #21b77a !important; */
-  background: #aff41f !important;
-  color: black !important;
-  border-radius: 12px;
+  /* background: #aff41f !important; */
+  /* color: black !important; */
+  /* border-radius: 12px; */
+  color: #aff41f !important;
+}
+
+.light_theme .dashboard_login a.active {
+  color: #8cc516 !important;
 }
 
 #profile_menu a.active li {

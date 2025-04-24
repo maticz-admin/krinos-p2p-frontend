@@ -828,6 +828,7 @@ body.light_theme .jss25 {
 .mobilelog li a {
   color: #ffff !important;
   margin-left: 12px;
+  font-weight: 500;
 }
 .light_theme .mobilelog li a {
   color: gray !important;
