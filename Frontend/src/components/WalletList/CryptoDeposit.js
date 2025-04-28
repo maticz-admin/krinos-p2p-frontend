@@ -19,7 +19,6 @@ import { useSelector } from "react-redux";
 const CryptoDeposit = (props) => {
   const { t, i18n } = useTranslation();
   const [result , setResult] = useState("");
-
   // props
   const { show, assetData, currency, onHide } = props;
   const userdata = useSelector(state => state);

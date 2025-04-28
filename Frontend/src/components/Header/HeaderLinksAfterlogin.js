@@ -126,7 +126,6 @@ export default function HeaderLinks1(props) {
   const handleCloseNotification1 = () => {
     setAnchorElNoti1(null);
     document.getElementsByTagName("body")[0].classList.remove("padi_over_body");
-
     // document.getElementsByTagName("body")[0].style.overflow ="auto";
     // document.getElementsByTagName("body")[0].style.paddingRight ="0px";
   };
@@ -214,6 +213,8 @@ export default function HeaderLinks1(props) {
   async function fetchdata() {
     var result = await Getmessagenotificationhooks();
     var unreadresult = await Getunreadmessagenotificationhooks();
+    console.log("message notification" ,  unreadresult);
+    
     var unreaddata = unreadresult?.data?.data;
     setUnreadmsg(unreaddata?.length);
     setPopupdata(unreaddata);

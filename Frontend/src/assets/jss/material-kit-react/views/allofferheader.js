@@ -24,6 +24,7 @@ import config from '../../../../config/index';
 import { useSelector } from 'react-redux';
 import { Getsingleuserhook } from '../../../../actions/P2PorderAction';
 import { toastAlert } from 'lib/toastAlert';
+import { useTranslation } from 'react-i18next';
 // import HeaderLinks1 from 'components/Header/HeaderLinksAfterlogin';
 
 const dashboardRoutes = [];
@@ -31,6 +32,7 @@ const Buybitcoin = (props) => {
     const { ...rest } = props;
     const userdata = useSelector(state => state);
     // const userdata = useSelector(state => state);
+    const { t, i18n } = useTranslation();
     const [createModal, setCreateModal] = useState(false);
     const [created, setCreated] = useState(false);
     const location = useLocation();
@@ -208,17 +210,15 @@ const Buybitcoin = (props) => {
                     color: "dark",
                 }}
                 {...rest} />
-
-
             <div className='login_container login_box'>
                 <div>
-                    <h1 className='blackandwhite bit_text text-center bit1'>Offer</h1>
-                    <p className='roboto subhead'>Buy or Sell Bitcoin from other users using any payment<br></br>method and currency.</p>
+                    <h1 className='blackandwhite bit_text text-center bit1'>{t("OFFER")}</h1>
+                    <p className='roboto subhead'>{t("BUY_OR_SELL_BITCOIN")}<br></br>{t("METHOD_AND_CURRENCY")}</p>
                 </div>
 
                 <div className='container'>
                     <div className='d-flex align-items-center justify-content-end my-3'>
-                        <button className='themebtn' onClick={() => handleverify()}>Create offer</button>
+                        <button className='themebtn' onClick={() => handleverify()}>{t("CREATE_OFFER")}</button>
                     </div>
                     <div className='bitcoins'>
                         <img className='spring' src={spring} alt="spring" />
@@ -259,8 +259,8 @@ const Buybitcoin = (props) => {
                             </div>
                             <div className='flex_with_btn_div_ofe'>
                                 <div className='floatinglabel'>
-                                    <input type="number" className='form-control' readOnly={loader} placeholder='Enter Amount' name='amount' onChange={(e) => { setAmount(e.target.value) }} />
-                                    <Button disabled={loader} className="themebtn ms-2 btn_filer_new_ma" onClick={filterbutton}>Filter</Button>
+                                    <input type="number" className='form-control' readOnly={loader} placeholder={t("ENTER_AMOUNT")} name='amount' onChange={(e) => { setAmount(e.target.value) }} />
+                                    <Button disabled={loader} className="themebtn ms-2 btn_filer_new_ma" onClick={filterbutton}>{t("FILTER")}</Button>
                                 </div>
                             </div>
                         </div>
@@ -283,8 +283,8 @@ const Buybitcoin = (props) => {
                                                     {item?.paymentmethod?.map((data) => <p className='aqua badge themebadge me-1 mb-1'>{data}</p>)}
                                                 </div>
                                                 <div style={{ maxWidth: "250px", minWidth: "250px", marginRight: "20px" }}>
-                                                    <p><span className='gray amount'>Min purchase </span> : <span className='yellow'> {item?.min} {item?.preferedcurrency}</span></p>
-                                                    <p><span className='gray amount'>Max purchase </span> : <span className='yellow'> {item?.max} {item?.preferedcurrency}</span></p>
+                                                    <p><span className='gray amount'>{t("MIN_PURCHASE")} </span> : <span className='yellow'> {item?.min} {item?.preferedcurrency}</span></p>
+                                                    <p><span className='gray amount'>{t("MAX_PURCHASE")} </span> : <span className='yellow'> {item?.max} {item?.preferedcurrency}</span></p>
                                                 </div>
                                                 <div style={{ maxWidth: "250px", minWidth: "250px", marginRight: "20px" }}>
                                                     <p>
@@ -299,19 +299,19 @@ const Buybitcoin = (props) => {
                                                             isLogin() ?
                                                             navigate.push(`/bitcoincompany/${item?._id}`, { state: item })
                                                             : navigate.push('/login');
-                                                        }}>{item?.ordertype == "Sell" ? "Buy" : "Sell"}</button>
+                                                        }}>{item?.ordertype == "Sell" ? t("BUY") : t("SELL")}</button>
                                                     </div> : <div >
                                                         <button className='themebtn' onClick={() => {
                                                             isLogin() ?
                                                             navigate.push(`/bitcoincompany/${item?._id}`, { state: item })
                                                             : navigate.push('/login');
-                                                        }}>View</button>
+                                                        }}>{t("VIEW")}</button>
                                                     </div>) : <div className='btn_div_ooder_he right_space'>
                                                         <button className='themebtn' onClick={() => {
                                                             isLogin() ?
                                                             navigate.push(`/bitcoincompany/${item?._id}`, { state: item })
                                                             : navigate.push('/login');
-                                                        }}>{item?.ordertype == "Sell" ? "Buy" : "Sell"}</button>
+                                                        }}>{item?.ordertype == "Sell" ? t("BUY") : t("SELL")}</button>
                                                     </div>}
                                                 </div>
                                             </div>

@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 // import action
 import { getBankDetail, getUserSetting, viewUserProfile ,logout} from '../../actions/users';
-import { getPriceConversion, getANNC, getCurrency, getMedia } from '../../actions/commonAction';
+import { getPriceConversion, getANNC, getCurrency, getMedia, getLanguage } from '../../actions/commonAction';
 import { getAssetData } from '../../actions/walletAction';
 import { unReadNotice, FetchunReadNotice } from '../../actions/notificationAction';
 
@@ -28,6 +28,7 @@ const HelperRoute = () => {
             getPriceConversion(dispatch)
             getANNC(dispatch)
             unReadNotice(dispatch)
+            // getLanguage(dispatch)
         }
     }, [isAuth])
 

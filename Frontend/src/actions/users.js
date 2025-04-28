@@ -202,12 +202,14 @@ export const editUserProfile = async (data, dispatch) => {
     });
 
     respData = decodedata(respData?.data);
+    console.log("respdata in edit profile" , respData);
+    
     dispatch(setAccountData(respData.result));
     return {
       status: "success",
       loading: false,
-      message: respData.data.message,
-      result: respData.data.result,
+      message: respData?.message,
+      result: respData?.result,
     };
   } catch (err) {
     handleResp(err, 'error')
@@ -578,6 +580,8 @@ export const getUserSetting = async (dispatch) => {
       method: "get",
       url: `/api/userSetting`,
     });
+    console.log("get user settings" , respData);
+    
     dispatch(setUserSetting(respData.data.result));
     return true;
   } catch (err) {

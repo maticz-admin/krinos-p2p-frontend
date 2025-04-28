@@ -118,9 +118,19 @@ const EditDetail = forwardRef((props, ref) => {
         formData.append('city', reqData.city);
         formData.append('postalCode', reqData.postalCode);
         formData.append('profileImage', reqData.profileImage);
+        let reqdata = {
+            'firstName' : reqData.firstName,
+            'lastName' : reqData.lastName,
+            'blockNo' : reqData.blockNo,
+            'address' : reqData.address,
+            'country' : reqData.country,
+            'state' : reqData.state,
+            'city' : reqData.city,
+            'postalCode' : reqData.postalCode
+        }
 
         try {
-            const { status, loading, message, error } = await editUserProfile(formData, dispatch)
+            const { status, loading, message, error } = await editUserProfile(reqdata, dispatch)
             setLoader(loading)
             if (status == 'success') {
                 setEditForm(true)

@@ -227,8 +227,8 @@ const Trade = (props) => {
       //   spender : userdata?.account?.userId,
       //   orderid :location?.state?.state?.tradedata?.orderid,
       // }
-      // var roomid = tradechat?.roomid ? tradechat?.roomid : Date.now().toString()
-      socket.emit("CREATECHATROOM", roomid);
+      // let roomid = tradechat?.roomid ? tradechat?.roomid : Date.now().toString()
+      // socket.emit("CREATECHATROOM", roomid);
     }
 
     // }
@@ -256,7 +256,6 @@ const Trade = (props) => {
           // setUserstatus("Offline")
           // setTimeout(setUserstatus("Offline") , 5000);
         }
-
     });
     // setUserstatus("Offline")
     // setTimeout(setUserstatus("Offline") , 5000);
@@ -385,7 +384,7 @@ const Trade = (props) => {
                   <hr />
                   <div className="flexb canceltrade">
                     {(tradechat?.chatstatus == "Active" && tradechat?.paidstatus == "pending") && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => setCancelmodal(true)}>Cancel trade</button>}
-                    {tradechat?.spender == userdata?.account?.userId && <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" ? "You haven't paid yet" : `You have paid ${spenderdata?.pay} ${offerdata?.preferedcurrency}`}</p>}
+                    {tradechat?.spender == userdata?.account?.userId && <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" ? "You have not completed the payment yet" : `You have paid ${spenderdata?.pay} ${offerdata?.preferedcurrency}`}</p>}
                   </div>
                 </div>
                 <div className="secondbox">
@@ -423,8 +422,7 @@ const Trade = (props) => {
                       View offer
                     </button>
                     <button className="offerbtn roboto" onClick={() => setTour(true)}>
-                      <span className="fa fa-info-circle pr-2"></span> Take a
-                      tour
+                      <span className="fa fa-info-circle pr-2"></span> Take a tour
                     </button>
                   </div>
                 </div>
@@ -465,7 +463,7 @@ const Trade = (props) => {
                 </div>
                 <div className="flexb usertime">
                   <div>
-                    <p className="roboto sidetag"> {userstatus == "Online" ? "Online" : `last seen ${new Date(parseFloat(lastseendata))?.toString()?.slice(4, 21)}`}</p>
+                    <p className="roboto sidetag"> {userstatus == "Online" ? "Online" : `Last seen ${new Date(parseFloat(lastseendata))?.toString()?.slice(4, 21)}`}</p>
 
                     {/* <p className="roboto sidetag"> {tradechat?.ordercreator == userdata?.account?.userId ? (userdatas?.lastseen == "online" ? "Online" : `lastseen ${new Date(parseFloat(userdatas?.lastseen))?.toString()?.slice(4 , 21)}`) : (owner?.lastseen == "online" ? "Online" : `lastseen ${new Date(parseFloat(owner?.time))?.toString()?.slice(4 , 21)}`)}</p> */}
                   </div>

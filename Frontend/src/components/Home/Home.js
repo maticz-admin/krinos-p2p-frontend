@@ -24,6 +24,8 @@ import config from '../../config';
 import btcicon from "../../../src/assets/images/btcIcon.png"
 
 import axios from 'axios';
+import { Email } from '@material-ui/icons';
+import { useTranslation } from 'react-i18next';
 
 const names = [
     'Oliver Hansen',
@@ -46,6 +48,7 @@ var img5 = <img src={Images.tab5} />
 var img6 = <img src={Images.tab6} />
 
 const Home = (props) => {
+    const { t, i18n } = useTranslation();
     const [coinlist, setCoinlist] = useState([]);
     const [coin, setCoin] = useState("");
     const [ordertype, setOrdertype] = useState("Buy");
@@ -197,10 +200,10 @@ const Home = (props) => {
                                 <div className='banner_ad_wrapper'>
 
                                     <div>
-                                        <h1 className='blackandwhite'>Welcome to Krinos P2P</h1>
-                                        <p className='roboto subhead'>Anonymous P2P deals on your teams. Trade globaly using for any payment system for any currency. </p>
+                                        <h1 className='blackandwhite'>{t("WELCOME_TO_KRINOS")}</h1>
+                                        <p className='roboto subhead'>{t("P2P_DEALS")} </p>
                                         {/* <button className='mt-3 borderbtn'><i class="fa fa-video-camera" aria-hidden="true"></i> Learn To Trade</button> */}
-                                        <Link to="/details/demo_videos" className="navlink_pos_zin borderbtn mt-3 d-block"><i class="fa fa-video-camera" aria-hidden="true"></i> Learn To Trade</Link>
+                                        <Link to="/details/demo_videos" className="navlink_pos_zin borderbtn mt-3 d-block"><i class="fa fa-video-camera" aria-hidden="true"></i>{t("LEARN_TO_TRADE")}</Link>
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +225,7 @@ const Home = (props) => {
                                             <div className='row mt-3'>
                                                 <div className='col-md-6'>
                                                     <div className='themeselect mb-3 themeselct_home_se'>
-                                                        <label>Select Crypto</label>
+                                                        <label>{t("SELECT_CRYPTO")}</label>
 
 
                                                         <Dropdown className="headerdropdown m-left iner_drop_versiotwo">
@@ -280,7 +283,7 @@ const Home = (props) => {
                                                 </div>
                                                 <div className='col-md-6'>
                                                     <div className='themeselect themeselct_home_se mb-3 p-0'>
-                                                        <label>Preferred Currency</label>
+                                                        <label>{t("PREFERRED_CURRENCY")}</label>
 
 
                                                         <Dropdown className="headerdropdown m-left iner_drop_versiotwo">
@@ -337,18 +340,13 @@ const Home = (props) => {
 
                                                 <div className='col-md-6'>
                                                     <div className='themeselect themeselct_home_se p-0 mb-3'>
-                                                        <label>Payment Method</label>
+                                                        <label>{t("PAYMENT_METHOD")}</label>
                                                         <Dropdown className="headerdropdown m-left iner_drop_versiotwo">
                                                             <Dropdown.Toggle variant="success" className='btcc' id="dropdown-basic">
                                                                 <span className='pl-2'>{paymenttype}</span>
                                                             </Dropdown.Toggle>
 
                                                             <Dropdown.Menu className="iner_dropmenu_versiotwo">
-
-
-
-
-
                                                                 {paymenttypelist?.map((data, i) => {
                                                                     return (
 
@@ -388,7 +386,7 @@ const Home = (props) => {
                                                 </div>
                                                 <div className='col-md-6'>
                                                     <div className='floatinglabel mb-3'>
-                                                        <label>Amount</label>
+                                                        <label>{t("AMOUNT")}</label>
                                                         <input type="text" className='form-control' placeholder='Enter Amount' value={amount}
                                                             onChange={(e) => setAmount(e?.target?.value)}
                                                         />
@@ -415,7 +413,7 @@ const Home = (props) => {
                                             <div className='row mt-3'>
                                                 <div className='col-md-6'>
                                                     <div className='themeselect themeselct_home_se mb-3'>
-                                                        <label>Select Crypto</label>
+                                                        <label>{t("SELECT_CRYPTO")}</label>
                                                         {/* <div className='mb-2'> */}
                                                         {/* <Form.Control size="sm" as="select" className='bg-dark'>
                                                                 <option >BTC</option>
@@ -479,7 +477,7 @@ const Home = (props) => {
                                                 </div>
                                                 <div className='col-md-6'>
                                                     <div className='themeselect themeselct_home_se mb-3 p-0'>
-                                                        <label>Preferred Currency</label>
+                                                        <label>{t("PREFERRED_CURRENCY")}</label>
 
 
                                                         <Dropdown className="headerdropdown m-left iner_drop_versiotwo">
@@ -536,7 +534,7 @@ const Home = (props) => {
 
                                                 <div className='col-md-6'>
                                                     <div className='themeselect themeselct_home_se p-0 mb-3'>
-                                                        <label>Payment Method</label>
+                                                        <label>{t("PAYMENT_METHOD")}</label>
 
 
                                                         <Dropdown className="headerdropdown m-left iner_drop_versiotwo">
@@ -588,7 +586,7 @@ const Home = (props) => {
                                                 </div>
                                                 <div className='col-md-6'>
                                                     <div className='floatinglabel mb-3'>
-                                                        <label>Amount</label>
+                                                        <label>{t("AMOUNT")}</label>
                                                         <input type="text" className='form-control' placeholder='Enter Amount' value={amount}
                                                             onChange={(e) => { setAmount(e?.target?.value); setOrdertype('Sell') }}
                                                         />
@@ -608,7 +606,7 @@ const Home = (props) => {
                                                 </div> */}
                                                 <div className='text-center'>
                                                     {/* <Link to="/buybitcoin">   */}
-                                                    <button className='graybtn my-3' onClick={() => handleviewoffer()}>{loading ? "Loading..." : "View Offer"} </button>
+                                                    <button className='graybtn my-3' onClick={() => handleviewoffer()}>{loading ? "Loading..." : t("VIEW_OFFER")} </button>
                                                     {/* </Link> */}
                                                 </div>
                                             </div>
@@ -1048,15 +1046,15 @@ const Home = (props) => {
                     <div className='row'>
                         <div className='col-sm-4'>
                             <h3>44+</h3>
-                            <p>Millions of Users</p>
+                            <p>{t("MILLIONS_OF_USERS")}</p>
                         </div>
                         <div className='col-sm-4'>
                             <h3>$3,364,238,100</h3>
-                            <p>24h Trading Volume</p>
+                            <p>{t("TRADING_VOLUME")}</p>
                         </div>
                         <div className='col-sm-4'>
                             <h3>700+</h3>
-                            <p>Prime Virtual Asset</p>
+                            <p>{t("PRIME_VIRTUAL_ASSET")}</p>
                         </div>
                     </div>
                 </div>
@@ -1070,8 +1068,8 @@ const Home = (props) => {
                                 <div className='col-12 col-md-4'>
                                     <div className='borderbox'>
                                         <img src={Images.homefaq1} />
-                                        <h3>SAFE TRANSACTION</h3>
-                                        <p>Bitcoins are held in safe escrow until the transaction is fully concluded</p>
+                                        <h3>{t("SAFE_TRANSACTION")}</h3>
+                                        <p>{t("SAFE_TRANSACTION_DETAIL")}</p>
                                         {/* <p>{ReactHtmlParser(transparentfee)}</p> */}
                                     </div>
                                 </div>
@@ -1079,8 +1077,8 @@ const Home = (props) => {
                                 <div className='col-12 col-md-4'>
                                 <div className='borderbox'>
                                 <img src={Images.homefaq2} />
-                                <h3>INVITE FRIENDS </h3>
-                                <p>Help your friends and family <Link to="/register">Sign up for Krinos P2P</Link></p>
+                                <h3>{t("INVITE_FRIENDS")} </h3>
+                                <p>{t("HLP_UR_FRNDS")} <Link to="/register">{t("SIGNUP_FORKR")}</Link></p>
 
                                         {/* <p>{ReactHtmlParser(marginhall)}</p> */}
                                     </div>
@@ -1089,8 +1087,8 @@ const Home = (props) => {
                                 <div className='col-12 col-md-4'>
                                 <div className='borderbox'>
                                 <img src={Images.homefaq3} />
-                                <h3>VALUABLE FEEDBACK</h3>
-                                <p>Krinos P2P's feedback system highlights reliable and experienced users, helping you trade smoothly</p>
+                                <h3>{t("VALUABLE_FEEDBACK")}</h3>
+                                <p>{t("VAL_FEED_P2P")}</p>
 
                                         {/* <p>{ReactHtmlParser(learnandpractice)}</p> */}
                                     </div>
@@ -1197,16 +1195,17 @@ const Home = (props) => {
                     <img src={Images.connect} className='connectr' />
                     <div className="row jc-center text-center">
                         <div className="col-md-6">
-                            <h2>Start Your Crypto Journey Now!</h2>
+                            <h2>{t("START_UR_CRYPTOJOURNEY")}</h2>
                             {/* <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p> */}
                             <div className="input-group">
                                 <input type="email" autoComplete="off" className="form-control" placeholder="Email" name="email"
+                                value={email}
                                     onChange={(e) => { SetEmail(e?.target?.value) }}
                                 />
                                 <div className="input-group-append">
                                     <button className="themebtn" //href="/"
                                         onClick={(e) => { OnSubmit(e) }}
-                                    >Subscribe</button>
+                                    >{t("SUBSCRIBE")}</button>
                                 </div>
                             </div>
                         </div>

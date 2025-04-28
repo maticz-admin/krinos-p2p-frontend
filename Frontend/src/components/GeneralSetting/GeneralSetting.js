@@ -105,12 +105,14 @@ const GeneralSetting = () => {
         e.preventDefault();
         setLoader(true)
         let reqData = {
-            // languageId,
+            languageId,
             theme,
             // currencySymbol,
             // timeZone,
             afterLogin
         }
+        console.log("reqdata in form submit" , reqData);
+        
         let validationError = validation(reqData)
         if (!isEmpty(validationError)) {
             setValidateError(validationError)
@@ -141,6 +143,7 @@ const GeneralSetting = () => {
             
         }
     }
+console.log("formValueformValue" , formValue);
 
     useEffect(() => {
         console.log('userSetting-----', userSetting)
@@ -161,6 +164,8 @@ const GeneralSetting = () => {
 
     return (
         <>
+        {console.log("languageOptionlanguageOption" , languageOption)
+        }
             <div className="row align-items-center">
                 <div className="col-lg-12">
                     <h3 className="dash_title mb-3">{t('GENERAL_SETTINGS')}</h3>
@@ -254,6 +259,7 @@ const GeneralSetting = () => {
                                     }
                                 </div>
                             </GridItem> */}
+
                             {/* <GridItem xs={12} sm={12} md={6} lg={6}>
                                 <div className="form-group">
                                     <label>My Default Time Zone</label>

@@ -12,10 +12,12 @@ import bannn from '../../assets/images/lightthemes/45.png'
 import { newsLetter } from "actions/spotTradeAction";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { getsitesettingshook } from "actions/P2PorderAction";
+import { useTranslation } from "react-i18next";
 
 export default function Footer(props) {
   const { type } = props;
   const navigate = useHistory();
+  const { t, i18n } = useTranslation();
 
     const [facebook , setFacebook] = useState("");
     const [telegram , setTelegram] = useState("");
@@ -41,13 +43,14 @@ export default function Footer(props) {
   useEffect(()=>{
     async function getcms(){
       var result = await getsitesettingshook();
-      setFacebook(result?.data?.data?.facebookLink);
-      setTwitter(result?.data?.data?.twitterUrl);
-      setEmail(result?.data?.data?.supportMail);
-      setTelegram(result?.data?.data?.telegramlink)
+      console.log("result in settings hooks" , result?.data);
+      setFacebook(result?.data?.facebookLink);
+      setTwitter(result?.data?.twitterUrl);
+      setEmail(result?.data?.supportMail);
+      setTelegram(result?.data?.telegramlink)
   }
   getcms();
-  })
+  }, [])
   return (
     <Fragment>
       {/* {type == 'beforeLogin' && <BeforeLogin />}
@@ -75,18 +78,18 @@ export default function Footer(props) {
          <div className="footerMidd wow fadeIn" data-wow-delay=".5s">
           <div className="footerMidd_left">
             <ul className="footer_links">
-            <li><NavLink to="/details/privacypolicy">Privacy Policy</NavLink></li>
-            <li><NavLink to="/details/termsandcondition">Terms & Conditions</NavLink></li>
-            <li><NavLink to="/amlpolicy">AML Policy</NavLink></li>
-            <li><NavLink to="/cookiespolicy">Public Cookies Policy</NavLink></li>
+            <li><NavLink to="/details/privacypolicy">{t("PRIVACY")}</NavLink></li>
+            <li><NavLink to="/details/termsandcondition">{t("TERMS_CONDITION")}</NavLink></li>
+            <li><NavLink to="/amlpolicy">{t("AML_POLICY")}</NavLink></li>
+            <li><NavLink to="/cookiespolicy">{t("PUBLIC_COOKIE_POLICY")}</NavLink></li>
             <li><NavLink to="/restrictedcountries">Restricted Countries (Locations)</NavLink></li>
 
 
-            <li><NavLink to="/risk">Risk & Disclaimer</NavLink></li>
+            <li><NavLink to="/risk">{t("RISK_DISCLAIMER")}</NavLink></li>
 
-              <li><NavLink to="/details/aboutus">About us</NavLink></li>
+              <li><NavLink to="/details/aboutus">{t("ABOUT_US")}</NavLink></li>
               {/* <li><NavLink to="/">FAQs</NavLink></li> */}
-              <li><NavLink to="/contact">Contact Us</NavLink></li> 
+              <li><NavLink to="/contact">{t("CONTACTUS")}</NavLink></li> 
 
 
 
@@ -94,16 +97,17 @@ export default function Footer(props) {
             {/* <p class="mt-2 cpy_txt">&copy; Copyright 2022 <NavLink to="/home">Aurex</NavLink> All rights reserved</p> */}
           </div>  
           <div className="footerMidd_right">
-            <h3>Social Media With Us:</h3>
+            <h3>{t("SOCIAL")}</h3>
             <ul className="socialLinks">
 
-              {/* <li><a href={facebook} target="_blank"><i className="fab fa-youtube"></i></a></li>
+              <li><a href={facebook} target="_blank"><i className="fab fa-youtube"></i></a></li>
               <li><a href={twitter} target="_blank"><i className="fab fa-twitter"></i></a></li>
-              <li><a href={telegram} target="_blank"><i class="fab fa-instagram"></i></a></li> */}
+              <li><a href={telegram} target="_blank"><i class="fab fa-instagram"></i></a></li>
 
-              <li><a href="https://www.youtube.com/@myctos_info" target="_blank"><i className="fab fa-youtube"></i></a></li>
+              {/* <li><a href="https://www.youtube.com/@myctos_info" target="_blank"><i className="fab fa-youtube"></i></a></li>
               <li><a href="https://twitter.com/myctos_info" target="_blank"><i className="fab fa-twitter"></i></a></li>
-              <li><a href="https://intagram.com/myctos_info" target="_blank"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="https://intagram.com/myctos_info" target="_blank"><i class="fab fa-instagram"></i></a></li> */}
+
               {/* <li><a href={socialMedia && socialMedia.twitterUrl} target="_blank"><i className="fab fa-twitter"></i></a></li>
               <li><a href={socialMedia && socialMedia.facebookLink} target="_blank"><i className="fab fa-facebook"></i></a></li>
               <li><a href={socialMedia && socialMedia.linkedinLink} target="_blank"><i class="fab fa-linkedin"></i></a></li> */}

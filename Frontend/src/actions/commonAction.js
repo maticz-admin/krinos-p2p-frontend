@@ -32,6 +32,8 @@ export const getLanguage = async (dispatch) => {
             'method': 'get',
             'url': `/api/getLanguage`,
         });
+        console.log("language respdata" , respData);
+        
         dispatch(setLanguageOption(respData.data.result))
         return {
             status: 'success',

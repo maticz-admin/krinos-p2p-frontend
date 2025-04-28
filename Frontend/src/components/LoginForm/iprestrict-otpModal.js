@@ -89,8 +89,11 @@ const IprestrictModal = (props) => {
     // }
 
     const handlesubmit = (e) => {
+        if(otp?.length <= 0){
+            toastAlert('error', "Please enter the OTP.", 'login');
+        }
         if(otp?.length != 4){
-            toastAlert('error', "Enter correct otp", 'login');
+            toastAlert('error', "Please enter the correct OTP", 'login');
         }
         else{
             props.login(e);

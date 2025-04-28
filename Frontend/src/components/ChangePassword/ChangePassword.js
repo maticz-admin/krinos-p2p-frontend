@@ -7,7 +7,7 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 
 // import action
-import { changePassword } from '../../actions/users';
+import { changePassword, logout } from '../../actions/users';
 
 // import lib
 import validation from './validation';
@@ -16,6 +16,8 @@ import { toastAlert } from '../../lib/toastAlert';
 
 import { Link } from "react-router-dom";
 import clsx from 'classnames';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch } from 'react-redux';
 
 const initialFormValue = {
     'oldPassword': '',
@@ -33,7 +35,8 @@ const ChangePassword = () => {
     const [showPassword,setShowPassword] = useState(false)
     const [shownewpassword,setShownewPassword] = useState(false)
     const [showConfirmpassword,setShowconfirmPassword] = useState(false)
-
+    const history = useHistory();
+    const dispatch = useDispatch();
     
 
     const { oldPassword, password, confirmPassword } = formValue;
@@ -70,6 +73,7 @@ const ChangePassword = () => {
             if (status == "success") {
                 setFormValue(initialFormValue)
                 toastAlert('success', t(message), 'changePassword', 'TOP_RIGHT');
+                logout(history, dispatch);
             } else {
                 if (error) {
                     setValidateError(error);

@@ -419,23 +419,18 @@ const EmailForm = () => {
                 <div className='text-center'>
                     <button className='themebtn big my-3'
                         onClick={handleFormSubmit}
-                    // disabled={!isEmpty(validateError) || loader}
+                    disabled={!isEmpty(validateError) || loader || (!formValue?.email||!formValue?.password)}
                     >
                         {loader && <i class="fas fa-spinner fa-spin"></i>} Login
                     </button>
                     {/* <button className='graybtn my-3'>View Offer</button> */}
-
                 </div>
-
-
-
                 <div className="form-group d-none">
-
                     <span className="login_label">{t('EMAIL_PLACEHOLDER')}</span>
                     <input
                         type="text"
                         className="form-control mt-2"
-                        placeholder={t('EMAIL_PLACEHOLDER')}
+                        placeholder = {t('EMAIL_PLACEHOLDER')}
                         name="email"
                         value={email}
                         // autoComplete="off"

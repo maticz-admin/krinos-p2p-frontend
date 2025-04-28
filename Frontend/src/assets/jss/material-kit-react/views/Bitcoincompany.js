@@ -208,7 +208,9 @@ const Bitcoincompany = (props) => {
                     receive: receive,
                     adminfee: adminprofit,
                     status: "pending",
-                    perprice: prefferedcurrencyvalue
+                    perprice: prefferedcurrencyvalue,
+                    buyerfee : buyerfee,
+                    sellerfee : sellerfee
                 }
                 var payload = {
                     creater: ownerdata?.userId,
@@ -390,7 +392,7 @@ const Bitcoincompany = (props) => {
                                         <div className='border1 mt-2'>
                                             <p className='amount'>Seller rate</p>
                                             <p className='btc-amount'>{parseFloat(prefferedcurrencyvalue).toFixed(8)}{tradedata?.preferedcurrency}</p>
-                                            {variablepercentage && <p className='market'>{tradedata?.offermargin ? tradedata?.offermargin : variablepercentage}% {(tradedata?.offermargin ? tradedata?.offermargin : variablepercentage) > 0 ? "above market" : "below market"}</p>}
+                                            {/* {variablepercentage && <p className='market'>{tradedata?.offermargin ? tradedata?.offermargin : variablepercentage}% {(tradedata?.offermargin ? tradedata?.offermargin : variablepercentage) > 0 ? "above market" : "below market"}</p>} */}
                                         </div>
                                     </div>
                                     <div className='col-md-3 col-sm-6'>

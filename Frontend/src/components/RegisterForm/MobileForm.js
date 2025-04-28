@@ -374,10 +374,7 @@ const MobileForm = () => {
                 </div>
 
                 {optStatus == true ? <div className='text-right mb-3 countdownspan'>
-
-                    <p className="pr-2"> Otp will expire in <b>  <span>{Minutes}:{Seconds}</span></b></p>
-
-
+                    <p className="pr-2"> OTP will expire in <b>  <span>{Minutes}:{Seconds}</span></b></p>
                 </div> : ""}
 
 

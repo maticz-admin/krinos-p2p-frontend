@@ -101,7 +101,7 @@ export default function BeforeLogin(props) {
           if (primaryData) {
             setLanguage(primaryData.code)
             setLang(primaryData.code)
-            i18n.changeLanguage(primaryData.code);
+            // i18n.changeLanguage(primaryData.code);
           }
         } else {
           setLanguage(lang)

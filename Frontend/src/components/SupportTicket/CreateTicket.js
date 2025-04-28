@@ -55,12 +55,37 @@ const CreateTicket = (props) => {
         window.location.reload(false);
     }
 
+     const ValidateFile = (data) => {
+        try{
+            var fileName = data.name;
+            var idxDot = fileName.lastIndexOf(".") + 1;
+            var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+            if(extFile=="png" || extFile == "jpg" || extFile == "jpeg" || extFile == "webp"){
+                return ""
+            }
+            else{
+                return "Invalid file format"
+            }
+        }
+        catch(e){
+            console.log("Error on validate filer" , e);
+        }
+    }
     const handleFile = async (e) => {
         e.preventDefault()
         const { name, files } = e.target
         const formData = { ...formValue, ...{ [name]: files[0] } }
+        let validate = ValidateFile(e?.target?.files[0])
+        if(validate){
+            setValidateError(() => {
+                let old = validateError;
+                old.attachment = validate
+                return old;
+            })
+        }
         setFormValue(formData)
     };
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         let reqData = {
@@ -69,12 +94,18 @@ const CreateTicket = (props) => {
         }
         // console.log('reqData-----', reqData)
         let validationError = validation(reqData, 'createTicket')
-        if (!isEmpty(validationError)) {
+        let validate = ValidateFile(formValue?.attachment)
+        // if(!formValue?.attachment){
+        //     validationError.attachment = ""
+        // }
+        if(validate){
+            validationError.attachment = validate
+        }
+        if (!isEmpty(validationError) || validate) {
             setValidateError(validationError)
             return
         }
         setLoader(true)
-
         let formData = new FormData();
         formData.append('categoryId', categoryId)
         formData.append('message', message)
@@ -176,7 +207,7 @@ const CreateTicket = (props) => {
                         }
                     </div>
                     <div className="form-group docus">
-                        <label className='labelname'>{t('ATTACHMENT')}</label>
+                        <label className='labelname'>{t('ATTACHMENT') + ` (${t("OPTIONAL")})`}</label>
                         <div className="custom-file">
                             <input
                                 onChange={handleFile}

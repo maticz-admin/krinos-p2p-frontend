@@ -252,7 +252,7 @@ const fetchdata = async() => {
                                 <div className='one2 one2_alig_widt'>
                                     <div className=''>
                                         <div><p className='namelist'>Id Proof</p></div>
-                                        <div className='text-center'><img src={kyc?.idProof?.status == "approved" ? tick : close} className='prof1' /></div>
+                                        <div className='text-center'><img src={kyc?.status == "Approved" ? tick : close} className='prof1' /></div>
                                     </div>
                                 </div>
 

@@ -179,7 +179,7 @@ const IprestrictmobileModal = (props) => {
                   {props.error && <p className="error-message">{t(props.error)}</p>}
                         <div className='text-right mb-3 mt-3 countdownspan'>
 
-                            <p className="pr-2 mt-3"> Otp will expire in <b>  <span>{Minutes}:{Seconds}</span></b></p>
+                            <p className="pr-2 mt-3"> OTP will expire in <b>  <span>{Minutes}:{Seconds}</span></b></p>
 
 
                         </div>

@@ -623,7 +623,7 @@ const CreateOffer = (props) => {
                                         <h6 className='blackandwhite'>Fixed price market rate your offer will list at</h6>
                                         <div className='d-flex incrementbtn'>
                                             <button disabled={fixedmarketrate == 1} onClick={() => setFixedmarketrate(fixedmarketrate - 1)}>-</button> <input type="text" placeholder={fixedmarketrate} value={fixedmarketrate} onChange={(e) => setFixedmarketrate(e?.target?.value)} />
-                                            <button onClick={() => setFixedmarketrate(fixedmarketrate + 1)}>+</button>  <span style={{ textTransform: "lowercase" }}>{prefferedcurrency}</span>
+                                            <button onClick={() => setFixedmarketrate(fixedmarketrate + 1)}>+</button>  <span style={{ textTransform: "uppercase" }}>{prefferedcurrency?.toUpperCase()}</span>
                                         </div>
                                     </div> :
 

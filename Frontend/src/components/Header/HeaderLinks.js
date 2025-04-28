@@ -49,7 +49,7 @@ const HeaderLinks = () => {
 
   // state
   const [langOption, setLangOption] = useState([]);
-  const [selLang, setSelLang] = useState("");
+  const [selLang, setSelLang] = useState("Spanish");
 
   // redux-state
   const { isAuth } = useSelector((state) => state.auth);
@@ -81,7 +81,10 @@ const HeaderLinks = () => {
     const { name, value } = e.target;
     setSelLang(value);
     setLang(value);
+    console.log("selected lanasdfg" , value);
+    
     i18n.changeLanguage(value);
+    localStorage.setItem("usr-language" , value)
   };
 
   const locationsss = window.location.pathname;
@@ -120,26 +123,48 @@ const HeaderLinks = () => {
   //     // this.setState({theme:true})
   //     settheme(false)
   //   }
-
   // }
 
   useEffect(() => {
+    let langs = localStorage.getItem("usr-language")
+    i18n.changeLanguage(langs);
+    if(langs == "en"){
+      setSelLang("en")
+    }
+    else{
+      setSelLang("sp")
+    }
     if (!isEmpty(language)) {
       setLangOption(language);
       let lang = getLang();
+      // console.log("language on header" , lang);
       if (isEmpty(lang)) {
         let primaryData =
           language &&
           language.length > 0 &&
           language.find((el) => el.isPrimary == true);
         if (primaryData) {
-          setSelLang(primaryData.code);
+          // setSelLang(primaryData.code);
           setLang(primaryData.code);
-          i18n.changeLanguage(primaryData.code);
+          // i18n.changeLanguage(primaryData.code);
         }
       } else {
-        setSelLang(lang);
+        // setSelLang(lang);
       }
+    }
+    else{
+      setLangOption([{
+        "name" : "English",
+        "code" : "en",
+        "isPrimary" : true,
+        "status" : "active"
+    },
+    {
+        "name" : "Spanish",
+        "code" : "sp",
+        "isPrimary" : true,
+        "status" : "active"
+    }])
     }
     fetchcoin();
   }, [language]);
@@ -184,16 +209,25 @@ const HeaderLinks = () => {
                   {
                     langOption && langOption.length > 0 && langOption.map((item, key) => {
                       return (
-                        <option key={key} value={item.code}>{upperCase(item.code)}</option>
+                        <MenuItem value={item.code}>{upperCase(item.code)}</MenuItem>
+                        // <option key={key} value={item.code}>{upperCase(item.code)}</option>
                       )
                     })
                   }
                  
                 </Select> */}
+{console.log("language option" , langOption)}
+                <Select 
+                name="language"
+                value={selLang}
+                onChange={handleLanguage}
+                >
 
-                <Select value={selLangg} onChange={handleLanguagee}>
-                  <MenuItem value="EN">ENGLISH</MenuItem>
-                  <MenuItem value="FR">FRENCH</MenuItem>
+                  {langOption && langOption.length > 0 && langOption.map((item, key) => {
+                      return (
+                        <MenuItem value={item?.code}>{item?.name}</MenuItem>
+                      )
+                    })}
                 </Select>
               </ListItem>
 
