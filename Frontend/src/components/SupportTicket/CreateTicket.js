@@ -246,15 +246,18 @@ const CreateTicket = (props) => {
                             }
                         </label>
                     </div> */}
-                    <div class="form-group gtt">
-                        {loader && <i class="fas fa-spinner fa-spin support_ticket_spin"></i>}
-                        <input
-                            type="submit"
-                            className="themebtn text-uppercase py-2"
-                            value="Create Ticket"
+                    <div class="form-group d-flex align-items-center gap-2">
+                        <button
+                           
+                            className="themebtn text-uppercase py-3"
+                            
                             onClick={handleFormSubmit}
                             disabled={loader}
-                        />
+                        >
+                        {loader && <i class="fas fa-spinner fa-spin support_ticket_spinn"></i>}
+
+<span className='pl-2'>Create Ticket</span>
+                     </button>
                     </div>
                 </div>
             </GridItem>

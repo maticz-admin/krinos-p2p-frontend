@@ -751,7 +751,7 @@ const UserDashboard = (props) => {
                                         {kyc?.idProof?.status == "approved" && <i className='fa fa-check aqua ml-1'></i>}
                                     </span>
                                 </p>
-                                <p className='blackandwhite f-14 d-flex align-items-center jc-between mb-0 pinkshade'>
+                                <p className='blackandwhite f-14 d-flex align-items-center jc-between mb-0 pinkshade mt-2'>
                                     {/* <div>2 Factor Authentication:
                                         <span className='red roboto ml-2'>{user?.google2Fa?.secret ? "2FA Enabled" :"[Enable now]"}
                                             {user?.google2Fa?.secret ? <i className='fa fa-check aqua ml-1'></i> :<i className='fa fa-times red ml-1'></i>}

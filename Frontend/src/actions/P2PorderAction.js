@@ -462,6 +462,7 @@ export const gettradespeedhook = async (datas, dispatch) => {
             'method': 'get',
             'params': {encode: encodedata(datas)}
         });
+        console.log("get trade speed" , respData);
         const response = decodedata(respData.data)
         return {data: response};
     }

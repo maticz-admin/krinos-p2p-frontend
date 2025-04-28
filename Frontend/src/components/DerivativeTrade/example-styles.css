@@ -98,7 +98,7 @@ li b {
 }
 .headerOverviewStatus h5 small {
     display: block;
-    color: #787878;
+    color: var(--textgrey-clr);
     font-size: 12px;
 }
 .hoPriceConversion h3{
@@ -635,7 +635,7 @@ ul.list2ColumnJustify li span a:hover{
 }
 .exchangeIcon{
     font-size: 18px;
-    color: #9d9d9d;
+    color: var(--textgrey-clr);
 }
 .derivativeTrade .settingsSelect .form-group label{
     width: auto;

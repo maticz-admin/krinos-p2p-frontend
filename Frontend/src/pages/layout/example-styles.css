@@ -100,7 +100,7 @@ li b {
 }
 .headerOverviewStatus h5 small {
     display: block;
-    color: #787878;
+    color: var(--textgrey-clr);
     font-size: 12px;
 }
 .hoPriceConversion h3{
@@ -176,7 +176,7 @@ li b {
 }
 .tradeTableTitle span{
     text-align:left;
-    color:#787878;;
+    color:var(--textgrey-clr);
     font-size:14px;
     font-weight:400;
     padding-top:5px;
@@ -245,7 +245,7 @@ li b {
     transition:none;
     text-transform:none;
     margin-right: 15px;
-    color: #787878 !important;
+    color: var(--textgrey-clr) !important;
 }
 .orderBook .tradeFulltabbedTable .nav-tabs .nav-link{
     margin-right: 0;
@@ -286,7 +286,7 @@ li b {
     border-top:0;
     font-size:14px;
     font-weight:400;
-    color:#787878;
+    color:var(--textgrey-clr);
     padding:5px 15px;
     white-space:nowrap;
 }
@@ -631,7 +631,7 @@ ul.list2ColumnJustify li span a:hover{
 }
 .exchangeIcon{
     font-size: 18px;
-    color: #9d9d9d;
+    color: var(--textgrey-clr);
 }
 .derivativeTrade .settingsSelect .form-group label{
     width: auto;
