@@ -13,10 +13,12 @@ import { Link } from 'react-router-dom';
 import CreateoffModal from './Modals/CreateoffModal';
 import CreatedModal from './Modals/CreatedModal';
 import Footer from '../../../../components/Footer/Footer';
+import { useTranslation } from 'react-i18next';
 
 const dashboardRoutes = [];
 const Buybitcoin = (props) => {
     const { ...rest } = props;
+      const { t, i18n } = useTranslation();
 
     const [createModal, setCreateModal] = useState(false);
     const[created, setCreated] = useState(false);
@@ -39,8 +41,8 @@ const Buybitcoin = (props) => {
                 {...rest} />
             <div className='login_container login_box'>
                 <div>
-                    <h1 className='blackandwhite bit_text text-center bit1'>Buy Bitcoin</h1>
-                    <p className='roboto subhead'>Buy Bitcoin from other users using any payment<br></br>method and currency.</p>
+                    <h1 className='blackandwhite bit_text text-center bit1'>{t("BUY_BITCOIN")}</h1>
+                    <p className='roboto subhead'>{t("BUY_BITCOIN_PAYMENT_CURRENCY")}<br></br>{t("METHOD_AND_CURRENCY")}</p>
                 </div>
 
                 <div className='container'>
@@ -72,9 +74,9 @@ const Buybitcoin = (props) => {
                         </div>
 
                         <div className='d-flex align-items-center justify-content-between mt-5'>
-                            <button className='graybtn my-3'>How to start</button>
+                            <button className='graybtn my-3'>{t("HOW_TO_START")}</button>
                             {/* <button className='themebtn' onClick={() => setCreateModal(true)}>Create offer</button> */}
-                           <Link to="/createoffer"><button className='themebtn'>Create offer</button></Link>
+                           <Link to="/createoffer"><button className='themebtn'>{t("CREATE_OFFER")}</button></Link>
                         </div>
 
                         <div className='tableborder'>
@@ -82,10 +84,10 @@ const Buybitcoin = (props) => {
                             <div className='tab-content1'>
                             <div class="tradinglist">
                             <div className='d-flex flex-1 jc-between align-items-center table-header'>
-                                <div><p className='amount'>Seller</p></div>
-                                <div><p className='amount'>Price</p></div>
-                                <div><p className='amount'>Limits</p></div>
-                                <div><p className='amount'>Offer Details</p></div>
+                                <div><p className='amount'>{t("SELLER")}</p></div>
+                                <div><p className='amount'>{t("PRICE")}</p></div>
+                                <div><p className='amount'>{t("LIMITS")}</p></div>
+                                <div><p className='amount'>{t("OFFER_DETAILS")}</p></div>
                             </div>
                              <Link to="/bitcoincompany" className="buyhover">  <div className='tradelists mt-4'>
                              
@@ -105,7 +107,7 @@ const Buybitcoin = (props) => {
                                             <p className='limits2'>0.00341416 - 1 BTC</p>
                                         </div>
                                         <div>
-                                        <p className='limits2 tww'>24/7 Service</p>
+                                        <p className='limits2 tww'>24/7 {t("SERVICE")}</p>
                                         </div>
 
                                     </div>
@@ -130,7 +132,7 @@ const Buybitcoin = (props) => {
                                         <p className='limits2'>0.00341416 - 1 BTC</p>
                                     </div>
                                     <div>
-                                    <p className='limits2 tww'>24/7 Service</p>
+                                    <p className='limits2 tww'>24/7 {t("SERVICE")}</p>
                                     </div>
                                     </div>
                                     

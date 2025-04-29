@@ -11,6 +11,7 @@ import { getPairList, topGainList } from "actions/spotTradeAction";
 import { AddFavorite, GetFavorite } from "actions/users";
 import { isMetaProperty } from "typescript";
 import isEmpty from "lib/isEmpty";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -20,6 +21,8 @@ import isEmpty from "lib/isEmpty";
 
 
 export default function SpotMarket(props) {
+  const { t, i18n } = useTranslation();
+
     const [record, setRecord] = useState([]);
 
     const fetchGain = async () => {
@@ -38,8 +41,8 @@ export default function SpotMarket(props) {
             <GridContainer>
                 <GridItem xs={12} sm={12} md={12} lg={2}>
                     <div className="statking_title">
-                        <h3>Top Gaining</h3>
-                        <small>pairs in 24H</small>
+                        <h3>{t("TOP_GAINING")}</h3>
+                        <small>{t("PAIRS_IN_24H")}</small>
                     </div>
                 </GridItem>
                 {

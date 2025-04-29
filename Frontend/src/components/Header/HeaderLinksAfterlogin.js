@@ -249,22 +249,22 @@ export default function HeaderLinks1(props) {
                         className="btcc"
                         id="dropdown-basic"
                       >
-                        Buy
+                        {t("BUY")}
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
                         <Dropdown.Item href="#/action-1">
-                          <img src={Images.crypt1} className="iconss" /> Buy BTC
+                          <img src={Images.crypt1} className="iconss" /> {t("BUY")} BTC
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-2">
-                          <img src={Images.crypt2} className="iconss" /> Buy ETH
+                          <img src={Images.crypt2} className="iconss" /> {t("BUY")} ETH
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3">
-                          <img src={Images.crypt3} className="iconss" /> Buy
+                          <img src={Images.crypt3} className="iconss" /> {t("BUY")}
                           USDT
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3">
-                          <img src={Images.crypt4} className="iconss" /> Buy
+                          <img src={Images.crypt4} className="iconss" /> {t("BUY")}
                           RIPPLE
                         </Dropdown.Item>
                       </Dropdown.Menu>
@@ -277,24 +277,24 @@ export default function HeaderLinks1(props) {
                         className="btcc"
                         id="dropdown-basic"
                       >
-                        Sell
+                        {t("SELL")}
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
                         <Dropdown.Item href="#/action-1">
-                          <img src={Images.crypt1} className="iconss" /> Sell
+                          <img src={Images.crypt1} className="iconss" /> {t("SELL")}
                           BTC
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-2">
-                          <img src={Images.crypt2} className="iconss" /> Sell
+                          <img src={Images.crypt2} className="iconss" /> {t("SELL")}
                           ETH
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3">
-                          <img src={Images.crypt3} className="iconss" /> Sell
+                          <img src={Images.crypt3} className="iconss" /> {t("SELL")}
                           USDT
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3">
-                          <img src={Images.crypt4} className="iconss" /> Sell
+                          <img src={Images.crypt4} className="iconss" /> {t("SELL")}
                           RIPPLE
                         </Dropdown.Item>
                       </Dropdown.Menu>
@@ -312,13 +312,13 @@ export default function HeaderLinks1(props) {
               )}
               {isAuth && (
                 <li>
-                  <NavLink to="/viewoffers/Buy/BTC">Offer</NavLink>
+                  <NavLink to="/viewoffers/Buy/BTC">{t("OFFER")}</NavLink>
                 </li>
               )}
 
               <li>
                 <NavLink to="/" exact>
-                  Home
+                  {t("HOME")}
                 </NavLink>
               </li>
 
@@ -420,7 +420,7 @@ export default function HeaderLinks1(props) {
                                 }}
                                 className="mark_read_link mark_read_link_new"
                               >
-                                Mark all as read{" "}
+                                {t("Mark all as read")}{" "}
                               </button>
                             </div>
                             <ul>
@@ -455,7 +455,7 @@ export default function HeaderLinks1(props) {
                           <>
                             <ul>
                               <li className="nomore_ul_li">
-                                <h5>No more unread Notifications ...</h5>
+                                <h5>{t("NO_MORE_UNREAD_NOTIFICATIONS")} ...</h5>
                               </li>
                             </ul>
                           </>
@@ -466,7 +466,7 @@ export default function HeaderLinks1(props) {
                             to="/notification"
                             className="all_noti_link_green all_noti_link_green_new"
                           >
-                            All Notifications
+                            {t("ALL_NOTIFICATIONS")}
                           </Link>
                           {/* <Link to="/" className="all_noti_link_green">All Notifications</Link> */}
                         </p>
@@ -542,7 +542,7 @@ export default function HeaderLinks1(props) {
                                 }}
                                 className="mark_read_link mark_read_link_new"
                               >
-                                Mark all as read{" "}
+                                {t("MARK_ALL_AS_READ")}{" "}
                               </button>
                             </div>
                             <ul>
@@ -577,7 +577,7 @@ export default function HeaderLinks1(props) {
                           <>
                             <ul>
                               <li className="nomore_ul_li">
-                                <h5>No more unread Notifications ...</h5>
+                                <h5>{t("NO_MORE_UNREAD_NOTIFICATIONS")} ...</h5>
                               </li>
                             </ul>
                           </>
@@ -588,7 +588,7 @@ export default function HeaderLinks1(props) {
                             to="/message-notification"
                             className="all_noti_link_green all_noti_link_green_new"
                           >
-                            All Messages
+                            {t("ALL_MESSAGES")}
                           </Link>
                           {/* <Link to="/" className="all_noti_link_green">All Notifications</Link> */}
                         </p>
@@ -597,11 +597,11 @@ export default function HeaderLinks1(props) {
                   </li>
 
                   <li className="notiification_link_for_mob">
-                    <a href="/notification">Notifications</a>
+                    <a href="/notification">{t("NOTIFICATIONS")}</a>
                   </li>
 
                   <li className="notiification_link_for_mob">
-                    <a href="/message-notification">Messages</a>
+                    <a href="/message-notification">{t("Messages")}</a>
                     {/* <a href="/">Notifications</a> */}
                   </li>
                 </>
@@ -663,7 +663,7 @@ export default function HeaderLinks1(props) {
                     <NavLink to="/profile">
                       <MenuItem>
                         <i className="fa fa-user" aria-hidden="true"></i>
-                        <span>Profile</span>
+                        <span>{t("PROFILE")}</span>
                       </MenuItem>
                     </NavLink>
                     <hr />
@@ -674,7 +674,7 @@ export default function HeaderLinks1(props) {
                     <NavLink to="/security">
                       <MenuItem>
                         <i className="fa fa-lock" aria-hidden="true"></i>
-                        <span>Security</span>
+                        <span>{t("Security")}</span>
                       </MenuItem>
                     </NavLink>
 
@@ -682,7 +682,7 @@ export default function HeaderLinks1(props) {
                     <NavLink to="/setting">
                       <MenuItem>
                         <i className="fa fa-cog" aria-hidden="true"></i>
-                        <span>Settings</span>
+                        <span>{t("Settings")}</span>
                       </MenuItem>
                     </NavLink>
                     <hr />
@@ -707,7 +707,7 @@ export default function HeaderLinks1(props) {
                     <NavLink to="/history">
                       <MenuItem>
                         <i className="far fa-clock"></i>
-                        <span>History</span>
+                        <span>{t("HISTORY")}</span>
                       </MenuItem>
                     </NavLink>
                     <hr />
@@ -717,7 +717,7 @@ export default function HeaderLinks1(props) {
                           className="fa fa-question-circle"
                           aria-hidden="true"
                         ></i>
-                        <span>Support</span>
+                        <span>{t("SUPPORT")}</span>
                       </MenuItem>
                     </NavLink>
                     {/* <MenuItem>
@@ -727,7 +727,7 @@ export default function HeaderLinks1(props) {
                     <Link to="#" onClick={() => logout(history, dispatch)}>
                       <MenuItem>
                         <i className="fas fa-sign-out-alt"></i>{" "}
-                        <span> Logout</span>
+                        <span> {t("LOGOUT")}</span>
                       </MenuItem>
                     </Link>
                   </Menu>
@@ -908,7 +908,7 @@ export default function HeaderLinks1(props) {
                       logout(history, dispatch);
                     }}
                   >
-                    Logout
+                    {t("LOGOUT")}
                   </Link>
                 </li>
               )}

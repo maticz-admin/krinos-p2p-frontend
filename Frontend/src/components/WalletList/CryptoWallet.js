@@ -179,7 +179,7 @@ const CryptoWallet = () => {
             />
             {console.log("checking" , checkValue)}
             {/* <input class="form-check-input novisible" type="checkbox" value={checkValue} name={"checkValue"} checked={checkValue} onChange={handleCheckBox} /> */}
-            <label className="ml-1">Hide Zero Balance</label>
+            <label className="ml-1">{t("HIDE_ZERO_BALANCE")}</label>
           </div>
 
           {
@@ -638,7 +638,7 @@ const CryptoWallet = () => {
             }
           })}
 
-          {!originalData?.length && <p className="d-flex justify-content-center">No Data Found</p>}
+          {!originalData?.length && <p className="d-flex justify-content-center">{t("NO_DATA_FOUND")}</p>}
 
       </div>
     </div>

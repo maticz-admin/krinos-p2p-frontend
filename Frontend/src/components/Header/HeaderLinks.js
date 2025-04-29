@@ -607,7 +607,7 @@ const HeaderLinks = () => {
                     className="btcc"
                     id="dropdown-basic"
                   >
-                    Buy
+                    {t("BUY")}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className="headerdropdown_heght_fix">
@@ -619,7 +619,7 @@ const HeaderLinks = () => {
                             src={`${config.API_URL}/images/currency/${data?.image}`}
                             className="iconss"
                           />{" "}
-                          Buy {data?.coin}
+                          {t("BUY")} {data?.coin}
                         </Dropdown.Item>
                       );
                     })}
@@ -633,7 +633,7 @@ const HeaderLinks = () => {
                     className="btcc"
                     id="dropdown-basic"
                   >
-                    Sell
+                    {t("SELL")}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className="headerdropdown_heght_fix">
@@ -645,7 +645,7 @@ const HeaderLinks = () => {
                             src={`${config.API_URL}/images/currency/${data?.image}`}
                             className="iconss"
                           />{" "}
-                          Sell {data?.coin}
+                          {t("SELL")} {data?.coin}
                         </Dropdown.Item>
                       );
                     })}
@@ -655,7 +655,7 @@ const HeaderLinks = () => {
 
               <ListItem className={classes.listItem}>
                 <NavLink to="/" color="transparent" className="nav-link">
-                  Home
+                  {t("HOME")}
                 </NavLink>
               </ListItem>
               {isAuth && (
@@ -665,7 +665,7 @@ const HeaderLinks = () => {
                     color="transparent"
                     className="nav-link"
                   >
-                    Dashboard
+                    {t("DASHBOARD")}
                   </NavLink>
                 </ListItem>
               )}
@@ -680,7 +680,7 @@ const HeaderLinks = () => {
                   className="nav-link"
                 >
                   {" "}
-                  Offer
+                  {t("OFFER")}
                 </NavLink>
               </ListItem>
 
@@ -810,7 +810,7 @@ const HeaderLinks = () => {
               {isAuth && (
                 <li>
                   <Link to="#" onClick={() => logout(history, dispatch)}>
-                    Logout
+                    {t("LOGOUT")}
                   </Link>
                 </li>
               )}

@@ -218,7 +218,7 @@ const ProfilePage = (props) => {
 
                       </div>
                       <div className='mt-3 reviews' id="reviews">
-                            <h5 className='text-light' >Reviews</h5>
+                            <h5 className='text-light' >{t("REVIEWS")}</h5>
                             <ul className='buyborder1 p-3'>
                                 {review?.length > 0 ? review?.map((data , i) => 
                                 <li class="mb-3">
@@ -226,7 +226,7 @@ const ProfilePage = (props) => {
                                   <p class="text-light f-14 roboto mb-0">{data?.description}</p>
                                   <p class="time text-gray roboto f-12">{new Date(parseFloat(data?.date))?.toString()?.slice(4 , 21)}</p>
                                   </li>
-                                 ) : <p className="text-center">No Reviews Found!</p>
+                                 ) : <p className="text-center">{t("NO_REVIEWS_FOUND")}!</p>
                                     } 
                             </ul>
                         </div>
