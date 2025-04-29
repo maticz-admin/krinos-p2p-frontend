@@ -249,6 +249,9 @@ const CreateOffer = (props) => {
         if (parseFloat(max) < parseFloat(min) || parseFloat(min) > parseFloat(max)) {
             data.max = "Max value must be greater than Min value"
         }
+        // if(parseFloat(fixedmarketrate) > 1){
+        //     data.
+        // }
         if (isEmpty(data)) {
             setSteps(3);
         } else {
@@ -625,8 +628,8 @@ const CreateOffer = (props) => {
                                             <button disabled={fixedmarketrate == 1} onClick={() => setFixedmarketrate(fixedmarketrate - 1)}>-</button> <input type="text" placeholder={fixedmarketrate} value={fixedmarketrate} onChange={(e) => setFixedmarketrate(e?.target?.value)} />
                                             <button onClick={() => setFixedmarketrate(fixedmarketrate + 1)}>+</button>  <span style={{ textTransform: "uppercase" }}>{prefferedcurrency?.toUpperCase()}</span>
                                         </div>
+                                        <p className='error-message mb-0'>dsfgsdg</p>
                                     </div> :
-
                                         <div className='col-sm-6'>
                                             <h6 className='blackandwhite'>Offer margin</h6>
                                             <div className='d-flex incrementbtn'>
