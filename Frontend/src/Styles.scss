@@ -1380,6 +1380,17 @@ a[aria-expanded="true"] .fa-plus:before {
     justify-content: center;
     flex-wrap: wrap;
   }
+
+.chat_slct_img {
+    padding: 10px;
+}
+
+.chat_slct_img img {
+    max-height: 150px;
+    max-width: 150px;
+    object-fit: contain;
+}
+
   @media only screen and (min-width:576px){
     
     .qrcode_alignfirst.qrcode_align{
