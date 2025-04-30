@@ -203,7 +203,7 @@ const Home = (props) => {
                                         <h1 className='blackandwhite'>{t("WELCOME_TO_KRINOS")}</h1>
                                         <p className='roboto subhead'>{t("P2P_DEALS")} </p>
                                         {/* <button className='mt-3 borderbtn'><i class="fa fa-video-camera" aria-hidden="true"></i> Learn To Trade</button> */}
-                                        <Link to="/details/demo_videos" className="navlink_pos_zin borderbtn mt-3 d-block"><i class="fa fa-video-camera" aria-hidden="true"></i>{t("LEARN_TO_TRADE")}</Link>
+                                        <Link to="/details/demo_videos" className="navlink_pos_zin borderbtn mt-3 d-block"><i class="fa fa-video-camera pr-2" aria-hidden="true"></i>{t("LEARN_TO_TRADE")}</Link>
                                     </div>
                                 </div>
                             </div>

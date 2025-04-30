@@ -492,9 +492,10 @@ const HeaderLinks = () => {
               {!isAuth && (
                 <ListItem className={classes.listItem}>
                   <NavLink
+                  exact
                     to="/login"
                     color="transparent"
-                    className="nav-link px-3 themebtn loginbtn loginhover"
+                    className="nav-link head_log_reg_btn"
                   >
                     {t("LOGIN")}
                   </NavLink>
@@ -504,9 +505,10 @@ const HeaderLinks = () => {
               {!isAuth && (
                 <ListItem className={classes.listItem}>
                   <NavLink
+                  exact
                     to="/register"
                     color="transparent"
-                    className="nav-link home_menu_btn mobilereg"
+                    className="nav-link head_log_reg_btn"
                   >
                     {t("REGISTER")}
                   </NavLink>
@@ -654,13 +656,14 @@ const HeaderLinks = () => {
               }
 
               <ListItem className={classes.listItem}>
-                <NavLink to="/" color="transparent" className="nav-link">
+                <NavLink to="/" exact color="transparent" className="nav-link">
                   Home
                 </NavLink>
               </ListItem>
               {isAuth && (
                 <ListItem className={classes.listItem}>
                   <NavLink
+                  exact
                     to="/userdash"
                     color="transparent"
                     className="nav-link"
@@ -675,6 +678,7 @@ const HeaderLinks = () => {
               </ListItem> */}
               <ListItem className={classes.listItem}>
                 <NavLink
+                exact
                   to="/viewoffers/Buy/BTC"
                   color="transparent"
                   className="nav-link"
@@ -693,9 +697,10 @@ const HeaderLinks = () => {
               {!isAuth && (
                 <li className="logg">
                   <NavLink
+                  exact
                     to="/login"
                     color="transparent"
-                    className="nav-link px-3 themebtn loginbtn"
+                    className="nav-link head_log_reg_btn"
                   >
                     {t("LOGIN")}
                   </NavLink>
@@ -703,9 +708,10 @@ const HeaderLinks = () => {
               )}
               <li>
                 <NavLink
+                exact
                   to="/register"
                   color="transparent"
-                  className="nav-link home_menu_btn mobilereg"
+                  className="nav-link head_log_reg_btn"
                 >
                   {t("REGISTER")}
                 </NavLink>
@@ -744,7 +750,7 @@ const HeaderLinks = () => {
 
               {isAuth && (
                 <li>
-                  <NavLink to="/profile">Profile</NavLink>
+                  <NavLink exact to="/profile">Profile</NavLink>
                 </li>
               )}
               {/* {
