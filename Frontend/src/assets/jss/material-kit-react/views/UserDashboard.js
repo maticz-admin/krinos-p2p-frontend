@@ -19,6 +19,7 @@ import { momentFormat } from 'lib/dateTimeHelper';
 import { cancelofferhooks } from '../../../../actions/P2PorderAction';
 import { toastAlert } from 'lib/toastAlert';
 import { GetUserId } from '../../../../lib/userdata';
+import { useTranslation } from 'react-i18next';
 
 const dashboardRoutes = [];
 var img1 = <img src={Images.tab1} />
@@ -27,6 +28,8 @@ var btc = <img src={Images.orangecoin} />
 
 
 const UserDashboard = (props) => {
+            const { t, i18n } = useTranslation();
+    
     const { ...rest } = props;
     const userdata = useSelector(state => state);
     const navigate = useHistory()
@@ -228,7 +231,7 @@ const UserDashboard = (props) => {
         // },
         {
             // key: "name",
-            text: "Order Type",
+            text: `${t("ORDER_TYPE")}`,
             className: "name w-175",
             align: "left",
             cell: record => {
@@ -241,7 +244,7 @@ const UserDashboard = (props) => {
         },
         {
             // key: "name",
-            text: "Created Date",
+            text: `${t("CREATED_DATE")}`,
             className: "name w-175",
             align: "left",
             cell: record => {
@@ -281,7 +284,7 @@ const UserDashboard = (props) => {
         // },
         {
             // key: "postcode",
-            text: "Symbol",
+            text: `${t("SYMBOL")}`,
             className: "postcode w-100px",
             className: "address red",
             align: "left",
@@ -295,7 +298,7 @@ const UserDashboard = (props) => {
 
         },
         {
-            key: "rating",
+            key: `${t("rating")}`,
             text: "Trade ID",
             className: "rating aqua",
             align: "left",
@@ -334,7 +337,7 @@ const UserDashboard = (props) => {
         // },
         {
             // key: "name",
-            text: "Status",
+            text: `${t("STATUS")}`,
             className: "name w-175",
             align: "left",
             cell: record => {
@@ -347,7 +350,7 @@ const UserDashboard = (props) => {
         },
         {
             // key: "type_of_food",
-            text: "Action",
+            text: `${t("ACTION")}`,
             className: "actionbtn w-175",
             align: "left",
             cell: record => {
@@ -404,7 +407,7 @@ const UserDashboard = (props) => {
 
         {
             key: "orderid",
-            text: "Order Id",
+            text: `${t("ORDER_ID")}`,
             className: "address",
             align: "left",
         },
@@ -424,7 +427,7 @@ const UserDashboard = (props) => {
         {
             key: "coin",
             //     (record?.orderdata?.createrid == userdata?.account?.userId) ? record?.orderdata?.ordertype : record?.orderdata?.ordertype == "Buy" ? "Buy" : "Sell",
-            text: "Crypto",
+            text: `${t("CRYPTO")}`,
             className: "address",
             align: "left",
             cell: record =>
@@ -434,14 +437,14 @@ const UserDashboard = (props) => {
             key: "status",
             // record =>
             //     (record?.orderdata?.createrid == userdata?.account?.userId) ? record?.orderdata?.ordertype : record?.orderdata?.ordertype == "Buy" ? "Buy" : "Sell",
-            text: "Status",
+            text: `${t("STATUS")}`,
             className: "address",
             align: "left",
             // cell : record =>
             // (record?.orderdata?.createrid == userdata?.account?.userId) ? record?.orderdata?.ordertype : record?.orderdata?.ordertype == "Buy" ? "Buy" : "Sell",
         },
         {
-            text: "Admin fee",
+            text: `${t("ADMIN_FEE")}`,
             className: "address",
             align: "left",
             cell: record =>
@@ -449,7 +452,7 @@ const UserDashboard = (props) => {
                     : record?.spender == userdata?.account?.userId ? parseFloat(record?.adminfee)?.toFixed(8) : 0,
         },
         {
-            text: "Receive",
+            text: `${t("RECEIVE")}`,
             className: "address",
             align: "left",
             cell: record =>
@@ -457,7 +460,7 @@ const UserDashboard = (props) => {
                     : record?.spender == userdata?.account?.userId ? 0 : (parseFloat(record?.receive))?.toFixed(8),
         },
         {
-            text: "Pay",
+            text: `${("PAY")}`,
             className: "address",
             align: "left",
             cell: record =>
@@ -493,7 +496,7 @@ const UserDashboard = (props) => {
 
         {
             key: "orderid",
-            text: "Order Id",
+            text: `${t("ORDER_ID")}`,
             className: "address",
             align: "left",
 
@@ -514,13 +517,13 @@ const UserDashboard = (props) => {
         // },
         {
             key: "roomid",
-            text: "Room Id",
+            text: `${("ROOM_ID")}`,
             className: "address w-100px",
             align: "left",
         },
         {
             key: "chatstatus",
-            text: "Status",
+            text: `${t("STATUS")}`,
             className: "address",
             align: "left",
             sortable: true
@@ -555,7 +558,7 @@ const UserDashboard = (props) => {
         // },
         {
             key: "option",
-            text: "Option",
+            text: `${t("OPTION")}`,
             className: "actionbtn w-175",
             align: "left",
             cell: record => {
@@ -600,7 +603,7 @@ const UserDashboard = (props) => {
 
         {
             key: "orderid",
-            text: "Order Id",
+            text: `${t("ORDER_ID")}`,
             className: "address",
             align: "left",
 
@@ -621,13 +624,13 @@ const UserDashboard = (props) => {
         // },
         {
             key: "roomid",
-            text: "Room Id",
+            text: `${("ROOM_ID")}`,
             className: "address w-100px",
             align: "left",
         },
         {
             key: "chatstatus",
-            text: "Status",
+            text: `${t("STATUS")}`,
             className: "address",
             align: "left",
             sortable: true
@@ -662,7 +665,7 @@ const UserDashboard = (props) => {
         // },
         {
             key: "option",
-            text: "Option",
+            text: `${t("OPTION")}`,
             className: "actionbtn w-175",
             align: "left",
             cell: record => {
@@ -733,21 +736,21 @@ const UserDashboard = (props) => {
             <div className='container-fluid themecontainer'>
                 <div className='login_container login_box userdash'>
                     <div className='text-center mb-5'>
-                        <h3 className='blackandwhite text-left'>User Dashboard</h3>
+                        <h3 className='blackandwhite text-left'>{t("USER_DASHBOARD")}</h3>
                     </div>
                     <hr className='themehr' />
                     <div className='row'>
                         <div className='col-xl-4 col-lg-6 mb-lg-0 mt-4'>
                             <div className='gradbox bordbox br-20 h-100 mb-3'>
-                                <h5 className='blackandwhite test-left mt-0'>My Profile</h5>
+                                <h5 className='blackandwhite test-left mt-0'>{t("My Profile")}</h5>
                                 <hr className='themehr' />
                                 <p className='blackandwhite d-flex jc-between align-items-center f-14'>
-                                    <div>User Name:<span className='aqua light_aqua roboto ml-2'>{user?.firstName && user?.lastName ? (user?.firstName + " " + user?.lastName) : "Update Username"} </span></div>
+                                    <div>{t("USER_NAME")}:<span className='aqua light_aqua roboto ml-2'>{user?.firstName && user?.lastName ? (user?.firstName + " " + user?.lastName) : `${t("UPDATE_USERNAME")}`} </span></div>
                                     {/* //<i className='fa fa-times red ml-1'></i> */}
                                     <img src={Images.user} className='img' />
                                 </p>
-                                <p className='blackandwhite f-14 mb-0'>KYC:
-                                    <span className='aqua light_aqua roboto ml-2'> {kyc?.idProof?.status == "approved" ? "Verification Approved" : kyc?.idProof?.type ? "Verification Pending" : "Update Kyc"}
+                                <p className='blackandwhite f-14 mb-0'>{t("KYC")}:
+                                    <span className='aqua light_aqua roboto ml-2'> {kyc?.idProof?.status == "approved" ? `${t("VERIFICATION_PENDING")}` : kyc?.idProof?.type ? `${t("VERIFICATION_PENDING")}` : `${t("UPDATE_KYC")}`}
                                         {kyc?.idProof?.status == "approved" && <i className='fa fa-check aqua ml-1'></i>}
                                     </span>
                                 </p>
@@ -756,37 +759,37 @@ const UserDashboard = (props) => {
                                         <span className='red roboto ml-2'>{user?.google2Fa?.secret ? "2FA Enabled" :"[Enable now]"}
                                             {user?.google2Fa?.secret ? <i className='fa fa-check aqua ml-1'></i> :<i className='fa fa-times red ml-1'></i>}
                                         </span></div> */}
-                                    <button className='btn btn-bordered white' onClick={() => { navigate.push("/profile") }}>Edit</button>
+                                    <button className='btn btn-bordered white' onClick={() => { navigate.push("/profile") }}>{t("EDIT")}</button>
                                 </p>
                             </div>
 
                         </div>
                         <div className='col-xl-4 col-lg-6 mb-lg-0 mt-4'>
                             <div className='gradbox bordbox br-20 h-100 mb-3'>
-                                <h5 className='blackandwhite test-left mt-0'>My Account</h5>
+                                <h5 className='blackandwhite test-left mt-0'>{t("MY_ACCOUNT")}</h5>
                                 <hr className='themehr' />
                                 <p className='blackandwhite d-flex jc-between align-items-center f-14'>
-                                    <div>Mobile:<span className='aqua light_aqua roboto ml-2'>{user?.phoneStatus == "verified" ? "Verified" : "[Not Verified]"}
+                                    <div>{t("Mobile")}:<span className='aqua light_aqua roboto ml-2'>{user?.phoneStatus == "verified" ? `${t("VERIFIED")}` : `${t(["NOT_VERIFIED"])}`}
                                         {user?.phoneStatus == "verified" ? <i className='fa fa-check aqua ml-1'></i> : <i className='fa fa-times red ml-1'></i>}
                                     </span></div>
 
                                     <img src={Images.cog} className='img' />
                                 </p>
-                                <p className='blackandwhite f-14 mb-0'>Login password:
-                                    <span className='aqua light_aqua roboto ml-2'>Update
+                                <p className='blackandwhite f-14 mb-0'>{t("LOGIN_PASSWORD")}:
+                                    <span className='aqua light_aqua roboto ml-2'>{t("UPDATE")}
                                         {/* <i className='fa fa-check aqua ml-1'></i> */}
                                     </span>
                                 </p>
                                 <p className='blackandwhite f-14 d-flex align-items-center jc-between mb-0 pinkshade mt-2'>
 
-                                    <button className='btn btn-bordered white' onClick={() => { navigate.push("/profile") }}>Edit</button>
+                                    <button className='btn btn-bordered white' onClick={() => { navigate.push("/profile") }}>{t("EDIT")}</button>
                                 </p>
                             </div>
 
                         </div>
                         <div className='col-xl-4 col-lg-6 mb-lg-0 mt-4'>
                             <div className='gradbox bordbox br-20 h-100 mb-3'>
-                                <h5 className='blackandwhite test-left mt-0'>Authentication</h5>
+                                <h5 className='blackandwhite test-left mt-0'>{t("Authentication")}</h5>
                                 <hr className='themehr' />
                                 {/* <p className='blackandwhite d-flex jc-between align-items-center f-14'>
                                     <div>Push Notification:<span className='aqua roboto ml-2'> Enable <i className='fa fa-check aqua ml-1'></i></span></div>
@@ -815,8 +818,8 @@ const UserDashboard = (props) => {
                                     </label>
                                 </p> */}
                                 <p className='blackandwhite f-14 d-flex align-items-center jc-between mb-0 pinkshade'>
-                                    <div>2 Factor Authentication:
-                                        <span className='aqua light_aqua roboto ml-2'>{user?.google2Fa?.secret ? "2FA Enabled" : "[Enable now]"}
+                                    <div>{t("TWO_FA")}:
+                                        <span className='aqua light_aqua roboto ml-2'>{user?.google2Fa?.secret ? `${t("2FA_ENABLED")}` : `${t(["ENABLE_NOW"])}`}
                                             {user?.google2Fa?.secret ? <i className='fa fa-check aqua ml-1'></i> : <i className='fa fa-times red ml-1'></i>}
                                         </span></div>
 
@@ -824,7 +827,7 @@ const UserDashboard = (props) => {
                                 <p className='blackandwhite f-14 d-flex align-items-center jc-between mb-0 pinkshade'>
 
 
-                                </p> <button className='btn btn-bordered white mt-3' onClick={() => { navigate.push("/security") }}>Edit</button>
+                                </p> <button className='btn btn-bordered white mt-3' onClick={() => { navigate.push("/security") }}>{t("EDIT")}</button>
                             </div>
 
                         </div>
@@ -835,8 +838,8 @@ const UserDashboard = (props) => {
 
                             <div className='row jc-center mb-4'>
                                 <div className='col-md-6'>
-                                    <h1 className="mb-4 title1 heads mt-5">TRADE LIKE A PRO</h1>
-                                    <p className='roboto subhead'> In publishing and graphic design, Lorem ipsum is a placeholder text commonly</p>
+                                    <h1 className="mb-4 title1 heads mt-5">{t("TRADE_LIKE_A_PRO")}</h1>
+                                    <p className='roboto subhead'> {t("In publishing and graphic design, Lorem ipsum is a placeholder text commonly")}</p>
                                 </div>
                             </div>
                             <div className='tradetab'>
@@ -872,19 +875,19 @@ const UserDashboard = (props) => {
 
                                                         <Dropdown.Item
                                                         >
-                                                            <span>Select Type</span></Dropdown.Item>
+                                                            <span>{t("SELECT_TYPE")}</span></Dropdown.Item>
 
                                                         <Dropdown.Item
                                                         >
                                                             <p onClick={() => {
                                                                 handleSelect("Buy")
-                                                            }}><span>Buy</span></p></Dropdown.Item>
+                                                            }}><span>{t("BUY")}</span></p></Dropdown.Item>
 
                                                         <Dropdown.Item
                                                         >
                                                             <p onClick={() => {
                                                                 handleSelect("Sell")
-                                                            }}><span>Sell</span></p></Dropdown.Item>
+                                                            }}><span>{t("SELL")}</span></p></Dropdown.Item>
 
                                                     </Dropdown.Menu>
                                                 </Dropdown>

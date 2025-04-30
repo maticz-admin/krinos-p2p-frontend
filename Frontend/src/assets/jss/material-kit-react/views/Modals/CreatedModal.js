@@ -12,10 +12,13 @@ import { getsitesettingshook } from '../../../../../actions/P2PorderAction';
 import { toastAlert } from 'lib/toastAlert';
 import { Getsingleuserhook } from '../../../../../actions/P2PorderAction';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 
 const CreatedModal = (props) => {
     console.log('props-----', props, props?.createdata)
+      const { t, i18n } = useTranslation();
+    
     console.log(`${config?.FRONT_URL}/bitcoincompany/${props?.createdata?._id}`)
     const location = useLocation();
     const navigate = useHistory();
@@ -77,8 +80,8 @@ const CreatedModal = (props) => {
                 </div>
                 <Modal.Header>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        <p className='mb-0'>Your offer is created</p>
-                        <p className='submod-title'>It is a long established fact that a reader</p>
+                        <p className='mb-0'>{t("YOUR_OFFER_IS_CREATED")}</p>
+                        <p className='submod-title'>{t("It is a long established fact that a reader")}</p>
                     </Modal.Title>
                     <Button variant="secondary" className='modalbtns' onClick={props.onDismiss}> x
                     </Button>
@@ -86,9 +89,9 @@ const CreatedModal = (props) => {
                 <Modal.Body>
                     {warning && <p className='balance_too_low_tex'>
                         <i class="fa fa-exclamation-triangle me-2" aria-hidden="true"></i>
-                        Your {coin} balance is too low</p>}
+                        {t("YOUR")} {coin} {T("BALANCE_IS_TOO_LOW")}</p>}
                     <div className='borders'>
-                        <p className='mb-0'>Go ahead and share it with anybody. Once somebody starts a trade on this offer, the selected cryptocurrency will be automatically reserved for that trade.</p>
+                        <p className='mb-0'>{t("GO_AHEAD_AND_SHARE")}</p>
                     </div>
                     <div className='text-center'>
                         <div className='socialbtn social_btn_color'>
@@ -122,7 +125,7 @@ const CreatedModal = (props) => {
                                                 <a className='btn btn-link borderbtn mx-3' target='_blank' href={twitter}><img src={Images.twitter}/></a>
                                                 <a className='btn btn-link borderbtn' target='_blank' href={email}><img src={Images.email}/></a> */}
                         </div>
-                        <p className='blackandwhite'>or copy this link and share directly</p>
+                        <p className='blackandwhite'>{t("OR_COPY_THIS_LINK_AND_SHARE_IRECTLY")}</p>
                     </div>
 
                     <div className='floatinglabel my-4'>
@@ -135,11 +138,11 @@ const CreatedModal = (props) => {
                         />
                         <CopyToClipboard text={`${config?.FRONT_URL}/bitcoincompany/${props?.createdata?._id}`} onCopy={() => copyUrl()}>
                             {/* <button variant='link' className='fa fa-copy' style={{backgroundColor:"transparent", border:0, color:"#848484"}}></button> */}
-                            <button className="otp_btn"> <span className='fa fa-copy mr-2'></span> Copy </button>
+                            <button className="otp_btn"> <span className='fa fa-copy mr-2'></span> {t("COPY")} </button>
                         </CopyToClipboard>
                     </div>
                     <div className='allbtn text-center mt-5'>
-                        <button className='themebtn' onClick={() => navigate.push(`/bitcoincompany/${props?.createdata?._id}`)}>View Offer</button>
+                        <button className='themebtn' onClick={() => navigate.push(`/bitcoincompany/${props?.createdata?._id}`)}>{t("VIEW_OFFER")}</button>
                     </div>
                 </Modal.Body>
             </Modal>

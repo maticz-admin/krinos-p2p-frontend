@@ -27,10 +27,13 @@ import { getpaymenttypeshook } from 'actions/P2PorderAction';
 import config from '../../../../config';
 
 import btcicon from "../../../images/btcIcon.png"
+import { useTranslation } from 'react-i18next';
 
 const dashboardRoutes = [];
 const CreateOffer = (props) => {
     const navigate = useHistory();
+          const { t, i18n } = useTranslation();
+    
     const userdata = useSelector(state => state.account);
     const location = useLocation();
     const { ...rest } = props;
@@ -345,7 +348,7 @@ const CreateOffer = (props) => {
 
                     {/* {<h3 className='blackandwhite'>Create Offer to Buy Bitcoin</h3>} */}
 
-                    <p className='subhead'>Buy/Sell Bitcoin from other users using any payment method and currency</p>
+                    <p className='subhead'>{T("BUY_SELL_BITCOIN_FROM")}</p>
                 </div>
                 <div className='container-fluid themecontainer'>
                     <div className='row mb-md-5 mb-4 steps'>
@@ -355,13 +358,13 @@ const CreateOffer = (props) => {
                                 <div className='d-flex jc-between stepbtns'>
                                     <button className='active'
                                     // onClick={() => setSteps(1)}
-                                    > <span className='fa fa-circle mr-2'></span>Payment method</button>
+                                    > <span className='fa fa-circle mr-2'></span>{t("PAYMENT_METHOD")}</button>
                                     <button
                                     // onClick={() => setSteps(2)}
-                                    ><span className='fa fa-circle mr-2'></span>Price</button>
+                                    ><span className='fa fa-circle mr-2'></span>{t("PRICE")}</button>
                                     <button
                                     // onClick={() => setSteps(3)}
-                                    ><span className='fa fa-circle mr-2'></span>Other settings</button>
+                                    ><span className='fa fa-circle mr-2'></span>{t("OTHER_SETTINGS")}</button>
                                 </div>
                             </div>
                         </div>
@@ -371,7 +374,7 @@ const CreateOffer = (props) => {
                         <img src={Images.bannerbg} className='positionimg' />
                         <div className='col-lg-6'>
                             <div className='bordbox borderbox_no_max_hei py-4'>
-                                <h5 className='blackandwhite'>Choose your cryptocurrency</h5>
+                                <h5 className='blackandwhite'>{t("CHOOSE_YOUR_CRYPTOCURRENCY")}</h5>
                                 {/* <div className='d-sm-flex d-grid mb-5 mt-4 choosecrypt jc-between'> */}
                                 {/* {crypto?.map((data , i) => <>
                                     <button className={coin === data?.coin ? 'graybtn text-start mb-sm-0 mb-3 d-flex gap-10 active' :'graybtn text-start mb-sm-0 mb-3 d-flex gap-10'}  onClick={()=>setCoin(data?.coin)}>
@@ -431,7 +434,7 @@ const CreateOffer = (props) => {
                                 <div className='row'>
                                     <div className='col-xl-6'>
                                         <div className='floatinglabel my-xl-4 my-3 select_option'>
-                                            <label>What would you like to do?</label>
+                                            <label>{t("What_would_you_like_do")}</label>
 
                                             <Dropdown className="headerdropdown m-left iner_drop_versiotwo">
                                                 <Dropdown.Toggle variant="success" className='btcc' id="dropdown-basic">
@@ -446,12 +449,12 @@ const CreateOffer = (props) => {
                                                     <Dropdown.Item
                                                     ><p onClick={() => {
                                                         setOrdertype("Sell")
-                                                    }}><img src={Images.ticket} className="iconss iconss_wid_dd" />Sell</p></Dropdown.Item>
+                                                    }}><img src={Images.ticket} className="iconss iconss_wid_dd" />{t("SELL")}</p></Dropdown.Item>
                                                     <Dropdown.Item
                                                     ><p onClick={() => {
                                                         setOrdertype("Buy")
                                                     }}>
-                                                            <img src={Images.ticket} className="iconss iconss_wid_dd" />Buy</p></Dropdown.Item>
+                                                            <img src={Images.ticket} className="iconss iconss_wid_dd" />{t("BUY")}</p></Dropdown.Item>
 
                                                 </Dropdown.Menu>
                                             </Dropdown>
@@ -511,7 +514,7 @@ const CreateOffer = (props) => {
                                     <div className='col-xl-12 pb-3'>
                                         <div className='floatinglabel  my-xl-4 my-3 select_option'>
 
-                                            <label>Payment Method:       </label>
+                                            <label>{t("PAYMENT_METHOD")}:       </label>
                                             <Select
                                                 styles={stylesgraybg}
                                                 onChange={(e) => handleselect(e)} isMulti="true" options={myData} className='multiselect select_oofer_multisel' />
@@ -550,20 +553,20 @@ const CreateOffer = (props) => {
                             <div className="rightptag">
                                 <img src={Images.connect} className='rightimg1' />
                                 <img src={Images.connect} className='rightimg' />
-                                <h5 className='blackandwhite'>About This Step</h5>
+                                <h5 className='blackandwhite'>{t("ABOUT_THIS_STEP")}</h5>
                                 <hr className='themehr mt-3 mb-4' />
-                                <p className='grayandblack'>Start creating your offer by selecting the cryptocurrency you want to trade, whether or not you want to buy or sell, and the payment method you want to use.</p>
+                                <p className='grayandblack'>{t("START_CREATING_YOUR_OFFER")}</p>
                                 <ul className='pl-3'>
                                     <li>
-                                        <p className='grayandblack'>You want to {ordertype} {coin}</p>
+                                        <p className='grayandblack'>{t("YOU_WANT_TO")} {ordertype} {coin}</p>
                                     </li>
                                     <li>
-                                        <p className='grayandblack'>And get paid in {prefferedcurrency}</p>
+                                        <p className='grayandblack'>{t("AND_GET_PAID_IN")} {prefferedcurrency}</p>
                                     </li>
                                 </ul>
                                 <div>
                                     {/* <button className='bordbtn'>Previous</button> */}
-                                    <button className='themebtn ml-3' onClick={() => handlestep1()}>Next</button>
+                                    <button className='themebtn ml-3' onClick={() => handlestep1()}>{t("NEXT")}</button>
                                 </div>
                             </div>
                         </div>
@@ -573,31 +576,31 @@ const CreateOffer = (props) => {
 
                         <div className='col-xl-6 col-lg-7'>
                             <div className='bordbox borderbox_no_max_hei py-4'>
-                                <h5 className='blackandwhite'>Trade Pricing</h5>
-                                <p className='subhead text-left f-12'>Choose Bitcoin rate you want to use</p>
+                                <h5 className='blackandwhite'>{t("TRADE_PRICING")}</h5>
+                                <p className='subhead text-left f-12'>{t("CHOOSE_BITCOIN_RATE")}</p>
                                 {local && <p className='balance_too_low_tex'>
                                     <i class="fa fa-exclamation-triangle me-2" aria-hidden="true"></i>
-                                    Your can set only Fixed Price </p>}
+                                    {t("YOUR_CAN_SET_ONLY_FIXED_PRICE")} </p>}
                                 <div className='d-sm-flex my-5 choosecrypt jc-between gap-10'>
                                     <button className={pricetype === "Market Price" ? 'graybtn mb-sm-0 mb-2 text-start d-flex align-items-center gap-10 active' : 'graybtn mb-sm-0 mb-2 text-start d-flex align-items-center gap-10'} onClick={() => { if (!local) { setPricetype("Market Price"); setOffermargin(1) } }}>
                                         <img src={Images.tag} />
                                         <div>
-                                            <h6 className='m-0'>Market Price</h6>
-                                            <p className='m-0'>Your offer’s selling price will change according to the market price of Bitcoin.</p>
+                                            <h6 className='m-0'>{t("MATKET_PRICE")}</h6>
+                                            <p className='m-0'>{t("YOUR_OFFER_SELLING_PRICE")}</p>
 
                                         </div>
                                     </button>
                                     <button className={pricetype === "Fixed Price" ? 'graybtn mb-sm-0 mb-2 text-start d-flex align-items-center gap-10 active' : 'graybtn mb-sm-0 mb-2 text-start d-flex align-items-center gap-10'} onClick={() => { setPricetype("Fixed Price"); setOffermargin(1) }}>
                                         <img src={Images.fixedprice} />
                                         <div>
-                                            <h6 className='m-0'>Fixed Price</h6>
-                                            <p className='m-0'>Your offer’s selling price is locked when you create it, and won’t change with the market price.</p>
+                                            <h6 className='m-0'>{t("FIXED_PRICE")}</h6>
+                                            <p className='m-0'>{t("YOUR_OFFER_SELLING_PRICE_IS_LOCKED")}</p>
                                         </div>
                                     </button>
 
                                 </div>
                                 <hr className='themehr mt-4' />
-                                <h6 className='blackandwhite'>Offer trade Limits</h6>
+                                <h6 className='blackandwhite'>{t("OFFER_TRADE_LIMITS")}</h6>
                                 <div className='row'>
                                     <div className='col-md-6'>
                                         <div className='floatinglabel my-3'>
@@ -631,7 +634,7 @@ const CreateOffer = (props) => {
                                 <hr className='themehr mt-4' />
                                 <div className='row'>
                                     {pricetype === "Fixed Price" ? <div className='col-sm-6'>
-                                        <h6 className='blackandwhite'>Fixed price market rate your offer will list at</h6>
+                                        <h6 className='blackandwhite'>{t("FIXED_PRICE_MARKET_RATE")}</h6>
                                         <div className='d-flex incrementbtn'>
                                             <button disabled={fixedmarketrate == 1} onClick={() => setFixedmarketrate(parseFloat(fixedmarketrate) - 1)}>-</button> <input type="text" placeholder={fixedmarketrate} value={fixedmarketrate} onChange={(e) => setFixedmarketrate(e?.target?.value)} />
                                             <button onClick={() => setFixedmarketrate(parseFloat(fixedmarketrate) + 1)}>+</button>  <span style={{ textTransform: "uppercase" }}>{prefferedcurrency?.toUpperCase()}</span>
@@ -639,7 +642,7 @@ const CreateOffer = (props) => {
                                         <p className='error-message mb-0'>{errors?.fixedprice}</p>
                                     </div> :
                                         <div className='col-sm-6'>
-                                            <h6 className='blackandwhite'>Offer margin</h6>
+                                            <h6 className='blackandwhite'>{t("OFFER_MARGIN")}</h6>
                                             <div className='d-flex incrementbtn'>
                                                 <button disabled={offermargin == 1} onClick={() => setOffermargin(parseFloat(offermargin) - 1)}>-</button><input type="text" placeholder={offermargin} value={offermargin} onChange={(e) => setOffermargin(e?.target?.value)} />
                                                 <button onClick={() => setOffermargin(parseFloat(offermargin) + 1)}>+</button> <span>%</span>
@@ -647,7 +650,7 @@ const CreateOffer = (props) => {
                                         </div>
                                     }
                                     <div className='col-sm-6'>
-                                        <h6 className='blackandwhite'>Offer Time Limits</h6>
+                                        <h6 className='blackandwhite'>{t("OFFER_TIME_LIMITS")}</h6>
                                         <div className='d-flex incrementbtn'>
                                             <button disabled={offertimelimit == 30} onClick={() => setOffertimelimit(offertimelimit - 1)}>-</button><input type="text" placeholder={offertimelimit} value={offertimelimit} onChange={(e) => setOfferlimit(e?.target?.value)} />
                                             <button onClick={() => setOffertimelimit(offertimelimit + 1)}>+</button> <span>min</span>
@@ -660,25 +663,25 @@ const CreateOffer = (props) => {
                             <div className="rightptag">
                                 <img src={Images.connect} className='rightimg1' />
                                 <img src={Images.connect} className='rightimg' />
-                                <h5 className='blackandwhite'>About This Step</h5>
+                                <h5 className='blackandwhite'>{t("ABOUT_THIS_STEP")}</h5>
                                 <hr className='themehr mt-3 mb-4' />
-                                <p className='grayandblack'>Decide the price you want to trade at, and set the limits for your offer.</p>
+                                <p className='grayandblack'>{t("DECIDE_THE_PRICE")}</p>
                                 <ul className='pl-3'>
                                     <li>
-                                        <p className='grayandblack'>You want to {ordertype} {coin}</p>
+                                        <p className='grayandblack'>{t("YOU_WANT_TO")} {ordertype} {coin}</p>
                                     </li>
                                     <li>
-                                        <p className='grayandblack'>And get paid in {prefferedcurrency}</p>
+                                        <p className='grayandblack'>{t("AND_GET_PAID_IN")} {prefferedcurrency}</p>
                                     </li>
                                     {min && max &&
                                         <li>
-                                            <p className='grayandblack'>People can trade between{min} {prefferedcurrency} and {max} {prefferedcurrency}</p>
+                                            <p className='grayandblack'>{t("PEOPLE_CAN_TRADE_BETWEEN")}{min} {prefferedcurrency} {t("AND")} {max} {prefferedcurrency}</p>
                                         </li>
                                     }
                                 </ul>
                                 <div>
-                                    <button className='bordbtn' onClick={() => setSteps(1)}>Previous</button>
-                                    <button className='themebtn ml-3' onClick={() => handlestep2()}>Next</button>
+                                    <button className='bordbtn' onClick={() => setSteps(1)}>{t("PREVIOUS")}</button>
+                                    <button className='themebtn ml-3' onClick={() => handlestep2()}>{t("NEXT")}</button>
                                 </div>
                             </div>
                         </div>
@@ -688,13 +691,13 @@ const CreateOffer = (props) => {
 
                         <div className='col-lg-6'>
                             <div className='bordbox borderbox_no_max_heipy-4'>
-                                <h5 className='blackandwhite'>Trade Instructions</h5>
-                                <p className='subhead text-left f-12'>Choose Bitcoin rate you want to use</p>
+                                <h5 className='blackandwhite'>{t("TRADE_INSTRUCTIONS")}</h5>
+                                <p className='subhead text-left f-12'>{t("CHOOSE_BITCOIN_RATE")}</p>
 
                                 <hr className='themehr mt-4' />
-                                <h6 className='blackandwhite'>Offer trade Limits</h6>
+                                <h6 className='blackandwhite'>{t("OFFER_TRADE_LIMITS")}</h6>
                                 <div className='floatinglabel my-3' onClick={() => { setIsoffertagmodal(true) }}>
-                                    <label>Offer Tags</label>
+                                    <label>{t("OFFER_TAGS")}</label>
                                     {/* <select className="form-control h-45 mt-2">
                                     <option>Search for tags</option>
                                 </select> */}
@@ -706,7 +709,7 @@ const CreateOffer = (props) => {
                                             <span className='mb-0 badge themebadge me-1 mb-1'>{data?.Name}</span>
                                             {/* </div>
                                 </div> */}
-                                        </>) : <span className='mb-0 badge themebadge themebadge_notagss me-1 mb-1'>Select Offer tags</span>}
+                                        </>) : <span className='mb-0 badge themebadge themebadge_notagss me-1 mb-1'>{t("SELECT_OFFER_TAGS")}</span>}
                                         {/* <div className='card card_off_tyag my-2 mx-2'>
                                     <div className='card-body p-1'>
                                         <p className='mb-0'>Name</p>
@@ -722,7 +725,7 @@ const CreateOffer = (props) => {
                                 </div>
                                 <p className='error-message mb-0'>{errors?.offertag}</p>
                                 <div className='floatinglabel my-3'>
-                                    <label>Your Offer Label</label>
+                                    <label>{t("YOUR_OFFER_LABEL")}</label>
                                     <input type="text" className="form-control h-45 mt-2" value={offerlabel} onChange={(e) => setOfferlabel(e.target?.value)} />
                                     {/* <select className="form-control h-45 mt-2">
                                     <option>Maximum 25 characters. Only letters, numbers and dashes.</option>
@@ -730,7 +733,7 @@ const CreateOffer = (props) => {
                                 </div>
                                 <p className='error-message mb-0'>{errors?.offerlabel}</p>
                                 <div className='floatinglabel my-3'>
-                                    <label>Offer Terms</label>
+                                    <label>{t("OFFER_TERMS")}</label>
                                     <textarea className="form-control mt-2" row="10" value={offerterm}
                                         onChange={(e) => setOfferterm(e.target.value)}
                                     ></textarea>
@@ -739,7 +742,7 @@ const CreateOffer = (props) => {
                                 <p className='error-message mb-0'>{errors?.offerlabel}</p>
 
                                 <div className='floatinglabel my-3'>
-                                    <label>Trade Instructions</label>
+                                    <label>{t("TRADE_INSTRUCTIONS")}</label>
                                     <textarea className="form-control mt-2" row="10" value={tradeinstruction}
                                         onChange={(e) => setTradeinstruction(e?.target?.value)}
                                     ></textarea>
@@ -747,7 +750,7 @@ const CreateOffer = (props) => {
                                 </div>
                                 <p className='error-message mb-0'>{errors?.tradeinstruction}</p>
                                 <div>
-                                    <h6 className='blackandwhite'>Verification</h6>
+                                    <h6 className='blackandwhite'>{t("VERIFICATION")}</h6>
                                     {/* <div className="form-check d-flex align-items-center">
                                         <CheckBox
                                             name="remember"
@@ -762,7 +765,7 @@ const CreateOffer = (props) => {
                                             onChange={(e) => setVerifyid(e.target.checked)}
                                             checked={verifyid}
                                         />
-                                        <span class="checkmark"></span>  Require your trade partner to have verified their ID
+                                        <span class="checkmark"></span>  {t("REQUIRE_YOUR_TRADE_PARTNER")}
 
                                     </label>
                                     <label class="custcheck ml-2 blackandwhite f-12">
@@ -773,7 +776,7 @@ const CreateOffer = (props) => {
                                             }}
                                             checked={verifyfullname}
                                         />
-                                        <span class="checkmark"></span> Require your trade partner to show their full name
+                                        <span class="checkmark"></span> {t("REQUIRE_YOUR_TRADE_PARTNER_FULL_NAME")}
 
                                     </label>
                                     {/* <div className="form-check d-flex align-items-center">
@@ -792,25 +795,25 @@ const CreateOffer = (props) => {
                             <div className='rightptag'>
                                 <img src={Images.connect} className='rightimg1' />
                                 <img src={Images.connect} className='rightimg' />
-                                <h5 className='blackandwhite'>About This Step</h5>
+                                <h5 className='blackandwhite'>{t("ABOUT_THIS_STEP")}</h5>
                                 <hr className='themehr mt-3 mb-4' />
-                                <p className='grayandblack'>Set the terms, instructions, and limitations for people to trade on this offer.</p>
+                                <p className='grayandblack'>{t("SET_THE_TERMS_INSTRUCTIONS_AND_LIMITATIONS")}</p>
                                 <ul className='pl-3'>
                                     <li>
-                                        <p className='grayandblack'>You want to {ordertype} {coin}</p>
+                                        <p className='grayandblack'>{t("YOU_WANT_TO")} {ordertype} {coin}</p>
                                     </li>
                                     <li>
-                                        <p className='grayandblack'>And get paid in {prefferedcurrency}</p>
+                                        <p className='grayandblack'>{t("AND_GET_PAID_IN")} {prefferedcurrency}</p>
                                     </li>
                                     {min && max &&
                                         <li>
-                                            <p className='grayandblack'>People can trade between{min} {prefferedcurrency} and {max} {prefferedcurrency}</p>
+                                            <p className='grayandblack'>{t("PEOPLE_CAN_TRADE_BETWEEN")}{min} {prefferedcurrency} {t("AND")} {max} {prefferedcurrency}</p>
                                         </li>
                                     }
                                 </ul>
                                 <div>
-                                    <button className='bordbtn' onClick={() => setSteps(2)}>Previous</button>
-                                    <button className='themebtn ml-3' onClick={() => handlestep3()}>Create Offer</button>
+                                    <button className='bordbtn' onClick={() => setSteps(2)}>{t("PREVIOUS")}</button>
+                                    <button className='themebtn ml-3' onClick={() => handlestep3()}>{t("CREATE_OFFER")}</button>
                                 </div>
                             </div>
                         </div>

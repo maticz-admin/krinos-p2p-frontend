@@ -3,7 +3,10 @@ import { Button, Modal } from 'react-bootstrap';
 import tickss from "../../../../images/ticks.png";
 import Images from 'Images';
 import spring from "../../../../images/toss/bannerbg.png";
+import { useTranslation } from 'react-i18next';
 const OffertagModal = (props) =>{
+      const { t, i18n } = useTranslation();
+    
     const [isoffertagmodal , setIsoffertagmodal] = useState(true);
 
     const [taglist , setTaglist] = useState([]);
@@ -44,7 +47,7 @@ const OffertagModal = (props) =>{
                                     </div>
                                     <Modal.Header className='modal_title_off_tag_odal'>
                                         <Modal.Title id="contained-modal-title-vcenter">
-                                            <p className='mb-0'>Offer Tags</p>
+                                            <p className='mb-0'>{t("OFFER_TAGS")}</p>
                                             {/* <p className='submod-title'>It is a long established fact that a reader</p> */}
                                         </Modal.Title>
                                         <Button variant="secondary" className='modalbtns' onClick={props?.onDismiss}> x
@@ -53,8 +56,8 @@ const OffertagModal = (props) =>{
                                     <Modal.Body>
                                         <div className='py-4'>
                                             <div className='grid_div'>
-                                                <p className='title_grid'>Name</p>
-                                                <p className='title_grid'>Description</p>
+                                                <p className='title_grid'>{t("NAME")}</p>
+                                                <p className='title_grid'>{t("DESCRIPTION")}</p>
                                             </div>
                                             <div className='scroll_div_table'>
                                         { offertag && taglist?.map((data , i) =>  <div className={offertag.includes(data) ? 'grid_div py-3 bordered_div_each active' : 'grid_div py-3 bordered_div_each'} onClick={()=>handleclick(data)}>
@@ -64,7 +67,7 @@ const OffertagModal = (props) =>{
                                         </div>
                                         
                                         </div>
-                                  <div className='text-center'> <button className='btn themebtn' onClick={props?.onDismiss}>Close</button></div> 
+                                  <div className='text-center'> <button className='btn themebtn' onClick={props?.onDismiss}>{t("CLOSE")}</button></div> 
                                     </Modal.Body>
                                 </Modal>
         </>

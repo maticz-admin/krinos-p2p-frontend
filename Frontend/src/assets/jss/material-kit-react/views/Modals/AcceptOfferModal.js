@@ -6,9 +6,11 @@ import spring from "../../../../images/toss/bannerbg.png";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { updateorderstatushooks } from 'actions/P2PorderAction';
 import { toastAlert } from 'lib/toastAlert';
+import { useTranslation } from 'react-i18next';
 const AcceptOfferModal = (props) =>{
     const [isacceptoffermodal , setIsacceptoffermodal] = useState(true);
     const navigate = useHistory();
+  const { t, i18n } = useTranslation();
 
     const handlereject = async() => {
         var payload = {
@@ -36,17 +38,17 @@ const AcceptOfferModal = (props) =>{
                                     </div>
                                     <Modal.Header>
                                         <Modal.Title id="contained-modal-title-vcenter">
-                                            <p className='mb-0'>Offer creator</p>
+                                            <p className='mb-0'>{t("OFFER_CREATOR")}</p>
                                             {/* <p className='submod-title'>It is a long established fact that a reader</p> */}
                                         </Modal.Title>
                                         <Button variant="secondary" className='modalbtns' onClick={props?.onDismiss}> x
                                         </Button>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <p className='themetext_modal text-center'>{props.offer?.username} is waiting to connect with you</p>
+                                        <p className='themetext_modal text-center'>{props.offer?.username} {t("IS_WAITING_TO_CONNECT_WITH_YOU")}</p>
                                         <div className='text-center pb-3 pt-3'>
-                                            <button className='themebtn' onClick={()=>{navigate.push(`/trade/${props?.offer?.roomid}`)}}>Accept</button>
-                                            <button className='themebtn ms-3' onClick={() =>handlereject()}>Decline</button>
+                                            <button className='themebtn' onClick={()=>{navigate.push(`/trade/${props?.offer?.roomid}`)}}>{t("ACCEPT")}</button>
+                                            <button className='themebtn ms-3' onClick={() =>handlereject()}>{t("DECLINE")}</button>
 
                                         </div>
                                     </Modal.Body>

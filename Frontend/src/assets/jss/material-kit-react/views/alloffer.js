@@ -19,12 +19,14 @@ import { Getcoinlisthooks, Filterp2porderhooks } from '../../../../actions/P2Por
 import { setCurrencyOption } from 'actions/commonAction';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { toastAlert } from 'lib/toastAlert';
+import { useTranslation } from 'react-i18next';
 
 // import HeaderLinks1 from 'components/Header/HeaderLinksAfterlogin';
 
 const dashboardRoutes = [];
 const Buybitcoin = (props) => {
     const { ...rest } = props;
+      const { t, i18n } = useTranslation();
 
     const [createModal, setCreateModal] = useState(false);
     const[created, setCreated] = useState(false);
@@ -141,8 +143,8 @@ const Buybitcoin = (props) => {
                 {...rest} />
             <div className='login_container login_box'>
                 <div>
-                    <h1 className='blackandwhite bit_text text-center bit1'>Offer</h1>
-                    <p className='roboto subhead'>Buy Bitcoin from other users using any payment<br></br>method and currency.</p>
+                    <h1 className='blackandwhite bit_text text-center bit1'>{t("OFFER")}</h1>
+                    <p className='roboto subhead'>{t("BUY_BITCOIN_PAYMENT_CURRENCY")}<br></br>{t("METHOD_AND_CURRENCY")}</p>
                 </div>
 
                 <div className='container'>
@@ -182,7 +184,7 @@ const Buybitcoin = (props) => {
                         <div className='d-flex align-items-center justify-content-end mt-5 mb-3'>
                             {/* <button className='graybtn my-3'>How to start</button> */}
                             {/* <button className='themebtn' onClick={() => setCreateModal(true)}>Create offer</button> */}
-                           <Link to="/createoffer"><button className='themebtn'>Create offer</button></Link>
+                           <Link to="/createoffer"><button className='themebtn'>{t("CREATE_OFFER")}</button></Link>
                         </div>
 
                         <div className='tableborder'>
@@ -204,8 +206,8 @@ const Buybitcoin = (props) => {
                                                     {/* <p><span className='gray'>Limit</span> : <span className='gray gray1'>{item?.coin}</span></p> */}
                                                 </div>
                                                 <div>
-                                                    <p><span className='gray amount'>Min purchase </span> : <span className='yellow'> {item?.min}</span></p>
-                                                    <p><span className='gray amount'>Max purchase </span> : <span className='yellow'> {item?.max}</span></p>
+                                                    <p><span className='gray amount'>{t("MIN_PURCHASE")} </span> : <span className='yellow'> {item?.min}</span></p>
+                                                    <p><span className='gray amount'>{t("MAX_PURCHASE")} </span> : <span className='yellow'> {item?.max}</span></p>
                                                 </div>
                                                 <div>
                                                     <p><span className='red'>1{item?.coin}  = {item?.prefferedcurrencyvalue} {item?.preferedcurrency}</span> <span className='green'>{item?.offermargin ? item?.offermargin : item?.variablepercentage}% {(item?.offermargin ? item?.offermargin : item?.variablepercentage)>0 ? "above market price" : "below market price"}</span></p>
@@ -222,7 +224,7 @@ const Buybitcoin = (props) => {
 
                                         </div> </>)}
 
-                                        {!offerdata || offerdata?.length == 0 && <p>No data found</p>}
+                                        {!offerdata || offerdata?.length == 0 && <p>{t("NO_DATA_FOUND")}</p>}
                              <div className='text-center mt-3'> 
                                 {loadbutton && <button className='btn themebtn' onClick={()=>{LoadMore()}}>{loadmore}</button>}
                             </div>

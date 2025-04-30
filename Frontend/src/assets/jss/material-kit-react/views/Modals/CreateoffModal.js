@@ -9,12 +9,14 @@ import { toastAlert } from 'lib/toastAlert';
 import { useSelector } from 'react-redux';
 import { Getcmshooks } from 'actions/P2PorderAction';
 import { kycStatus } from 'lib/displayStatus';
+import { useTranslation } from 'react-i18next';
 // import {  } from 'actions/P2PorderAction';
 
 const CreateoffModal = (props) =>{
     const[createModal, setCreateModal] = useState(true);
     const [showmore, setShowmore] = useState(false);
     const userdata = useSelector(state => state.account);
+  const { t, i18n } = useTranslation();
 
     const [cmsdata , setCmsdata] = useState("");
 
@@ -108,8 +110,8 @@ const CreateoffModal = (props) =>{
                                     <Modal.Header>
                                   
                                         <Modal.Title id="contained-modal-title-vcenter">
-                                            <p className='mb-0'>Vendor terms & conditions</p>
-                                            <p className='submod-title'>It is a long established fact that a reader</p>
+                                            <p className='mb-0'>{t("VENDOR_TERMS_CONDITIONS")}</p>
+                                            <p className='submod-title'>{t("IT_IS_LONG_ESTABLISHED")}</p>
                                         </Modal.Title>
                                         <Button variant="secondary" className='modalbtns' onClick={props.onDismiss}> x
                                         </Button>
@@ -141,8 +143,8 @@ const CreateoffModal = (props) =>{
                                         </div> */}
                                         {/* <div>{}</div> */}
                                         <div className='allbtn d-flexj justify-content-between align-items-center mt-5 btn_cont_noafter'>
-                                            <button type="button" class="btn vendorbtn" onClick={props.onDismiss}>I don't want to be a vendor</button>
-                                            <button className='themebtn' onClick={handlecreate}>I Accept</button>
+                                            <button type="button" class="btn vendorbtn" onClick={props.onDismiss}>{t("I_DON_WANT_TO_BE_A_VENDOR")}</button>
+                                            <button className='themebtn' onClick={handlecreate}>{t("I_ACCEPT")}</button>
                                         </div>
                                     </Modal.Body>
                                 </Modal>

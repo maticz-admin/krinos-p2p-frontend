@@ -97,7 +97,7 @@ const Notification = () => {
                 <div className="container">
                   <GridContainer>
                     <GridItem xs={12} sm={12} md={12} lg={12}>
-                      <h3 className="dash_title login_title_8">Notifications</h3>
+                      <h3 className="dash_title login_title_8">{t("NOTIFICATIONS")}</h3>
                     </GridItem>
 
                   </GridContainer>

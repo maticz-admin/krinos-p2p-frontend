@@ -27,6 +27,7 @@ import { getcurrencydatahooks } from '../../../../actions/P2PorderAction';
 import { toastAlert } from 'lib/toastAlert';
 import { gettradespeedhook } from '../../../../actions/P2PorderAction';
 import config from 'config';
+import { useTranslation } from 'react-i18next';
 
 const dashboardRoutes = [];
 const Bitcoincompany = (props) => {
@@ -34,6 +35,7 @@ const Bitcoincompany = (props) => {
     const location = useLocation();
     const navigate = useHistory();
     const userdata = useSelector(state => state);
+      const { t, i18n } = useTranslation();
 
     const [tradedata, setTradedata] = useState({});
     const [pay, setPay] = useState(0);
@@ -328,8 +330,8 @@ const Bitcoincompany = (props) => {
                 <div className='loader_hide_op'>
 
                     <div>
-                        <h1 className='blackandwhite bit_text text-center bit1'>{tradedata?.ordertype} Bitcoin With Company</h1>
-                        <p className='roboto subhead'>{tradedata?.ordertype == "Sell" ? "Buy" : "Sell"} Bitcoin from other users using any payment<br></br>method and currency.</p>
+                        <h1 className='blackandwhite bit_text text-center bit1'>{tradedata?.ordertype} {t("BITCOIN_WITH_COMPANY")}</h1>
+                        <p className='roboto subhead'>{tradedata?.ordertype == "Sell" ? "Buy" : "Sell"} {t("BITCOIN_ROM_OTHER_USERS_USING_ANY_PAYMENT")}<br></br>{t("METHOD_AND_CURRENCY")}</p>
                     </div>
 
                     <div className='container'>
@@ -345,11 +347,11 @@ const Bitcoincompany = (props) => {
 
                             <div className='buyborder mt-3'>
                                 {tradedata?.createrid != userdata?.account?.userId && <div>
-                                    <p className='mb-4 much'>How much do you want to {tradedata?.ordertype == "Sell" ? "Buy" : "Sell"}?</p>
+                                    <p className='mb-4 much'>{t("HOW_MUCH_DO_YOU_WANT_to")} {tradedata?.ordertype == "Sell" ? "Buy" : "Sell"}?</p>
                                     <div className='row'>
                                         <div className='col-md-6 col-sm-6'>
                                             <div className='input-group mb-1 jj floatinglabel mt-4 h-54'>
-                                                <label>I will {tradedata?.ordertype == "Sell" ? "pay" : "receive"}</label>
+                                                <label>{t("I_WILL")} {tradedata?.ordertype == "Sell" ? "pay" : "receive"}</label>
                                                 <input
                                                     className="form-control mt-0"
                                                     placeholder="0"
@@ -361,14 +363,14 @@ const Bitcoincompany = (props) => {
                                                 />
                                                 <span class="input-group-text" id="basic-addon2">{tradedata?.preferedcurrency}</span>
                                             </div>
-                                            <p className='get d-flex align-items-center gap-1'><AiOutlineInfoCircle /> Enter amount to get started</p>
+                                            <p className='get d-flex align-items-center gap-1'><AiOutlineInfoCircle /> {t("ENTER_AMOUNT_TO_GET_STARTED")}</p>
                                             {/* <p className='get'><AiOutlineInfoCircle /> You get {getuser} {tradedata?.preferedcurrency} worth of {tradedata?.coin}{tradedata?.ordertype == "Buy" && "+ escrow fee 1%"}</p> */}
 
                                             <p className='error-message mb-0'>{error}</p>
                                         </div>
                                         <div className='col-md-6 col-sm-6'>
                                             <div className='input-group mb-1 jj floatinglabel mt-4 h-54'>
-                                                <label>and {tradedata?.ordertype == "Sell" ? "receive" : "pay"}</label>
+                                                <label>{t("AND")} {tradedata?.ordertype == "Sell" ? "receive" : "pay"}</label>
                                                 <input
                                                     className="form-control mt-0"
                                                     placeholder="Enter text"
@@ -390,27 +392,27 @@ const Bitcoincompany = (props) => {
                                 {<div className='row'>
                                     <div className='col-md-3 col-sm-6'>
                                         <div className='border1 mt-2'>
-                                            <p className='amount'>Seller rate</p>
+                                            <p className='amount'>{t("SELLER_RATE")}</p>
                                             <p className='btc-amount'>{parseFloat(prefferedcurrencyvalue).toFixed(8)}{tradedata?.preferedcurrency}</p>
                                             {/* {variablepercentage && <p className='market'>{tradedata?.offermargin ? tradedata?.offermargin : variablepercentage}% {(tradedata?.offermargin ? tradedata?.offermargin : variablepercentage) > 0 ? "above market" : "below market"}</p>} */}
                                         </div>
                                     </div>
                                     <div className='col-md-3 col-sm-6'>
                                         <div className='border1 mt-2'>
-                                            <p className='amount'>Buy limits</p>
+                                            <p className='amount'>{t("BUY_LIMITS")}</p>
                                             <p className='btc-amount'>Min : {tradedata?.min} {tradedata?.preferedcurrency}</p>
                                             <p className='market'>Max : {tradedata?.max} {tradedata?.preferedcurrency}</p>
                                         </div>
                                     </div>
                                     <div className='col-md-3 col-sm-6'>
                                         <div className='border1 mt-2'>
-                                            <p className='amount'>Trade time Limit</p>
+                                            <p className='amount'>{t("TRADE_TIME_LIMIT")}</p>
                                             <p className='btc-amount'>{tradedata?.offertimelimit} min</p>
                                         </div>
                                     </div>
                                     <div className='col-md-3 col-sm-6'>
                                         <div className='border1 mt-2'>
-                                            <p className='amount'>Krinos P2P fee</p>
+                                            <p className='amount'>{t("KRINOS_P2P_FEE")}</p>
                                             <p className='btc-amount'>{currencies?.commisionfee}%</p>
                                         </div>
                                     </div>
@@ -420,7 +422,7 @@ const Bitcoincompany = (props) => {
                             {/* <p className='lorem mt-4 mb-4 text-center'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> */}
 
                             <div className='buyborder1 mt-3'>
-                                <p className='mb-0 much'>About this {tradedata?.ordertype == "Sell" ? "seller" : "buyer"}</p>
+                                <p className='mb-0 much'>{t("ABOUT_THIS")} {tradedata?.ordertype == "Sell" ? "seller" : "buyer"}</p>
 
                                 <div className='d-flex justify-content-between chance'>
                                     <div className='one1'>
@@ -438,28 +440,28 @@ const Bitcoincompany = (props) => {
 
                                     <div className='one2 one2_alig_widt'>
                                         <div className=''>
-                                            <div><p className='namelist'>Id Proof</p></div>
+                                            <div><p className='namelist'>{t("ID_PROOF")}</p></div>
                                             <div className='text-center'><img src={ownerkyc?.status == "Approved" ? tick : close} className='prof1' /></div>
                                         </div>
                                     </div>
 
                                     <div className='one2 one2_alig_widt'>
                                         <div className=''>
-                                            <div><p className='namelist'>Phone Verified</p></div>
+                                            <div><p className='namelist'>{t("PHONE_VERIFIED")}</p></div>
                                             <div className='text-center'><img src={ownerdata?.phoneStatus == "verified" ? tick : close} className='prof1' /></div>
                                         </div>
                                     </div>
 
                                     <div className='one2 one2_alig_widt'>
                                         <div className=''>
-                                            <div><p className='namelist'>Email Verified</p></div>
+                                            <div><p className='namelist'>{t("EMAIL_VERIFIED")}</p></div>
                                             <div className='text-center'><img src={ownerdata?.emailStatus == "verified" ? tick : close} className='prof1' /></div>
                                         </div>
                                     </div>
 
                                     <div className='one2 one2_col_wdi'>
                                         <div className=''>
-                                            <div><p className='namelist'>Trade Speed</p></div>
+                                            <div><p className='namelist'>{t("TRADE_SPEED")}</p></div>
                                             <div><button className='themebtn mt-4'>{tradespeed ? (parseFloat(tradespeed) < 5 ? "Instant" : tradespeed + "min") : "New"}</button></div>
                                         </div>
                                     </div>
