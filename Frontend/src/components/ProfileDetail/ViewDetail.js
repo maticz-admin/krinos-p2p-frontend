@@ -65,6 +65,10 @@ const ViewDetail = (props) => {
                 <GridItem xs={12} sm={12} md={6} lg={6}>
                     <h4>{t("RESIDENTIAL_ADDRESS")}</h4>
                     <ul>
+                    <li>
+                            <label>{t("BLOCK")}</label>
+                            <span>{blockNo}</span>
+                        </li>
                         <li>
                             <label>{t("ADDRESS")}</label>
                             <span>{address}</span>

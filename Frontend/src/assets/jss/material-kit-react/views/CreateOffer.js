@@ -78,7 +78,7 @@ const CreateOffer = (props) => {
     // {name : "photoid required" , description : "valid govt id reqireed"},
     //             {name : "No receipt needed" , description : "Receipt not required for this trade."},
     //             {name : "Invoices are accepted" , description : "Get your invoice paid"}
-    const [fixedmarketrate, setFixedmarketrate] = useState(0);
+    const [fixedmarketrate, setFixedmarketrate] = useState(1);
     const [isoffertagmodal, setIsoffertagmodal] = useState(false);
     const [errors, setErrors] = useState({});
     const [payload, setPayload] = useState({});
@@ -249,6 +249,14 @@ const CreateOffer = (props) => {
         if (parseFloat(max) < parseFloat(min) || parseFloat(min) > parseFloat(max)) {
             data.max = "Max value must be greater than Min value"
         }
+        if(pricetype == "Fixed Price"){
+            if(!parseFloat(fixedmarketrate)){
+                data.fixedprice = "Value must be greater than 0"
+            }
+        }
+        // else{
+        //     if(!parseFloat(o))
+        // }
         // if(parseFloat(fixedmarketrate) > 1){
         //     data.
         // }
@@ -625,16 +633,16 @@ const CreateOffer = (props) => {
                                     {pricetype === "Fixed Price" ? <div className='col-sm-6'>
                                         <h6 className='blackandwhite'>Fixed price market rate your offer will list at</h6>
                                         <div className='d-flex incrementbtn'>
-                                            <button disabled={fixedmarketrate == 1} onClick={() => setFixedmarketrate(fixedmarketrate - 1)}>-</button> <input type="text" placeholder={fixedmarketrate} value={fixedmarketrate} onChange={(e) => setFixedmarketrate(e?.target?.value)} />
-                                            <button onClick={() => setFixedmarketrate(fixedmarketrate + 1)}>+</button>  <span style={{ textTransform: "uppercase" }}>{prefferedcurrency?.toUpperCase()}</span>
+                                            <button disabled={fixedmarketrate == 1} onClick={() => setFixedmarketrate(parseFloat(fixedmarketrate) - 1)}>-</button> <input type="text" placeholder={fixedmarketrate} value={fixedmarketrate} onChange={(e) => setFixedmarketrate(e?.target?.value)} />
+                                            <button onClick={() => setFixedmarketrate(parseFloat(fixedmarketrate) + 1)}>+</button>  <span style={{ textTransform: "uppercase" }}>{prefferedcurrency?.toUpperCase()}</span>
                                         </div>
-                                        <p className='error-message mb-0'>dsfgsdg</p>
+                                        <p className='error-message mb-0'>{errors?.fixedprice}</p>
                                     </div> :
                                         <div className='col-sm-6'>
                                             <h6 className='blackandwhite'>Offer margin</h6>
                                             <div className='d-flex incrementbtn'>
-                                                <button disabled={offermargin == 1} onClick={() => setOffermargin(offermargin - 1)}>-</button><input type="text" placeholder={offermargin} value={offermargin} onChange={(e) => setOffermargin(e?.target?.value)} />
-                                                <button onClick={() => setOffermargin(offermargin + 1)}>+</button> <span>%</span>
+                                                <button disabled={offermargin == 1} onClick={() => setOffermargin(parseFloat(offermargin) - 1)}>-</button><input type="text" placeholder={offermargin} value={offermargin} onChange={(e) => setOffermargin(e?.target?.value)} />
+                                                <button onClick={() => setOffermargin(parseFloat(offermargin) + 1)}>+</button> <span>%</span>
                                             </div>
                                         </div>
                                     }

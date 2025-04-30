@@ -25,6 +25,7 @@ const dashboardRoutes = [];
 const Trade = (props) => {
   const { ...rest } = props;
   const userdata = useSelector(state => state);
+  const accountData = useSelector((state) => state.account);
   const location = useLocation();
   const navigate = useHistory();
   const [owner, setOwner] = useState({});
@@ -103,6 +104,23 @@ const Trade = (props) => {
       }
     }
   }
+
+  const ValidateFile = (data) => {
+    try{
+        var fileName = data?.name;
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if(extFile=="png" || extFile == "jpg" || extFile == "jpeg" || extFile == "webp"){
+            return ""
+        }
+        else{
+            return "Invalid file format"
+        }
+    }
+    catch(e){
+        console.log("Error on validate filer" , e);
+    }
+}
 
 
 
@@ -432,7 +450,9 @@ const Trade = (props) => {
               <div className="tableborder chattable">
                 <div className="chathead flexb">
                   <div>
-                    <img src={Images.prof} alt="" className="chatprof" />
+                    <img src={accountData?.profileImage
+                                                ? accountData?.profileImage
+                                                : Images.prof} alt="" className="chatprof" />
                     <span className="chatname roboto">{owner?.firstName ? (owner?.firstName + " " + owner?.lastName) : owner?.userId}</span>
                     {/* <img src={Images.prof} alt="" className="countryimg" /> */}
                   </div>
@@ -527,7 +547,18 @@ const Trade = (props) => {
                         <span className="fa fa-upload"></span>
                       </div>
                       <input type="file"
-                        onChange={(e) => { setImage(e?.target?.files[0]); setImageblob(URL.createObjectURL(e?.target?.files[0])) }}
+                        onChange={(e) => { 
+                          let validate = ValidateFile(e?.target?.files[0]);
+                          console.log("validate" , validate);
+                          
+                          if(!validate){
+                            setImage(e?.target?.files[0]); 
+                            setImageblob(URL.createObjectURL(e?.target?.files[0])) 
+                          }
+                          else {
+                            toastAlert("error", "Invalid File");
+                          }
+                        }}
                       />
                     </div>
                     <div>

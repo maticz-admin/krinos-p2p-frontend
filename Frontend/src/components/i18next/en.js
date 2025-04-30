@@ -13,7 +13,7 @@ export default {
     "DON'T_HAVE_ACCOUNT": "Don't have an account",
     "EMAIL_REQUIRED": "Email field is required",
     "EMAIL_INVALID": "Email is invalid",
-    "INVALID_PASSWORD": "invalid Password",
+    "INVALID_PASSWORD": "Invalid Password",
     "ONLY_NUMERIC": "Only allow numeric value",
     "INVALID_OTP": "Invalid OTP",
     "FORGOT_PASSWORD": "Forgot password",

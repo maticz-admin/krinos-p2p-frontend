@@ -373,7 +373,7 @@ const HeaderLinks = () => {
                       {/* <div className="d-flex prof_icon_header"> */}
                       {/* <div> */}
                       <img
-                        src={
+                        src= {
                           accountData?.profileImage
                             ? accountData?.profileImage
                             : Profileicon
