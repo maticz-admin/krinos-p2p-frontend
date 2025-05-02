@@ -89,7 +89,7 @@ const CreatedModal = (props) => {
                 <Modal.Body>
                     {warning && <p className='balance_too_low_tex'>
                         <i class="fa fa-exclamation-triangle me-2" aria-hidden="true"></i>
-                        {t("YOUR")} {coin} {T("BALANCE_IS_TOO_LOW")}</p>}
+                        {t("YOUR")} {coin} {t("BALANCE_IS_TOO_LOW")}</p>}
                     <div className='borders'>
                         <p className='mb-0'>{t("GO_AHEAD_AND_SHARE")}</p>
                     </div>

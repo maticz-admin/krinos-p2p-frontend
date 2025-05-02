@@ -348,7 +348,7 @@ const CreateOffer = (props) => {
 
                     {/* {<h3 className='blackandwhite'>Create Offer to Buy Bitcoin</h3>} */}
 
-                    <p className='subhead'>{T("BUY_SELL_BITCOIN_FROM")}</p>
+                    <p className='subhead'>{t("BUY_SELL_BITCOIN_FROM")}</p>
                 </div>
                 <div className='container-fluid themecontainer'>
                     <div className='row mb-md-5 mb-4 steps'>
