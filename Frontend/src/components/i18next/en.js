@@ -577,7 +577,7 @@ export default {
     "COMPLETION": "completion",
     "AVL": "Avl",
     "CREATED_TIME": "Created Time",
-    "ORDER_ID": "Order ID",
+    "ORDER_ID": "Order Id",
     "ATTACHMENT": "Attachment",
     "MORE_ABOUT_SUPPORT": "More About Support",
     "LOGIN_ISSUE": "Login Issue",

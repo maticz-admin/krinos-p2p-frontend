@@ -59,7 +59,7 @@ const fetchdata = async() => {
         setOwnerdata(result?.data?.data);
         setKyc(result?.data?.kyc);
     }
-    var tradespeedresult = await gettradespeedhook({userid : result?.data?.data?.createrid});
+    var tradespeedresult = await gettradespeedhook({userid : window.location.pathname.split('/')[2]?.toString()});
             var speed = parseFloat(tradespeedresult?.data?.data)/60000
             setTradespeed(speed);
 

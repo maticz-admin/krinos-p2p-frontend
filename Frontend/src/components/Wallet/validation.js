@@ -36,7 +36,6 @@ export const fiatValidation = (value, t) => {
 export const fiatDepositValidation = value => {
     let errors = {};
     let imageFormat = /\.(jpg|JPG|jpeg|JPEG|png|PNG|pdf|PDF)$/;
-
     if (isEmpty(value.amount)) {
         errors.amount = "REQUIRED"
     } else if (isNaN(value.amount)) {
@@ -95,7 +94,6 @@ export const coinValidation = (value, t) => {
 
 export const walletTransferValidation = value => {
     let errors = {};
-
     if (isEmpty(value.toType)) {
         errors.toType = "REQUIRED"
     } else if (!['spot', 'derivative'].includes(value.toType)) {
@@ -115,8 +113,5 @@ export const walletTransferValidation = value => {
     } else if (parseFloat(value.amount) <= 0) {
         errors.amount = "MUST_BE_GREATER"
     }
-
-
-
     return errors;
 }

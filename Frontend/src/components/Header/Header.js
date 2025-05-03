@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
+import { Button, List, ListItem, MenuItem, Select } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { useRouteMatch } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -15,13 +16,16 @@ import Menu from "@material-ui/icons/Menu";
 // core components
 import styles from "assets/jss/material-kit-react/components/headerStyle.js";
 import { Link } from "react-router-dom";
-import { NavLink } from "react-bootstrap";
+import { Dropdown, NavLink } from "react-bootstrap";
 
 import AcceptOfferModal from "assets/jss/material-kit-react/views/Modals/AcceptOfferModal";
 import DeclineOfferModal from "assets/jss/material-kit-react/views/Modals/DeclineOfferModal";
 import { socket } from "config/socketConnectivity";
 import { useSelector } from "react-redux";
 import { GetUserId } from "lib/userdata";
+import isEmpty from "is-empty";
+import { getLang } from "lib/localStorage";
+import { setLang } from "lib/localStorage";
 
 const useStyles = makeStyles(styles);
 
@@ -33,9 +37,77 @@ export default function Header(props) {
   const [isdeclineoffermodal, setIsdeclineoffermodal] = useState(false);
   const [offerdata, setOfferdata] = useState({});
   const [declinedata , setDeclinedata] = useState({});
+  const [selLang, setSelLang] = useState("Spanish");
 
   const routeMatch = useRouteMatch();
   const { t, i18n } = useTranslation();
+  const language = useSelector((state) => state.language);
+  const [langOption, setLangOption] = useState([]);
+  // const [selLang, setSelLang] = useState("Spanish");
+
+
+
+
+  const handleLanguage = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setSelLang(value);
+    setLang(value);
+    console.log("selected lanasdfg" , value);
+    
+    i18n.changeLanguage(value);
+    localStorage.setItem("usr-language" , value)
+  };
+
+
+  useEffect(() => {
+    let langs = localStorage.getItem("usr-language")
+    console.log("langslangsheader" , langs , langs == "en");
+    
+    if(langs == "en"){
+      setSelLang("en")
+      i18n.changeLanguage("en");
+    }
+    else{
+      setSelLang("sp")
+      i18n.changeLanguage("sp");
+    }
+    if (!isEmpty(language)) {
+      setLangOption(language);
+      let lang = getLang();
+      // console.log("language on header" , lang);
+      if (isEmpty(lang)) {
+        let primaryData =
+          language &&
+          language.length > 0 &&
+          language.find((el) => el.isPrimary == true);
+        if (primaryData) {
+          // setSelLang(primaryData.code);
+          // setLang(primaryData.code);
+          // i18n.changeLanguage(primaryData.code);
+        }
+      } else {
+        // setSelLang(lang);
+      }
+    }
+    else{
+      setLangOption([{
+        "name" : "English",
+        "code" : "en",
+        "isPrimary" : true,
+        "status" : "active"
+    },
+    {
+        "name" : "Spanish",
+        "code" : "sp",
+        "isPrimary" : true,
+        "status" : "active"
+    }])
+    }
+    // fetchcoin();
+  }, [language]);
+
+
 
   React.useEffect(() => {
     if (props.changeColorOnScroll) {
@@ -167,6 +239,56 @@ export default function Header(props) {
           <Hidden mdDown implementation="css">
             {rightLinks}
           </Hidden>
+
+          <Hidden smDown className="drream">
+        <div className="mobilelog">
+          <div>
+            {/* {locationsss == "/viewoffers/:id/:id" ? */}
+            {/* <div className="d-flex buyss">
+             
+
+             
+            </div>  */}
+            {/* // : ""} */}
+            <List className={classes.list + " menu_main_navbar buyss"}>
+              <ListItem className={classes.listItem}>
+                {/* <Select
+                  name="language"
+                  value={selLang}
+                  onChange={handleLanguage}
+                >
+                  {
+                    langOption && langOption.length > 0 && langOption.map((item, key) => {
+                      return (
+                        <MenuItem value={item.code}>{upperCase(item.code)}</MenuItem>
+                        // <option key={key} value={item.code}>{upperCase(item.code)}</option>
+                      )
+                    })
+                  }
+                 
+                </Select> */}
+{console.log("language option" , langOption)}
+                <Select
+                name="language"
+                value={selLang}
+                onChange={handleLanguage}
+                >
+
+                  {langOption && langOption.length > 0 && langOption.map((item, key) => {
+                      return (
+                        <MenuItem value={item?.code}>{item?.name}</MenuItem>
+                      )
+                    })}
+                </Select>
+              </ListItem>
+
+              
+            </List>
+          </div>
+        </div>
+      </Hidden>
+
+
           <Hidden lgUp>
             <IconButton
               color="inherit"

@@ -299,7 +299,7 @@ const UserDashboard = (props) => {
         },
         {
             key: `${t("rating")}`,
-            text: "Trade ID",
+            text: "Trade Id",
             className: "rating aqua",
             align: "left",
             cell: record => {
@@ -517,7 +517,7 @@ const UserDashboard = (props) => {
         // },
         {
             key: "roomid",
-            text: `${("ROOM_ID")}`,
+            text: `${t("ROOM_ID")}`,
             className: "address w-100px",
             align: "left",
         },
@@ -624,7 +624,7 @@ const UserDashboard = (props) => {
         // },
         {
             key: "roomid",
-            text: `${("ROOM_ID")}`,
+            text: `${t("ROOM_ID")}`,
             className: "address w-100px",
             align: "left",
         },

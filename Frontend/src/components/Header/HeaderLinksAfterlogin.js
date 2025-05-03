@@ -312,7 +312,7 @@ export default function HeaderLinks1(props) {
               )}
               {isAuth && (
                 <li>
-                  <NavLink to="/viewoffers/Buy/BTC">{t("OFFER")}</NavLink>
+                  <NavLink to="/viewoffers/Buy/MATIC">{t("OFFER")}</NavLink>
                 </li>
               )}
 
@@ -801,7 +801,7 @@ export default function HeaderLinks1(props) {
 
               {isAuth && (
                 <li>
-                  <NavLink to="/viewoffers/Buy/BTC">Offer</NavLink>
+                  <NavLink to="/viewoffers/Buy/MATIC">Offer</NavLink>
                   {/* <Link to="/walletnew">Wallet</Link> */}
                 </li>
               )}

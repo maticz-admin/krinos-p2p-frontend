@@ -233,7 +233,6 @@ const CryptoWithdraw = (props) => {
             </div>
           </GridItem>
           <GridItem xs={12} sm={12} md={12} lg={6}>
-           
             <div className="form-group floatinglabel">
             <label>{t("FINAL_WITHDRAW_AMOUNT_WITH_FEE")}</label>
               <div class="seacr_box_s padd_right_input">
@@ -295,9 +294,9 @@ const CryptoWithdraw = (props) => {
                   1. {t("MIN_WITHDRAW_LIMIT")}
                   {currency && toFixed(currency.minimumWithdraw,8)}
                 </li>
-                <li>2. {t("WITHDRAW_PROCESS")}</li>
+                {/* <li>2. {t("WITHDRAW_PROCESS")}</li>
                 <li>3. {t("WITHDRAW_TIME")}</li>
-                <li>4. {t("WITHDRAW_PROCESS2")}</li>
+                <li>4. {t("WITHDRAW_PROCESS2")}</li> */}
               </ul>
             </div>
           </GridItem>

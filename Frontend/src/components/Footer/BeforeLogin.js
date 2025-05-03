@@ -54,7 +54,7 @@ export default function BeforeLogin(props) {
     const { name, value } = e.target;
     setLanguage(value)
     setLang(value)
-    i18n.changeLanguage(value);
+    // i18n.changeLanguage(value);
   }
 
   const emailValidation = (value) => {
@@ -75,7 +75,7 @@ export default function BeforeLogin(props) {
 
   const OnSubmit =async (e)=>{
     e.preventDefault()
-   var validateError =await  emailValidation(letter)
+    var validateError =await  emailValidation(letter)
     if (isEmpty(validateError)) {
       var res = await newsLetter(letter)
       if (res.status) {

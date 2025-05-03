@@ -249,7 +249,7 @@ const CreateOffer = (props) => {
         if (isNaN(max) || max == 0) {
             data.max = "Invalid value"
         }
-        if (parseFloat(max) < parseFloat(min) || parseFloat(min) > parseFloat(max)) {
+        if (parseFloat(max) < parseFloat(min) || parseFloat(min) > parseFloat(max) || parseFloat(min) == parseFloat(max)) {
             data.max = "Max value must be greater than Min value"
         }
         if(pricetype == "Fixed Price"){

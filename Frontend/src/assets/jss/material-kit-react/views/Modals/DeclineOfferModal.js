@@ -7,8 +7,6 @@ import { useTranslation } from 'react-i18next';
 const DeclineOfferModal = (props) =>{
     const [isdeclineoffermodal , setIsdeclineoffermodal] = useState(true);
   const { t, i18n } = useTranslation();
-
-
    
     return(
         <>

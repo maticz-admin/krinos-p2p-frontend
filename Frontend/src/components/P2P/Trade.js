@@ -532,8 +532,11 @@ const Trade = (props) => {
 
                   </ul>
                 </div>
-                {tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && userdatas?.level == 0 && <div className="chatfoot">
-                  <img src={imageblob ? imageblob : ""} />
+                {tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && userdatas?.level == 0 &&
+                 <div className="chatfoot">
+                  <div className="chat_slct_img">
+                  <img src={imageblob ? imageblob : ""} className="img-fluid" />
+                  </div>
                   <input
                     type="text"
                     value={newmessage}
@@ -568,7 +571,8 @@ const Trade = (props) => {
                       </button>
                     </div>
                   </div>
-                </div>}
+                </div>
+                 } 
 
                 {userdatas?.level == 1 && <button className="themebtn" onClick={() => handleconfirm()}>Paid User</button>}
                 {tour && <Takeatourmodal onDismiss={() => setTour(false)} />}

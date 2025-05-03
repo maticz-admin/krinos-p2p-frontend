@@ -49,7 +49,7 @@ export default function Footer(props) {
     const { name, value } = e.target;
     setLanguage(value)
     setLang(value)
-    i18n.changeLanguage(value);
+    // i18n.changeLanguage(value);
   }
 
   const fetchLanguage = async () => {

@@ -129,12 +129,14 @@ const HeaderLinks = () => {
 
   useEffect(() => {
     let langs = localStorage.getItem("usr-language")
-    i18n.changeLanguage(langs);
+    console.log("langslangs1" , langs);
     if(langs == "en"){
       setSelLang("en")
+      i18n.changeLanguage("en");
     }
     else{
       setSelLang("sp")
+      i18n.changeLanguage("sp");
     }
     if (!isEmpty(language)) {
       setLangOption(language);
@@ -202,22 +204,8 @@ const HeaderLinks = () => {
             </div>  */}
             {/* // : ""} */}
             <List className={classes.list + " menu_main_navbar buyss"}>
-              <ListItem className={classes.listItem}>
-                {/* <Select
-                  name="language"
-                  value={selLang}
-                  onChange={handleLanguage}
-                >
-                  {
-                    langOption && langOption.length > 0 && langOption.map((item, key) => {
-                      return (
-                        <MenuItem value={item.code}>{upperCase(item.code)}</MenuItem>
-                        // <option key={key} value={item.code}>{upperCase(item.code)}</option>
-                      )
-                    })
-                  }
-                 
-                </Select> */}
+              {/* <ListItem className={classes.listItem}>
+               
 {console.log("language option" , langOption)}
                 <Select 
                 name="language"
@@ -231,11 +219,9 @@ const HeaderLinks = () => {
                       )
                     })}
                 </Select>
-              </ListItem>
+              </ListItem> */}
 
-              {/* <ListItem className={classes.listItem}>
-                  <NavLink to="/" exact color="transparent" className="nav-link">{t('HOME')}</NavLink>
-                </ListItem> */}
+             
 
               {
                 <Dropdown className="headerdropdown m-left">
@@ -318,7 +304,7 @@ const HeaderLinks = () => {
             </ListItem> */}
               <ListItem className={classes.listItem}>
                 <NavLink
-                  to="/viewoffers/Buy/BTC"
+                  to="/viewoffers/Buy/MATIC"
                   color="transparent"
                   className="nav-link"
                 >
@@ -492,9 +478,10 @@ const HeaderLinks = () => {
               {!isAuth && (
                 <ListItem className={classes.listItem}>
                   <NavLink
+                  exact
                     to="/login"
                     color="transparent"
-                    className="nav-link px-3 themebtn loginbtn loginhover"
+                    className="nav-link head_log_reg_btn"
                   >
                     {t("LOGIN")}
                   </NavLink>
@@ -504,9 +491,10 @@ const HeaderLinks = () => {
               {!isAuth && (
                 <ListItem className={classes.listItem}>
                   <NavLink
+                  exact
                     to="/register"
                     color="transparent"
-                    className="nav-link home_menu_btn mobilereg"
+                    className="nav-link head_log_reg_btn"
                   >
                     {t("REGISTER")}
                   </NavLink>
@@ -654,13 +642,14 @@ const HeaderLinks = () => {
               }
 
               <ListItem className={classes.listItem}>
-                <NavLink to="/" color="transparent" className="nav-link">
-                  {t("HOME")}
+                <NavLink to="/" exact color="transparent" className="nav-link">
+                  Home
                 </NavLink>
               </ListItem>
               {isAuth && (
                 <ListItem className={classes.listItem}>
                   <NavLink
+                    exact
                     to="/userdash"
                     color="transparent"
                     className="nav-link"
@@ -675,6 +664,7 @@ const HeaderLinks = () => {
               </ListItem> */}
               <ListItem className={classes.listItem}>
                 <NavLink
+                exact
                   to="/viewoffers/Buy/BTC"
                   color="transparent"
                   className="nav-link"
@@ -693,9 +683,10 @@ const HeaderLinks = () => {
               {!isAuth && (
                 <li className="logg">
                   <NavLink
+                  exact
                     to="/login"
                     color="transparent"
-                    className="nav-link px-3 themebtn loginbtn"
+                    className="nav-link head_log_reg_btn"
                   >
                     {t("LOGIN")}
                   </NavLink>
@@ -703,9 +694,10 @@ const HeaderLinks = () => {
               )}
               <li>
                 <NavLink
+                exact
                   to="/register"
                   color="transparent"
-                  className="nav-link home_menu_btn mobilereg"
+                  className="nav-link head_log_reg_btn"
                 >
                   {t("REGISTER")}
                 </NavLink>
@@ -744,7 +736,7 @@ const HeaderLinks = () => {
 
               {isAuth && (
                 <li>
-                  <NavLink to="/profile">Profile</NavLink>
+                  <NavLink exact to="/profile">Profile</NavLink>
                 </li>
               )}
               {/* {
