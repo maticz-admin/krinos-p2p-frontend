@@ -388,14 +388,14 @@ const Trade = (props) => {
 
                   {offerdata?.ordertype == "Sell" && tradechat?.spender == userdata?.account?.userId && tradechat?.paidstatus == "pending" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => handlepaid()}>
                     Paid <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
-                    <span className="fa fa-check"></span>
+                    <span className="fa fa-check ps-1"></span>
                   </button>}
                   {offerdata?.ordertype == "Buy" && tradechat?.spender != userdata?.account?.userId && tradechat?.paidstatus == "pending" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => handlepaid()}>
                     Paid <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
-                    <span className="fa fa-check"></span>
+                    <span className="fa fa-check ps-1"></span>
                   </button>}
                   {canceltrade && <div className="notes">
-                    <span className="fa fa-info"></span>
+                    <span className="fa fa-info ps-1"></span>
                     <p>
                       Keep trades within Krinos P2P. Some users may ask you to trade outside the Krinos P2P platform. This is against our Terms of Service and likely a scam attempt. You must insist on keeping all trade conversations within Krinos P2P. If you choose to proceed outside Krinos P2P, note that we cannot help or support you if you are scammed during such trades
                     </p>
@@ -496,9 +496,13 @@ const Trade = (props) => {
                     </a>}
                   </div>
                 </div>
-                <div className="unavail">
+                <div className={tradechat?.message != 0 ? "unavail" : "unavail bdr_rmv"}>
                   <p className="roboto sidetag">{userStatus == "Online" ? "Moderator available" : "Moderator Unavailable"}</p>
                 </div>
+                
+                {
+                  tradechat?.message != 0 && 
+               
                 <div className="chatbox">
                   <ul>
                     {tradechat && tradechat?.message?.map((data, i) => {
@@ -530,10 +534,9 @@ const Trade = (props) => {
                         </li>)
                       }
                     })}
-
-
                   </ul>
                 </div>
+                 }
                 {tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && userdatas?.level == 0 &&
                  <div className="chatfoot">
                   <div className="chat_slct_img">
