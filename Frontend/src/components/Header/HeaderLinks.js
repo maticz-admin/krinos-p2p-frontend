@@ -149,7 +149,7 @@ const HeaderLinks = () => {
           language.find((el) => el.isPrimary == true);
         if (primaryData) {
           // setSelLang(primaryData.code);
-          setLang(primaryData.code);
+          // setLang(primaryData.code);
           // i18n.changeLanguage(primaryData.code);
         }
       } else {
@@ -582,10 +582,10 @@ const HeaderLinks = () => {
                  
                 </Select> */}
 
-                <Select value={selLangg} onChange={handleLanguagee}>
+                {/* <Select value={selLangg} onChange={handleLanguagee}>
                   <MenuItem value="EN">ENGLISH</MenuItem>
                   <MenuItem value="FR">FRENCH</MenuItem>
-                </Select>
+                </Select> */}
               </ListItem>
 
               {
@@ -689,6 +689,7 @@ const HeaderLinks = () => {
                     className="nav-link head_log_reg_btn"
                   >
                     {t("LOGIN")}
+                    
                   </NavLink>
                 </li>
               )}
@@ -719,7 +720,41 @@ const HeaderLinks = () => {
                 >
                   <span className={theme ? "fa fa-sun" : "fa fa-moon"}></span>
                 </button>
-              </ListItem>
+              </ListItem> 
+              <List className={classes.list + " menu_main_navbar buyss"}>
+                            <ListItem className={classes.listItem}>
+                              {/* <Select
+                                name="language"
+                                value={selLang}
+                                onChange={handleLanguage}
+                              >
+                                {
+                                  langOption && langOption.length > 0 && langOption.map((item, key) => {
+                                    return (
+                                      <MenuItem value={item.code}>{upperCase(item.code)}</MenuItem>
+                                      // <option key={key} value={item.code}>{upperCase(item.code)}</option>
+                                    )
+                                  })
+                                }
+                               
+                              </Select> */}
+              {console.log("language option" , langOption)}
+                              <Select
+                              name="language"
+                              value={selLang}
+                              onChange={handleLanguage}
+                              >
+              
+                                {langOption && langOption.length > 0 && langOption.map((item, key) => {
+                                    return (
+                                      <MenuItem value={item?.code}>{item?.name}</MenuItem>
+                                    )
+                                  })}
+                              </Select>
+                            </ListItem>
+              
+                            
+                          </List>
               {/* <ListItem className={classes.listItem}>
         <div className="toggleMode themetoggle" title="toggle dark mode">
           <label>

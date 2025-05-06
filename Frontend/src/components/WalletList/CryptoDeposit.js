@@ -133,7 +133,7 @@ const CryptoDeposit = (props) => {
             </div>
           </GridItem>
 
-          <GridItem md={12}>
+          {/* <GridItem md={12}>
             <div className="notes_section px-0">
               <p>{t("NOTES")}</p>
               <ul>
@@ -148,7 +148,7 @@ const CryptoDeposit = (props) => {
                 <li>3. {t("DEPOSIT_TIME")}</li>
               </ul>
             </div>
-          </GridItem>
+          </GridItem> */}
         </GridContainer>
       </Modal.Body>
     </Modal>

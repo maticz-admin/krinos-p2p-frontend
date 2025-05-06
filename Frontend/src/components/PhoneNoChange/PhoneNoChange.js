@@ -246,7 +246,28 @@ console.log("validate error" , validateError);
         catch (err) {
         }
     }
-  }, [mobileDetail.timer]);
+  }, [mobileDetail?.timer]);
+
+console.log("mobileDetail" , mobileDetail)
+
+
+useEffect(() => {
+  if (mobileDetail.timer > 0 && mobileDetail.timerStart == true) {
+      const intervalId = setInterval(() => {
+          setMobileDetail({ ...mobileDetail, ...{ 'timer': mobileDetail.timer - 1 } })
+      }, 1000);
+
+      return () => clearInterval(intervalId);
+  } else if (mobileDetail.timer == 0 && mobileDetail.timerStart == true) {
+      setMobileDetail({
+          ...mobileDetail, ...{
+              'timer': 600,
+              'timerStart': false,
+              'isDisable': false
+          }
+      })
+  }
+}, [mobileDetail.timer])
 
   return (
     <GridItem xs={12} sm={12} md={4} lg={4}>

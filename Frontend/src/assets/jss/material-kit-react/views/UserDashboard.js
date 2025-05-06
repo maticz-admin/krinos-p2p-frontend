@@ -460,7 +460,7 @@ const UserDashboard = (props) => {
                     : record?.spender == userdata?.account?.userId ? 0 : (parseFloat(record?.receive))?.toFixed(8),
         },
         {
-            text: `${("PAY")}`,
+            text: `${t("PAY")}`,
             className: "address",
             align: "left",
             cell: record =>

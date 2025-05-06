@@ -390,32 +390,32 @@ const Bitcoincompany = (props) => {
                                 </div>}
 
                                 {<div className='row'>
-                                    <div className='col-md-3 col-sm-6'>
+                                    <div className='col-md-4 col-sm-6'>
                                         <div className='border1 mt-2'>
                                             <p className='amount'>{t("SELLER_RATE")}</p>
                                             <p className='btc-amount'>{parseFloat(prefferedcurrencyvalue).toFixed(8)}{tradedata?.preferedcurrency}</p>
                                             {/* {variablepercentage && <p className='market'>{tradedata?.offermargin ? tradedata?.offermargin : variablepercentage}% {(tradedata?.offermargin ? tradedata?.offermargin : variablepercentage) > 0 ? "above market" : "below market"}</p>} */}
                                         </div>
                                     </div>
-                                    <div className='col-md-3 col-sm-6'>
+                                    <div className='col-md-4 col-sm-6'>
                                         <div className='border1 mt-2'>
                                             <p className='amount'>{t("BUY_LIMITS")}</p>
                                             <p className='btc-amount'>Min : {tradedata?.min} {tradedata?.preferedcurrency}</p>
                                             <p className='market'>Max : {tradedata?.max} {tradedata?.preferedcurrency}</p>
                                         </div>
                                     </div>
-                                    <div className='col-md-3 col-sm-6'>
+                                    <div className='col-md-4 col-sm-6'>
                                         <div className='border1 mt-2'>
                                             <p className='amount'>{t("TRADE_TIME_LIMIT")}</p>
                                             <p className='btc-amount'>{tradedata?.offertimelimit} min</p>
                                         </div>
                                     </div>
-                                    <div className='col-md-3 col-sm-6'>
+                                    {/* <div className='col-md-3 col-sm-6'>
                                         <div className='border1 mt-2'>
                                             <p className='amount'>{t("KRINOS_P2P_FEE")}</p>
                                             <p className='btc-amount'>{currencies?.commisionfee}%</p>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>}
                             </div>
 

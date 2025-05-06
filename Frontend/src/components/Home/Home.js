@@ -97,7 +97,7 @@ const Home = (props) => {
                 }
             }
             else {
-                toastAlert('error', "Invalid Email!")
+                toastAlert('error', t("INVALID_EMAIL"))
             }
     }
 
