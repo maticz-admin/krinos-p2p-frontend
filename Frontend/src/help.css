@@ -680,6 +680,7 @@ body.light_theme .jss25 {
   border-radius: 8px;
   padding: 16px 8px;
   background: #19181c;
+  overflow-x: auto;
 }
 
 .dark_theme .tableborder .tradelists {

@@ -215,7 +215,7 @@ const IprestrictModal = (props) => {
                             }
                             ></Countdown>} */}
 
-                            <p className="pr-2 mt-3">The OTP will expire in <b>  <span className='otp_expire_time'>{Minutes}:{Seconds}</span></b></p>
+                            <p className="pr-2 mt-3 text-center">The OTP will expire in <b>  <span className='otp_expire_time'>{Minutes}:{Seconds}</span></b></p>
 
 
                         </div>

@@ -494,9 +494,13 @@ const Trade = (props) => {
                     </a>}
                   </div>
                 </div>
-                <div className="unavail">
+                <div className={tradechat?.message != 0 ? "unavail" : "unavail bdr_rmv"}>
                   <p className="roboto sidetag">{userStatus == "Online" ? "Moderator available" : "Moderator Unavailable"}</p>
                 </div>
+                
+                {
+                  tradechat?.message != 0 && 
+               
                 <div className="chatbox">
                   <ul>
                     {tradechat && tradechat?.message?.map((data, i) => {
@@ -528,10 +532,9 @@ const Trade = (props) => {
                         </li>)
                       }
                     })}
-
-
                   </ul>
                 </div>
+                 }
                 {tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && userdatas?.level == 0 &&
                  <div className="chatfoot">
                   <div className="chat_slct_img">

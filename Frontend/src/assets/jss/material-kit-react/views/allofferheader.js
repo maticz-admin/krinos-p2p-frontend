@@ -274,26 +274,28 @@ const Buybitcoin = (props) => {
                                             <div className='themeloader'>
                                             </div>
                                         </div>}
-                                        {!loader && offerdata && offerdata?.length > 0 && offerdata?.map((item) => <> <div className='tradelists'>
-                                            <div className='d-flex flex-1 jc-between align-items-center'>
-                                                <div className='d-flex align-items-center profile_oofer_widt'>
+                                        {console.log("offerdata",offerdata)}
+                                        {!loader && offerdata && offerdata?.length > 0 && offerdata?.map((item) => <> 
+                                        <div className='tradelists w-100 d-flex justify-content-between align-items-center w-100'>
+                                            <>
+                                                <div className='d-flex align-items-center profile_oofer_widt' style={{ maxWidth: "22%", minWidth: "200px", marginRight: "20px" }}>
                                                     <img src={item?.userdata?.profileImage ? config.API_URL + item?.userdata?.profileImage : Images.profill} className='prof prof_new_size' /> <p style={{ color: "darkgray" }}>{item?.userdata?.firstName ? (item?.userdata?.firstName + " " + item?.userdata?.lastName) : item?.userdata?.userId}</p>
                                                 </div>
-                                                <div style={{ maxWidth: "200px", minWidth: "200px", marginRight: "20px" }}>
+                                                <div style={{ maxWidth: "22%", minWidth: "200px", marginRight: "20px" }}>
                                                     {item?.paymentmethod?.map((data) => <p className='aqua badge themebadge me-1 mb-1'>{data}</p>)}
                                                 </div>
-                                                <div style={{ maxWidth: "250px", minWidth: "250px", marginRight: "20px" }}>
+                                                <div style={{ maxWidth: "22%", minWidth: "200px", marginRight: "20px" }}>
                                                     <p><span className='gray amount'>{t("MIN_PURCHASE")} </span> : <span className='yellow'> {item?.min} {item?.preferedcurrency}</span></p>
                                                     <p><span className='gray amount'>{t("MAX_PURCHASE")} </span> : <span className='yellow'> {item?.max} {item?.preferedcurrency}</span></p>
                                                 </div>
-                                                <div style={{ maxWidth: "250px", minWidth: "250px", marginRight: "20px" }}>
+                                                <div style={{ maxWidth: "22%", minWidth: "200px", marginRight: "20px" }}>
                                                     <p>
                                                         <span className='red f-12'>1{item?.coin}  = {item?.prefferedcurrencyvalue} {item?.preferedcurrency} </span>
                                                         {item?.variablepercentage ? <><span className='green f-12'>{item?.offermargin ? item?.offermargin : item?.variablepercentage}%
                                                             {(item?.offermargin ? item?.offermargin : item?.variablepercentage) > 0 ? <i className='fa fa-arrow-up'></i> : <i className='fa fa-arrow-down'></i>}</span></> : <span className='hifern_bold'></span>}
                                                     </p>
                                                 </div>
-                                                <div style={{ maxWidth: "135px", minWidth: "135px" }}>
+                                                <div style={{ maxWidth: "12%", minWidth: "135px" }} className='d-flex align-items-center justify-content-center'>
                                                     {userdata?.account?.userId ? (item?.createrid != userdata?.account?.userId ? <div >
                                                         <button className='themebtn' onClick={() => {
                                                             isLogin() ?
@@ -314,14 +316,19 @@ const Buybitcoin = (props) => {
                                                         }}>{item?.ordertype == "Sell" ? t("BUY") : t("SELL")}</button>
                                                     </div>}
                                                 </div>
-                                            </div>
+                                            </>
                                         </div> </>)}
 
-                                        {!loader && <> {!offerdata || offerdata?.length == 0 && <p className='d-flex h-254 align-items-center jc-center text-light'>No data found</p>} </>}
+                                        {!loader && <> {!offerdata || offerdata?.length == 0 && <p className='mb-0 d-flex h-100 align-items-center jc-center text-light'>No data found</p>} </>}
+                                        {!loader && <>
+                                             {loadbutton && 
                                         <div className='text-center mt-3'>
-                                            {!loader && <> {loadbutton && <button className='btn themebtn' onClick={() => { LoadMore() }}>{loadmore}</button>} </>}
+                                             <button className='btn themebtn' onClick={() => { LoadMore() }}>{loadmore}</button>
                                         </div>
+                                             } 
+                                        </>}
 
+                                       
 
                                         {/* <div className='tradelists'>
                                         <div className='d-flex flex-1 jc-between align-items-center'>

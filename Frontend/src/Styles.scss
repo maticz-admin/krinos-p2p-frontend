@@ -1175,10 +1175,10 @@ a[aria-expanded="true"] .fa-plus:before {
         }
     }
     .export{ 
-        color:  #03FF48;
+        color: black;
         .fa{
-            background: rgba(3, 255, 72, 0.7);
-            border: 1px solid #03ff48;
+            background: var(--btn-bg);
+            border: 1px solid var(--btn-bg);
         }
     }
     .copy{

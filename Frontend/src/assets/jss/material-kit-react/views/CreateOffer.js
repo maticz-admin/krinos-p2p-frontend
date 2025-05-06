@@ -352,7 +352,7 @@ const CreateOffer = (props) => {
                 </div>
                 <div className='container-fluid themecontainer'>
                     <div className='row mb-md-5 mb-4 steps'>
-                        <img src={Images.connect} className='stepsimg' />
+                        {/* <img src={Images.connect} className='stepsimg' /> */}
                         <div className='col-md-12'>
                             <div className='bordbox p-sm-4'>
                                 <div className='d-flex jc-between stepbtns'>
@@ -395,7 +395,7 @@ const CreateOffer = (props) => {
                                                 return (
 
                                                     <Dropdown.Item  >
-                                                        <p onClick={() => {
+                                                        <p className='d-flex align-items-center' onClick={() => {
                                                             setCoin(data?.coin);
                                                             setCoinimg(`${config?.API_URL}/images/currency/${data?.image}`);
                                                         }}><img src={`${config?.API_URL}/images/currency/${data?.image}`} className="iconss" /> {data?.coin}</p></Dropdown.Item>)
@@ -447,11 +447,11 @@ const CreateOffer = (props) => {
 
 
                                                     <Dropdown.Item
-                                                    ><p onClick={() => {
+                                                    ><p className='d-flex align-items-center' onClick={() => {
                                                         setOrdertype("Sell")
                                                     }}><img src={Images.ticket} className="iconss iconss_wid_dd" />{t("SELL")}</p></Dropdown.Item>
                                                     <Dropdown.Item
-                                                    ><p onClick={() => {
+                                                    ><p className='d-flex align-items-center' onClick={() => {
                                                         setOrdertype("Buy")
                                                     }}>
                                                             <img src={Images.ticket} className="iconss iconss_wid_dd" />{t("BUY")}</p></Dropdown.Item>
@@ -482,7 +482,7 @@ const CreateOffer = (props) => {
                                                         return (
 
                                                             <Dropdown.Item
-                                                            ><p onClick={() => {
+                                                            ><p className='d-flex align-items-center' onClick={() => {
                                                                 setPrefferedcurrency(data?.symbol);
                                                                 setPreimage(`${config?.API_URL}/images/currency/${data?.image}`);
                                                             }}><img src={`${config?.API_URL}/images/currency/${data?.image}`} className="iconss" /> {data?.symbol}</p></Dropdown.Item>)
