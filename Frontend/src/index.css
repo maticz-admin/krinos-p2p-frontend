@@ -34401,3 +34401,23 @@ option {
   font-size: 14px;
   font-weight: 500;
 }
+
+.security_auth_terms .rc-checkbox {
+line-height: 0px;
+}
+
+.mobilelog .drop_icon {
+  max-width: 25px !important;
+  filter: unset;
+  margin-right: 8px;
+}
+
+.light_theme hr.themehr {
+  border-color: #636363;
+}
+
+@media(max-width: 1199px) {
+  .login_container {
+    margin-top: 70px;
+  }
+}

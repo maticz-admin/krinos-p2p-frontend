@@ -605,7 +605,7 @@ const HeaderLinks = () => {
                         <Dropdown.Item href={`/viewoffers/Buy/${data?.coin}`}>
                           <img
                             src={`${config.API_URL}/images/currency/${data?.image}`}
-                            className="iconss"
+                            className="iconss drop_icon"
                           />{" "}
                           {t("BUY")} {data?.coin}
                         </Dropdown.Item>
@@ -631,7 +631,7 @@ const HeaderLinks = () => {
                         <Dropdown.Item href={`/viewoffers/Sell/${data?.coin}`}>
                           <img
                             src={`${config.API_URL}/images/currency/${data?.image}`}
-                            className="iconss"
+                            className="iconss drop_icon"
                           />{" "}
                           {t("SELL")} {data?.coin}
                         </Dropdown.Item>
@@ -640,6 +640,7 @@ const HeaderLinks = () => {
                   </Dropdown.Menu>
                 </Dropdown>
               }
+              
 
               <ListItem className={classes.listItem}>
                 <NavLink to="/" exact color="transparent" className="nav-link">

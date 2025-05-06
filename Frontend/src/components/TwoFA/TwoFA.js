@@ -217,12 +217,12 @@ const TwoFA = () => {
 
                                     </div>
                                     <div className="form-check mt-3">
-                                        {secretData && secretData.twoFaStatus == "disabled" && <div> <Checkbox
+                                        {secretData && secretData.twoFaStatus == "disabled" && <div className='security_auth_terms d-flex align-items-center '> <Checkbox
                                             name="CheckValue"
                                             onChange={handleCheckBox}
                                             checked={checkValue}
                                             hidden={true}
-                                        /> <label className="form-check-label" for="flexCheckDefault"> {t('HAVE_BACKUP')}</label>
+                                        /> <label className="form-check-label mb-0" for="flexCheckDefault"> {t('HAVE_BACKUP')}</label>
 
                                             {validateError.checkValue && <p className="error-message">{t(validateError.checkValue)}</p>}
                                         </div>}

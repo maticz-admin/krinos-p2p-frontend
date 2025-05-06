@@ -735,7 +735,7 @@ const UserDashboard = (props) => {
 
             <div className='container-fluid themecontainer'>
                 <div className='login_container login_box userdash'>
-                    <div className='text-center mb-5'>
+                    <div className='text-center mb-3 mb-lg-5'>
                         <h3 className='blackandwhite text-left'>{t("USER_DASHBOARD")}</h3>
                     </div>
                     <hr className='themehr' />
