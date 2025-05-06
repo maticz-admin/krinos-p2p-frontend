@@ -21,11 +21,11 @@
   --white-ylw-shadow: #8cc516;
 
   /* mobile app colors */
-  --primary-clr: #EAFFBA;
-  --secondary-clr: #AFF41F;
-  --textgrey-clr: #A3A3B7;
-  --white-clr: #FFFFFF;
-  --black-clr: #0D0D0D;
+  --primary-clr: #eaffba;
+  --secondary-clr: #aff41f;
+  --textgrey-clr: #a3a3b7;
+  --white-clr: #ffffff;
+  --black-clr: #0d0d0d;
 }
 
 /* font import */
@@ -964,8 +964,8 @@ hr {
 
 small,
 .small {
-  font-size: 100% !important; 
-  font-weight:normal !important
+  font-size: 100% !important;
+  font-weight: normal !important;
 }
 
 mark,
@@ -16524,8 +16524,6 @@ b {
   font-weight: 700;
 }
 
-
-
 .title,
 .card-title,
 .info-title,
@@ -20521,7 +20519,6 @@ header {
   margin-left: 20px;
 }
 
-
 .MuiMenu-list option {
   padding: 7px 15px;
 }
@@ -22610,6 +22607,14 @@ fieldset[disabled][disabled] .form-control,
 
 .supporTicketAccordian {
   padding: 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.supporTicketAccordian .card {
+  margin-bottom: 10px;
+  /* min-height: 55px; */
+  /* background-color: #19181c; */
 }
 
 .supporTicketAccordian #accordion .card-header .btn {
@@ -27245,6 +27250,10 @@ body.light_theme {
   color: var(--textgrey-clr) !important;
 }
 
+.dark_theme .MuiSelect-icon {
+  color: var(--textgrey-clr) !important;
+}
+
 .light_theme .newUsersFilter {
   display: flex;
   justify-content: space-between;
@@ -27694,7 +27703,7 @@ body.light_theme {
 }
 
 .otp_expire_time {
-  min-width:45px;
+  min-width: 45px;
   display: inline-block;
 }
 
@@ -27815,7 +27824,7 @@ body.light_theme {
 
 .dark_theme .login_title_8 {
   /* color: #ffff !important; */
-  color:var(--primary-clr) !important
+  color: var(--primary-clr) !important;
 }
 .light_theme .login_title_8 {
   color: black !important;
@@ -28434,6 +28443,10 @@ body.light_theme {
   width: auto;
 }
 
+.support_header_new .stHeadText {
+  /* width: 25%; */
+}
+
 a:hover {
   color: #b1f41fe0 !important;
 }
@@ -28854,6 +28867,8 @@ button.otp_btn span {
 .supporTicketAccordian .card-header {
   padding: 0;
   margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 .messageTypeBox textarea.form-control {
@@ -31411,8 +31426,8 @@ select {
 }
 
 @media only screen and (max-width: 1279px) {
-  .home_page_menu ul .m-left{
-margin-left: 20px;
+  .home_page_menu ul .m-left {
+    margin-left: 20px;
   }
 
   .home_page_menu ul li {
@@ -31913,28 +31928,23 @@ body.light_theme {
   width: 3px !important;
 } */
 
-body::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: transparent;
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: transparent;
 }
 
-body::-webkit-scrollbar
-{
-	width: 6px !important;
-    height: 6px !important;
-	background-color: transparent;
+body::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+  background-color: transparent;
 }
 
-body::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: var(--btn-bg);
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--btn-bg);
 }
-
-
 
 .tradePages.spot_trade_space {
   overflow-x: hidden !important;
@@ -32113,7 +32123,7 @@ li.unread .lighttxt {
   box-shadow: 0 3px 10px rgb(0 0 0 / 14%) !important;
 }
 .dark_theme .themenav {
-  background-color: #0A090D !important;
+  background-color: #0a090d !important;
   /* box-shadow: 0 3px 10px rgb(0 0 0 / 14%) !important; */
 }
 .light_theme .graybtn:hover {
@@ -32206,13 +32216,38 @@ li.unread .lighttxt {
 .support_header_new h5 {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 10px;
   margin-top: 0px;
+  width: 100%;
+  gap: 20px;
+  overflow-x: auto;
+}
+.support_header_new h5 div {
+}
+.support_header_new h5 div:nth-child(1) {
+  text-align: start;
+  width: 35%;
+  min-width: 150px;
+}
+.support_header_new h5 div:nth-child(2),
+.support_header_new h5 div:nth-child(3) {
+  text-align: start;
+  width: 25%;
+  min-width: 150px;
+}
+.support_header_new h5 div:nth-child(4) {
+  text-align: end;
+  min-width: 15%;
+}
+
+.support_ticket_emty.emp_txt {
+  padding-right: 40px;
 }
 
 .support_header_new {
   background-color: #19181c;
+  min-height: 55px;
 }
 
 .btn-sm-close {
@@ -32223,6 +32258,13 @@ li.unread .lighttxt {
   .support_header_new h5 span,
   .support_header_new h5 {
     display: block !important;
+  }
+  .support_header_new h5 div:nth-child(1),
+  .support_header_new h5 div:nth-child(2),
+  .support_header_new h5 div:nth-child(3),
+  .support_header_new h5 div:nth-child(4) {
+    width: auto;
+    text-align: start;
   }
 }
 
@@ -32741,6 +32783,7 @@ li.unread .lighttxt {
 .transbtn .fa-sun {
   color: black !important;
   font-size: 15px !important;
+  line-height: 0px !important;
 }
 
 .mobilelog ul li a.nav-link.mobilereg:hover {
@@ -33474,10 +33517,10 @@ option {
 }
 
 .img_prof_runded {
-  max-width: 52px;
-  max-height: 49px;
-  min-width: 52px;
-  min-height: 49px;
+  max-width: 50px;
+  max-height: 50px;
+  min-width: 50px;
+  min-height: 50px;
   border-radius: 8px;
   object-fit: cover;
   /* filter: brightness(0) invert(1); */
@@ -33589,7 +33632,7 @@ option {
     margin-right: 10px !important;
   }
   .footer_links li a {
-    font-size: 9px !important;
+    font-size: 11px !important;
   }
   .footerMidd_right h3 {
     font-size: 12px !important;
@@ -33990,9 +34033,9 @@ option {
 }
 .iconss_wid_dd,
 .iner_drop_versiotwo img {
-  max-width: 25px;
+  max-width: 22px;
   border-radius: 50%;
-  min-width: 25px;
+  min-width: 23px;
   border: 1px solid #ccc;
   margin-right: 10px;
 }
@@ -34050,7 +34093,8 @@ option {
   justify-content: flex-start !important;
 }
 .themeselect .dropdown-menu.iner_dropmenu_versiotwo a span {
-  padding-left: 40px;
+  padding-left: 30px;
+  font-size: 14px !important;
 }
 
 .themeselct_home_se button span {
@@ -34344,11 +34388,16 @@ option {
 .otp_grp_btn .input-group-text {
   border: 1px solid #59615f !important;
   background-color: #aff41f;
-    border: 1px solid #aff41f;
-    border-radius: 10px;
-    padding: 10px 30px !important;
-    color: #000;
-    font-size: 12px;
-    font-weight: 700;
-    box-shadow: none;
+  border: 1px solid #aff41f;
+  border-radius: 10px;
+  padding: 10px 30px !important;
+  color: #000;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: none;
+}
+
+.menu_main_navbar .MuiSelect-selectMenu {
+  font-size: 14px;
+  font-weight: 500;
 }

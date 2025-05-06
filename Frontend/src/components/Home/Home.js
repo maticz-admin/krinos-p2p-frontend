@@ -244,7 +244,7 @@ const Home = (props) => {
 
                                                                         <Dropdown.Item
                                                                         >
-                                                                            <p onClick={() => {
+                                                                            <p className='d-flex align-items-center' onClick={() => {
                                                                                 setCoin(data?.coin);
                                                                                 setCoinimg(`${config?.API_URL}/images/currency/${data?.image}`);
                                                                             }}><img src={`${config?.API_URL}/images/currency/${data?.image}`} className="iconss" />
@@ -301,7 +301,7 @@ const Home = (props) => {
                                                                     return (
 
                                                                         <Dropdown.Item
-                                                                        ><p onClick={() => {
+                                                                        ><p className='d-flex align-items-center' onClick={() => {
                                                                             setPrefferedcurrency(data?.symbol);
                                                                             setPreimg(`${config?.API_URL}/images/currency/${data?.image}`);
                                                                         }}><img src={`${config?.API_URL}/images/currency/${data?.image}`} className="iconss" />
@@ -436,7 +436,7 @@ const Home = (props) => {
                                                                     return (
 
                                                                         <Dropdown.Item
-                                                                        ><p onClick={() => {
+                                                                        ><p className='d-flex align-items-center' onClick={() => {
                                                                             setCoin(data?.coin);
                                                                             setCoinimg(`${config?.API_URL}/images/currency/${data?.image}`);
                                                                         }}><img src={`${config?.API_URL}/images/currency/${data?.image}`} className="iconss" />
@@ -495,7 +495,7 @@ const Home = (props) => {
                                                                     return (
 
                                                                         <Dropdown.Item
-                                                                        ><p onClick={() => {
+                                                                        ><p className='d-flex align-items-center' onClick={() => {
                                                                             setPrefferedcurrency(data?.symbol);
                                                                             setPreimg(`${config?.API_URL}/images/currency/${data?.image}`);
                                                                         }}><img src={`${config?.API_URL}/images/currency/${data?.image}`} className="iconss" />
