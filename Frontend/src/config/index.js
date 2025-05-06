@@ -9,7 +9,7 @@ if (env === "demo") {
         RECAPTCHA_SITE_KEY: "6LcK8vEqAAAAAD06JyU22cbe42oqCgZRhjkDbP8L", //local
         API_URL: "https://backp2p-stage.krinos.app/", //  'https://krinosp2p-backend.maticz.in/',
         FRONT_URL: "https://uat-p2p.krinos.app/" , //"https://krinosp2p.maticz.in/",
-        ADMIN_URL: 'https://contorls.tossvtoss.com',
+        ADMIN_URL: 'https://uatadmin-p2p.krinos.app/',
         SOCKET_URL: "https://backp2p-stage.krinos.app/", //'https://krinosp2p-backend.maticz.in/',
         getGeoInfo: "https://ipapi.co/json/",
         AUTHENTICATOR_URL : {

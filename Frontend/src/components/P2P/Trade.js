@@ -379,6 +379,8 @@ const Trade = (props) => {
                     Paid <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) +(60000 * parseFloat(offerdata?.offertimelimit))}/>
                     <span className="fa fa-check"></span>
                   </button>} */}
+                  
+                {/* <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} /> */}
 
 
 

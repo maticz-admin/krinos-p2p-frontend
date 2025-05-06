@@ -757,7 +757,7 @@ export default {
     "TRADING_VOLUME" : "24h Trading Volume",
     "PRIME_VIRTUAL_ASSET" : "Prime Virtual Asset",
     "SAFE_TRANSACTION" : "SAFE TRANSACTION",
-    "SAFE_TRANSACTION_DETAIL" : "Bitcoins are held in safe escrow until the transaction is fully concluded",
+    "SAFE_TRANSACTION_DETAIL" : "Crypto are held in safe escrow until the transaction is fully concluded",
     "INVITE_FRIENDS" : "INVITE FRIENDS",
     "HLP_UR_FRNDS" : "Help your friends and family",
     "SIGNUP_FORKR" : "Sign up for Krinos P2P",
