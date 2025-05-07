@@ -241,33 +241,13 @@ export default function Header(props) {
           </Hidden>
 
           <Hidden smDown className="drream">
-        <div className="mobilelog">
-          <div>
-            {/* {locationsss == "/viewoffers/:id/:id" ? */}
-            {/* <div className="d-flex buyss">
-             
-
-             
-            </div>  */}
-            {/* // : ""} */}
+        {/* <div className="mobilelog"> */}
+         
+            
             <List className={classes.list + " menu_main_navbar buyss"}>
               <ListItem className={classes.listItem}>
-                {/* <Select
-                  name="language"
-                  value={selLang}
-                  onChange={handleLanguage}
-                >
-                  {
-                    langOption && langOption.length > 0 && langOption.map((item, key) => {
-                      return (
-                        <MenuItem value={item.code}>{upperCase(item.code)}</MenuItem>
-                        // <option key={key} value={item.code}>{upperCase(item.code)}</option>
-                      )
-                    })
-                  }
-                 
-                </Select> */}
-{console.log("language option" , langOption)}
+               
+
                 <Select
                 name="language"
                 value={selLang}
@@ -284,8 +264,8 @@ export default function Header(props) {
 
               
             </List>
-          </div>
-        </div>
+          
+        {/* </div> */}
       </Hidden>
 
 

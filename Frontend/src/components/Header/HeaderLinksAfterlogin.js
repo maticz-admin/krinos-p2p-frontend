@@ -213,8 +213,8 @@ export default function HeaderLinks1(props) {
   async function fetchdata() {
     var result = await Getmessagenotificationhooks();
     var unreadresult = await Getunreadmessagenotificationhooks();
-    console.log("message notification" ,  unreadresult);
-    
+    console.log("message notification", unreadresult);
+
     var unreaddata = unreadresult?.data?.data;
     setUnreadmsg(unreaddata?.length);
     setPopupdata(unreaddata);
@@ -229,7 +229,7 @@ export default function HeaderLinks1(props) {
 
   return (
     <div>
-      <div className="inner_page_menu">
+      <div className="inner_page_menu ">
         {/* <div className="">
                 <NavLink to="/viewoffer">Hari</NavLink>
               </div> */}
@@ -238,7 +238,7 @@ export default function HeaderLinks1(props) {
               <div className="d-flex buyss">
               </div> : ""} */}
 
-          <Hidden smDown>
+          <Hidden only={["xs", "sm", "md"]}>
             <ul className="list-iline">
               {locationsss == "/viewoffer" ? (
                 <>
@@ -254,17 +254,21 @@ export default function HeaderLinks1(props) {
 
                       <Dropdown.Menu>
                         <Dropdown.Item href="#/action-1">
-                          <img src={Images.crypt1} className="iconss" /> {t("BUY")} BTC
+                          <img src={Images.crypt1} className="iconss" />{" "}
+                          {t("BUY")} BTC
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-2">
-                          <img src={Images.crypt2} className="iconss" /> {t("BUY")} ETH
+                          <img src={Images.crypt2} className="iconss" />{" "}
+                          {t("BUY")} ETH
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3">
-                          <img src={Images.crypt3} className="iconss" /> {t("BUY")}
+                          <img src={Images.crypt3} className="iconss" />{" "}
+                          {t("BUY")}
                           USDT
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3">
-                          <img src={Images.crypt4} className="iconss" /> {t("BUY")}
+                          <img src={Images.crypt4} className="iconss" />{" "}
+                          {t("BUY")}
                           RIPPLE
                         </Dropdown.Item>
                       </Dropdown.Menu>
@@ -282,19 +286,23 @@ export default function HeaderLinks1(props) {
 
                       <Dropdown.Menu>
                         <Dropdown.Item href="#/action-1">
-                          <img src={Images.crypt1} className="iconss" /> {t("SELL")}
+                          <img src={Images.crypt1} className="iconss" />{" "}
+                          {t("SELL")}
                           BTC
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-2">
-                          <img src={Images.crypt2} className="iconss" /> {t("SELL")}
+                          <img src={Images.crypt2} className="iconss" />{" "}
+                          {t("SELL")}
                           ETH
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3">
-                          <img src={Images.crypt3} className="iconss" /> {t("SELL")}
+                          <img src={Images.crypt3} className="iconss" />{" "}
+                          {t("SELL")}
                           USDT
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3">
-                          <img src={Images.crypt4} className="iconss" /> {t("SELL")}
+                          <img src={Images.crypt4} className="iconss" />{" "}
+                          {t("SELL")}
                           RIPPLE
                         </Dropdown.Item>
                       </Dropdown.Menu>
@@ -307,7 +315,9 @@ export default function HeaderLinks1(props) {
 
               {isAuth && (
                 <li>
-                  <NavLink to="/userdash" className="nav-link">{t("DASHBOARD")}</NavLink>
+                  <NavLink to="/userdash" className="nav-link">
+                    {t("DASHBOARD")}
+                  </NavLink>
                 </li>
               )}
               {isAuth && (
@@ -758,31 +768,8 @@ export default function HeaderLinks1(props) {
               }
             </ul>
           </Hidden>
-          <Hidden only={["md", "lg", "xl"]}>
+          <Hidden only={["lg", "xl"]}>
             <ul className="list-iline">
-              {
-                <li>
-                  {/* <div className="toggleMode" title="toggle dark mode">
-                  <label>
-                    <input type="checkbox" checked={themeData == 'light' ? true : false} name="" onClick={() => setTheme(dispatch, themeData == 'light' ? 'dark' : 'light')} />
-                    <span></span>
-                  </label>
-                </div> */}
-                  <button
-                    className="transbtn theme btn lightleft"
-                    onClick={() =>
-                      themechange(
-                        localStorage.getItem("theme") == "dark"
-                          ? "light"
-                          : "dark"
-                      )
-                    }
-                  >
-                    <span className={theme ? "fa fa-sun" : "fa fa-moon"}></span>
-                  </button>
-                </li>
-              }
-
               {/* <li>
               <NavLink to="/spot">Spot</NavLink>
             </li>
@@ -912,6 +899,23 @@ export default function HeaderLinks1(props) {
                   </Link>
                 </li>
               )}
+
+              {
+                <li>
+                  <button
+                    className="transbtn theme btn lightleft dark_light_themeBtn"
+                    onClick={() =>
+                      themechange(
+                        localStorage.getItem("theme") == "dark"
+                          ? "light"
+                          : "dark"
+                      )
+                    }
+                  >
+                    <span className={theme ? "fa fa-sun" : "fa fa-moon"}></span>
+                  </button>
+                </li>
+              }
             </ul>
           </Hidden>
         </div>

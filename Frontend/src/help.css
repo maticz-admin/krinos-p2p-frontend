@@ -829,7 +829,7 @@ body.light_theme .jss25 {
 .mobilelog li a {
   color: #ffff !important;
   margin-left: 12px;
-  font-weight: 500;
+  font-weight: 600 !important;
 }
 .light_theme .mobilelog li a {
   color: gray !important;
@@ -1122,6 +1122,7 @@ body.light_theme .jss25 {
 .buyss button {
   font-size: 11px;
   padding: 7px 15px !important;
+  font-weight: 600;
 }
 .buyss .dropdown-menu {
   background: #000;
@@ -1155,6 +1156,10 @@ body.light_theme .jss25 {
 }
 .buyss .iconss {
   max-width: 25px !important;
+  min-width: 25px !important;
+  min-height: 25px !important;
+  max-height: 25px !important;
+  object-fit: cover !important;
   /* filter: invert(1); */
   margin-right: 8px;
 }
@@ -1187,6 +1192,7 @@ body.light_theme .jss25 {
 .dashboard_login {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 /* .alloffers .PrivateHiddenCss-mdDown-26,.PrivateHiddenCss-mdDown-97 {
     width: 100%;
