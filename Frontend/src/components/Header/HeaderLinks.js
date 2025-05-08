@@ -83,10 +83,10 @@ const HeaderLinks = () => {
     const { name, value } = e.target;
     setSelLang(value);
     setLang(value);
-    console.log("selected lanasdfg" , value);
-    
+    console.log("selected lanasdfg", value);
+
     i18n.changeLanguage(value);
-    localStorage.setItem("usr-language" , value)
+    localStorage.setItem("usr-language", value);
   };
 
   const locationsss = window.location.pathname;
@@ -128,14 +128,13 @@ const HeaderLinks = () => {
   // }
 
   useEffect(() => {
-    let langs = localStorage.getItem("usr-language")
-    console.log("langslangs1" , langs);
-    if(langs == "en"){
-      setSelLang("en")
+    let langs = localStorage.getItem("usr-language");
+    console.log("langslangs1", langs);
+    if (langs == "en") {
+      setSelLang("en");
       i18n.changeLanguage("en");
-    }
-    else{
-      setSelLang("sp")
+    } else {
+      setSelLang("sp");
       i18n.changeLanguage("sp");
     }
     if (!isEmpty(language)) {
@@ -155,20 +154,21 @@ const HeaderLinks = () => {
       } else {
         // setSelLang(lang);
       }
-    }
-    else{
-      setLangOption([{
-        "name" : "English",
-        "code" : "en",
-        "isPrimary" : true,
-        "status" : "active"
-    },
-    {
-        "name" : "Spanish",
-        "code" : "sp",
-        "isPrimary" : true,
-        "status" : "active"
-    }])
+    } else {
+      setLangOption([
+        {
+          name: "English",
+          code: "en",
+          isPrimary: true,
+          status: "active",
+        },
+        {
+          name: "Spanish",
+          code: "sp",
+          isPrimary: true,
+          status: "active",
+        },
+      ]);
     }
     fetchcoin();
   }, [language]);
@@ -186,16 +186,16 @@ const HeaderLinks = () => {
 
   return (
     <div className="home_page_menu beforelog alloffers">
-      <Hidden lgUp>
+      {/* <Hidden lgUp>
         <div className="showOnlyforUsers">
-          {/* <Link to="/spot">{t('SPOT')}</Link> */}
-          {/* <Link to="/derivative">{t('DERIVATIVE')}</Link>
-          <Link to="/p2p">{t('P2P')}</Link> */}
+          <Link to="/spot">{t('SPOT')}</Link>
+          <Link to="/derivative">{t('DERIVATIVE')}</Link>
+          <Link to="/p2p">{t('P2P')}</Link>
         </div>
-      </Hidden>
-      <Hidden smDown className="drream">
-        <div className="mobilelog">
-          <div>
+      </Hidden> */}
+      <Hidden only={["xs", "sm", "md"]} className="drreamk">
+        <div className="mobilelog webView">
+          <div className="">
             {/* {locationsss == "/viewoffers/:id/:id" ? */}
             {/* <div className="d-flex buyss">
              
@@ -220,8 +220,6 @@ const HeaderLinks = () => {
                     })}
                 </Select>
               </ListItem> */}
-
-             
 
               {
                 <Dropdown className="headerdropdown m-left">
@@ -359,7 +357,7 @@ const HeaderLinks = () => {
                       {/* <div className="d-flex prof_icon_header"> */}
                       {/* <div> */}
                       <img
-                        src= {
+                        src={
                           accountData?.profileImage
                             ? accountData?.profileImage
                             : Profileicon
@@ -478,10 +476,10 @@ const HeaderLinks = () => {
               {!isAuth && (
                 <ListItem className={classes.listItem}>
                   <NavLink
-                  exact
+                    exact
                     to="/login"
                     color="transparent"
-                    className="nav-link head_log_reg_btn"
+                    className="nav-link head_log_reg_btnn"
                   >
                     {t("LOGIN")}
                   </NavLink>
@@ -491,20 +489,15 @@ const HeaderLinks = () => {
               {!isAuth && (
                 <ListItem className={classes.listItem}>
                   <NavLink
-                  exact
+                    exact
                     to="/register"
                     color="transparent"
-                    className="nav-link head_log_reg_btn"
+                    className="nav-link head_log_reg_btnn"
                   >
                     {t("REGISTER")}
                   </NavLink>
                 </ListItem>
               )}
-
-              {/* <ListItem className={classes.listItem}>
-              <img src={require("../../assets/images/Path 84.png")} className="img-fluid langicon" alt="hh" />
-
-            </ListItem> */}
 
               <ListItem className={classes.listItem}>
                 {/* <div className="toggleMode themetoggle" title="toggle dark mode">
@@ -527,14 +520,21 @@ const HeaderLinks = () => {
                 <p className="icon-change"></p>
               </Link> */}
               </ListItem>
+
+              {/* <ListItem className={classes.listItem}>
+              <img src={require("../../assets/images/Path 84.png")} className="img-fluid langicon" alt="hh" />
+
+            </ListItem> */}
             </List>
           </div>
         </div>
       </Hidden>
-      <div className="inner_page_menu">
-        <div className="mobilelog login_header2">
-          <Hidden only={["md", "lg", "xl"]}>
-            <ul className="list-iline">
+
+      <div className="inner_page_menu mobileView">
+        <div className="mobilelog login_header2 bfr_login_mbl_heading">
+          {/* <Hidden only={["md", "lg", "xl"]}> */}
+          <Hidden only={["lg", "xl"]}>
+            <ul className="list-iline ">
               {/* {
              <li>
                 <div className="toggleMode" title="toggle dark mode">
@@ -566,8 +566,8 @@ const HeaderLinks = () => {
             </ListItem>
 
           } */}
-              <ListItem className={classes.listItem}>
-                {/* <Select
+              {/* <ListItem className={classes.listItem}>
+                <Select
                   name="language"
                   value={selLang}
                   onChange={handleLanguage}
@@ -580,16 +580,16 @@ const HeaderLinks = () => {
                     })
                   }
                  
-                </Select> */}
+                </Select>
 
-                {/* <Select value={selLangg} onChange={handleLanguagee}>
+                <Select value={selLangg} onChange={handleLanguagee}>
                   <MenuItem value="EN">ENGLISH</MenuItem>
                   <MenuItem value="FR">FRENCH</MenuItem>
-                </Select> */}
-              </ListItem>
+                </Select>
+              </ListItem> */}
 
               {
-                <Dropdown className="headerdropdown m-left">
+                <Dropdown className="headerdropdown m-left buy_sell_drop">
                   <Dropdown.Toggle
                     variant="success"
                     className="btcc"
@@ -615,7 +615,7 @@ const HeaderLinks = () => {
                 </Dropdown>
               }
               {
-                <Dropdown className="headerdropdown m-left">
+                <Dropdown className="headerdropdown m-left buy_sell_drop">
                   <Dropdown.Toggle
                     variant="success"
                     className="btcc"
@@ -640,7 +640,6 @@ const HeaderLinks = () => {
                   </Dropdown.Menu>
                 </Dropdown>
               }
-              
 
               <ListItem className={classes.listItem}>
                 <NavLink to="/" exact color="transparent" className="nav-link">
@@ -665,7 +664,7 @@ const HeaderLinks = () => {
               </ListItem> */}
               <ListItem className={classes.listItem}>
                 <NavLink
-                exact
+                  exact
                   to="/viewoffers/Buy/BTC"
                   color="transparent"
                   className="nav-link"
@@ -682,35 +681,33 @@ const HeaderLinks = () => {
                 <NavLink to="/api-management" color="transparent" >API Key</NavLink>
               </li> */}
               {!isAuth && (
-                <li className="logg">
+                <ListItem className={classes.listItem}>
                   <NavLink
-                  exact
+                    exact
                     to="/login"
                     color="transparent"
-                    className="nav-link head_log_reg_btn"
+                    className="nav-link head_log_reg_btnn"
                   >
                     {t("LOGIN")}
-                    
                   </NavLink>
-                </li>
+                </ListItem>
               )}
-              <li>
+              <ListItem className={classes.listItem}>
                 <NavLink
-                exact
+                  exact
                   to="/register"
                   color="transparent"
-                  className="nav-link head_log_reg_btn"
+                  className="nav-link head_log_reg_btnn"
                 >
                   {t("REGISTER")}
                 </NavLink>
-              </li>
+              </ListItem>
 
               {/* <ListItem className={classes.listItem}>
                 <img src={require("../../assets/images/Path 84.png")} className="img-fluid langicon" alt="hh" />
 
               </ListItem> */}
-
-              <ListItem className={classes.listItem}>
+              <ListItem className={classes.listItem + " bfr_mbl_themeBtn"}>
                 <button
                   className="transbtn theme btn lightleft"
                   onClick={() =>
@@ -721,10 +718,9 @@ const HeaderLinks = () => {
                 >
                   <span className={theme ? "fa fa-sun" : "fa fa-moon"}></span>
                 </button>
-              </ListItem> 
-              <List className={classes.list + " menu_main_navbar buyss"}>
-                            <ListItem className={classes.listItem}>
-                              {/* <Select
+              </ListItem>
+              <ListItem className={classes.listItem}>
+                {/* <Select
                                 name="language"
                                 value={selLang}
                                 onChange={handleLanguage}
@@ -739,23 +735,150 @@ const HeaderLinks = () => {
                                 }
                                
                               </Select> */}
-              {console.log("language option" , langOption)}
-                              <Select
-                              name="language"
-                              value={selLang}
-                              onChange={handleLanguage}
-                              >
-              
-                                {langOption && langOption.length > 0 && langOption.map((item, key) => {
-                                    return (
-                                      <MenuItem value={item?.code}>{item?.name}</MenuItem>
-                                    )
-                                  })}
-                              </Select>
-                            </ListItem>
-              
-                            
-                          </List>
+                {console.log("language option", langOption)}
+                <Select
+                  name="language"
+                  value={selLang}
+                  onChange={handleLanguage}
+                >
+                  {langOption &&
+                    langOption.length > 0 &&
+                    langOption.map((item, key) => {
+                      return (
+                        <MenuItem value={item?.code}>{item?.name}</MenuItem>
+                      );
+                    })}
+                </Select>
+              </ListItem>
+
+              {isAuth && (
+                <ListItem className={classes.listItem}>
+                  <li className="li_ellipse_menu login_header1 profileDrop">
+                    <Button
+                      aria-controls="profile_menu1"
+                      aria-haspopup="true"
+                      onClick={handleClick}
+                    >
+                      {/* <div className="d-flex prof_icon_header"> */}
+                      {/* <div> */}
+                      <img
+                        src={
+                          accountData?.profileImage
+                            ? accountData?.profileImage
+                            : Profileicon
+                        }
+                        className="prof_icon_header"
+                        alt=""
+                      />
+                      {/* </div> */}
+                      {/* </div> */}
+
+                      {/* <i className="fas fa-user"></i> */}
+                      {/* <i class="fas fa-ellipsis-h"></i> */}
+                    </Button>
+                    <Menu
+                      id="profile_menu1"
+                      className="afterlogin_hr"
+                      anchorEl={anchorEl}
+                      keepMounted
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                    >
+                      <NavLink to="/">
+                        <MenuItem className="px-2">
+                          <div className="d-flex afterlogin_profile">
+                            <div>
+                              <img
+                                src={
+                                  accountData?.profileImage
+                                    ? accountData?.profileImage
+                                    : Profileicon
+                                }
+                                alt=""
+                              />{" "}
+                            </div>
+                            <div>
+                              <p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
+                              <p className="second mb-0 mx-3">{email}</p>
+                            </div>{" "}
+                          </div>
+                        </MenuItem>
+                      </NavLink>
+                      <NavLink to="/profile">
+                        <MenuItem>
+                          <i className="fa fa-user" aria-hidden="true"></i>
+                          <span>Profile</span>
+                        </MenuItem>
+                      </NavLink>
+                      <hr />
+
+                      {/* <NavLink to="/"><MenuItem><i className="fa fa-rocket" aria-hidden="true"></i><span>Launchpad</span></MenuItem></NavLink>
+                    <hr /> */}
+                      {/* <NavLink to="/"><MenuItem><i class="fab fa-stack-exchange"></i><span>Staking</span></MenuItem></NavLink>
+                    <hr /> */}
+                      <NavLink to="/security">
+                        <MenuItem>
+                          <i className="fa fa-lock" aria-hidden="true"></i>
+                          <span>Security</span>
+                        </MenuItem>
+                      </NavLink>
+
+                      <hr />
+                      <NavLink to="/setting">
+                        <MenuItem>
+                          <i className="fa fa-cog" aria-hidden="true"></i>
+                          <span>Settings</span>
+                        </MenuItem>
+                      </NavLink>
+                      {/* <hr />
+                    <NavLink to="/">
+                      <MenuItem>
+                        <i className="fa fa-key" aria-hidden="true"></i><span>API Key</span>
+                      </MenuItem>
+                    </NavLink>
+                    <hr /> */}
+                      {/* <NavLink to="/">
+                      <MenuItem>
+                        <i className="fa fa-list" aria-hidden="true"></i><span>Orders</span>
+                      </MenuItem>
+                    </NavLink> */}
+                      {/* <hr/> 
+                  <MenuItem>
+                    <Link to="/referral"><i className="fa fa-users" aria-hidden="true"></i><span>Referral</span></Link>
+                  </MenuItem> */}
+                      <hr />
+                      {/* <MenuItem><Link to="/notification">Notifications</Link></MenuItem> */}
+                      <NavLink to="/history">
+                        <MenuItem>
+                          <i className="far fa-clock"></i>
+                          <span>History</span>
+                        </MenuItem>
+                      </NavLink>
+                      <hr />
+                      <NavLink to="/support-ticket">
+                        <MenuItem>
+                          <i
+                            className="fa fa-question-circle"
+                            aria-hidden="true"
+                          ></i>
+                          <span>Support</span>
+                        </MenuItem>
+                      </NavLink>
+                      {/* <MenuItem>
+                    <Link to="/orders">Orders</Link>
+                  </MenuItem> */}
+                      {/* <MenuItem><Link to="/api-management">API Management</Link></MenuItem> */}
+                      <Link to="#" onClick={() => logout(history, dispatch)}>
+                        <MenuItem>
+                          <i className="fas fa-sign-out-alt"></i>{" "}
+                          <span> Logout</span>
+                        </MenuItem>
+                      </Link>
+                    </Menu>
+                  </li>
+                </ListItem>
+              )}
+
               {/* <ListItem className={classes.listItem}>
         <div className="toggleMode themetoggle" title="toggle dark mode">
           <label>
@@ -770,11 +893,13 @@ const HeaderLinks = () => {
                 </li>
               )} */}
 
-              {isAuth && (
-                <li>
-                  <NavLink exact to="/profile">Profile</NavLink>
-                </li>
-              )}
+              {/* {isAuth && (
+                <ListItem className={classes.listItem}>
+                  <NavLink exact to="/profile">
+                    Profile
+                  </NavLink>
+                </ListItem>
+              )} */}
               {/* {
                 isAuth && <li>
                   <NavLink to="/launchpad">Launchpad</NavLink>
@@ -793,23 +918,23 @@ const HeaderLinks = () => {
               </li>
             } */}
 
-              {isAuth && (
-                <li>
+              {/* {isAuth && (
+                <ListItem className={classes.listItem}>
                   <NavLink to="/security">Security</NavLink>
-                </li>
-              )}
+                </ListItem>
+              )} */}
 
-              {isAuth && (
-                <li>
+              {/* {isAuth && (
+                <ListItem className={classes.listItem}>
                   <NavLink to="setting">Settings</NavLink>
-                </li>
-              )}
+                </ListItem>
+              )} */}
 
-              {isAuth && (
-                <li>
+              {/* {isAuth && (
+                <ListItem className={classes.listItem}>
                   <NavLink to="/support-ticket">Support</NavLink>
-                </li>
-              )}
+                </ListItem>
+              )} */}
 
               {/* {isAuth && (
               <li>
@@ -817,11 +942,11 @@ const HeaderLinks = () => {
               </li>
             )} */}
 
-              {isAuth && (
-                <li>
+              {/* {isAuth && (
+                <ListItem className={classes.listItem}>
                   <NavLink to="/history">History</NavLink>
-                </li>
-              )}
+                </ListItem>
+              )} */}
 
               {/* {isAuth && (
                 <li>
@@ -835,13 +960,13 @@ const HeaderLinks = () => {
               </li>
             } */}
 
-              {isAuth && (
-                <li>
+              {/* {isAuth && (
+                <ListItem className={classes.listItem}>
                   <Link to="#" onClick={() => logout(history, dispatch)}>
                     {t("LOGOUT")}
                   </Link>
-                </li>
-              )}
+                </ListItem>
+              )} */}
             </ul>
           </Hidden>
         </div>

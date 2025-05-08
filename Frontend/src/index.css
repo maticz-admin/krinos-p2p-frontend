@@ -40,14 +40,30 @@
   src: url("./assets/satoshi_fonts/Satoshi-Regular.otf");
 }
 
+* {
+  font-family: "satoshi" !important;
+}
+
+.fa,
+.fas,
+.far,
+.fal,
+.fad,
+.fab {
+  font-family: "Font Awesome 6 Free" !important; /* or whatever version you're using */
+}
+
 body {
   font-size: 14px;
   background: var(--dark-bg);
   /* font-family: "Roboto", sans-serif !important; */
-  font-family: "satoshi";
+  font-family: "satoshi" !important;
   overflow-x: hidden;
   /* color: #41423d; */
   color: var(--white);
+  /* 
+  padding-right: 0px !important;
+  overflow: unset !important; */
 }
 
 body.light_theme {
@@ -20514,7 +20530,7 @@ header {
 .home_page_menu .MuiSelect-select {
   color: #fff !important;
   font-size: 13px !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
   padding: 8px 11px !important;
   margin-left: 20px;
 }
@@ -21245,9 +21261,10 @@ button.btn.btn-outline:active {
   height: 40px;
   display: flex;
   align-items: center;
-  position: relative;
+  /* position: relative; */
   padding-right: 4px;
 }
+
 
 .dashboard_login a {
   /* color: #5a5a5a !important; */
@@ -29728,7 +29745,7 @@ header .container-fluid-full {
   max-width: 100% !important;
   /* align-items: flex-start !important; */
   align-items: center !important;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 .upper_slider .banner_running_ticker {
@@ -32777,6 +32794,8 @@ li.unread .lighttxt {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .transbtn .fa-moon,
@@ -33091,7 +33110,6 @@ input:checked ~ .checkmark {
 .tableborder .unavail.bdr_rmv {
   border-bottom: 0px !important;
 }
-
 
 .chattable {
   padding: 0px 0px !important;
@@ -34410,11 +34428,11 @@ option {
 
 .menu_main_navbar .MuiSelect-selectMenu {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .security_auth_terms .rc-checkbox {
-line-height: 0px;
+  line-height: 0px;
 }
 
 .mobilelog .drop_icon {
@@ -34427,8 +34445,66 @@ line-height: 0px;
   border-color: #636363;
 }
 
-@media(max-width: 1199px) {
+.bfr_login_mbl_heading {
+  position: relative;
+}
+
+.bfr_login_mbl_heading .list-iline {
+  width: 100%;
+}
+
+.bfr_login_mbl_heading .list-iline .transbtn {
+  position: absolute;
+  top: -50px;
+  right: 0px;
+}
+
+.bfr_login_mbl_heading .bfr_mbl_themeBtn {
+  padding: 0px !important;
+}
+
+.makeStyles-list-33 {
+  font-family: "satoshi" !important;
+}
+
+.buy_sell_drop button {
+  font-weight: 600;
+}
+
+.bfr_mbl_themeBtn {
+  position: static !important;
+}
+
+.dark_light_themeBtn {
+  position: absolute;
+  top: -40px;
+  right: 0px;
+}
+
+
+
+@media (max-width: 1199px) {
   .login_container {
     margin-top: 70px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .home_page_menu.beforelog {
+    margin-top: 20px !important;
+  }
+  .bfr_login_mbl_heading .list-iline {
+    overflow-y: auto;
+    height: calc(100vh - 75px);
+  }
+  .home_page_menu ul li.profileDrop {
+    margin-left: 12px;
+    padding: 0px;
+  }
+  .aftr_log_prfDrop {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    /* padding-left: 20px !important; */
+    margin-top: 8px;
   }
 }
