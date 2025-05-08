@@ -50,7 +50,12 @@
 .fal,
 .fad,
 .fab {
-  font-family: "Font Awesome 6 Free" !important; /* or whatever version you're using */
+  font-family: "Font Awesome 6 Free" !important;
+}
+
+.fa-brands,
+.fab {
+  font-family: "Font Awesome 6 Brands" !important;
 }
 
 body {
@@ -21265,7 +21270,6 @@ button.btn.btn-outline:active {
   padding-right: 4px;
 }
 
-
 .dashboard_login a {
   /* color: #5a5a5a !important; */
   color: #ffff;
@@ -34481,7 +34485,23 @@ option {
   right: 0px;
 }
 
+.dark_theme .themetable .col-md-12 table tr {
+  background-color: #19181c !important;
+}
 
+.dark_theme .themetable .col-md-12 table {
+  --cui-table-striped-bg: rgb(34 34 36);
+}
+
+.themetable .as-react-table .table-body .col-md-12 {
+  width: 100%;
+  overflow: auto;
+}
+
+.themetable .as-react-table .table-head .col-md-6 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
 
 @media (max-width: 1199px) {
   .login_container {

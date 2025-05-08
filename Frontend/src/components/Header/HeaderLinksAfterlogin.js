@@ -1027,7 +1027,7 @@ export default function HeaderLinks1(props) {
                 </li>
               )} */}
 
-              {/* {
+              {
                 <li>
                   <button
                     className="transbtn theme btn lightleft dark_light_themeBtn"
@@ -1042,7 +1042,7 @@ export default function HeaderLinks1(props) {
                     <span className={theme ? "fa fa-sun" : "fa fa-moon"}></span>
                   </button>
                 </li>
-              } */}
+              }
             </ul>
           </Hidden>
         </div>
