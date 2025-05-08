@@ -34481,6 +34481,8 @@ option {
   right: 0px;
 }
 
+
+
 @media (max-width: 1199px) {
   .login_container {
     margin-top: 70px;
@@ -34490,5 +34492,19 @@ option {
 @media (max-width: 1279px) {
   .home_page_menu.beforelog {
     margin-top: 20px !important;
+  }
+  .bfr_login_mbl_heading .list-iline {
+    overflow-y: auto;
+    height: calc(100vh - 75px);
+  }
+  .home_page_menu ul li.profileDrop {
+    margin-left: 12px;
+    padding: 0px;
+  }
+  .aftr_log_prfDrop {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    /* padding-left: 20px !important; */
+    margin-top: 8px;
   }
 }

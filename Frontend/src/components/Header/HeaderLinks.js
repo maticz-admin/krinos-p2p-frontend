@@ -529,12 +529,12 @@ const HeaderLinks = () => {
           </div>
         </div>
       </Hidden>
-      
+
       <div className="inner_page_menu mobileView">
         <div className="mobilelog login_header2 bfr_login_mbl_heading">
           {/* <Hidden only={["md", "lg", "xl"]}> */}
           <Hidden only={["lg", "xl"]}>
-            <ul className="list-iline">
+            <ul className="list-iline ">
               {/* {
              <li>
                 <div className="toggleMode" title="toggle dark mode">
@@ -681,7 +681,7 @@ const HeaderLinks = () => {
                 <NavLink to="/api-management" color="transparent" >API Key</NavLink>
               </li> */}
               {!isAuth && (
-                <li className="logg">
+                <ListItem className={classes.listItem}>
                   <NavLink
                     exact
                     to="/login"
@@ -690,9 +690,9 @@ const HeaderLinks = () => {
                   >
                     {t("LOGIN")}
                   </NavLink>
-                </li>
+                </ListItem>
               )}
-              <li>
+              <ListItem className={classes.listItem}>
                 <NavLink
                   exact
                   to="/register"
@@ -701,7 +701,7 @@ const HeaderLinks = () => {
                 >
                   {t("REGISTER")}
                 </NavLink>
-              </li>
+              </ListItem>
 
               {/* <ListItem className={classes.listItem}>
                 <img src={require("../../assets/images/Path 84.png")} className="img-fluid langicon" alt="hh" />
@@ -751,6 +751,134 @@ const HeaderLinks = () => {
                 </Select>
               </ListItem>
 
+              {isAuth && (
+                <ListItem className={classes.listItem}>
+                  <li className="li_ellipse_menu login_header1 profileDrop">
+                    <Button
+                      aria-controls="profile_menu1"
+                      aria-haspopup="true"
+                      onClick={handleClick}
+                    >
+                      {/* <div className="d-flex prof_icon_header"> */}
+                      {/* <div> */}
+                      <img
+                        src={
+                          accountData?.profileImage
+                            ? accountData?.profileImage
+                            : Profileicon
+                        }
+                        className="prof_icon_header"
+                        alt=""
+                      />
+                      {/* </div> */}
+                      {/* </div> */}
+
+                      {/* <i className="fas fa-user"></i> */}
+                      {/* <i class="fas fa-ellipsis-h"></i> */}
+                    </Button>
+                    <Menu
+                      id="profile_menu1"
+                      className="afterlogin_hr"
+                      anchorEl={anchorEl}
+                      keepMounted
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                    >
+                      <NavLink to="/">
+                        <MenuItem className="px-2">
+                          <div className="d-flex afterlogin_profile">
+                            <div>
+                              <img
+                                src={
+                                  accountData?.profileImage
+                                    ? accountData?.profileImage
+                                    : Profileicon
+                                }
+                                alt=""
+                              />{" "}
+                            </div>
+                            <div>
+                              <p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
+                              <p className="second mb-0 mx-3">{email}</p>
+                            </div>{" "}
+                          </div>
+                        </MenuItem>
+                      </NavLink>
+                      <NavLink to="/profile">
+                        <MenuItem>
+                          <i className="fa fa-user" aria-hidden="true"></i>
+                          <span>Profile</span>
+                        </MenuItem>
+                      </NavLink>
+                      <hr />
+
+                      {/* <NavLink to="/"><MenuItem><i className="fa fa-rocket" aria-hidden="true"></i><span>Launchpad</span></MenuItem></NavLink>
+                    <hr /> */}
+                      {/* <NavLink to="/"><MenuItem><i class="fab fa-stack-exchange"></i><span>Staking</span></MenuItem></NavLink>
+                    <hr /> */}
+                      <NavLink to="/security">
+                        <MenuItem>
+                          <i className="fa fa-lock" aria-hidden="true"></i>
+                          <span>Security</span>
+                        </MenuItem>
+                      </NavLink>
+
+                      <hr />
+                      <NavLink to="/setting">
+                        <MenuItem>
+                          <i className="fa fa-cog" aria-hidden="true"></i>
+                          <span>Settings</span>
+                        </MenuItem>
+                      </NavLink>
+                      {/* <hr />
+                    <NavLink to="/">
+                      <MenuItem>
+                        <i className="fa fa-key" aria-hidden="true"></i><span>API Key</span>
+                      </MenuItem>
+                    </NavLink>
+                    <hr /> */}
+                      {/* <NavLink to="/">
+                      <MenuItem>
+                        <i className="fa fa-list" aria-hidden="true"></i><span>Orders</span>
+                      </MenuItem>
+                    </NavLink> */}
+                      {/* <hr/> 
+                  <MenuItem>
+                    <Link to="/referral"><i className="fa fa-users" aria-hidden="true"></i><span>Referral</span></Link>
+                  </MenuItem> */}
+                      <hr />
+                      {/* <MenuItem><Link to="/notification">Notifications</Link></MenuItem> */}
+                      <NavLink to="/history">
+                        <MenuItem>
+                          <i className="far fa-clock"></i>
+                          <span>History</span>
+                        </MenuItem>
+                      </NavLink>
+                      <hr />
+                      <NavLink to="/support-ticket">
+                        <MenuItem>
+                          <i
+                            className="fa fa-question-circle"
+                            aria-hidden="true"
+                          ></i>
+                          <span>Support</span>
+                        </MenuItem>
+                      </NavLink>
+                      {/* <MenuItem>
+                    <Link to="/orders">Orders</Link>
+                  </MenuItem> */}
+                      {/* <MenuItem><Link to="/api-management">API Management</Link></MenuItem> */}
+                      <Link to="#" onClick={() => logout(history, dispatch)}>
+                        <MenuItem>
+                          <i className="fas fa-sign-out-alt"></i>{" "}
+                          <span> Logout</span>
+                        </MenuItem>
+                      </Link>
+                    </Menu>
+                  </li>
+                </ListItem>
+              )}
+
               {/* <ListItem className={classes.listItem}>
         <div className="toggleMode themetoggle" title="toggle dark mode">
           <label>
@@ -765,13 +893,13 @@ const HeaderLinks = () => {
                 </li>
               )} */}
 
-              {isAuth && (
-                <li>
+              {/* {isAuth && (
+                <ListItem className={classes.listItem}>
                   <NavLink exact to="/profile">
                     Profile
                   </NavLink>
-                </li>
-              )}
+                </ListItem>
+              )} */}
               {/* {
                 isAuth && <li>
                   <NavLink to="/launchpad">Launchpad</NavLink>
@@ -790,23 +918,23 @@ const HeaderLinks = () => {
               </li>
             } */}
 
-              {isAuth && (
-                <li>
+              {/* {isAuth && (
+                <ListItem className={classes.listItem}>
                   <NavLink to="/security">Security</NavLink>
-                </li>
-              )}
+                </ListItem>
+              )} */}
 
-              {isAuth && (
-                <li>
+              {/* {isAuth && (
+                <ListItem className={classes.listItem}>
                   <NavLink to="setting">Settings</NavLink>
-                </li>
-              )}
+                </ListItem>
+              )} */}
 
-              {isAuth && (
-                <li>
+              {/* {isAuth && (
+                <ListItem className={classes.listItem}>
                   <NavLink to="/support-ticket">Support</NavLink>
-                </li>
-              )}
+                </ListItem>
+              )} */}
 
               {/* {isAuth && (
               <li>
@@ -814,11 +942,11 @@ const HeaderLinks = () => {
               </li>
             )} */}
 
-              {isAuth && (
-                <li>
+              {/* {isAuth && (
+                <ListItem className={classes.listItem}>
                   <NavLink to="/history">History</NavLink>
-                </li>
-              )}
+                </ListItem>
+              )} */}
 
               {/* {isAuth && (
                 <li>
@@ -832,13 +960,13 @@ const HeaderLinks = () => {
               </li>
             } */}
 
-              {isAuth && (
-                <li>
+              {/* {isAuth && (
+                <ListItem className={classes.listItem}>
                   <Link to="#" onClick={() => logout(history, dispatch)}>
                     {t("LOGOUT")}
                   </Link>
-                </li>
-              )}
+                </ListItem>
+              )} */}
             </ul>
           </Hidden>
         </div>

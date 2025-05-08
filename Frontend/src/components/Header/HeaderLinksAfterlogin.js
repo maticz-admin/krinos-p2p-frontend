@@ -820,10 +820,137 @@ export default function HeaderLinks1(props) {
               )}
 
               {isAuth && (
+                <li className="li_ellipse_menu aftr_log_prfDrop">
+                  <Button
+                    aria-controls="profile_menu"
+                    aria-haspopup="true"
+                    onClick={handleClick}
+                  >
+                    {/* <div className="d-flex prof_icon_header"> */}
+                    {/* <div> */}
+                    <img
+                      src={
+                        accountData?.profileImage
+                          ? accountData?.profileImage
+                          : Profileicon
+                      }
+                      className="prof_icon_header"
+                    />
+                    {/* alt="profileicon" */}
+                    {/* </div> */}
+                    {/* </div> */}
+
+                    {/* <i className="fas fa-user"></i> */}
+                    {/* <i class="fas fa-ellipsis-h"></i> */}
+                  </Button>
+                  <Menu
+                    id="profile_menu"
+                    className="afterlogin_hr"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                  >
+                    {/* <NavLink to="/profile"> */}
+                    <div className="px-2">
+                      <div className="d-flex afterlogin_profile">
+                        <div>
+                          <img
+                            src={
+                              accountData?.profileImage
+                                ? accountData?.profileImage
+                                : Profileicon
+                            }
+                          />{" "}
+                        </div>
+                        <div>
+                          <p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
+                          <p className="second mb-0 mx-3">{email}</p>
+                        </div>{" "}
+                      </div>
+                      {/* alt="profileicon" */}
+                    </div>
+                    {/* </NavLink> */}
+
+                    <NavLink to="/profile">
+                      <MenuItem>
+                        <i className="fa fa-user" aria-hidden="true"></i>
+                        <span>{t("PROFILE")}</span>
+                      </MenuItem>
+                    </NavLink>
+                    <hr />
+                    {/* <NavLink to="/launchpad"><MenuItem><i className="fa fa-rocket" aria-hidden="true"></i><span>Launchpad</span></MenuItem></NavLink> */}
+                    {/* <hr/>  */}
+                    {/* <NavLink to="/staking"><MenuItem><i class="fab fa-stack-exchange"></i><span>Staking</span></MenuItem></NavLink> */}
+                    {/* <hr/>  */}
+                    <NavLink to="/security">
+                      <MenuItem>
+                        <i className="fa fa-lock" aria-hidden="true"></i>
+                        <span>{t("Security")}</span>
+                      </MenuItem>
+                    </NavLink>
+
+                    <hr />
+                    <NavLink to="/setting">
+                      <MenuItem>
+                        <i className="fa fa-cog" aria-hidden="true"></i>
+                        <span>{t("Settings")}</span>
+                      </MenuItem>
+                    </NavLink>
+                    <hr />
+                    {/* <NavLink to="/api-management">
+                  <MenuItem>
+                    <i className="fa fa-key" aria-hidden="true"></i><span>API Key</span>
+                  </MenuItem>
+                  </NavLink> */}
+
+                    {/* <hr/>  */}
+                    {/* <NavLink to="/orders">
+                  <MenuItem>
+                    <i className="fa fa-list" aria-hidden="true"></i><span>Orders</span>
+                  </MenuItem>
+                  </NavLink> */}
+                    {/* <hr/> 
+                  <MenuItem>
+                    <Link to="/referral"><i className="fa fa-users" aria-hidden="true"></i><span>Referral</span></Link>
+                  </MenuItem> */}
+                    {/* <hr/>  */}
+                    {/* <MenuItem><Link to="/notification">Notifications</Link></MenuItem> */}
+                    <NavLink to="/history">
+                      <MenuItem>
+                        <i className="far fa-clock"></i>
+                        <span>{t("HISTORY")}</span>
+                      </MenuItem>
+                    </NavLink>
+                    <hr />
+                    <NavLink to="/support-ticket">
+                      <MenuItem>
+                        <i
+                          className="fa fa-question-circle"
+                          aria-hidden="true"
+                        ></i>
+                        <span>{t("SUPPORT")}</span>
+                      </MenuItem>
+                    </NavLink>
+                    {/* <MenuItem>
+                    <Link to="/orders">Orders</Link>
+                  </MenuItem> */}
+                    {/* <MenuItem><Link to="/api-management">API Management</Link></MenuItem> */}
+                    <Link to="#" onClick={() => logout(history, dispatch)}>
+                      <MenuItem>
+                        <i className="fas fa-sign-out-alt"></i>{" "}
+                        <span> {t("LOGOUT")}</span>
+                      </MenuItem>
+                    </Link>
+                  </Menu>
+                </li>
+              )}
+
+              {/* {isAuth && (
                 <li>
                   <NavLink to="/profile">Profile</NavLink>
                 </li>
-              )}
+              )} */}
               {/* {
               isAuth && <li>
                 <NavLink to="/launchpad">Launchpad</NavLink>
@@ -842,23 +969,23 @@ export default function HeaderLinks1(props) {
               </li>
             } */}
 
-              {isAuth && (
+              {/* {isAuth && (
                 <li>
                   <NavLink to="/security">Security</NavLink>
                 </li>
-              )}
+              )} */}
 
-              {isAuth && (
+              {/* {isAuth && (
                 <li>
                   <NavLink to="setting">Settings</NavLink>
                 </li>
-              )}
+              )} */}
 
-              {isAuth && (
+              {/* {isAuth && (
                 <li>
                   <NavLink to="/support-ticket">Support</NavLink>
                 </li>
-              )}
+              )} */}
 
               {/* {isAuth && (
               <li>
@@ -866,11 +993,11 @@ export default function HeaderLinks1(props) {
               </li>
             )} */}
 
-              {isAuth && (
+              {/* {isAuth && (
                 <li>
                   <NavLink to="/history">History</NavLink>
                 </li>
-              )}
+              )} */}
 
               {/* {isAuth && (
               <li>
@@ -884,7 +1011,7 @@ export default function HeaderLinks1(props) {
               </li>
             } */}
 
-              {isAuth && (
+              {/* {isAuth && (
                 <li>
                   <Link
                     to="#"
@@ -898,9 +1025,9 @@ export default function HeaderLinks1(props) {
                     {t("LOGOUT")}
                   </Link>
                 </li>
-              )}
+              )} */}
 
-              {
+              {/* {
                 <li>
                   <button
                     className="transbtn theme btn lightleft dark_light_themeBtn"
@@ -915,7 +1042,7 @@ export default function HeaderLinks1(props) {
                     <span className={theme ? "fa fa-sun" : "fa fa-moon"}></span>
                   </button>
                 </li>
-              }
+              } */}
             </ul>
           </Hidden>
         </div>
