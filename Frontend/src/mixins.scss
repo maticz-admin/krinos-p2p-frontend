@@ -64,7 +64,8 @@ $themeyellow: #aff41f;
         appearance:auto !important;
         -moz-appearance: auto;
         -webkit-appearance: auto;
-        font-size: 14px !important;
+        // font-size: 14px !important;
+        font-size: 16px !important;
         &.leftspace{
             padding-left: 52px;
         }
@@ -245,7 +246,7 @@ $themeyellow: #aff41f;
     }
 }
 
-@mixin steps($btnbg: #050505, $btnclr : #fff, $afterbg: #393939){
+@mixin steps($btnbg: #0a090d, $btnclr : #fff, $afterbg: #393939){
    
         .stepbtns{
             position: relative;

@@ -670,7 +670,7 @@ const UserDashboard = (props) => {
                         <button className='export' style={{ marginRight: '5px' }} onClick={() => {
                             navigate.push(`/trade/${record?.roomid}`)
                         }}>
-                            <i className="fa fa-eye"></i> View
+                            <i className="fa fa-eye"></i>
                         </button>
                         {/* <button className='copy'>
                             <i className="fa fa-copy"></i> Edit

@@ -810,13 +810,27 @@ body.light_theme .jss25 {
 }
 .dark_theme .floatinglabel label {
   /* background: #010101 !important; */
-  background: #010101ed !important;
+  background: #0a090d !important;
   width: fit-content !important;
 }
 .light_theme .floatinglabel label {
-  background: #f2f4f7 !important;
+  /* background: #f2f4f7 !important; */
+  background: #fff !important;
   width: fit-content !important;
 }
+
+.dark_theme .twoFAForm .floatinglabel label {
+  background-color: #19181c !important;
+}
+
+.dark_theme .settingsSelect .floatinglabel label {
+  background-color: #19181c !important;
+}
+
+.dark_theme .settingsSelect .form-group label {
+  background-color: #0a090d !important;
+}
+
 .vendorbtn:hover {
   background-color: #aff41f !important;
   border: 1px solid #aff41f !important;
@@ -1107,8 +1121,8 @@ body.light_theme .jss25 {
 .Subscribe .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
-  background-color: #000 !important;
-  border-color: #000 !important;
+  /* background-color: #000 !important; */
+  /* border-color: #000 !important; */
 }
 /* .alloffers .PrivateHiddenCss-mdDown-26 {
     width: 100%;

@@ -27986,9 +27986,13 @@ body.light_theme {
 }
 
 .light_theme .Subscribe button.btn-primary {
-  background: #aff41f;
+  background: #aff41f !important;
   border: 2px solid #21b77a;
   color: #000;
+}
+
+.light_theme .Subscribe button.btn-primary:active {
+  background-color: #aff41f !important;
 }
 
 .light_theme .Subscribe button.btn-primary a {
@@ -32040,7 +32044,7 @@ li.unread .lighttxt {
   background: #212121;
 }
 .light_theme .newnotify li:nth-child(odd) {
-  background: #21212145;
+  background: #2121219e;
 }
 .newnotify li:nth-child(even) {
   background: #313131;
@@ -34131,7 +34135,8 @@ option {
 }
 
 .themeselct_home_se button span {
-  padding-left: 40px;
+  /* padding-left: 40px; */
+  padding-left: 30px;
 }
 
 .themeselect .dropdown-menu.iner_dropmenu_versiotwo a {
