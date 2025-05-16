@@ -35,7 +35,8 @@ const Restrictedcountries = (props) => {
    
     useEffect(() => {
         async function fetchdata(){
-            var payload = {"identifier" : "Restricted-countries"};
+            let langs = localStorage.getItem("usr-language")
+            var payload = {"identifier" : "Restricted-countries"   , lang: langs? langs : "sp"};
             var result = await Getcmshooks(payload);
             setCmsdata(result?.data?.data?.content);
             setSubject(result?.data?.data?.subject);

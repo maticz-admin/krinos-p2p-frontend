@@ -274,16 +274,25 @@ useEffect(() => {
       <div className="form-group floatinglabel">
         {/* <label>{t("PHONE_NUMBER")}<span class="textRed">*</span></label> */}
         <div class="input-group mb-0 otp_inp_grp">
-          {/* <PhoneInput
-                        country='us'
+          <PhoneInput
+                        country='bo'
                         placeholder={t("PHONE_NUMBER")}
                         value={newPhoneCode + newPhoneNo}
                         onChange={handlePhoneNumber}
                         onBlur={handleBlurPhone}
                         specialLabel={false}
-                    // disabled={disablePh}
-                    /> */}
-                    <div className='countrylist phonenumber'>
+                        disabled={disablePh}
+                    />
+          <button
+            type="button"
+            className="btn btn-primary text-uppercase py-2 my-0 ml-2"
+            disabled={mobileDetail.isDisable || !isEmpty(validateError.newPhoneCode) || !isEmpty(validateError.newPhoneNo)}
+            onClick={handleMobileSubmit}
+          >
+            {mobileDetail.isLoading && <i class="fas fa-spinner fa-spin mr-2"></i>}
+            {mobileDetail.type == 'send' ? t("SEND_OTP") : t("RESEND_OTP")}
+          </button>
+                    {/* <div className='countrylist phonenumber'>
                      <Autocomplete value={newPhoneCode}
                     //  open={open}
       disablePortal
@@ -312,7 +321,7 @@ useEffect(() => {
                         </button>
 
 
-                    </div>
+                    </div> */}
                 </div>
                 <p className="error-message" style={{ color: 'red' }}>{validateError?.newPhoneNo}</p>
                 <p className="error-message" style={{ color: 'red' }}>{validateError?.phoneNo}</p>
@@ -339,14 +348,14 @@ useEffect(() => {
                             }
                         </span>
                     </div>
-                    {/* 
+                    
                     {
                         toched.otp && validateError.otp && <span className="error_text">{t(validateError.otp)}</span>
-                    } */}
+                    }
         </div>
-        <p style={{ color: "red" }} className="error-message">
+        {/* <p style={{ color: "red" }} className="error-message">
           {validateError.otp}
-        </p>
+        </p> */}
       </div>
       <div className="form-group green-button">
         <button

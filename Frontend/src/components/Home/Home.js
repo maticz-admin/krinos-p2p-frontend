@@ -128,15 +128,16 @@ const Home = (props) => {
 
     useEffect(() => {
         async function getcms() {
-            var payload1 = { "identifier": "TRANSPARENT_FEES" };
+            let langs = localStorage.getItem("usr-language")
+            var payload1 = { "identifier": "TRANSPARENT_FEES"  , lang: langs? langs : "sp"};
             var result1 = await Getcmshooks(payload1);
             setTransparentfee(result1?.data?.data?.content);
 
-            var payload2 = { "identifier": "MARGIN_CALL" };
+            var payload2 = { "identifier": "MARGIN_CALL" , lang: langs? langs : "sp" };
             var result2 = await Getcmshooks(payload2);
             setMarginhall(result2?.data?.data?.content);
 
-            var payload3 = { "identifier": "LEARN_&_PRACTICE" };
+            var payload3 = { "identifier": "LEARN_&_PRACTICE"  , lang: langs? langs : "sp"};
             var result3 = await Getcmshooks(payload3);
             setLearnandpractice(result3?.data?.data?.content);
 
@@ -153,10 +154,10 @@ const Home = (props) => {
     const handleviewoffer = async () => {
         var data = {}
         if (isNaN(amount) || parseFloat(amount) == 0 || !amount) {
-            data.amount = "Invalid value"
+            data.amount = "INVALID_VALUE"
         }
         if (coin == prefferedcurrency) {
-            data.preferedcurrency = "cryptocurrency and preferred currency must be differ"
+            data.preferedcurrency = "CRYPTO_AND_PREFFERED_BE_DIFFER"
         }
         if (isEmpty(data)) {
             setLoading(true);
@@ -176,7 +177,7 @@ const Home = (props) => {
                 setLoading(false);
                 navigate.push(`/viewoffers/${ordertype}/${coin}`, { state: res?.data?.data })
             } else {
-                toastAlert('error', res.data.message, 'filterp2porder', 'TOP_RIGHT');
+                toastAlert('error', t(res.data.message), 'filterp2porder', 'TOP_RIGHT');
                 setLoading(false);
             }
         }
@@ -221,7 +222,7 @@ const Home = (props) => {
                                     <img src={Images.connect} className='connect' />
 
                                     <Tabs eventKey="Buy" id="uncontrolled-tab-example" onSelect={(e) => setOrdertype(e)}>
-                                        <Tab eventKey="Buy" title="BUY" className='px-3 py-3' >
+                                        <Tab eventKey="Buy" title={t("BUY_CAPS")} className='px-3 py-3' >
                                             <div className='row mt-3'>
                                                 <div className='col-md-6'>
                                                     <div className='themeselect mb-3 themeselct_home_se'>
@@ -333,7 +334,7 @@ const Home = (props) => {
                                                 </Select> */}
 
                                                     </div>
-                                                    <p className='text-danger error-message mb-3'> {errors?.preferedcurrency}</p>
+                                                    <p className='text-danger error-message mb-3'> {t(errors?.preferedcurrency)}</p>
                                                 </div>
                                             </div>
                                             <div className='row'>
@@ -387,11 +388,11 @@ const Home = (props) => {
                                                 <div className='col-md-6'>
                                                     <div className='floatinglabel mb-3'>
                                                         <label>{t("AMOUNT")}</label>
-                                                        <input type="text" className='form-control' placeholder='Enter Amount' value={amount}
+                                                        <input type="text" className='form-control' placeholder={t("ENTER_AMOUNT")} value={amount}
                                                             onChange={(e) => setAmount(e?.target?.value)}
                                                         />
                                                     </div>
-                                                    <p className='text-danger error-message'> {errors?.amount}</p>
+                                                    <p className='text-danger error-message'> {(errors?.amount)}</p>
                                                 </div>
 
                                             </div>
@@ -403,13 +404,13 @@ const Home = (props) => {
                                     </div> */}
                                                 <div className='text-center'>
                                                     {/* <Link to="/buybitcoin">   */}
-                                                    <button className='graybtn my-3' onClick={() => handleviewoffer()}>{loading ? "Loading..." : "View Offer"}</button>
+                                                    <button className='graybtn my-3' onClick={() => handleviewoffer()}>{loading ? t("LOADING") : t("VIEW_OFFER")}</button>
                                                     {/* </Link> */}
                                                 </div>
                                             </div>
 
                                         </Tab>
-                                        <Tab eventKey='Sell' title="SELL" className='px-3 py-3'  >
+                                        <Tab eventKey='Sell' title={t("SELL_CAPS")} className='px-3 py-3' >
                                             <div className='row mt-3'>
                                                 <div className='col-md-6'>
                                                     <div className='themeselect themeselct_home_se mb-3'>
@@ -587,7 +588,7 @@ const Home = (props) => {
                                                 <div className='col-md-6'>
                                                     <div className='floatinglabel mb-3'>
                                                         <label>{t("AMOUNT")}</label>
-                                                        <input type="text" className='form-control' placeholder='Enter Amount' value={amount}
+                                                        <input type="text" className='form-control' placeholder={t("ENTER_AMOUNT")} value={amount}
                                                             onChange={(e) => { setAmount(e?.target?.value); setOrdertype('Sell') }}
                                                         />
                                                     </div>
@@ -1198,7 +1199,7 @@ const Home = (props) => {
                             <h2>{t("START_UR_CRYPTOJOURNEY")}</h2>
                             {/* <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p> */}
                             <div className="input-group">
-                                <input type="email" autoComplete="off" className="form-control" placeholder="Email" name="email"
+                                <input type="email" autoComplete="off" className="form-control" placeholder={t("EMAIL_PLACEHOLDER")} name="email"
                                 value={email}
                                     onChange={(e) => { SetEmail(e?.target?.value) }}
                                 />

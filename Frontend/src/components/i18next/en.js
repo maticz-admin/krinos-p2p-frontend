@@ -902,5 +902,41 @@ export default {
     "REQUIRE_YOUR_TRADE_PARTNER_FULL_NAME":"Require your trade partner to show their full name",
     "SET_THE_TERMS_INSTRUCTIONS_AND_LIMITATIONS":"Set the terms, instructions, and limitations for people to trade on this offer.",
     "CREATE_OFFER":"Create Offer",
-    "BUYER":"Buyer"
+    "BUYER":"Buyer",
+
+    //MAY8
+    "MY_PROFILE" : "My Profile",
+    "AUTHENTICATION" : "Authentication",
+    "OFFER_HISTORY" : "Offer history",
+    "TRADE_HISTORY" : "Trade history",
+    "VIEW_OFFER_REQUEST" : "View offer request",
+    "YOUR_REQUESTS" : "Your request",
+    "CHOOSE" : "Choose",
+    "UPDATE": "Update",
+    "PROF_UPDATED_SUCCESS" : "Profileimage updated successfully!",
+    "INVALID_IMAGE" : "Invalid image",
+    "PROF_IS_REQUIRED" : "Profile image is required!",
+    "SELECT_COUNTRY" : "Select Country",
+    //new may12
+
+    "BUY_CAPS" :"BUY",
+    "SELL_CAPS" :"SELL",
+    "INVALID_VALUE" : "Invalid value",
+    "CRYPTO_AND_PREFFERED_BE_DIFFER" : "cryptocurrency and preferred currency must be differ",
+    "ERROR_FOUND" : "Error found",
+    "LOADING" : "Loading...",
+    "LOGIN_HEAD" : "Anonymous P2P deals on your terms. Trade globally",
+    "CREATE_OFFER_TO" : "Create Offer to",
+    "PAYMENT_METHOD_FIELD" : "Payment method field is required",
+    "CRYPTOCURRENCY_AND_PREFERED_CURRENCY_" : "cryptocurrency and prefered currency must be differ",
+    "MAX_FIELD" : "Max value must be greater than Min value",
+    "FIXED_PRICE" : "Value must be greater than 0",
+    "FIELD_IS_REQUIRED" : "Field is required!",
+    "MIN" : "Min",
+    "MAX" : "Max",
+    "PAY" : "pay",
+    "RECEIVE" : "receive",
+    "NOW" : "now",
+    "THERE_IS_NO_DATA" : "There is no data",
+    "ARK_AS_READ" : "Mark as read"
 }

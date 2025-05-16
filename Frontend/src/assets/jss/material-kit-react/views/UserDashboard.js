@@ -742,7 +742,7 @@ const UserDashboard = (props) => {
                     <div className='row'>
                         <div className='col-xl-4 col-lg-6 mb-lg-0 mt-4'>
                             <div className='gradbox bordbox br-20 h-100 mb-3'>
-                                <h5 className='blackandwhite test-left mt-0'>{t("My Profile")}</h5>
+                                <h5 className='blackandwhite test-left mt-0'>{t("MY_PROFILE")}</h5>
                                 <hr className='themehr' />
                                 <p className='blackandwhite d-flex jc-between align-items-center f-14'>
                                     <div>{t("USER_NAME")}:<span className='aqua light_aqua roboto ml-2'>{user?.firstName && user?.lastName ? (user?.firstName + " " + user?.lastName) : `${t("UPDATE_USERNAME")}`} </span></div>
@@ -789,7 +789,7 @@ const UserDashboard = (props) => {
                         </div>
                         <div className='col-xl-4 col-lg-6 mb-lg-0 mt-4'>
                             <div className='gradbox bordbox br-20 h-100 mb-3'>
-                                <h5 className='blackandwhite test-left mt-0'>{t("Authentication")}</h5>
+                                <h5 className='blackandwhite test-left mt-0'>{t("AUTHENTICATION")}</h5>
                                 <hr className='themehr' />
                                 {/* <p className='blackandwhite d-flex jc-between align-items-center f-14'>
                                     <div>Push Notification:<span className='aqua roboto ml-2'> Enable <i className='fa fa-check aqua ml-1'></i></span></div>
@@ -839,7 +839,7 @@ const UserDashboard = (props) => {
                             <div className='row jc-center mb-4'>
                                 <div className='col-md-6'>
                                     <h1 className="mb-4 title1 heads mt-5">{t("TRADE_LIKE_A_PRO")}</h1>
-                                    <p className='roboto subhead'> {t("In publishing and graphic design, Lorem ipsum is a placeholder text commonly")}</p>
+                                    {/* <p className='roboto subhead'> {t("In publishing and graphic design, Lorem ipsum is a placeholder text commonly")}</p> */}
                                 </div>
                             </div>
                             <div className='tradetab'>
@@ -848,8 +848,10 @@ const UserDashboard = (props) => {
                                 <img src={Images.connect} className='bannerconnect' />
                                 <img src={Images.connect} className='connectrigth' />
                                 <div className="themetable contrent_farpom_input">
-                                    <Tabs defaultActiveKey={activekey} id="uncontrolled-tab-example" onSelect={(e) => { setActivekey(e); localStorage.setItem("tab", e) }} >
-                                        <Tab eventKey="history" title="Offer history" className='px-3 py-3'>
+                                    <Tabs defaultActiveKey={activekey} id="uncontrolled-tab-example" onSelect={(e) => { 
+                                        console.log("eeeeeee" , e);
+                                        setActivekey(e); localStorage.setItem("tab", e) }} >
+                                        <Tab eventKey="history" title={t("OFFER_HISTORY")} className='px-3 py-3'>
 
                                             <div className='d-flex tabrightbtn'>
                                                 {/* <Dropdown>
@@ -863,7 +865,7 @@ const UserDashboard = (props) => {
 
                                                 <Dropdown className="headerdropdown m-left iner_drop_versiotwo">
                                                     <Dropdown.Toggle variant="success" className='btcc btcc_mn_wodt_set' id="dropdown-basic">
-                                                        <span>{buyorsell ? buyorsell : "Select Type"}</span>
+                                                        <span>{buyorsell ? buyorsell : t("SELECT_TYPE")}</span>
                                                     </Dropdown.Toggle>
 
                                                     <Dropdown.Menu className="iner_dropmenu_versiotwo btcc_mn_wodt_set_menu">
@@ -911,7 +913,7 @@ const UserDashboard = (props) => {
                                                 />
                                             </div>
                                         </Tab>
-                                        <Tab eventKey="tradehistory" title="Trade history" className='px-3 py-3'>
+                                        <Tab eventKey="tradehistory" title={t("TRADE_HISTORY")} className='px-3 py-3'>
                                             {/* <div className='d-flex tabrightbtn'>
                                             <Dropdown>
                                                     <Dropdown.Toggle variant="success" className='btcc' id="dropdown-basic">
@@ -935,7 +937,7 @@ const UserDashboard = (props) => {
                                                 />
                                             </div>
                                         </Tab>
-                                        <Tab eventKey="viewoffer" title="View offer request" className='px-3 py-3'>
+                                        <Tab eventKey="viewoffer" title= {t("VIEW_OFFER_REQUEST")} className='px-3 py-3'>
                                             {/* <div className='d-flex tabrightbtn'>
                                             <select className='btcc' name="buyorsell" onChange={(e) => handleSelect1(e)}>
                                                     <option hidden> Select Type</option>
@@ -956,7 +958,7 @@ const UserDashboard = (props) => {
                                             </div>
                                         </Tab>
 
-                                        <Tab eventKey="yourrequest" title="Your request" className='px-3 py-3'>
+                                        <Tab eventKey="yourrequest" title={t("YOUR_REQUESTS")} className='px-3 py-3'>
                                             {/* <div className='d-flex tabrightbtn'>
                                             <select className='btcc' name="buyorsell" onChange={(e) => handleSelect1(e)}>
                                                     <option hidden> Select Type</option>

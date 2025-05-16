@@ -228,7 +228,7 @@ const HeaderLinks = () => {
                     className="btcc"
                     id="dropdown-basic"
                   >
-                    Buy
+                    {t("BUY_CAPS")}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className="headerdropdown_heght_fix">
@@ -240,7 +240,7 @@ const HeaderLinks = () => {
                             src={`${config.API_URL}/images/currency/${data?.image}`}
                             className="iconss"
                           />{" "}
-                          Buy {data?.coin}
+                          {t("BUY")} {data?.coin}
                         </Dropdown.Item>
                       );
                     })}
@@ -254,7 +254,7 @@ const HeaderLinks = () => {
                     className="btcc"
                     id="dropdown-basic"
                   >
-                    Sell
+                    {t("SELL_CAPS")}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className="headerdropdown_heght_fix">
@@ -266,7 +266,7 @@ const HeaderLinks = () => {
                             src={`${config.API_URL}/images/currency/${data?.image}`}
                             className="iconss"
                           />{" "}
-                          Sell {data?.coin}
+                          {t("SELL")} {data?.coin}
                         </Dropdown.Item>
                       );
                     })}
@@ -293,7 +293,7 @@ const HeaderLinks = () => {
                     color="transparent"
                     className="nav-link"
                   >
-                    Dashboard
+                    {t("DASHBOARD")}
                   </NavLink>
                 </ListItem>
               )}
@@ -307,7 +307,7 @@ const HeaderLinks = () => {
                   className="nav-link"
                 >
                   {" "}
-                  Offer
+                  {t("OFFER")}
                 </NavLink>
               </ListItem>
 
@@ -318,7 +318,7 @@ const HeaderLinks = () => {
                     color="transparent"
                     className="nav-link"
                   >
-                    Wallet
+                    {t("WALLET")}
                   </NavLink>
                 </ListItem>
               )}
@@ -402,7 +402,7 @@ const HeaderLinks = () => {
                       <NavLink to="/profile">
                         <MenuItem>
                           <i className="fa fa-user" aria-hidden="true"></i>
-                          <span>Profile</span>
+                          <span>{t("PROFILE")}</span>
                         </MenuItem>
                       </NavLink>
                       <hr />
@@ -414,7 +414,7 @@ const HeaderLinks = () => {
                       <NavLink to="/security">
                         <MenuItem>
                           <i className="fa fa-lock" aria-hidden="true"></i>
-                          <span>Security</span>
+                          <span>{t("SECURITY")}</span>
                         </MenuItem>
                       </NavLink>
 
@@ -422,7 +422,7 @@ const HeaderLinks = () => {
                       <NavLink to="/setting">
                         <MenuItem>
                           <i className="fa fa-cog" aria-hidden="true"></i>
-                          <span>Settings</span>
+                          <span>{t("SETTINGS")}</span>
                         </MenuItem>
                       </NavLink>
                       {/* <hr />
@@ -446,7 +446,7 @@ const HeaderLinks = () => {
                       <NavLink to="/history">
                         <MenuItem>
                           <i className="far fa-clock"></i>
-                          <span>History</span>
+                          <span>{t("HISTORY")}</span>
                         </MenuItem>
                       </NavLink>
                       <hr />
@@ -456,7 +456,7 @@ const HeaderLinks = () => {
                             className="fa fa-question-circle"
                             aria-hidden="true"
                           ></i>
-                          <span>Support</span>
+                          <span>{t("SUPPORT")}</span>
                         </MenuItem>
                       </NavLink>
                       {/* <MenuItem>
@@ -466,7 +466,7 @@ const HeaderLinks = () => {
                       <Link to="#" onClick={() => logout(history, dispatch)}>
                         <MenuItem>
                           <i className="fas fa-sign-out-alt"></i>{" "}
-                          <span> Logout</span>
+                          <span>{t("LOGOUT")}</span>
                         </MenuItem>
                       </Link>
                     </Menu>

@@ -209,10 +209,10 @@ const CreateOffer = (props) => {
     const handlestep1 = async () => {
         var data = {};
         if (paymentmethod?.length == 0 || !paymentmethod) {
-            data.paymentmethod = "Payment method field is required";
+            data.paymentmethod = "PAYMENT_METHOD_FIELD";
         }
         if (coin == prefferedcurrency) {
-            data.prefferedcurrency = "cryptocurrency and prefered currency must be differ"
+            data.prefferedcurrency = "CRYPTOCURRENCY_AND_PREFERED_CURRENCY_"
         }
 
         if (isEmpty(data)) {
@@ -244,17 +244,17 @@ const CreateOffer = (props) => {
     const handlestep2 = async () => {
         var data = {}
         if (isNaN(min) || min == 0) {
-            data.min = "Invalid value"
+            data.min = "INVALID_VALUE"
         }
         if (isNaN(max) || max == 0) {
-            data.max = "Invalid value"
+            data.max = "INVALID_VALUE"
         }
         if (parseFloat(max) < parseFloat(min) || parseFloat(min) > parseFloat(max) || parseFloat(min) == parseFloat(max)) {
-            data.max = "Max value must be greater than Min value"
+            data.max = "MAX_FIELD"
         }
         if(pricetype == "Fixed Price"){
             if(!parseFloat(fixedmarketrate)){
-                data.fixedprice = "Value must be greater than 0"
+                data.fixedprice = "FIXED_PRICE"
             }
         }
         // else{
@@ -273,16 +273,16 @@ const CreateOffer = (props) => {
     const handlestep3 = async () => {
         var data = {};
         if (!offertag || offertag?.length == 0) {
-            data.offertag = "Field is required!";
+            data.offertag = "FIELD_IS_REQUIRED";
         }
         if (!offerlabel || offerlabel?.length == 0) {
-            data.offerlabel = "Field is required";
+            data.offerlabel = "FIELD_IS_REQUIRED";
         }
         if (!offerterm || offerterm?.length == 0) {
-            data.offerterm = "Field is required!";
+            data.offerterm = "FIELD_IS_REQUIRED";
         }
         if (!tradeinstruction || tradeinstruction?.length == 0) {
-            data.tradeinstruction = "Field is required!";
+            data.tradeinstruction = "FIELD_IS_REQUIRED";
         }
 
         if (isEmpty(data)) {
@@ -344,7 +344,7 @@ const CreateOffer = (props) => {
             <div className='login_container login_box createoff'>
                 <div className='text-center mb-5'>
                     {/* <h3 className='blackandwhite'>{`Create Offer to ${locationpath} Bitcoin`}</h3> */}
-                    {<h3 className='blackandwhite'>{`Create Offer to ${offerbitcoin} Bitcoin`}</h3>}
+                    {<h3 className='blackandwhite'>{`${t("CREATE_OFFER_TO")} ${t(offerbitcoin?.toLowerCase())} ${t("BITCOIN")}`}</h3>}
 
                     {/* {<h3 className='blackandwhite'>Create Offer to Buy Bitcoin</h3>} */}
 
@@ -467,7 +467,7 @@ const CreateOffer = (props) => {
                                     </div>
                                     <div className='col-xl-6'>
                                         <div className='floatinglabel my-xl-4 my-3 select_option'>
-                                            <label>Preferred Currency</label>
+                                            <label>{t("PREFERRED_CURRENCY")}</label>
 
                                             <Dropdown className="headerdropdown m-left iner_drop_versiotwo">
                                                 <Dropdown.Toggle variant="success" className='btcc' id="dropdown-basic">
@@ -506,7 +506,7 @@ const CreateOffer = (props) => {
                                             </>)}
                                           
                                         </select> */}
-                                            <p className='error-message mb-0'>{errors?.prefferedcurrency}</p>
+                                            <p className='error-message mb-0'>{t(errors?.prefferedcurrency)}</p>
                                         </div>
                                     </div>
 
@@ -519,7 +519,7 @@ const CreateOffer = (props) => {
                                                 styles={stylesgraybg}
                                                 onChange={(e) => handleselect(e)} isMulti="true" options={myData} className='multiselect select_oofer_multisel' />
 
-                                            <p className='error-message mb-0'>{errors?.paymentmethod}</p>
+                                            <p className='error-message mb-0'>{t(errors?.paymentmethod)}</p>
                                             {/* <pre>{JSON.stringify(selected)}</pre> */}
                                             {/* <MultiSelect
         options={myData}
@@ -604,7 +604,7 @@ const CreateOffer = (props) => {
                                 <div className='row'>
                                     <div className='col-md-6'>
                                         <div className='floatinglabel my-3'>
-                                            <label>Min</label>
+                                            <label>{t("MIN")}</label>
                                             {/* <select className="form-control h-45 mt-2">
                                             <option>244</option>
                                         </select> */}
@@ -614,11 +614,11 @@ const CreateOffer = (props) => {
                                                 }}
                                             />
                                         </div>
-                                        <p className='error-message mb-0'>{errors?.min}</p>
+                                        <p className='error-message mb-0'>{t(errors?.min)}</p>
                                     </div>
                                     <div className='col-md-6'>
                                         <div className='floatinglabel my-3'>
-                                            <label>Max</label>
+                                            <label>{t("MAX")}</label>
                                             {/* <select className="form-control h-45 mt-2">
                                             <option>242</option>
                                         </select> */}
@@ -628,7 +628,7 @@ const CreateOffer = (props) => {
                                                 }}
                                             />
                                         </div>
-                                        <p className='error-message mb-0'>{errors?.max}</p>
+                                        <p className='error-message mb-0'>{t(errors?.max)}</p>
                                     </div>
                                 </div>
                                 <hr className='themehr mt-4' />
@@ -639,7 +639,7 @@ const CreateOffer = (props) => {
                                             <button disabled={fixedmarketrate == 1} onClick={() => setFixedmarketrate(parseFloat(fixedmarketrate) - 1)}>-</button> <input type="text" placeholder={fixedmarketrate} value={fixedmarketrate} onChange={(e) => setFixedmarketrate(e?.target?.value)} />
                                             <button onClick={() => setFixedmarketrate(parseFloat(fixedmarketrate) + 1)}>+</button>  <span style={{ textTransform: "uppercase" }}>{prefferedcurrency?.toUpperCase()}</span>
                                         </div>
-                                        <p className='error-message mb-0'>{errors?.fixedprice}</p>
+                                        <p className='error-message mb-0'>{t(errors?.fixedprice)}</p>
                                     </div> :
                                         <div className='col-sm-6'>
                                             <h6 className='blackandwhite'>{t("OFFER_MARGIN")}</h6>
@@ -723,7 +723,7 @@ const CreateOffer = (props) => {
                                 </div> */}
                                     </p>
                                 </div>
-                                <p className='error-message mb-0'>{errors?.offertag}</p>
+                                <p className='error-message mb-0'>{t(errors?.offertag)}</p>
                                 <div className='floatinglabel my-3'>
                                     <label>{t("YOUR_OFFER_LABEL")}</label>
                                     <input type="text" className="form-control h-45 mt-2" value={offerlabel} onChange={(e) => setOfferlabel(e.target?.value)} />
@@ -731,7 +731,7 @@ const CreateOffer = (props) => {
                                     <option>Maximum 25 characters. Only letters, numbers and dashes.</option>
                                 </select> */}
                                 </div>
-                                <p className='error-message mb-0'>{errors?.offerlabel}</p>
+                                <p className='error-message mb-0'>{t(errors?.offerlabel)}</p>
                                 <div className='floatinglabel my-3'>
                                     <label>{t("OFFER_TERMS")}</label>
                                     <textarea className="form-control mt-2" row="10" value={offerterm}
@@ -739,7 +739,7 @@ const CreateOffer = (props) => {
                                     ></textarea>
                                     {/* <span className='subhead f-12'>Lorem Ipsum is simply dummy</span> */}
                                 </div>
-                                <p className='error-message mb-0'>{errors?.offerlabel}</p>
+                                <p className='error-message mb-0'>{t(errors?.offerlabel)}</p>
 
                                 <div className='floatinglabel my-3'>
                                     <label>{t("TRADE_INSTRUCTIONS")}</label>

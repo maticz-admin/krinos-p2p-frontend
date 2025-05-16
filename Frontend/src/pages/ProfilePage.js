@@ -93,20 +93,20 @@ const ProfilePage = (props) => {
       var result = await updateuserprofilepichooks(formdata);
       // console.log('result------', result);
       if(result?.data?.profileImage){
-      toastAlert("success" , "Profileimage updated successfully!");
+      toastAlert("success" , t("PROF_UPDATED_SUCCESS"));
       result.data.profileImage = config.API_URL + result?.data?.profileImage
       // updateAcctData(result?.data?.data)
       window.location.reload();
       }
       if(result?.status == "failed"){
-        toastAlert("error" , "Invalid image");
+        toastAlert("error" , t("INVALID_IMAGE"));
       }
     }
     // else if(result?.data?.data?.profileImage !== ""){
     //   toastAlert("success" , "Profileimage updated successfully!");
     // }
     else{
-      toastAlert("error" , "Profile image is required!");
+      toastAlert("error" , t("PROF_IS_REQUIRED"));
     }
   }
   const handleFile = async (e) => {
@@ -204,9 +204,9 @@ const ProfilePage = (props) => {
                                     // setImageblob(URL.createObjectURL(e?.target?.files[0]));
                                   }}
                                   ></input>
-                                  <button className="themebtn">Choose</button>
+                                  <button className="themebtn">{t("CHOOSE")}</button>
                                   </div></div> 
-                                  <button className="themebtn" onClick={() => handleupdate()}>Update</button>
+                                  <button className="themebtn" onClick={() => handleupdate()}>{t("UPDATE")}</button>
                               </div>
 
                               <p className="text-danger error-message mt-3">{imgerror}</p>

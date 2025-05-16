@@ -43,41 +43,43 @@ const Details = (props) => {
 
     useEffect(() => {
         async function fetchdata() {
+            let langs = localStorage.getItem("usr-language")
+            
             if (window.location.pathname.split('/')[2]?.toString() == "demo_videos") {
-                let payload1 = { "identifier": "TRANSPARENT_FEES" };
+                let payload1 = { "identifier": "TRANSPARENT_FEES"  , lang: langs? langs : "sp"};
                 let result1 = await Getcmshooks(payload1);  
                 setVideo1(result1?.data?.data?.content)
 
-                let payload2 = { "identifier": "MARGIN_CALL" };
+                let payload2 = { "identifier": "MARGIN_CALL"  , lang: langs? langs : "sp"};
                 let result2 = await Getcmshooks(payload2);
                 setVideo2(result2?.data?.data?.content)
 
-                let payload3 = { "identifier": "LEARN_&_PRACTICE" };
+                let payload3 = { "identifier": "LEARN_&_PRACTICE"  , lang: langs? langs : "sp"};
                 let result3 = await Getcmshooks(payload3);
                 setVideo3(result3?.data?.data?.content)
 
-                let payload4 = { "identifier": "demo_videos4" };
+                let payload4 = { "identifier": "demo_videos4"  , lang: langs? langs : "sp"};
                 let result4 = await Getcmshooks(payload4);
                 setVideo4(result4?.data?.data?.content)
 
-                let payload5 = { "identifier": "demo_videos5" };
+                let payload5 = { "identifier": "demo_videos5"  , lang: langs? langs : "sp"};
                 let result5 = await Getcmshooks(payload5);
                 setVideo5(result5?.data?.data?.content)
 
-                let payload6 = { "identifier": "demo_videos6" };
+                let payload6 = { "identifier": "demo_videos6"  , lang: langs? langs : "sp"};
                 let result6 = await Getcmshooks(payload6);
                 setVideo6(result6?.data?.data?.content)
 
-                let payload7 = { "identifier": "demo_videos7" };
+                let payload7 = { "identifier": "demo_videos7"  , lang: langs? langs : "sp"};
                 let result7 = await Getcmshooks(payload7);
                 setVideo7(result7?.data?.data?.content)
 
-                let payload8 = { "identifier": "demo_videos8" };
+                let payload8 = { "identifier": "demo_videos8" , lang: langs? langs : "sp" };
                 let result8 = await Getcmshooks(payload8);
                 setVideo8(result8?.data?.data?.content)
             }
             else {
-                var payload = { "identifier": window.location.pathname.split('/')[2]?.toString() };
+                var payload = { "identifier": window.location.pathname.split('/')[2]?.toString()  , lang: langs? langs : "sp"};
                 var result = await Getcmshooks(payload);
                 setCmsdata(result?.data?.data?.content);
                 setSubject(result?.data?.data?.subject);

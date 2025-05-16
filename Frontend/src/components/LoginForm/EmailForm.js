@@ -342,7 +342,7 @@ const EmailForm = () => {
                     <input
                         type="text"
                         className="form-control"
-                        placeholder="Enter Email ID"
+                        placeholder={t('EMAIL_PLACEHOLDER')}
                         name="email"
                         value={email}
                         // autoComplete="off"
@@ -423,7 +423,7 @@ const EmailForm = () => {
                     >
                         {loader && 
                         <i class="fas fa-spinner fa-spin"></i>
-                        } <span className='pl-2'> Login</span>
+                        } <span className='pl-2'> {t("LOGIN")}</span>
                     </button>
                     {/* <button className='graybtn my-3'>View Offer</button> */}
                 </div>

@@ -455,7 +455,7 @@ export default function HeaderLinks1(props) {
                                       {({ value }) => value}
                                     </TimeAgo> */}
                                       </p>
-                                      <h5>{item.description}</h5>
+                                      <h5>{localStorage.getItem("usr-language") == "en" ? item.description : item.spdescription}</h5>
                                     </li>
                                   );
                                 })}
@@ -575,7 +575,7 @@ export default function HeaderLinks1(props) {
                                         {({ value }) => value}
                                       </TimeAgo> */}
                                           </p>
-                                          <h5>{item.description}</h5>
+                                          <h5>{localStorage.getItem("usr-language") == "en" ? item.description : item.spdescription}</h5>
                                         </li>
                                       </div>
                                     );
@@ -782,13 +782,13 @@ export default function HeaderLinks1(props) {
 
               {isAuth && (
                 <li>
-                  <NavLink to="/userdash">Dashboard</NavLink>
+                  <NavLink to="/userdash">{t("DASHBOARD")}</NavLink>
                 </li>
               )}
 
               {isAuth && (
                 <li>
-                  <NavLink to="/viewoffers/Buy/MATIC">Offer</NavLink>
+                  <NavLink to="/viewoffers/Buy/MATIC">{t("OFFER")}</NavLink>
                   {/* <Link to="/walletnew">Wallet</Link> */}
                 </li>
               )}
@@ -800,7 +800,7 @@ export default function HeaderLinks1(props) {
             }*/}
               {isAuth && (
                 <li>
-                  <NavLink to="/wallet">Wallet</NavLink>
+                  <NavLink to="/wallet">{t("WALLET")}</NavLink>
                   {/* <Link to="/walletnew">Wallet</Link> */}
                 </li>
               )}

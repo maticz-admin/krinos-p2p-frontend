@@ -347,11 +347,11 @@ const Bitcoincompany = (props) => {
 
                             <div className='buyborder mt-3'>
                                 {tradedata?.createrid != userdata?.account?.userId && <div>
-                                    <p className='mb-4 much'>{t("HOW_MUCH_DO_YOU_WANT_to")} {tradedata?.ordertype == "Sell" ? "Buy" : "Sell"}?</p>
+                                    <p className='mb-4 much'>{t("HOW_MUCH_DO_YOU_WANT_to")} {tradedata?.ordertype == "Sell" ? t("BUY") : t("SELL")}?</p>
                                     <div className='row'>
                                         <div className='col-md-6 col-sm-6'>
                                             <div className='input-group mb-1 jj floatinglabel mt-4 h-54'>
-                                                <label>{t("I_WILL")} {tradedata?.ordertype == "Sell" ? "pay" : "receive"}</label>
+                                                <label>{t("I_WILL")} {tradedata?.ordertype == "Sell" ? t("PAY") : t("RECEIVE")}</label>
                                                 <input
                                                     className="form-control mt-0"
                                                     placeholder="0"
@@ -370,7 +370,7 @@ const Bitcoincompany = (props) => {
                                         </div>
                                         <div className='col-md-6 col-sm-6'>
                                             <div className='input-group mb-1 jj floatinglabel mt-4 h-54'>
-                                                <label>{t("AND")} {tradedata?.ordertype == "Sell" ? "receive" : "pay"}</label>
+                                                <label>{t("AND")} {tradedata?.ordertype == "Sell" ? t("RECEIVE") : t("PAY")}</label>
                                                 <input
                                                     className="form-control mt-0"
                                                     placeholder="Enter text"
@@ -386,7 +386,7 @@ const Bitcoincompany = (props) => {
                                 </div>}
 
                                 {tradedata?.createrid != userdata?.account?.userId && <div className='text-center'>
-                                    <button className='graybtn my-3' disabled={button} onClick={async () => await handlebutton()}>{tradedata?.ordertype == "Sell" ? "Buy" : "Sell"} Now</button>
+                                    <button className='graybtn my-3' disabled={button} onClick={async () => await handlebutton()}>{tradedata?.ordertype == "Sell" ? t("BUY") : t("SELL")} {t("NOW")}</button>
                                 </div>}
 
                                 {<div className='row'>
@@ -400,8 +400,8 @@ const Bitcoincompany = (props) => {
                                     <div className='col-md-4 col-sm-6'>
                                         <div className='border1 mt-2'>
                                             <p className='amount'>{t("BUY_LIMITS")}</p>
-                                            <p className='btc-amount'>Min : {tradedata?.min} {tradedata?.preferedcurrency}</p>
-                                            <p className='market'>Max : {tradedata?.max} {tradedata?.preferedcurrency}</p>
+                                            <p className='btc-amount'>{t("MIN")} : {tradedata?.min} {tradedata?.preferedcurrency}</p>
+                                            <p className='market'>{t("MAX")} : {tradedata?.max} {tradedata?.preferedcurrency}</p>
                                         </div>
                                     </div>
                                     <div className='col-md-4 col-sm-6'>

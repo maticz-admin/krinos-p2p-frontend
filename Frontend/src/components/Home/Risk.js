@@ -36,7 +36,8 @@ const Risk = (props) => {
    
     useEffect(() => {
         async function fetchdata(){
-            var payload = {"identifier" : "Risk_and_Disclaimer"};
+            let langs = localStorage.getItem("usr-language")
+            var payload = {"identifier" : "Risk_and_Disclaimer"  , lang: langs? langs : "sp"};
             var result = await Getcmshooks(payload);
             setCmsdata(result?.data?.data?.content);
             setSubject(result?.data?.data?.subject);
