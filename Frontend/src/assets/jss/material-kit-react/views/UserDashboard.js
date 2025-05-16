@@ -364,7 +364,7 @@ const UserDashboard = (props) => {
                                 toastAlert("success", "Offer Closed successfully!")
                             }}
                         >
-                            <i className="fa fa-trash text-danger"></i>
+                            <i className="fa fa-trash"></i>
                         </button> : <p>-</p>}
                         {/* <button className='copy'>
                             <i className="fa fa-copy"></i> Copy
@@ -401,8 +401,6 @@ const UserDashboard = (props) => {
             amount: "200 BTC"
         }
     ]
-
-
     const columns1 = [
 
         {
@@ -491,7 +489,6 @@ const UserDashboard = (props) => {
             "IP Adress": "55f14312c7447c3da7051b27",
         }
     ]
-
     const columns2 = [
 
         {
@@ -598,7 +595,6 @@ const UserDashboard = (props) => {
             "offer": "0 Nos",
         }
     ]
-
     const columns3 = [
 
         {
@@ -674,7 +670,7 @@ const UserDashboard = (props) => {
                         <button className='export' style={{ marginRight: '5px' }} onClick={() => {
                             navigate.push(`/trade/${record?.roomid}`)
                         }}>
-                            <i className="fa fa-eye"></i> View
+                            <i className="fa fa-eye"></i>
                         </button>
                         {/* <button className='copy'>
                             <i className="fa fa-copy"></i> Edit
@@ -684,8 +680,6 @@ const UserDashboard = (props) => {
             }
         },
     ];
-
-
     const config = {
         page_size: 10,
         length_menu: [10, 20, 50],
@@ -903,7 +897,7 @@ const UserDashboard = (props) => {
                                                 {/* <button className='btn btn-bordered white'>Filter <i class="fa-solid fa-sliders"></i></button> */}
                                             </div>
                                             <div className='table_yser_das'>
-                                                <ReactDatatable className="table table-bordered table-striped"
+                                                <ReactDatatable className="table table-responsivee table-bordered table-striped"
                                                     config={config}
                                                     records={records}
                                                     columns={columns}

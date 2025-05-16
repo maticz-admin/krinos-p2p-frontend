@@ -50,7 +50,12 @@
 .fal,
 .fad,
 .fab {
-  font-family: "Font Awesome 6 Free" !important; /* or whatever version you're using */
+  font-family: "Font Awesome 6 Free" !important;
+}
+
+.fa-brands,
+.fab {
+  font-family: "Font Awesome 6 Brands" !important;
 }
 
 body {
@@ -21265,7 +21270,6 @@ button.btn.btn-outline:active {
   padding-right: 4px;
 }
 
-
 .dashboard_login a {
   /* color: #5a5a5a !important; */
   color: #ffff;
@@ -27982,9 +27986,13 @@ body.light_theme {
 }
 
 .light_theme .Subscribe button.btn-primary {
-  background: #aff41f;
+  background: #aff41f !important;
   border: 2px solid #21b77a;
   color: #000;
+}
+
+.light_theme .Subscribe button.btn-primary:active {
+  background-color: #aff41f !important;
 }
 
 .light_theme .Subscribe button.btn-primary a {
@@ -32036,7 +32044,7 @@ li.unread .lighttxt {
   background: #212121;
 }
 .light_theme .newnotify li:nth-child(odd) {
-  background: #21212145;
+  background: #2121219e;
 }
 .newnotify li:nth-child(even) {
   background: #313131;
@@ -34127,7 +34135,8 @@ option {
 }
 
 .themeselct_home_se button span {
-  padding-left: 40px;
+  /* padding-left: 40px; */
+  padding-left: 30px;
 }
 
 .themeselect .dropdown-menu.iner_dropmenu_versiotwo a {
@@ -34481,7 +34490,23 @@ option {
   right: 0px;
 }
 
+.dark_theme .themetable .col-md-12 table tr {
+  background-color: #19181c !important;
+}
 
+.dark_theme .themetable .col-md-12 table {
+  --cui-table-striped-bg: rgb(34 34 36);
+}
+
+.themetable .as-react-table .table-body .col-md-12 {
+  width: 100%;
+  overflow: auto;
+}
+
+.themetable .as-react-table .table-head .col-md-6 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
 
 @media (max-width: 1199px) {
   .login_container {
