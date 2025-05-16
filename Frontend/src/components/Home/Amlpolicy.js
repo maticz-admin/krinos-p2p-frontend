@@ -33,7 +33,8 @@ const Amlpolicy = (props) => {
    
     useEffect(() => {
         async function fetchdata(){
-            var payload = {"identifier" : "Amlpolicy"};
+            let langs = localStorage.getItem("usr-language")
+            var payload = {"identifier" : "Amlpolicy"   , lang: langs? langs : "sp"};
             var result = await Getcmshooks(payload);
             setCmsdata(result?.data?.data?.content);
             setSubject(result?.data?.data?.subject);

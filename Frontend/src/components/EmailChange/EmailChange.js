@@ -106,8 +106,8 @@ const EmailChange = () => {
                     disabled={loader}
                 >
                     {loader && <i class="fas fa-spinner fa-spin"></i>}
-                    {"Update email"} 
-                    {/* t("CHANGE_EMAIL") */}
+                    {/* {"Update email"}  */}
+                    {t("CHANGE_EMAIL")}
                 </button>
             </div>
             </>

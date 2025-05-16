@@ -341,7 +341,7 @@ const EditDetail = forwardRef((props, ref) => {
       onChange={(e , val) => handleCountry(val?.label)}
       options={COUNTRY}
       sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Select Country" />}
+      renderInput={(params) => <TextField {...params} label={t("SELECT_COUNTRY")} />}
     />
     {validateError.country && <p className="error-message">{t(validateError.country)}</p>}
                             </div>

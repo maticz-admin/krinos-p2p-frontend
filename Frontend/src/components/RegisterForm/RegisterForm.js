@@ -94,7 +94,7 @@ const RegisterForm = () => {
             <div className='container'>
                 <div className='text-center mb-5'>
                     <h3 className="blackandwhite">{t("REGISTER")}</h3>
-                    <p className='subhead'>Anonymous P2P deals on your terms. Trade globally.</p>
+                    <p className='subhead'>{t("LOGIN_HEAD")}</p>
                 </div>
             <div className='buyselltab'>
             <img src={Images.bitcoin} className='bannerbitcoin'/>
@@ -107,10 +107,10 @@ const RegisterForm = () => {
                         <div  className="themenav">
                         <img src={Images.connect} className='connect'/>
                         <Tabs defaultActiveKey="email" id="uncontrolled-tab-example">
-                                    <Tab eventKey="email" title="EMAIL" className='px-3 py-3'> 
+                                    <Tab eventKey="email" title={t("EMAIL")} className='px-3 py-3'> 
                                     <EmailForm handleReCaptcha={handleReCaptcha} />
                                     </Tab>
-                                    <Tab eventKey="mobile" title="MOBILE" className='px-3 py-3'> 
+                                    <Tab eventKey="mobile" title={t("MOBILE")} className='px-3 py-3'> 
                                     <MobileForm handleReCaptcha={handleReCaptcha} />
                                     </Tab>
                             </Tabs>

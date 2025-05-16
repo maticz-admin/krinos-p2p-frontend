@@ -35,7 +35,8 @@ const Cookiespolicy = (props) => {
    
     useEffect(() => {
         async function fetchdata(){
-            var payload = {"identifier" : "Cookies-policy"};
+            let langs = localStorage.getItem("usr-language")
+            var payload = {"identifier" : "Cookies-policy"   , lang: langs? langs : "sp"};
             var result = await Getcmshooks(payload);
             setCmsdata(result?.data?.data?.content);
             setSubject(result?.data?.data?.subject);

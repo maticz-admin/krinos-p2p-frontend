@@ -99,10 +99,10 @@ const EmailForm = () => {
         <GoogleReCaptchaProvider reCaptchaKey={config.RECAPTCHA_SITE_KEY}>
             <Fragment>
                 <div className='floatinglabel my-4'>
-                    <label>{t('Email')}</label>
+                    <label>{t('EMAIL')}</label>
                     <input
                         className="form-control mt-2"
-                        placeholder="Enter Email ID"
+                        placeholder={t("EMAIL_PLACEHOLDER")}
                         name="email"
                         value={email}
                         type="email"
@@ -123,11 +123,11 @@ const EmailForm = () => {
 
                 <div className="d-flex px-4 py-3">
                     <Link to="/" className="mr-auto">
-                        Home
+                        {t("HOME")}
                     </Link>
                     <Link to="/login" className="ml-auto">
                         {/* {t("DON'T_HAVE_ACCOUNT")}? */}
-                        {t('Login')}
+                        {t('LOGIN')}
                     </Link>
                 </div>
             </Fragment >

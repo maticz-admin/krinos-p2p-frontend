@@ -225,27 +225,27 @@ const EmailForm = () => {
             <Fragment>
                 <div className='floatinglabel my-4'>
 
-                    <label>{"Email Address"}</label>
+                    <label>{t("EMAIL_PLACEHOLDER")}</label>
                     {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
                     <input
                         type="text"
                         className="form-control"
-                        placeholder={"Email Address"}
+                        placeholder={t("EMAIL_PLACEHOLDER")}
                         name="email"
                         value={email}
                         onChange={handleChange}
                     // onBlur={handleBlur}
                     />
                     <i className="fa fa-envelope right" aria-hidden="true"></i>
-                    {validateError.email && <p className="error-message">{validateError.email}</p>}
+                    {validateError.email && <p className="error-message">{t(validateError.email)}</p>}
                 </div>
 
                 <div className='floatinglabel my-4'>
-                    <label>{'PASSWORD'}</label>
+                    <label>{t('PASSWORD')}</label>
                     <input
                         type={showPassword ? "text" : "password"}
                         className="form-control"
-                        placeholder={'PASSWORD'}
+                        placeholder={t('PASSWORD')}
                         name="password"
                         value={password}
                         onChange={handleChange}
@@ -259,18 +259,18 @@ const EmailForm = () => {
                     }}>
                         <i className={clsx("fa", { "fa-eye": showPassword }, { "fa-eye-slash": !showPassword })} aria-hidden="true"></i>
                     </Link>
-                    {validateError.password && <p className="error-message">{validateError.password}</p>}
+                    {validateError.password && <p className="error-message">{t(validateError.password)}</p>}
                     {/* <span className='fa fa-eye'></span> */}
                 </div>
 
 
 
                 <div className='floatinglabel my-4'>
-                    <label>{'CONFIRM_PASSWORD'}</label>
+                    <label>{t('CONFIRM_PASSWORD')}</label>
                     <input
                         type={showConfirmPassword ? "text" : "password"}
                         className="form-control"
-                        placeholder={'CONFIRM_PASSWORD'}
+                        placeholder={t('CONFIRM_PASSWORD')}
                         name="confirmPassword"
                         value={confirmPassword}
                         onChange={handleChange}
@@ -284,7 +284,7 @@ const EmailForm = () => {
                     }}>
                         <i className={clsx("fa", { "fa-eye": showConfirmPassword }, { "fa-eye-slash": !showConfirmPassword })} aria-hidden="true"></i>
                     </Link>
-                    {validateError.confirmPassword && <p className="error-message">{validateError.confirmPassword}</p>}
+                    {validateError.confirmPassword && <p className="error-message">{t(validateError.confirmPassword)}</p>}
                     {/* <span className='fa fa-eye'></span> */}
                 </div>
 
@@ -324,7 +324,7 @@ const EmailForm = () => {
                        checked={isTerms} 
                        name = "isTerms"
                       />
-                    <span class="checkmark"></span> {'I AGREE'} <a target = "_blank" href="/details/termsandcondition" className="color_lonks">{'TERMS'}</a> {'AND'} <a target = "_blank" href="/details/privacypolicy" className="color_lonks">{'PRIVACY'}</a>
+                    <span class="checkmark"></span> {t('I_AGREE')} <a target = "_blank" href="/details/termsandcondition" className="color_lonks">{t('TERMS')}</a> {t('AND')} <a target = "_blank" href="/details/privacypolicy" className="color_lonks">{t('PRIVACY')}</a>
                 
                 </label>
                 {validateError.isTerms && <p className="error-message">{t(validateError.isTerms)}</p>}

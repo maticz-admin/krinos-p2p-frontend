@@ -90,7 +90,8 @@ const CreateoffModal = (props) =>{
 
     useEffect(() => {
         async function getcms(){
-            var payload1 = {"identifier" : "vendor_terms_and_conditions"};
+            let langs = localStorage.getItem("usr-language")
+            var payload1 = {"identifier" : "vendor_terms_and_conditions"  , lang: langs? langs : "sp"};
             var result1 = await Getcmshooks(payload1);
             setCmsdata(result1?.data?.data?.content);
         }
