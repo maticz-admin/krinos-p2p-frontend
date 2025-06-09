@@ -54,9 +54,9 @@ let dispatch = useDispatch()
                 {data.map((val,index)=>(
                     <li className= {val.isRead ?'read' :'unread'} onClick={(e)=>{
                       readMess(val._id)
-                      if(val?.description == "You received one review"){
-                        window.location.href = window?.location?.origin +"/profile#reviews";
-                      }
+                      // if(val?.description == "You received one review"){
+                      //   window.location.href = window?.location?.origin +"/profile#reviews";
+                      // }
                       }}>
                     <div className='d-flex align-items-center pl-sm-2'>
                         <span className='stat mr-2 shrink-0'></span>

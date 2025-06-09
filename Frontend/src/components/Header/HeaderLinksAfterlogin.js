@@ -322,7 +322,7 @@ export default function HeaderLinks1(props) {
               )}
               {isAuth && (
                 <li>
-                  <NavLink to="/viewoffers/Buy/MATIC">{t("OFFER")}</NavLink>
+                  <NavLink to="/viewoffers/Buy/POL">{t("OFFER")}</NavLink>
                 </li>
               )}
 
@@ -430,7 +430,7 @@ export default function HeaderLinks1(props) {
                                 }}
                                 className="mark_read_link mark_read_link_new"
                               >
-                                {t("Mark all as read")}{" "}
+                                {t("MARK_ALL_AS_READ")}{" "}
                               </button>
                             </div>
                             <ul>
@@ -439,16 +439,16 @@ export default function HeaderLinks1(props) {
                                 unread.map((item) => {
                                   return (
                                     <li
-                                      onClick={() => {
-                                        if (
-                                          item?.description ==
-                                          "You received one review"
-                                        ) {
-                                          window.location.href =
-                                            window?.location?.origin +
-                                            "/profile#reviews";
-                                        }
-                                      }}
+                                      // onClick={() => {
+                                      //   if (
+                                      //     item?.description ==
+                                      //     "You received one review"
+                                      //   ) {
+                                      //     window.location.href =
+                                      //       window?.location?.origin +
+                                      //       "/profile#reviews";
+                                      //   }
+                                      // }}
                                     >
                                       <p>
                                         {/* <TimeAgo date={new Date(item.createdAt)}>
@@ -684,7 +684,7 @@ export default function HeaderLinks1(props) {
                     <NavLink to="/security">
                       <MenuItem>
                         <i className="fa fa-lock" aria-hidden="true"></i>
-                        <span>{t("Security")}</span>
+                        <span>{t("SECURITY")}</span>
                       </MenuItem>
                     </NavLink>
 
@@ -692,7 +692,7 @@ export default function HeaderLinks1(props) {
                     <NavLink to="/setting">
                       <MenuItem>
                         <i className="fa fa-cog" aria-hidden="true"></i>
-                        <span>{t("Settings")}</span>
+                        <span>{t("SETTINGS")}</span>
                       </MenuItem>
                     </NavLink>
                     <hr />
@@ -788,7 +788,7 @@ export default function HeaderLinks1(props) {
 
               {isAuth && (
                 <li>
-                  <NavLink to="/viewoffers/Buy/MATIC">{t("OFFER")}</NavLink>
+                  <NavLink to="/viewoffers/Buy/POL">{t("OFFER")}</NavLink>
                   {/* <Link to="/walletnew">Wallet</Link> */}
                 </li>
               )}

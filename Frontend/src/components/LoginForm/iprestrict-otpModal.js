@@ -13,9 +13,12 @@ import { getsitesettingshook } from 'actions/P2PorderAction';
 import { toastAlert } from 'lib/toastAlert';
 import Countdown from 'react-countdown';
 import {resendOtp} from 'actions/users';
+import { useTranslation } from 'react-i18next';
 
 
 const IprestrictModal = (props) => {
+    const { t, i18n } = useTranslation();
+    
     const location = useLocation();
     const navigate = useHistory();
     const Render = useRef(false)
@@ -90,10 +93,10 @@ const IprestrictModal = (props) => {
 
     const handlesubmit = (e) => {
         if(otp?.length <= 0){
-            toastAlert('error', "Please enter the OTP.", 'login');
+            toastAlert('error', t("PLEASE_ENTER_THE_OTP"), 'login');
         }
         if(otp?.length != 4){
-            toastAlert('error', "Please enter the correct OTP", 'login');
+            toastAlert('error', t("PLEASE_ENTER_cORRECT_OTP"), 'login');
         }
         else{
             props.login(e);

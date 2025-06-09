@@ -64,7 +64,7 @@ const CreateTicket = (props) => {
                 return ""
             }
             else{
-                return "Invalid file format"
+                return "INVALID_FILE_FORMAT"
             }
         }
         catch(e){
@@ -131,7 +131,7 @@ const CreateTicket = (props) => {
                     setValidateError(error)
                     return
                 }
-                toastAlert('error', message, 'createTicket')
+                toastAlert('error', t(message), 'createTicket')
             }
         } catch (err) {
         }
@@ -179,7 +179,7 @@ const CreateTicket = (props) => {
                             id={'categoryId'}
                             onChange={handleChange}
                         >
-                            <MenuItem value={' '}>{"Select Issue"}</MenuItem>
+                            <MenuItem value={' '}>{t("SELECT_ISSUE")}</MenuItem>
 
                             {
                                 categoryList && categoryList.length > 0 && categoryList.map((item, key) => {
@@ -220,11 +220,11 @@ const CreateTicket = (props) => {
 
                             <label className="custom-file-label">
                                 {
-                                    attachment && attachment.name ? <small>{attachment.name}</small> : <small>attachment</small>
+                                    attachment && attachment.name ? <small>{attachment.name}</small> : <small>{t("ATTACHMENT")}</small>
                                 }
                             </label>
                         </div>
-                        <p>jpg,jpeg,png,pdf allowed</p>
+                        <p>{t("ALLOWED_FORMAT")}</p>
                         {
                             validateError.attachment && <p className="error-message">{t(validateError.attachment)}</p>
                         }
@@ -256,7 +256,7 @@ const CreateTicket = (props) => {
                         >
                         {loader && <i class="fas fa-spinner fa-spin support_ticket_spinn"></i>}
 
-<span className='pl-2'>Create Ticket</span>
+<span className='pl-2'>{t("CREATE_TICKET")}</span>
                      </button>
                     </div>
                 </div>

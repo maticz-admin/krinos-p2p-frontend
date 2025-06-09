@@ -260,11 +260,11 @@ const EmailForm = () => {
                         setValidateError(error);
                     }
                     if (message == "Your Password is Old Please Reset Your Password") {
-                        toastAlert('error', message, 'login');
+                        toastAlert('error', t(message), 'login');
                         history.push("/reset-password/" + authToken)
 
                     }
-                    toastAlert('error', message, 'login');
+                    toastAlert('error', t(message), 'login');
                 }
         }
         else {

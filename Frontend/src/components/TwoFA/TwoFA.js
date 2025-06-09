@@ -171,7 +171,7 @@ const TwoFA = () => {
                                             <div className="input-group-append">
                                                 <CopyToClipboard
                                                     text={secretData && secretData.secret}
-                                                    onCopy={() => { toastAlert("success", "Copied!", 'twoFa') }}
+                                                    onCopy={() => { toastAlert("success", t("COPIED"), 'twoFa') }}
                                                 >
                                                     <a href="#" className="btn btnType1 py-0 my-0 px-2">
                                                         <i class="fas fa-copy"></i>

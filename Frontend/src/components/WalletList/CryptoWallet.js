@@ -72,7 +72,7 @@ const CryptoWallet = () => {
     const { message, status } = await updateHideZeroStatus(reqData);
     if (status) {
       setCheckValue(checked);
-      toastAlert("success", message, "checkValue");
+      toastAlert("success", t(message), "checkValue");
       gethideZeroSatus();
     } else {
       toastAlert("error", message, "checkValue");

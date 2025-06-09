@@ -46,7 +46,7 @@ const CryptoDeposit = (props) => {
   return (
     <Modal show={show} onHide={handleClose} centered backdrop="static">
       <Modal.Header closeButton className="pb-3 pt-3">
-        <Modal.Title>Crypto Deposit</Modal.Title>
+        <Modal.Title>{t("CRYPTO_DEPOSIT")}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <GridContainer>
@@ -80,7 +80,7 @@ const CryptoDeposit = (props) => {
                   <CopyToClipboard
                     text={assetData.address}
                     onCopy={() => {
-                      toastAlert("success", "Copied", "wallet");
+                      toastAlert("success", t("COPIED"), "wallet");
                     }}
                   >
                     <i class="far fa-copy"></i>
@@ -104,7 +104,7 @@ const CryptoDeposit = (props) => {
                     <CopyToClipboard
                       text={assetData.destTag}
                       onCopy={() => {
-                        toastAlert("success", "Copied", "wallet");
+                        toastAlert("success", t("COPIED"), "wallet");
                       }}
                     >
                       <i class="far fa-copy"></i>

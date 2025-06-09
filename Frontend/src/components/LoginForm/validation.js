@@ -34,11 +34,11 @@ export const mobileValidation = (value) => {
     let errors = {};
 
     if (isEmpty(value.phoneCode)) {
-        errors.phoneCode = "Phone number field is required"
+        errors.phoneCode = "PHONE_FIELD_REQUIRED"
     }
 
     if (isEmpty(value.phoneNo)) {
-        errors.phoneNo = "Phone number field is required"
+        errors.phoneNo = "PHONE_FIELD_REQUIRED"
     }
 
     if (isEmpty(value.otp)) {

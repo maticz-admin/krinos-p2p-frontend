@@ -44,7 +44,7 @@ const CreatedModal = (props) => {
         //     iconTheme: iconTheme,
         // }
         // )
-        toastAlert("success", "Copied Successfully");
+        toastAlert("success", t("COPIED_SUCCESSFULLY"));
 
     }
 

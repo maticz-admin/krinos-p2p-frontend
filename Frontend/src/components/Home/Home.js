@@ -26,6 +26,7 @@ import btcicon from "../../../src/assets/images/btcIcon.png"
 import axios from 'axios';
 import { Email } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
+import { getPreferredCurrency } from 'actions/commonAction';
 
 const names = [
     'Oliver Hansen',
@@ -89,11 +90,11 @@ const Home = (props) => {
             if (validateError) {
                 var res = await subscribe(letter)
                 if (res.status) {
-                    toastAlert('success', res.message, 'newLetter')
+                    toastAlert('success', t(res.message), 'newLetter')
                     SetEmail("");
                 }
                 else {
-                    toastAlert('error', res.message, 'newsLetter')
+                    toastAlert('error', t(res.message), 'newsLetter')
                 }
             }
             else {
@@ -103,21 +104,18 @@ const Home = (props) => {
 
     useEffect(() => {
         async function fetchdata() {
-
             var result = await Getcoinlisthooks();
-
             setCoinlist(result?.data);
             setCoin(result?.data[0]?.symbol);
-            var precurrency = await Getpreferedcurrency();
-
-
-            setPrefferedcurrencylist(precurrency?.data);
-            setPrefferedcurrency(precurrency?.data[0]?.symbol);
-            setPreimg(`${config.API_URL}/images/currency/${precurrency?.data[0]?.image}`)
+            // var precurrency = await Getpreferedcurrency();
+            var precurrency = await getPreferredCurrency()
+            setPrefferedcurrencylist(precurrency?.result);
+            setPrefferedcurrency(precurrency?.result[0]?.coin);
+            setPreimg(precurrency?.result[0]?.image)
             var paytype = await getpaymenttypeshook();
             console.log('paytype----', paytype)
             setPaymenttypelist(paytype?.data);
-            setCoinimg(`${config.API_URL}/images/currency/${precurrency?.data[0]?.image}`);
+            setCoinimg(`${config.API_URL}/images/currency/${result?.data[0]?.image}`);
             setPaymenttype(paytype?.data[0]?.value);
             // var ofrtg = await Getalloffertaghook();
             // setOffertaglist(ofrtg?.data?.data);
@@ -141,7 +139,7 @@ const Home = (props) => {
             var result3 = await Getcmshooks(payload3);
             setLearnandpractice(result3?.data?.data?.content);
 
-            var result4 = await Getfaqhooks();
+            var result4 = await Getfaqhooks({lang : langs ? langs : "sp"});
             console.log("faqqqq result" , result4);
             
             setFaq(result4?.data);
@@ -303,10 +301,10 @@ const Home = (props) => {
 
                                                                         <Dropdown.Item
                                                                         ><p className='d-flex align-items-center' onClick={() => {
-                                                                            setPrefferedcurrency(data?.symbol);
-                                                                            setPreimg(`${config?.API_URL}/images/currency/${data?.image}`);
-                                                                        }}><img src={`${config?.API_URL}/images/currency/${data?.image}`} className="iconss" />
-                                                                                <span>{data?.symbol}</span></p></Dropdown.Item>)
+                                                                            setPrefferedcurrency(data?.coin);
+                                                                            setPreimg(data?.image);
+                                                                        }}><img src={data?.image} className="iconss" />
+                                                                                <span>{data?.coin}</span></p></Dropdown.Item>)
                                                                 })}
 
                                                             </Dropdown.Menu>
@@ -392,7 +390,7 @@ const Home = (props) => {
                                                             onChange={(e) => setAmount(e?.target?.value)}
                                                         />
                                                     </div>
-                                                    <p className='text-danger error-message'> {(errors?.amount)}</p>
+                                                    <p className='text-danger error-message'> {t(errors?.amount)}</p>
                                                 </div>
 
                                             </div>
@@ -487,19 +485,14 @@ const Home = (props) => {
                                                             </Dropdown.Toggle>
 
                                                             <Dropdown.Menu className="iner_dropmenu_versiotwo">
-
-
-
-
-
                                                                 {prefferedcurrencylist?.map((data, i) => {
                                                                     return (
 
                                                                         <Dropdown.Item
                                                                         ><p className='d-flex align-items-center' onClick={() => {
                                                                             setPrefferedcurrency(data?.symbol);
-                                                                            setPreimg(`${config?.API_URL}/images/currency/${data?.image}`);
-                                                                        }}><img src={`${config?.API_URL}/images/currency/${data?.image}`} className="iconss" />
+                                                                            setPreimg(data?.image);
+                                                                        }}><img src={data?.image} className="iconss" />
                                                                                 <span>{data?.symbol}</span></p></Dropdown.Item>)
                                                                 })}
 

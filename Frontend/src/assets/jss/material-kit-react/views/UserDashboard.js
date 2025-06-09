@@ -82,11 +82,11 @@ const UserDashboard = (props) => {
         }
     }
 
-    const fetchyourrequest = async () => {
+    const fetchyourrequest = async (data) => {
         try {
             let userId = GetUserId();
             //userdata?.account?.userId //localStorage.getItem("userId")
-            let filter = filterdata;
+            let filter = data? data : filterdata;
             filter['userId'] = userId;
             // filter['buyorsell'] = buyorsell;
             let res = await getyourrequesthook(filter);
@@ -100,11 +100,11 @@ const UserDashboard = (props) => {
     }
     const fetchtradehistory = async (data) => {
         let userId = GetUserId()
-        let filter = filterdata;
+        let filter =  data ? data:filterdata;
         filter['userId'] = userId;
         // filter['buyorsell'] = buyorsell1
         var result = await gettradehistoryhook(filter);
-        // console.log('result-----', result)
+        console.log('result-----', result)
         if (result?.data?.type == "success") {
             setTradehistory(result?.data?.data);
             setTradehistorycount(result?.data?.count);
@@ -114,11 +114,15 @@ const UserDashboard = (props) => {
 
     const fetchuserp2porderData = async (filterdata) => {
         try {
+            console.log("ffilter data" , filterdata);
+            
             let userId = GetUserId() //userdata?.account?.userId
             let filter = filterdata;
             filter['userId'] = userId;
             filter['buyorsell'] = buyorsell;
             let res = await Getuserp2pcreateorderhooks(filter);
+            console.log("result in fetch user pep order" , res);
+            
             setCount(res.count)
 
             if (res.status == "success") {
@@ -133,6 +137,7 @@ const UserDashboard = (props) => {
     }
 
     const fetchoffers = async (filterdata) => {
+        console.log("ffilter data" , filterdata);
         let userId = GetUserId()
         let filter = filterdata;
         filter['userId'] = userId;
@@ -141,7 +146,7 @@ const UserDashboard = (props) => {
         // var payload = {userid : userId};
 
         var result = await Getuserp2pviewofferhooks(filter);
-        // console.log('result-----', result.data)
+        console.log('result-----', result.data)
         setOfferrecords(result?.data);
         setOfferCount(result.count)
     }
@@ -149,22 +154,23 @@ const UserDashboard = (props) => {
 
 
     const handlePagination = (index) => {
-
+        console.log("handle pagination",index);
+        
         let filterData = { ...filterdata, ...{ page: index.page_number, limit: index.page_size } }
         setFilterData(filterData)
         fetchuserp2porderData(filterData)
     }
 
     const handlePaginationview = (index) => {
-
-        let filterData = { ...filterdata, ...{ page: index.page_number, limit: index.page_size } }
+        let filterData = { ...filterdata, ...{ page: index.page_number, limit: index.page_size , search : index?.filter_value} }
         setFilterData(filterData)
         fetchoffers(filterData)
     }
 
     const handletradehistoryPagination = (index) => {
-
-        let filterData = { ...filterdata, ...{ page: index.page_number, limit: index.page_size } }
+        const sear = index?.filter_value
+        console.log("trading pagination" , index , sear);
+        let filterData = { ...filterdata, ...{ page: index.page_number, limit: index.page_size , search : sear} }
         setFilterData(filterData)
         // var payload = {
         //     filter : filterData,
@@ -174,8 +180,7 @@ const UserDashboard = (props) => {
     }
 
     const handleyourrequestPagination = (index) => {
-
-        let filterData = { ...filterdata, ...{ page: index.page_number, limit: index.page_size } }
+        let filterData = { ...filterdata, ...{ page: index.page_number, limit: index.page_size ,search : index?.filter_value} }
         setFilterData(filterData)
         // var payload = {
         //     filter : filterData,
@@ -298,8 +303,8 @@ const UserDashboard = (props) => {
 
         },
         {
-            key: `${t("rating")}`,
-            text: "Trade Id",
+            // key: `${t("RATING")}`,
+            text: t("TRADE_ID"),
             className: "rating aqua",
             align: "left",
             cell: record => {
@@ -361,7 +366,7 @@ const UserDashboard = (props) => {
                                 var payload = { orderid: record?.orderid }
                                 var result = await cancelofferhooks(payload);
                                 await fetchuserp2porderData(filterdata);
-                                toastAlert("success", "Offer Closed successfully!")
+                                toastAlert("success", t("OFFER_CLOSED_SUCCESSFULLY"))
                             }}
                         >
                             <i className="fa fa-trash"></i>
@@ -425,7 +430,7 @@ const UserDashboard = (props) => {
         {
             key: "coin",
             //     (record?.orderdata?.createrid == userdata?.account?.userId) ? record?.orderdata?.ordertype : record?.orderdata?.ordertype == "Buy" ? "Buy" : "Sell",
-            text: `${t("CRYPTO")}`,
+            text: `${t("ORDERTYPE")}`,
             className: "address",
             align: "left",
             cell: record =>
@@ -700,6 +705,29 @@ const UserDashboard = (props) => {
         },
     }
 
+    const offerConfig = {
+        page_size: 10,
+        length_menu: [10, 20, 50],
+        button: {
+            // excel: true,
+            // print: true,
+        },
+        language: {
+            length_menu: "Show _MENU_ as per page",
+            filter: false,
+            info: "Showing _START_ to _END_ of _TOTAL_ entries",
+            pagination: {
+                first: "<<",
+                previous: "<",
+                next: ">",
+                last: ">>"
+            }
+        },
+        show_filter: false,
+    }
+
+    
+
 
     return (
         <div className='page_wrap home_page_header_banner'>
@@ -819,8 +847,6 @@ const UserDashboard = (props) => {
 
                                 </p>
                                 <p className='blackandwhite f-14 d-flex align-items-center jc-between mb-0 pinkshade'>
-
-
                                 </p> <button className='btn btn-bordered white mt-3' onClick={() => { navigate.push("/security") }}>{t("EDIT")}</button>
                             </div>
 
@@ -873,8 +899,7 @@ const UserDashboard = (props) => {
                                                         >
                                                             <span>{t("SELECT_TYPE")}</span></Dropdown.Item>
 
-                                                        <Dropdown.Item
-                                                        >
+                                                        <Dropdown.Item>
                                                             <p onClick={() => {
                                                                 handleSelect("Buy")
                                                             }}><span>{t("BUY")}</span></p></Dropdown.Item>
@@ -897,8 +922,9 @@ const UserDashboard = (props) => {
                                                 {/* <button className='btn btn-bordered white'>Filter <i class="fa-solid fa-sliders"></i></button> */}
                                             </div>
                                             <div className='table_yser_das'>
-                                                <ReactDatatable className="table table-responsivee table-bordered table-striped"
-                                                    config={config}
+                                                <ReactDatatable 
+                                                    className="table table-responsivee table-bordered table-striped"
+                                                    config={offerConfig}
                                                     records={records}
                                                     columns={columns}
                                                     dynamic={true}

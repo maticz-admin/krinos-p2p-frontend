@@ -94,6 +94,32 @@ export const getCurrency = async (dispatch) => {
     }
 }
 
+
+export const getPreferredCurrency = async (dispatch) => {
+    try {
+        let respData = await axios({
+            'method': 'get',
+            'url': `/api/get-preferredCurrency`,
+        });
+        const response = decodedata(respData.data)
+        // dispatch(setCurrencyOption(response.result))
+        return {
+            status: 'success',
+            loading: false,
+            result: response.result,
+        }
+    }
+    catch (err) {
+        console.log(err);
+        
+        handleResp(err, 'error')
+        return {
+            status: 'failed',
+            loading: false,
+        }
+    }
+}
+
 export const setLanguageOption = (data) => {
     return {
         type: SET_LANGUAGE_OPTION,

@@ -235,12 +235,12 @@ const HeaderLinks = () => {
                     {coinlist?.map((data, i) => {
                       var img = "crypt" + (i + 1);
                       return (
-                        <Dropdown.Item href={`/viewoffers/Buy/${data?.coin}`}>
+                        <Dropdown.Item href={`/viewoffers/Buy/${data?.name}`}>
                           <img
                             src={`${config.API_URL}/images/currency/${data?.image}`}
                             className="iconss"
                           />{" "}
-                          {t("BUY")} {data?.coin}
+                          {t("BUY")} {data?.name}
                         </Dropdown.Item>
                       );
                     })}
@@ -261,12 +261,12 @@ const HeaderLinks = () => {
                     {coinlist?.map((data, i) => {
                       var img = "crypt" + (i + 1);
                       return (
-                        <Dropdown.Item href={`/viewoffers/Sell/${data?.coin}`}>
+                        <Dropdown.Item href={`/viewoffers/Sell/${data?.name}`}>
                           <img
                             src={`${config.API_URL}/images/currency/${data?.image}`}
                             className="iconss"
                           />{" "}
-                          {t("SELL")} {data?.coin}
+                          {t("SELL")} {data?.name}
                         </Dropdown.Item>
                       );
                     })}
@@ -302,7 +302,7 @@ const HeaderLinks = () => {
             </ListItem> */}
               <ListItem className={classes.listItem}>
                 <NavLink
-                  to="/viewoffers/Buy/MATIC"
+                  to="/viewoffers/Buy/POL"
                   color="transparent"
                   className="nav-link"
                 >

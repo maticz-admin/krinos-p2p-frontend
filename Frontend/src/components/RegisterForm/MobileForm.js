@@ -45,7 +45,7 @@ const MobileForm = () => {
     const query = useQuery();
     // state
     const [formValue, setFormValue] = useState(initialFormValue);
-    // const [reCaptcha, setReCaptcha] = useState('');
+    //const [reCaptcha, setReCaptcha] = useState('');
     const [toched, setToched] = useState({});
     const [validateError, setValidateError] = useState({});
     const [loader, setLoader] = useState();
@@ -124,13 +124,13 @@ const MobileForm = () => {
             // setReCaptcha('')
             if (status == 'success') {
                 setFormValue(initialFormValue)
-                toastAlert('success', message, 'signup', 'TOP_RIGHT');
+                toastAlert('success', t(message), 'signup', 'TOP_RIGHT');
                 setOtpStatus(false)
             } else {
                 if (error) {
                     setValidateError(error);
                 }
-                toastAlert('error', message, 'signup', 'TOP_RIGHT');
+                toastAlert('error', t(message), 'signup', 'TOP_RIGHT');
             }
         }
 
@@ -185,13 +185,13 @@ const MobileForm = () => {
             if (status == "success") {
                 setValidateError({})
                 setOtpStatus(true)
-                toastAlert('success', message, 'mobileForm');
+                toastAlert('success', t(message), 'mobileForm');
             } else {
                 if (error) {
                     setValidateError(error)
                     // return
                 }
-                toastAlert('error', message, 'mobileForm');
+                toastAlert('error', t(message), 'mobileForm');
             }
             // if(status == "failed"){
             //     if(error){
@@ -201,6 +201,7 @@ const MobileForm = () => {
             // }
         } catch (err) { }
     }
+    
     console.log("validate error" , validateError);
     
 
@@ -209,7 +210,7 @@ const MobileForm = () => {
         // setValidateError(validation(formValue, t))
         if (query && query.get('referenceCode')) {
             setFormValue((prev) => {
-                return { ...prev, 'referenceCode': query.get('referenceCode') }
+                return { ...prev, 'referenceCode': query.get('referenceCode')}
             })
         }
     }, [])
@@ -269,7 +270,6 @@ const MobileForm = () => {
     ]);
 
     return (
-
         <div
             className="g-recaptcha"
             data-sitekey={config.RECAPTCHA_SITE_KEY}
@@ -328,6 +328,7 @@ const MobileForm = () => {
                 }
                 <span className='fa fa-mobile-alt right'></span>
                 {validateError.phoneCode && <p className="error-message">{t(validateError.phoneCode)}</p>}
+                {validateError.phoneNo && <p className="error-message">{t(validateError.phoneNo)}</p>}
             </div>
             
 

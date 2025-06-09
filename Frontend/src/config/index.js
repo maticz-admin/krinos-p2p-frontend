@@ -1,9 +1,9 @@
 let key = {};
-let env='dem' //production or local
+let env='demo' //production or local
 if (env === "demo") {
     const API_URL = "https://backp2p-stage.krinos.app/"    //'https://krinosp2p-backend.maticz.in/';
     key = {
-        fronturl : "https://uat-p2p.krinos.app/", //"https://krinosp2p.maticz.in",
+        fronturl : "https://uat-p2p.krinos.app", //"https://krinosp2p.maticz.in",
         secretOrKey: "vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3",
         CRYPTO_SECRET_KEY: "1234567812345678",
         RECAPTCHA_SITE_KEY: "6LcK8vEqAAAAAD06JyU22cbe42oqCgZRhjkDbP8L", //local

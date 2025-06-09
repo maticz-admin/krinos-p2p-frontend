@@ -355,7 +355,7 @@ export const Getfaqhooks = async (datas, dispatch) => {
         let respData = await axios({
             'url': `p2papi/get-faq`,
             'method': 'get',
-            // 'params' : datas
+            'params' : {encode: encodedata(datas)}
         });
         respData = decodedata(respData.data);
         // console.log("respdata in get faq" , respData);

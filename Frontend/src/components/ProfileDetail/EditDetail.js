@@ -356,7 +356,7 @@ const EditDetail = forwardRef((props, ref) => {
                                         className="themebtn text-uppercase py-2 button_profile_width"
                                         onClick={handleFormSubmit}
                                     >
-                                        {loader && <i className="fas fa-spinner fa-spin"></i>} {t('SUBMIT')}
+                                        {loader && <i className="fas fa-spinner fa-spin"></i>} {t('Submit')}
                                     </button>
                                 </div>
                             }

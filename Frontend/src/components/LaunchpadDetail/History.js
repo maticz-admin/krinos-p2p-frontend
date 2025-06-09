@@ -8,11 +8,13 @@ import { getPurchaseTkn } from '../../actions/launchpad';
 // import lib
 import { dateTimeFormat } from '../../lib/dateTimeHelper'
 import { toFixed } from "../../lib/roundOf"
+import { useTranslation } from 'react-i18next';
 
 
 let decimalETH;
 const History = (props) => {
     const dispatch = useDispatch();
+    const { t, i18n } = useTranslation();
 
     // props
     const { launchId } = props;
@@ -50,7 +52,7 @@ const History = (props) => {
                     <tbody>
                         {
                             loader && <tr>
-                                <td colspan="4" className="text-center">Loading...</td>
+                                <td colspan="4" className="text-center">{t("LOADING")}</td>
                             </tr>
                         }
                         {

@@ -112,7 +112,7 @@ const Messagenotification = () => {
                   <div className="container">
                     <GridContainer>
                       <GridItem xs={12} sm={12} md={12} lg={12}>
-                        <h3 className="dash_title login_title_8">Message Notifications</h3>
+                        <h3 className="dash_title login_title_8">{t("MESSAGE_NOTIFICATION")}</h3>
                       </GridItem>
 
                     </GridContainer>

@@ -7,9 +7,11 @@ import clsx from 'classnames';
 // import component
 import ChangePassword from '../ChangePassword';
 import TwoFA from '../TwoFA';
+import { useTranslation } from 'react-i18next';
 
 const Security = () => {
     const location = useLocation();
+    const { t, i18n } = useTranslation();
     const query = queryString.parse(location.search);
 
     // state
@@ -35,13 +37,13 @@ const Security = () => {
                         className={clsx({ "active": activeTab == '2FA' })}
                         onClick={() => setActiveTab('2FA')}
                     >
-                        <a data-toggle="tab" className={clsx({ "active": activeTab == '2FA' })} href="#twofactor">2 Step Authentication</a>
+                        <a data-toggle="tab" className={clsx({ "active": activeTab == '2FA' })} href="#twofactor">{t("2FA_HEADING")}</a>
                     </li>
                     <li
                         className={clsx({ "active": activeTab == 'password' })}
                         onClick={() => setActiveTab('password')}
                     >
-                        <a data-toggle="tab" className={clsx({ "active": activeTab == 'password' })} href="#loginpassword">Update Login Password</a>
+                        <a data-toggle="tab" className={clsx({ "active": activeTab == 'password' })} href="#loginpassword">{t("UPDATE_PASSWORD")}</a>
                     </li>
                 </ul>
             </div>

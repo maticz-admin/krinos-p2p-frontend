@@ -153,7 +153,7 @@ const Buybitcoin = (props) => {
                 navigate.push("/createoffer");
             }
             else {
-                toastAlert("error", "Complete your kyc and update full name");
+                toastAlert("error", t("COMPLETE_YOUR_KYC_AND_UPDATE_FULL_NAME"));
             }
         }
         else {
@@ -227,10 +227,7 @@ const Buybitcoin = (props) => {
                         <img src={Images.connect} className='connectright' />
                         <div className='btborder d-sm-flex justify-content-between mt-5'>
                             <div className='mb-sm-0 mb-3'>
-
-
                                 <div className='mb-0'>
-
                                     <Dropdown className="headerdropdown m-left iner_drop_versiotwo">
                                         <Dropdown.Toggle variant="success" className='btcc  bnt_drops_btcc' id="dropdown-basic">
                                             <span>{coin}</span>
@@ -319,7 +316,7 @@ const Buybitcoin = (props) => {
                                             </>
                                         </div> </>)}
 
-                                        {!loader && <> {!offerdata || offerdata?.length == 0 && <p className='mb-0 d-flex h-100 align-items-center jc-center text-light'>No data found</p>} </>}
+                                        {!loader && <> {!offerdata || offerdata?.length == 0 && <p className='mb-0 d-flex h-100 align-items-center jc-center text-light'>{t("NO_DATA_FOUND")}</p>} </>}
                                         {!loader && <>
                                              {loadbutton && 
                                         <div className='text-center mt-3'>

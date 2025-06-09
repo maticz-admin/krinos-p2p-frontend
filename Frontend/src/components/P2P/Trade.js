@@ -13,6 +13,7 @@ import config from "../../config/index";
 import { socket } from "../../config/socketConnectivity";
 import { useHistory, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { toastAlert } from 'lib/toastAlert';
+import {GetUserId}  from "lib/userdata"
 
 
 
@@ -20,10 +21,14 @@ import Takeatourmodal from "./Modal/Takeatourmodal";
 import Canceltrademodal from "./Modal/Canceltrademodal";
 import Reviewmodal from "./Modal/Reviewmodal"
 import { userStatus } from "lib/displayStatus";
+import { useTranslation } from "react-i18next";
+import CopyToClipboard from "react-copy-to-clipboard";
 
 const dashboardRoutes = [];
 const Trade = (props) => {
   const { ...rest } = props;
+  const { t, i18n } = useTranslation();
+  
   const userdata = useSelector(state => state);
   const accountData = useSelector((state) => state.account);
   const location = useLocation();
@@ -56,6 +61,8 @@ const Trade = (props) => {
   const [lastseendata, setLastseendata] = useState(Date.now().toString());
   const [tag, setTag] = useState({});
 
+  const [loder , setLoader] = useState(false)
+
   // const socket = useRef();
 
   const handleonset = (data) => {
@@ -68,6 +75,7 @@ const Trade = (props) => {
 
 
   const fetchdata = async () => {
+    setLoader(true)
     setUser(userdata?.account);
     var payload = { roomid: roomid }
     const chatresult = await Getorderchathook(payload);
@@ -103,6 +111,7 @@ const Trade = (props) => {
         // setUser(userresult?.data?.data);
       }
     }
+    setLoader(false)
   }
 
   const ValidateFile = (data) => {
@@ -154,7 +163,7 @@ const Trade = (props) => {
     var result = await canceltradehook(payload);
     if (result?.data?.type == "success") {
       setTradechat(result?.data?.data);
-      toastAlert("success", "Cancelled Successfully");
+      toastAlert("success", t("CANCELLED_SUCCESSFULLY"));
       await fetchdata()
     }
   }
@@ -167,7 +176,7 @@ const Trade = (props) => {
     var result = await updateorderstatushooks(payload);
     if (result?.data?.type == "success") {
       setOfferdata(result?.data?.data);
-      toastAlert("success", "Paid Successfully");
+      toastAlert("success", t("PAID_SUCCESSFULLY"));
     }
   }
 
@@ -198,7 +207,7 @@ const Trade = (props) => {
     // var assetupdateresult = 
     if (result?.data?.type == "success") {
       setOfferdata(result?.data?.data);
-      toastAlert("success", "Transferred Successfully");
+      toastAlert("success", t("TRANSFERRED_SUCCESSFULLY"));
       fetchdata();
     }
   }
@@ -210,7 +219,7 @@ const Trade = (props) => {
     }
     var result = await updateorderstatushooks(payload);
     if (result?.data?.type == "success") {
-      toastAlert("success", "Rejected Successfully");
+      toastAlert("success", t("REJECTED_SUCCESSFULLY"));
       setOfferdata(result?.data?.data);
     }
   }
@@ -302,7 +311,7 @@ const Trade = (props) => {
   return (
     <>
       <Header
-        className="header dropheader"
+        className = "header dropheader"
         color="transparent"
         routes={dashboardRoutes}
         brand={
@@ -323,16 +332,14 @@ const Trade = (props) => {
 
       <div className="login_container login_box">
         <div className="container">
-          <div className="row offerpage">
+          {!loder?<div className="row offerpage">
             <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-              <h5 className="blackandwhite bit_text text-center bit1">Offer</h5>
+              <h5 className="blackandwhite bit_text text-center bit1">{t("OFFER")}</h5>
               <div>
                 {offerheader && <div className="notes mb-3">
                   <span className="fa fa-info"></span>
                   <p>
-                    Keep all conversation within the trade chat. Moderator won't
-                    be able assist you if something goes wrong outeside of
-                    Krinos P2P
+                    {t("KEEP_ALL_CONVENTION")}
                   </p>
                   <button className="btn btn-link" onClick={() => setOfferheader(false)}>x</button>
                 </div>}
@@ -341,9 +348,9 @@ const Trade = (props) => {
                     <span className="fa fa-clock"></span>
                     <div>
                       {" "}
-                      <p className="mb-2 roboto">Please make a payment of {location?.state?.state?.pay} {offerdata?.preferedcurrency} using Airtel Money.</p>
+                      <p className="mb-2 roboto">{t("PLEASE_MAKE_PAYMENT_OF")} {location?.state?.state?.pay} {offerdata?.preferedcurrency} {t("USING")} Airtel Money.</p>
                       <p className="subhead text-left">
-                        {location?.state?.state?.receive} {offerdata?.coin} will be {location?.state?.state?.tradedata?.ordertype == "Buy" ? "added" : "reduced"} to your Bitcoin Wallet
+                        {location?.state?.state?.receive} {offerdata?.coin} {t("WILL_BE")} {location?.state?.state?.tradedata?.ordertype == "Buy" ? t("ADDED") : t("REDUCED")} {t("TO_YOUR_BITCOIN_WALLET")}
                       </p>
                     </div>
                   </div>
@@ -351,24 +358,24 @@ const Trade = (props) => {
 
 
                   {offerdata?.ordertype == "Sell" && tradechat?.spender != userdata?.account?.userId && tradechat?.paidstatus == "paid" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <><button className="btn themebtn" onClick={() => handleconfirm()}>{console.log("countdown", parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit)))}
-                    Confirm <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                    {t("CONFIRM")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
                     <span className="fa fa-check ps-1"></span>
                   </button>
 
                     <button className="btn themebtn ms-3" onClick={() => handlereject()}>
-                      Reject <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                      {t("REJECT")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
                       <span className="fa fa-check ps-1"></span>
                     </button>
 
                   </>}
 
                   {offerdata?.ordertype == "Buy" && tradechat?.spender == userdata?.account?.userId && tradechat?.paidstatus == "paid" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <><button className="btn themebtn" onClick={() => handleconfirm()}>{console.log("countdown", parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit)))}
-                    Confirm <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                    {t("CONFIRM")} <br /> {t("TIME_LEFT")} <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
                     <span className="fa fa-check ps-1"></span>
                   </button>
 
                     <button className="btn themebtn ms-3" onClick={() => handlereject()}>
-                      Reject <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                      {t("REJECT")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
                       <span className="fa fa-check ps-1"></span>
                     </button>
 
@@ -387,62 +394,69 @@ const Trade = (props) => {
 
 
                   {offerdata?.ordertype == "Sell" && tradechat?.spender == userdata?.account?.userId && tradechat?.paidstatus == "pending" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => handlepaid()}>
-                    Paid <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                    {t("PAID")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
                     <span className="fa fa-check ps-1"></span>
                   </button>}
                   {offerdata?.ordertype == "Buy" && tradechat?.spender != userdata?.account?.userId && tradechat?.paidstatus == "pending" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => handlepaid()}>
-                    Paid <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                    {t("PAID")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
                     <span className="fa fa-check ps-1"></span>
                   </button>}
                   {canceltrade && <div className="notes">
                     <span className="fa fa-info ps-1"></span>
                     <p>
-                      Keep trades within Krinos P2P. Some users may ask you to trade outside the Krinos P2P platform. This is against our Terms of Service and likely a scam attempt. You must insist on keeping all trade conversations within Krinos P2P. If you choose to proceed outside Krinos P2P, note that we cannot help or support you if you are scammed during such trades
+                      {t("KEEP_TRADES_WITHIN_KRINOSP2P")}
                     </p>
                     <button className="btn btn-link" onClick={() => setCanceltrade(false)}>x</button>
                   </div>}
                   <hr />
                   <div className="flexb canceltrade">
-                    {(tradechat?.chatstatus == "Active" && tradechat?.paidstatus == "pending") && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => setCancelmodal(true)}>Cancel trade</button>}
-                    {tradechat?.spender == userdata?.account?.userId && <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" ? "You have not completed the payment yet" : `You have paid ${spenderdata?.pay} ${offerdata?.preferedcurrency}`}</p>}
+                    {(tradechat?.chatstatus == "Active" && tradechat?.paidstatus == "pending") && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => setCancelmodal(true)}>{t("CANCEL_TRADE")}</button>}
+                    {tradechat?.spender == userdata?.account?.userId && <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${offerdata?.preferedcurrency}`}</p>}
                   </div>
                 </div>
                 <div className="secondbox">
-                  <h6 className="roboto followtag">Please follow {owner?.firstName} 's Instructions</h6>
-                  <p className="roboto">No verification needed</p>
+                  <h6 className="roboto followtag">{t("PLEASE_FOLLOW")} {owner?.firstName} {t("S_INSTRUCTION")}</h6>
+                  <p className="roboto">{t("NO_VERIFICATION_NEEEDED")}</p>
 
-                  <h6 className="roboto followtag">Trade Information</h6>
-                  <p className="roboto offercontent">
+                  <h6 className="roboto followtag">{t("TRADE_INFORMATION")}</h6>
+                  {/* <p className="roboto offercontent">
                     12457.5 BTC has been reserved for this trade. This includes
                     Krinos P2P fee of 0 BTC.
-                  </p>
+                  </p> */}
                   <div className="row tradeinfo">
                     <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
-                      <h6 className="roboto">Rate</h6>
+                      <h6 className="roboto">{t("RATE")}</h6>
                       <p className="roboto">1 {offerdata?.coin} = {parseFloat(spenderdata?.perprice).toFixed(3)}{offerdata?.preferedcurrency}</p>
                     </div>
                     <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
-                      <h6 className="roboto">Trade ID</h6>
+                      <h6 className="roboto">{t("TRADE_ID")}</h6>
                       <p className="roboto">
-                        {tradechat?.roomid}<span className="fa fa-copy ml-2"></span>{" "}
+                        {tradechat?.roomid} 
+                        <CopyToClipboard
+                      text={tradechat?.roomid}
+                      onCopy={() => {
+                        toastAlert("success", t("COPIED"), "wallet");
+                      }}
+                    ><span className="fa fa-copy ml-2"></span></CopyToClipboard>
                       </p>
                     </div>
                     <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
-                      <h6 className="roboto">Started</h6>
+                      <h6 className="roboto">{t("STARTED")}</h6>
                       <p className="roboto">{new Date(parseFloat(tradechat?.orderstarttime))?.toString()?.slice(4, 21)}</p>
                     </div>
                     {tradechat?.chatstatus == "Inactive" || (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) < Date.now() && <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
-                      <h6 className="roboto">{tradechat?.chatstatus == "Inactive" ? "Cancelled" : "Ended"}</h6>
+                      <h6 className="roboto">{tradechat?.chatstatus == "Inactive" ? t("CANCELLED") : t("ENDED")}</h6>
                       <p className="roboto">{tradechat?.orderendtime ? new Date(parseFloat(tradechat?.orderendtime))?.toString()?.slice(4, 21) : new Date(parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit)))?.toString()?.slice(4, 21)}</p>
                     </div>}
                   </div>
+                  
                   <div className="d-flex jc-between mt-3">
-                    <button className="offerbtn roboto" onClick={() => navigate.push("/support-ticket", { state: tradechat?.roomid })}>Report</button>
+                    <button className="offerbtn roboto" onClick={() => navigate.push("/support-ticket", { state: tradechat?.roomid })}>{t("REPORT")}</button>
                     <button href="#" className="offerbtn roboto" onClick={() => navigate.push(`/bitcoincompany/${offerdata?._id}`)}>
-                      View offer
+                      {t("VIEW_OFFER")}
                     </button>
                     <button className="offerbtn roboto" onClick={() => setTour(true)}>
-                      <span className="fa fa-info-circle pr-2"></span> Take a tour
+                      <span className="fa fa-info-circle pr-2"></span> {t("TAKE_A_TOUR")}
                     </button>
                   </div>
                 </div>
@@ -466,7 +480,8 @@ const Trade = (props) => {
                       {/* <a href="#">
                         <span className="fa fa-mobile mobileicon"></span>
                       </a> */}
-                      {tradechat?.spender == userdata?.account?.userId && <>
+                      {/* userdata?.account?.userId */}
+                      {tradechat?.spender == GetUserId() && <>  
                         <a href="#" onClick={() => { setReviewtype("positive"); setReview(true) }}>
                           <div className="likebox">
                             <i className="fa fa-thumbs-up"></i>
@@ -485,20 +500,20 @@ const Trade = (props) => {
                 </div>
                 <div className="flexb usertime">
                   <div>
-                    <p className="roboto sidetag"> {userstatus == "Online" ? "Online" : `Last seen ${new Date(parseFloat(lastseendata))?.toString()?.slice(4, 21)}`}</p>
+                    {/* <p className="roboto sidetag"> {userstatus == "Online" ? "Online" : `Last seen ${new Date(parseFloat(lastseendata))?.toString()?.slice(4, 21)}`}</p> */}
 
                     {/* <p className="roboto sidetag"> {tradechat?.ordercreator == userdata?.account?.userId ? (userdatas?.lastseen == "online" ? "Online" : `lastseen ${new Date(parseFloat(userdatas?.lastseen))?.toString()?.slice(4 , 21)}`) : (owner?.lastseen == "online" ? "Online" : `lastseen ${new Date(parseFloat(owner?.time))?.toString()?.slice(4 , 21)}`)}</p> */}
                   </div>
                   <div className="partner">
                     <i className="fas fa-info-circle"></i>
                     {tradechat && <a href={""} onClick={() => navigate.push(`/displayownerdata/${tradechat?.ordercreator == userdata?.account?.userId ? tradechat?.spender : tradechat?.ordercreator}`)} >
-                      <span className="roboto">Partner details</span>
+                      <span className="roboto">{t("PARTNER_DETAIL")}</span>
                     </a>}
                   </div>
                 </div>
-                <div className={tradechat?.message != 0 ? "unavail" : "unavail bdr_rmv"}>
+                {/* <div className={tradechat?.message != 0 ? "unavail" : "unavail bdr_rmv"}>
                   <p className="roboto sidetag">{userStatus == "Online" ? "Moderator available" : "Moderator Unavailable"}</p>
-                </div>
+                </div> */}
                 
                 {
                   tradechat?.message != 0 && 
@@ -547,7 +562,7 @@ const Trade = (props) => {
                     value={newmessage}
                     onChange={(e) => setNewmessage(e?.target?.value)}
                     className="form-control roboto"
-                    placeholder="Write a message..."
+                    placeholder={t("WRITE_A_MESSAGE")}
                   />
                   <div className="flexb">
                     <div className="uploadbtn">
@@ -564,7 +579,7 @@ const Trade = (props) => {
                             setImageblob(URL.createObjectURL(e?.target?.files[0])) 
                           }
                           else {
-                            toastAlert("error", "Invalid File");
+                            toastAlert("error", t("INVALID_FILE"));
                           }
                         }}
                       />
@@ -572,20 +587,27 @@ const Trade = (props) => {
                     <div>
                       <button className="roboto btn sendbtn" onClick={handleSend}>
                         <span className="fa fa-paper-plane"></span>
-                        Send
+                        {t("SEND")}
                       </button>
                     </div>
                   </div>
                 </div>
                  } 
 
-                {userdatas?.level == 1 && <button className="themebtn" onClick={() => handleconfirm()}>Paid User</button>}
+                {userdatas?.level == 1 && <button className="themebtn" onClick={() => handleconfirm()}>{t("PAID_USER")}</button>}
                 {tour && <Takeatourmodal onDismiss={() => setTour(false)} />}
                 {cancelmodal && <Canceltrademodal onDismiss={() => setCancelmodal(false)} oncancel={async () => { await handlecancel(); setCancelmodal(false) }} />}
                 {review && <Reviewmodal type={reviewtype} owner={tradechat?.ordercreator == userdata?.account?.userId ? tradechat?.spender : tradechat?.ordercreator} onSet={(data) => handleonset(data)} onDismiss={() => setReview(false)} />}
               </div>
             </div>
-          </div>
+          </div> 
+          
+        :
+        <div id='loadercontainer'> 
+                              <div className='themeloader'> 
+                              </div>
+                              </div> 
+        }
         </div>
       </div>
     </>
