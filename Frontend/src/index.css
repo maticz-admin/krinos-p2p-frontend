@@ -28652,14 +28652,16 @@ button.otp_btn {
   position: absolute;
   top: 1px;
   right: 1px;
-  width: 90px;
-  font-size: 13px;
+  width: 95px;
+  font-size: 11px;
+  font-weight: 600;
   white-space: nowrap;
   z-index: 999;
   height: 50px;
   background: #21b77a;
   border: 1px solid transparent;
   transition: 0.2s all;
+  text-wrap: balance;
 }
 
 button.otp_btn:hover {
@@ -34217,7 +34219,7 @@ option {
   color: #000 !important;
 }
 .createoffer_modal_whole.hide_sec {
-  max-height: 200px;
+  max-height: 210px;
   overflow-y: hidden;
 }
 
@@ -34229,6 +34231,8 @@ option {
 #vie_more_a {
   color: #6e9fda !important;
   cursor: pointer;
+  margin-top: 5px;
+  display: inline-block;
 }
 #vie_more_a:hover {
   color: #b575aa !important;
