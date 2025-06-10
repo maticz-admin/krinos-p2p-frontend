@@ -891,7 +891,7 @@ export default {
     "OFFER_MARGIN":"Offer margin",
     "OFFER_TIME_LIMITS":"Offer Time Limits",
     "DECIDE_THE_PRICE":"Decide the price you want to trade at, and set the limits for your offer.",
-    "PEOPLE_CAN_TRADE_BETWEEN":"People can trade between",
+    "PEOPLE_CAN_TRADE_BETWEEN":"People can trade between ",
     "PREVIOUS":"Previous",
     "TRADE_INSTRUCTIONS":"Trade Instructions",
     "SELECT_OFFER_TAGS":"Select Offer tags",

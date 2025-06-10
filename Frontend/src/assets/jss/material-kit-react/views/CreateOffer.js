@@ -190,7 +190,7 @@ const CreateOffer = (props) => {
             
             setPrefferedcurrencylist(precurrency?.result);
             setPrefferedcurrency(precurrency?.result[0]?.coin)
-            setPreimage(`${config.API_URL}/images/currency/${precurrency?.result[0]?.image}`)
+            setPreimage(`${precurrency?.result[0]?.image}`)
             setCoinimg(`${config.API_URL}/images/currency/${finalarray[0]?.image}`);
             var ofrtg = await Getalloffertaghook();
             setOffertaglist(ofrtg?.data?.data);
@@ -482,8 +482,8 @@ const CreateOffer = (props) => {
                                                             <Dropdown.Item
                                                             ><p className='d-flex align-items-center' onClick={() => {
                                                                 setPrefferedcurrency(data?.coin);
-                                                                setPreimage(`${config?.API_URL}/images/currency/${data?.image}`);
-                                                            }}><img src={`${config?.API_URL}/images/currency/${data?.image}`} className="iconss" /> {data?.coin}</p></Dropdown.Item>)
+                                                                setPreimage(`${data?.image}`);
+                                                            }}><img src={`${data?.image}`} className="iconss" /> {data?.coin}</p></Dropdown.Item>)
                                                     })}
 
                                                 </Dropdown.Menu>

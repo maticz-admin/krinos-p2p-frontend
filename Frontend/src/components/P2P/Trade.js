@@ -309,9 +309,9 @@ const Trade = (props) => {
   }, [socket]);
 
   return (
-    <>
+    <div className="page_wrap">
       <Header
-        className = "header dropheader"
+        className = "header dropheader" 
         color="transparent"
         routes={dashboardRoutes}
         brand={
@@ -415,8 +415,12 @@ const Trade = (props) => {
                   </div>
                 </div>
                 <div className="secondbox">
-                  <h6 className="roboto followtag">{t("PLEASE_FOLLOW")} {owner?.firstName} {t("S_INSTRUCTION")}</h6>
-                  <p className="roboto">{t("NO_VERIFICATION_NEEEDED")}</p>
+                  {tradechat?.ordercreator != userdata?.account?.userId  &&<><h6 className="roboto followtag">{t("PLEASE_FOLLOW")} {owner?.firstName} {t("S_INSTRUCTION")}</h6>
+                  {offerdata.verifiyid && <p className="roboto">You have to verify your id</p>}
+                  {offerdata.verifiyfullname && <p className="roboto">You have to verify your full name</p>}
+                  {!offerdata.verifiyid && !offerdata.verifiyfullname &&<p className="roboto">{t("NO_VERIFICATION_NEEEDED")}</p>}
+                  </>}
+
 
                   <h6 className="roboto followtag">{t("TRADE_INFORMATION")}</h6>
                   {/* <p className="roboto offercontent">
@@ -610,7 +614,7 @@ const Trade = (props) => {
         }
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
