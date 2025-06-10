@@ -170,7 +170,7 @@ const PhoneNoChange = () => {
         }
         toastAlert("error", message, "editPhoneNumber");
       }
-    } catch (err) {}
+    } catch (err) { }
   };
 
   const handleFormSubmit = async (e) => {
@@ -200,7 +200,7 @@ const PhoneNoChange = () => {
       } else {
         setValidateError(error);
       }
-    } catch (err) {}
+    } catch (err) { }
   };
 
   // useEffect(() => {
@@ -213,7 +213,7 @@ const PhoneNoChange = () => {
         newPhoneNo: phoneNo,
       });
     }
-console.log("validate error" , validateError);
+    console.log("validate error", validateError);
 
     // const handleFormSubmit = async (e) => {
     //     // debugger
@@ -228,7 +228,7 @@ console.log("validate error" , validateError);
     //         }
     //         let { status, loading, error, message, result } = await verifyNewPhone(reqData);
     //         console.log("status, loading, error, message, result" , status, loading, error, message, result);
-            
+
     //         setLoader(loading)
     //         if (status == "success") {
     //             setDisablePh(true)
@@ -248,26 +248,26 @@ console.log("validate error" , validateError);
     // }
   }, [mobileDetail?.timer]);
 
-console.log("mobileDetail" , mobileDetail)
+  console.log("mobileDetail", mobileDetail)
 
 
-useEffect(() => {
-  if (mobileDetail.timer > 0 && mobileDetail.timerStart == true) {
+  useEffect(() => {
+    if (mobileDetail.timer > 0 && mobileDetail.timerStart == true) {
       const intervalId = setInterval(() => {
-          setMobileDetail({ ...mobileDetail, ...{ 'timer': mobileDetail.timer - 1 } })
+        setMobileDetail({ ...mobileDetail, ...{ 'timer': mobileDetail.timer - 1 } })
       }, 1000);
 
       return () => clearInterval(intervalId);
-  } else if (mobileDetail.timer == 0 && mobileDetail.timerStart == true) {
+    } else if (mobileDetail.timer == 0 && mobileDetail.timerStart == true) {
       setMobileDetail({
-          ...mobileDetail, ...{
-              'timer': 600,
-              'timerStart': false,
-              'isDisable': false
-          }
+        ...mobileDetail, ...{
+          'timer': 600,
+          'timerStart': false,
+          'isDisable': false
+        }
       })
-  }
-}, [mobileDetail.timer])
+    }
+  }, [mobileDetail.timer])
 
   return (
     <GridItem xs={12} sm={12} md={4} lg={4}>
@@ -275,14 +275,14 @@ useEffect(() => {
         {/* <label>{t("PHONE_NUMBER")}<span class="textRed">*</span></label> */}
         <div class="input-group mb-0 otp_inp_grp">
           <PhoneInput
-                        country='bo'
-                        placeholder={t("PHONE_NUMBER")}
-                        value={newPhoneCode + newPhoneNo}
-                        onChange={handlePhoneNumber}
-                        onBlur={handleBlurPhone}
-                        specialLabel={false}
-                        disabled={disablePh}
-                    />
+            country='bo'
+            placeholder={t("PHONE_NUMBER")}
+            value={newPhoneCode + newPhoneNo}
+            onChange={handlePhoneNumber}
+            onBlur={handleBlurPhone}
+            specialLabel={false}
+            disabled={disablePh}
+          />
           <button
             type="button"
             className="btn btn-primary text-uppercase py-2 my-0 ml-2"
@@ -292,7 +292,7 @@ useEffect(() => {
             {mobileDetail.isLoading && <i class="fas fa-spinner fa-spin mr-2"></i>}
             {mobileDetail.type == 'send' ? t("SEND_OTP") : t("RESEND_OTP")}
           </button>
-                    {/* <div className='countrylist phonenumber'>
+          {/* <div className='countrylist phonenumber'>
                      <Autocomplete value={newPhoneCode}
                     //  open={open}
       disablePortal
@@ -322,37 +322,39 @@ useEffect(() => {
 
 
                     </div> */}
-                </div>
-                <p className="error-message" style={{ color: 'red' }}>{t(validateError?.newPhoneNo)}</p>
-                <p className="error-message" style={{ color: 'red' }}>{t(validateError?.phoneNo)}</p>
-                
-            </div>
-            <div className="form-group floatinglabel otp_inp_grp mt-4">
-                <label className='otp_lable_float_zind'>{t("ENTER_OTP")}</label>
-                <div className="input-group">
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="otp"
-                        value={otp}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        pattern="[0-9]*"
-                    />
-                    <div className="input-group-append otp_grp_btn">
-                        <span className="input-group-text py-2 my-0">
-                            {
-                                (mobileDetail.timer != 0 && mobileDetail.timer != 120) && <span className="textBlue">
-                                    {mobileDetail.timer} {t("Sec")}
-                                </span>
-                            }
-                        </span>
-                    </div>
-                    
-                    {
-                        toched.otp && validateError.otp && <span className="error_text">{t(validateError.otp)}</span>
-                    }
         </div>
+        <p className="error-message" style={{ color: 'red' }}>{t(validateError?.newPhoneNo)}</p>
+        <p className="error-message" style={{ color: 'red' }}>{t(validateError?.phoneNo)}</p>
+
+      </div>
+      <div className="form-group floatinglabel otp_inp_grp mt-4">
+        <label className='otp_lable_float_zind'>{t("ENTER_OTP")}</label>
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control"
+            name="otp"
+            value={otp}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            pattern="[0-9]*"
+          />
+          <div className="input-group-append otp_grp_btn">
+            <span className="input-group-text py-2 my-0">
+              {
+                (mobileDetail.timer != 0 && mobileDetail.timer != 120) && <span className="textBlue">
+                  {mobileDetail.timer} {t("Sec")}
+                </span>
+              }
+            </span>
+          </div>
+
+          
+        </div>
+        {
+            toched.otp && validateError.otp && 
+             <p style={{ color: "red" }} className="error-message">{t(validateError.otp)}</p>
+          }
         {/* <p style={{ color: "red" }} className="error-message">
           {validateError.otp}
         </p> */}

@@ -134,7 +134,7 @@ const fetchdata = async() => {
 
     return (
         <>
-        <div>
+        <div className='page_wrap'>
             <Header className="header"
                 color="transparent"
                 routes={dashboardRoutes}

@@ -1386,7 +1386,16 @@ a[aria-expanded="true"] .fa-plus:before {
 }
 .chatfoot img,
 .chatbg img {
-  max-width: 100%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.chatbg a {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
 }
 .light_theme .likebox span,
 .light_theme .dislikebox span {
