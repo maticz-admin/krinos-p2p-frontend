@@ -159,7 +159,7 @@ const CryptoWithdraw = (props) => {
         setFormValue(initialFormValue);
         handleClose();
         // toastAlert("success", t(message), "withdraw");
-        toastAlert("success", "Your withdraw request sent to admin", "withdraw");
+        toastAlert("success", t("WITHDRAW_SUCCESS"), "withdraw");
       } else {
         if (error) {
           setValidateError(error);
@@ -167,13 +167,16 @@ const CryptoWithdraw = (props) => {
         }
         toastAlert("error", t(message), "withdraw");
       }
-    } catch (err) {}
+      setLoader(false);
+    } catch (err) {
+      setLoader(false);
+    }
   };
 
   return (
     <Modal show={show} onHide={handleClose} centered backdrop="static">
       <Modal.Header closeButton className="pb-3 pt-3">
-        <Modal.Title>Withdraw Crypto</Modal.Title>
+        <Modal.Title>{t("WITHDRAW_CRYPTO")}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <GridContainer>
@@ -270,7 +273,7 @@ const CryptoWithdraw = (props) => {
           <GridItem xs={12} sm={12} md={12} lg={12}>
             <div className="wallwt_balance">
               <p>
-                <span>Withdraw Amount with Fee + escrow fee</span>
+                <span>{t("WITHDRAW_AMOUNT_WITH_FEE")}</span>
               </p>
             </div>
           </GridItem>

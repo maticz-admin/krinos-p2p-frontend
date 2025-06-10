@@ -56,7 +56,7 @@ const ChatList = (props) => {
         try {
             const { status, loading, error, message, result } = await closeTicket(reqData);
             if (status == 'success') {
-                toastAlert('success', message, 'supportTicket');
+                toastAlert('success', t(message), 'supportTicket');
                 setTimeout(() => {
                     closeTicketFun(result.status)
                 }, 1000)
@@ -69,13 +69,10 @@ const ChatList = (props) => {
         <Card>
             <Card.Header className='support_header_new' onClick={() => supportIcon(dispatch, eventKey)}>
                 <h5 className="mb-0 gtt">
-                   
                         <div className="stHeadText subjectWidth"><small>{t('SUBJECT')}</small>{ticketRecord.categoryName}</div>
                         <div className="stHeadText ticketIdWidth"><small>{t('TICKET_ID')}</small>#{ticketRecord.tickerId}</div>
                         <div className="stHeadText statusWidth"><small>{t('STATUS')}</small><small className="yellowText">{capitalize(ticketRecord.status)}</small></div>
                         { ticketRecord.status == "open" ? <div className='support_ticket_emty stHeadText'> <button className='themebtn btn-sm-close' onClick={handleCloseTicket}>Close</button></div> : <div className='support_ticket_emty stHeadText emp_txt'>-</div>}
-                       
-                  
                 </h5>
             </Card.Header>
          

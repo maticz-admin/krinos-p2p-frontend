@@ -11,11 +11,12 @@ import tour6 from "../../../assets/images/take_a_tour/tour6.png"
 import tour7 from "../../../assets/images/take_a_tour/tour7.png"
 import { Adduserreviewhooks } from 'actions/P2PorderAction';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 // import spring from "../../../../images/toss/bannerbg.png";
 const Reviewmodal = (props) =>{
     const userdata = useSelector(state => state);
     const [isoffertagmodal , setIsoffertagmodal] = useState(true);
-
+const { t, i18n } = useTranslation();
     const [taglist , setTaglist] = useState([]);
     const [userreview , setUserreview] = useState("");
 
@@ -47,7 +48,7 @@ const Reviewmodal = (props) =>{
                                     </div>
                                     <Modal.Header>
                                         <Modal.Title id="contained-modal-title-vcenter">
-                                            <p className='mb-0'>Review</p>
+                                            <p className='mb-0'>{t("REVIEW")}</p>
                                             {/* <p className='submod-title'>It is a long established fact that a reader</p> */}
                                         </Modal.Title>
                                         <Button variant="secondary" className='modalbtns' onClick={props?.onDismiss}> x
@@ -66,7 +67,7 @@ const Reviewmodal = (props) =>{
                                         </div> */}
                                         
                                         </div>
-                                  <div className='text-center'> <button className='btn themebtn' onClick={()=> handleclick()}>Submit</button></div> 
+                                  <div className='text-center'> <button className='btn themebtn' onClick={()=> handleclick()}>{t("Submit")}</button></div> 
                                     </Modal.Body>
                                 </Modal>
         </>

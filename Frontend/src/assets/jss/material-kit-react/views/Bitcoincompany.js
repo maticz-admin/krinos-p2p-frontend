@@ -105,7 +105,6 @@ const Bitcoincompany = (props) => {
                 setUserdatas(userresult?.data?.data);
                 setUserdataskyc(userresult?.data?.kyc);
                 var usewallets = userresult?.data?.wallet?.assets?.find(e => e.coin == result?.data?.data?.coin);
-
                 setUserwallet(usewallets);
             }
             setLoader(false);
@@ -199,7 +198,7 @@ const Bitcoincompany = (props) => {
                 }
             }
             else {
-                toastAlert("error", "Trade owner have Insufficient funds");
+                toastAlert("error", t("TRADE_OWNER_HAVE_INSUFFICIENT_FUNDS"));
             }
         }
         else if (tradedata?.ordertype == "Buy") {
@@ -228,7 +227,7 @@ const Bitcoincompany = (props) => {
                 }
             }
             else {
-                toastAlert("error", "Trade owner have Insufficient funds");
+                toastAlert("error", t("TRADE_OWNER_HAVE_INSUFFICIENT_FUNDS"));
             }
         }
 
@@ -270,7 +269,7 @@ const Bitcoincompany = (props) => {
         // }
         console.log('userdata?.account?.userId---',userdata?.account?.userId, ownerdata?.userId )
         if (userdata?.account?.userId == ownerdata?.userId) {
-            toastAlert("error", "You can't trade this order")
+            toastAlert("error", t("YOU_CANT_TRADE_THIS_ORDER"))
         }
         else {
             // if()
@@ -280,14 +279,14 @@ const Bitcoincompany = (props) => {
                         var result = await handletrade();
                     }
                     else {
-                        toastAlert("error", "You must complete kyc and update name for this trade")
+                        toastAlert("error", t("YOU_MUST_UPDATE_KYC_AND_NAME"))
                     }
                 }
                 else if (userdatas?.firstName && userdatas?.lastName) {
                     var result = await handletrade();
                 }
                 else {
-                    toastAlert("error", "You must update your full name for this trade");
+                    toastAlert("error", t("YOU_MUST_UPDATE_FULL_NAME"));
                 }
             }
             // else if(!tradedata?.verifiyid && !tradedata?.verifiyfullname){}
@@ -296,7 +295,7 @@ const Bitcoincompany = (props) => {
                     var result = await handletrade();
                 }
                 else {
-                    toastAlert("error", "You must update your kyc for this trade");
+                    toastAlert("error", t("YOU_MUST_UPDATE_KYC"));
                 }
             }
             else {
@@ -393,7 +392,7 @@ const Bitcoincompany = (props) => {
                                     <div className='col-md-4 col-sm-6'>
                                         <div className='border1 mt-2'>
                                             <p className='amount'>{t("SELLER_RATE")}</p>
-                                            <p className='btc-amount'>{parseFloat(prefferedcurrencyvalue).toFixed(8)}{tradedata?.preferedcurrency}</p>
+                                            <p className='btc-amount'>{parseFloat(prefferedcurrencyvalue).toFixed(8)} {tradedata?.preferedcurrency}</p>
                                             {/* {variablepercentage && <p className='market'>{tradedata?.offermargin ? tradedata?.offermargin : variablepercentage}% {(tradedata?.offermargin ? tradedata?.offermargin : variablepercentage) > 0 ? "above market" : "below market"}</p>} */}
                                         </div>
                                     </div>

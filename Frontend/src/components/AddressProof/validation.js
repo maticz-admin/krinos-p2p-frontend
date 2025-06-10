@@ -3,7 +3,7 @@ import isEmpty from '../../lib/isEmpty';
 
 export const validation = value => {
     let errors = {};
-    let imageFormat = /\.(jpg|JPG|jpeg|JPEG|png|PNG|pdf|PDF)$/;
+    let imageFormat = /\.(jpg|JPG|jpeg|JPEG|png|PNG|pdf|PDF|SVG)$/;
     if (value.frontImage && value.frontImage.size) {
         if (value.frontImage.size > 10000000) {   // 10 MB
             errors.frontImage = "TOO_LARGE"

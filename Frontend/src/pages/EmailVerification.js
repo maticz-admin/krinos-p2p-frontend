@@ -32,10 +32,10 @@ const EmailVerification = (props) => {
         const { status, message } = await userEmailActivation({ userId: authToken });
         if (status == 'success') {
             history.push("/login");
-            toastAlert('success', message, 'emailActivation', 'TOP_RIGHT');
+            toastAlert('success', t(message), 'emailActivation', 'TOP_RIGHT');
         } else if(status == 'failed') {
             history.push("/login");
-            toastAlert('error', message, 'emailActivation', 'TOP_RIGHT');
+            toastAlert('error', t(message), 'emailActivation', 'TOP_RIGHT');
         }
         else {
             setPage('error');

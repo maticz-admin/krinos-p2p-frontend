@@ -24,6 +24,7 @@ import { getsingletradehooks } from 'actions/P2PorderAction';
 import { Getsingleuserhook } from 'actions/P2PorderAction';
 import { gettradespeedhook } from 'actions/P2PorderAction';
 import config from 'config';
+import { useTranslation } from 'react-i18next';
 // import { set } from 'mongoose';
 const dashboardRoutes = [];
 // const Displayownerdata = [];
@@ -32,6 +33,7 @@ const Displayownerdata = (props) => {
     const location = useLocation();
     const navigate = useHistory();
     const userdata = useSelector(state => state);
+    const { t, i18n } = useTranslation();
 
     const [tradedata , setTradedata] = useState({});
     const [pay , setPay] = useState(0);
@@ -48,9 +50,11 @@ const Displayownerdata = (props) => {
     const [ownerdata , setOwnerdata] = useState({});
     const [kyc , setKyc] = useState({});
     const [tradespeed , setTradespeed] = useState(0);
+    const [loader , setLoader] =  useState(false);
     
 
 const fetchdata = async() => {
+    setLoader(true);
     var payload = {
         userid : window.location.pathname.split('/')[2]?.toString()
     }
@@ -62,6 +66,7 @@ const fetchdata = async() => {
     var tradespeedresult = await gettradespeedhook({userid : window.location.pathname.split('/')[2]?.toString()});
             var speed = parseFloat(tradespeedresult?.data?.data)/60000
             setTradespeed(speed);
+    setLoader(false);
 
 }
 
@@ -142,7 +147,7 @@ const fetchdata = async() => {
                 }}
                 {...rest} />
 
-            <div className='bitcoincompany login_container login_box'>
+            {!loader ? <div className='bitcoincompany login_container login_box'>
                 {/* <div>
                     <h1 className='blackandwhite bit_text text-center bit1'>{tradedata?.ordertype?.toUpperCase()} BITCOIN With company</h1>
                     <p className='roboto subhead'>{tradedata?.ordertype} Bitcoin from other users using any payment<br></br>method and currency.</p>
@@ -233,7 +238,7 @@ const fetchdata = async() => {
                         {/* <p className='lorem mt-4 mb-4 text-center'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> */}
 
                         <div className='buyborder1 mt-3'>
-                            <p className='mb-0 much'>About this buyer</p>
+                            <p className='mb-0 much'>{t("ABOUT_THIS_BUYER")}</p>
 
                             <div className='d-flex justify-content-between chance'>
                                 <div className='one1'>
@@ -258,21 +263,21 @@ const fetchdata = async() => {
 
                                 <div className='one2 one2_alig_widt'>
                                     <div className=''>
-                                        <div><p className='namelist'>Phone Verified</p></div>
+                                        <div><p className='namelist'>{t("PHONE_VERIFIED")}</p></div>
                                         <div className='text-center'><img src={ownerdata?.phoneStatus == "verified" ? tick : close} className='prof1' /></div>
                                     </div>
                                 </div>
 
                                 <div className='one2 one2_alig_widt'>
                                     <div className=''>
-                                        <div><p className='namelist'>Email Verified</p></div>
+                                        <div><p className='namelist'>{t("EMAIL_VERIFIED")}</p></div>
                                         <div className='text-center'><img src={ownerdata?.emailStatus == "verified" ? tick : close} className='prof1' /></div>
                                     </div>
                                 </div>
 
                                 <div className='one2 one2_col_wdi'>
                                     <div className=''>
-                                        <div><p className='namelist'>Trade Speed</p></div>
+                                        <div><p className='namelist'>{t("TRADE_SPEED")}</p></div>
                                         <div><button className='themebtn mt-4'>{tradespeed ? (parseFloat(tradespeed) < 5 ? "Instant" : tradespeed+"min"): "New"}</button></div>
                                     </div>
                                 </div>
@@ -282,13 +287,13 @@ const fetchdata = async() => {
                         </div>
 
                         <div className='mt-3 reviews '>
-                            <h5 className='text-light'>Reviews</h5>
+                            <h5 className='text-light'>{t("REVIEWS")}</h5>
                             <ul className='buyborder1 p-3'>
                                 {ownerdata?.reviews?.length > 0 ? ownerdata?.reviews?.map((data , i) => <li className='mb-3'>
-                                    <h5 className='text-light fw-bold mb-0'>UserId :{data?.userid}</h5>
+                                    <h5 className='text-light fw-bold mb-0'>{t("USERID")} :{data?.userid}</h5>
                                     <p className='text-light f-14 roboto mb-0'>{data?.description}</p>
                                     <p className='time text-gray roboto f-12'>{new Date(parseFloat(data?.date))?.toString()?.slice(4 , 21)}</p>
-                                </li>) : <p>No Reviews Found!</p>
+                                </li>) : <p>{t("NO_REVIEWS")}</p>
                                     }
                             </ul>
                         </div>
@@ -296,7 +301,12 @@ const fetchdata = async() => {
                     </div>
                 </div>
 
-            </div>
+            </div> 
+            : <div id='loadercontainer'> 
+                              <div className='themeloader'> 
+                              </div>
+                              </div> 
+        }
 
             <Footer />
 

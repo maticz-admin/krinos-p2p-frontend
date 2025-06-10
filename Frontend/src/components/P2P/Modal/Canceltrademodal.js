@@ -9,8 +9,10 @@ import tour4 from "../../../assets/images/take_a_tour/tour4.png"
 import tour5 from "../../../assets/images/take_a_tour/tour5.png"
 import tour6 from "../../../assets/images/take_a_tour/tour6.png"
 import tour7 from "../../../assets/images/take_a_tour/tour7.png"
+import { useTranslation } from 'react-i18next';
 // import spring from "../../../../images/toss/bannerbg.png";
 const Canceltrademodal = (props) =>{
+    const { t, i18n } = useTranslation();
     const [isoffertagmodal , setIsoffertagmodal] = useState(true);
 
     const [taglist , setTaglist] = useState([]);
@@ -45,7 +47,7 @@ const Canceltrademodal = (props) =>{
                                     </div>
                                     <Modal.Header>
                                         <Modal.Title id="contained-modal-title-vcenter">
-                                            <p className='mb-0'>Cancel Trade</p>
+                                            <p className='mb-0'>{t("CANCEL_TRADE")}</p>
                                             {/* <p className='submod-title'>It is a long established fact that a reader</p> */}
                                         </Modal.Title>
                                         <Button variant="secondary" className='modalbtns' onClick={props?.onDismiss}> x
@@ -54,7 +56,7 @@ const Canceltrademodal = (props) =>{
                                     <Modal.Body>
                                         <div className='py-4'>
                                             <div className='grid_div'>
-                                                <p className='text-light roboto'>Sure, Do you want to cancel this trade?</p>
+                                                <p className='text-light roboto'>{t("CANCEL_TRADE_THIS")}</p>
                                             </div>
                                             {/* <div className='scroll_div_table'>
                                         {taglist?.map((data , i) =>  <div className={offertag.includes(data) ? 'grid_div py-3 bordered_div_each active' : 'grid_div py-3 bordered_div_each'} onClick={()=>handleclick(data)}>
@@ -65,8 +67,8 @@ const Canceltrademodal = (props) =>{
                                         
                                         </div>
                                   <div className='d-flex jc-between'>
-                                     <button className='btn themebtn' onClick={()=> props.onDismiss()}>Cancel</button>
-                                     <button className='btn themebtn' onClick={()=> props.oncancel()}>Ok</button>
+                                     <button className='btn themebtn' onClick={()=> props.onDismiss()}>{t("CANCEL")}</button>
+                                     <button className='btn themebtn' onClick={()=> props.oncancel()}>{t("Ok")}</button>
                                      </div> 
                                     </Modal.Body>
                                 </Modal>

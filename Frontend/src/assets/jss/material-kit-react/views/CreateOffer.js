@@ -28,6 +28,7 @@ import config from '../../../../config';
 
 import btcicon from "../../../images/btcIcon.png"
 import { useTranslation } from 'react-i18next';
+import { getPreferredCurrency } from 'actions/commonAction';
 
 const dashboardRoutes = [];
 const CreateOffer = (props) => {
@@ -168,7 +169,6 @@ const CreateOffer = (props) => {
     useEffect(() => {
         async function fetchdata() {
             var result = await Getcoinlisthooks();
-            
             let finalarray = [];
             // let finaldata = result?.data?.reduce(
             //     (accumulator, currentValue) => {if(currentValue?.type == "crypto")accumulator.push(currentValue)},
@@ -184,11 +184,14 @@ const CreateOffer = (props) => {
             
             setCrypto(finalarray);
             setCoin(finalarray[0].symbol)
-            var precurrency = await Getpreferedcurrency()
-            setPrefferedcurrencylist(precurrency?.data);
-            setPrefferedcurrency(precurrency?.data[0]?.symbol)
-            setPreimage(`${config.API_URL}/images/currency/${precurrency?.data[0]?.image}`)
-            setCoinimg(`${config.API_URL}/images/currency/${precurrency?.data[0]?.image}`);
+            // var precurrency = await Getpreferedcurrency()
+            var precurrency = await getPreferredCurrency()
+            console.log("preferred currency" , precurrency);
+            
+            setPrefferedcurrencylist(precurrency?.result);
+            setPrefferedcurrency(precurrency?.result[0]?.coin)
+            setPreimage(`${precurrency?.result[0]?.image}`)
+            setCoinimg(`${config.API_URL}/images/currency/${finalarray[0]?.image}`);
             var ofrtg = await Getalloffertaghook();
             setOffertaglist(ofrtg?.data?.data);
             var paytype = await getpaymenttypeshook();
@@ -438,14 +441,9 @@ const CreateOffer = (props) => {
 
                                             <Dropdown className="headerdropdown m-left iner_drop_versiotwo">
                                                 <Dropdown.Toggle variant="success" className='btcc' id="dropdown-basic">
-                                                    <img src={Images.ticket} className="iconss iconss_wid_dd" />{ordertype}
+                                                    <img src={Images.ticket} className="iconss iconss_wid_dd" />{t(ordertype?.toUpperCase())}
                                                 </Dropdown.Toggle>
-
                                                 <Dropdown.Menu className="iner_dropmenu_versiotwo">
-
-
-
-
                                                     <Dropdown.Item
                                                     ><p className='d-flex align-items-center' onClick={() => {
                                                         setOrdertype("Sell")
@@ -483,9 +481,9 @@ const CreateOffer = (props) => {
 
                                                             <Dropdown.Item
                                                             ><p className='d-flex align-items-center' onClick={() => {
-                                                                setPrefferedcurrency(data?.symbol);
-                                                                setPreimage(`${config?.API_URL}/images/currency/${data?.image}`);
-                                                            }}><img src={`${config?.API_URL}/images/currency/${data?.image}`} className="iconss" /> {data?.symbol}</p></Dropdown.Item>)
+                                                                setPrefferedcurrency(data?.coin);
+                                                                setPreimage(`${data?.image}`);
+                                                            }}><img src={`${data?.image}`} className="iconss" /> {data?.coin}</p></Dropdown.Item>)
                                                     })}
 
                                                 </Dropdown.Menu>

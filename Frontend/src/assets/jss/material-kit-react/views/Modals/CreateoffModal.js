@@ -57,7 +57,7 @@ const CreateoffModal = (props) =>{
             if(props?.payload?.ordertype == "Sell"){console.log("kyc?.status" , kyc?.status);
             
                 if(balance?.p2pBal <= 0){
-                    toastAlert("error" , "Insufficient balance!");
+                    toastAlert("error" , t("INSUFFICIENT_BAL"));
                 }
                 else if(kyc?.status == "Approved" && userdata?.firstName && userdata?.lastName){
                     var data = {
@@ -70,7 +70,7 @@ const CreateoffModal = (props) =>{
                     props.onsetdata(result?.data);
                 }
                 else{
-                    toastAlert("error" , "Complete your kyc and update full name");
+                    toastAlert("error" , t("COMPLETE_KYC_AND_FULLNAME"));
                 }
             }
             else if(kyc?.status == "Approved" && userdata?.firstName && userdata?.lastName){
@@ -83,7 +83,7 @@ const CreateoffModal = (props) =>{
                 props.onsetdata(result?.data);
             }
             else{
-                toastAlert("error" , "Complete your kyc and update full name");
+                toastAlert("error" , t("COMPLETE_KYC_AND_FULLNAME"));
             }
           }
     }

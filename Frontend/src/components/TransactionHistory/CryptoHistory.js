@@ -192,7 +192,7 @@ const CryptoHistory = (props) => {
                             currencyOption && currencyOption.length > 0 && currencyOption.map((item, key) => {
                                 if (item.type == 'crypto' || item.type == 'token') {
                                     return (
-                                        <MenuItem value={item.coin} key={key}>
+                                        <MenuItem value={item.bitgosymbol} key={key}>
                                             {item.coin}
                                         </MenuItem>
                                     )
@@ -240,7 +240,7 @@ const CryptoHistory = (props) => {
                                 value={search}
                                 onChange={handleChange}
                                 class="form-control"
-                                placeholder="Search by Adderess"
+                                placeholder= {t("SEARCH_BY_ADDRESS")}
                             />
                             <div class="input-group-append">
                                 <span class="btnType1"><i class="fas fa-search"></i></span>
@@ -264,6 +264,7 @@ const CryptoHistory = (props) => {
                 paginationServer
                 onChangeRowsPerPage={handlePerRowsChange}
                 onChangePage={handlePageChange}
+                noDataComponent= {t("NO_DATA_FOUND")}
             />):(
                 <DataTable 
                 className='changing_table'
@@ -276,6 +277,7 @@ const CryptoHistory = (props) => {
                 paginationServer
                 onChangeRowsPerPage={handlePerRowsChange}
                 onChangePage={handlePageChange}
+                noDataComponent= {t("NO_DATA_FOUND")}
             />
             )}
            

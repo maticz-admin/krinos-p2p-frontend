@@ -37,7 +37,7 @@ const CoinDeposit = (props) => {
                             !isEmpty(assetData.address) && <CopyToClipboard
                                 text={assetData.address}
                                 onCopy={() => {
-                                    toastAlert('success', 'Copied', 'wallet')
+                                    toastAlert('success', t("COPIED"), 'wallet')
                                 }}
                             >
                                 <Link to="#">{t("COPY_ADDRESS")}</Link>

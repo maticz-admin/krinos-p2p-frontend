@@ -23,14 +23,16 @@ export const Getuserp2pcreateorderhooks = async (filterdata) => {
 
 export const Getuserp2pviewofferhooks = async (filterdata) => {
     try {
-        // console.log('filterdata----', filterdata);
+        console.log('filterdata----view ofrhook', filterdata);
         filterdata = encodedata(filterdata)
         let respData = await axios({
             'url': `/p2papi/get-userp2pviewoffer`,
             'method': 'get',
             'params': { encode: filterdata }
         })
-        const response = decodedata(respData.data)
+        const response = decodedata(respData.data);
+        console.log("response" , response);
+        
         if (response.type == "success") {
             // console.log('respDatarespDatarespData-----', response.data);
             return { status: "success", loading: false, data: response.data, count: response.count };

@@ -196,7 +196,7 @@ const PhoneNoChange = () => {
         //     'otp': ''
         // })
         setMobileDetail(mobileInitialValue);
-        toastAlert("success", message, "editPhoneNumber");
+        toastAlert("success", t(message), "editPhoneNumber");
       } else {
         setValidateError(error);
       }
@@ -215,37 +215,37 @@ const PhoneNoChange = () => {
     }
 console.log("validate error" , validateError);
 
-    const handleFormSubmit = async (e) => {
-        // debugger
-        e.preventDefault();
-        try {
-            setLoader(true)
+    // const handleFormSubmit = async (e) => {
+    //     // debugger
+    //     e.preventDefault();
+    //     try {
+    //         setLoader(true)
 
-            let reqData = {
-                newPhoneCode,
-                newPhoneNo,
-                otp
-            }
-            let { status, loading, error, message, result } = await verifyNewPhone(reqData);
-            console.log("status, loading, error, message, result" , status, loading, error, message, result);
+    //         let reqData = {
+    //             newPhoneCode,
+    //             newPhoneNo,
+    //             otp
+    //         }
+    //         let { status, loading, error, message, result } = await verifyNewPhone(reqData);
+    //         console.log("status, loading, error, message, result" , status, loading, error, message, result);
             
-            setLoader(loading)
-            if (status == "success") {
-                setDisablePh(true)
-                // setFormValue({
-                //     'newPhoneCode': result?.phoneCode,
-                //     'newPhoneNo': result?.phoneNo,
-                //     'otp': ''
-                // })
-                setMobileDetail(mobileInitialValue)
-                toastAlert('success', message, 'editPhoneNumber');
-            } else {
-                setValidateError(error);
-            }
-        }
-        catch (err) {
-        }
-    }
+    //         setLoader(loading)
+    //         if (status == "success") {
+    //             setDisablePh(true)
+    //             // setFormValue({
+    //             //     'newPhoneCode': result?.phoneCode,
+    //             //     'newPhoneNo': result?.phoneNo,
+    //             //     'otp': ''
+    //             // })
+    //             setMobileDetail(mobileInitialValue)
+    //             toastAlert('success', message, 'editPhoneNumber');
+    //         } else {
+    //             setValidateError(error);
+    //         }
+    //     }
+    //     catch (err) {
+    //     }
+    // }
   }, [mobileDetail?.timer]);
 
 console.log("mobileDetail" , mobileDetail)
@@ -323,8 +323,8 @@ useEffect(() => {
 
                     </div> */}
                 </div>
-                <p className="error-message" style={{ color: 'red' }}>{validateError?.newPhoneNo}</p>
-                <p className="error-message" style={{ color: 'red' }}>{validateError?.phoneNo}</p>
+                <p className="error-message" style={{ color: 'red' }}>{t(validateError?.newPhoneNo)}</p>
+                <p className="error-message" style={{ color: 'red' }}>{t(validateError?.phoneNo)}</p>
                 
             </div>
             <div className="form-group floatinglabel otp_inp_grp mt-4">
