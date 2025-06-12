@@ -727,14 +727,20 @@ body.light_theme .jss25 {
 }
 
 .modalbtns {
-  padding: 4px 8px !important;
+  /* padding: 4px 8px !important; */
+  padding: 0px !important;
   border-radius: 8px !important;
   border: 1px solid #fff !important;
   background: transparent !important;
   color: #fff !important;
-  height: unset !important;
+  /* height: unset !important; */
   font-size: 12px !important;
-  line-height: normal;
+ width: 25px;
+  height: 25px !important;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  line-height: unset;
 }
 
 .submod-title {

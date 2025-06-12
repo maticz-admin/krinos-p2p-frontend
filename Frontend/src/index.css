@@ -44,6 +44,7 @@
   font-family: "satoshi" !important;
 }
 
+
 .fa,
 .fas,
 .far,
@@ -69,6 +70,10 @@ body {
   /* 
   padding-right: 0px !important;
   overflow: unset !important; */
+}
+
+iframe {
+  display: none;
 }
 
 body.light_theme {
