@@ -1,7 +1,7 @@
 // import package
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import { Hidden, Button, Menu, MenuItem } from "@material-ui/core";
+import { Hidden, Button, Menu, MenuItem, Select } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -56,7 +56,7 @@ export default function HeaderLinks1(props) {
   const { isAuth } = useSelector((state) => state.auth);
   // const [isAuth,setisAuth] = useState(true)
   const { unread, isOpen } = useSelector((state) => state.notice);
-
+  const [selLang, setSelLang] = useState("Spanish");
   // redux-state
   const accountData = useSelector((state) => state.account);
   const {
@@ -439,16 +439,16 @@ export default function HeaderLinks1(props) {
                                 unread.map((item) => {
                                   return (
                                     <li
-                                      // onClick={() => {
-                                      //   if (
-                                      //     item?.description ==
-                                      //     "You received one review"
-                                      //   ) {
-                                      //     window.location.href =
-                                      //       window?.location?.origin +
-                                      //       "/profile#reviews";
-                                      //   }
-                                      // }}
+                                    // onClick={() => {
+                                    //   if (
+                                    //     item?.description ==
+                                    //     "You received one review"
+                                    //   ) {
+                                    //     window.location.href =
+                                    //       window?.location?.origin +
+                                    //       "/profile#reviews";
+                                    //   }
+                                    // }}
                                     >
                                       <p>
                                         {/* <TimeAgo date={new Date(item.createdAt)}>
@@ -564,9 +564,9 @@ export default function HeaderLinks1(props) {
                                       //navigate.push(`/trade/${item?.roomid }`)
                                       <div
                                         onClick={() =>
-                                          (window.location.href =
-                                            window.location.origin +
-                                            `/trade/${item?.roomid}`)
+                                        (window.location.href =
+                                          window.location.origin +
+                                          `/trade/${item?.roomid}`)
                                         }
                                       >
                                         <li>
@@ -744,6 +744,21 @@ export default function HeaderLinks1(props) {
                 </li>
               )}
 
+
+
+              <li className="menu_main_navbar ms-0">
+                <Select
+                  name="language"
+                  value={selLang}
+                >
+
+
+                  <MenuItem value={'English'}>{"English"}</MenuItem>
+                  <MenuItem value={'Spanish'}>{"Spanish"}</MenuItem>
+
+                </Select>
+              </li>
+
               {
                 <li>
                   {/* <div className="toggleMode" title="toggle dark mode">
@@ -766,6 +781,7 @@ export default function HeaderLinks1(props) {
                   </button>
                 </li>
               }
+
             </ul>
           </Hidden>
           <Hidden only={["lg", "xl"]}>
@@ -818,6 +834,19 @@ export default function HeaderLinks1(props) {
                   </li>
                 </>
               )}
+              <li className="menu_main_navbar ms-0">
+                <Select
+                  name="language"
+                  value={selLang}
+                >
+
+
+                  <MenuItem value={'English'}>{"English"}</MenuItem>
+                  <MenuItem value={'Spanish'}>{"Spanish"}</MenuItem>
+
+                </Select>
+              </li>
+
 
               {isAuth && (
                 <li className="li_ellipse_menu aftr_log_prfDrop">

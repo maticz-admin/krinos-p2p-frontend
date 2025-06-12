@@ -229,7 +229,7 @@ const CryptoWithdraw = (props) => {
             <div className="wallwt_balance">
               <p>
                 {t("WALLET_BALANCE")}
-                <span>
+                <span className="ps-2">
                   {assetData && toFixed(assetData.p2pBal , 8)} {assetData.coin == "BNB.BSC" ? "BNB(Binance Coin)" : assetData?.coin}
                 </span>
               </p>

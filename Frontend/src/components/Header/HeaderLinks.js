@@ -500,12 +500,29 @@ const HeaderLinks = () => {
               )}
 
               <ListItem className={classes.listItem}>
+
+                <Select
+                  name="language"
+                  value={selLang}
+                  onChange={handleLanguage}
+                >
+                  {langOption &&
+                    langOption.length > 0 &&
+                    langOption.map((item, key) => {
+                      return (
+                        <MenuItem value={item?.code}>{item?.name}</MenuItem>
+                      );
+                    })}
+                </Select>
+              </ListItem>
+
+              <ListItem className={classes.listItem}>
                 {/* <div className="toggleMode themetoggle" title="toggle dark mode">
-          <label>
-            <input type="checkbox" checked={themeData == 'light' ? true : false} name="" onClick={() => setTheme(dispatch, themeData == 'light' ? 'dark' : 'light')} />
-            <span></span>
-          </label>
-        </div> */}
+                    <label>
+                      <input type="checkbox" checked={themeData == 'light' ? true : false} name="" onClick={() => setTheme(dispatch, themeData == 'light' ? 'dark' : 'light')} />
+                      <span></span>
+                    </label>
+                  </div> */}
                 <button
                   className="transbtn theme btn"
                   onClick={() =>

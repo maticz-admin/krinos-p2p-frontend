@@ -244,7 +244,7 @@ export default function Header(props) {
         {/* <div className="mobilelog"> */}
          
             
-            <List className={classes.list + " menu_main_navbar buyss"}>
+            {/* <List className={classes.list + " menu_main_navbar buyss"}>
               <ListItem className={classes.listItem}>
                
 
@@ -263,7 +263,7 @@ export default function Header(props) {
               </ListItem>
 
               
-            </List>
+            </List> */}
           
         {/* </div> */}
       </Hidden>

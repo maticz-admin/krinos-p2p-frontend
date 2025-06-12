@@ -31016,6 +31016,19 @@ select {
   .notiification_link_for_web {
     display: none !important;
   }
+
+  .dashboard_login .menu_main_navbar {
+    margin-left: 20px !important;
+    padding-top: 8px;
+  }
+
+  .dashboard_login .aftr_log_prfDrop {
+    margin-left: 20px;
+  }
+
+  .dashboard_login .aftr_log_prfDrop .MuiButton-root {
+    min-width: 0px !important;
+  }
 }
 
 @media only screen and (min-width: 1280px) {
@@ -31025,6 +31038,10 @@ select {
 
   .notiification_link_for_web {
     display: block !important;
+  }
+
+  .home_page_menu .MuiSelect-select {
+    margin-left: 0px;
   }
 }
 
