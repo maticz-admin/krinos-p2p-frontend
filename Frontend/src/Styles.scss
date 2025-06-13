@@ -1302,11 +1302,13 @@ a[aria-expanded="true"] .fa-plus:before {
   .fa {
     border: 1px solid coral;
     color: coral;
-    height: 20px;
-    font-size: 9px;
+    // height: 20px;
+    min-height: 18px;
+    font-size: 7px;
     border-radius: 50%;
-    width: 20px;
-    padding: 7px;
+    // width: 20px;
+    min-width: 18px;
+    padding: 0px !important; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1448,7 +1450,7 @@ a[aria-expanded="true"] .fa-plus:before {
 .chat_slct_img img {
   max-height: 150px;
   max-width: 150px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 @media only screen and (min-width: 576px) {
