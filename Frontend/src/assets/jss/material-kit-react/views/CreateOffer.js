@@ -32,6 +32,7 @@ import { getPreferredCurrency } from 'actions/commonAction';
 
 const dashboardRoutes = [];
 const CreateOffer = (props) => {
+    document.title = "KRINOS"
     const navigate = useHistory();
           const { t, i18n } = useTranslation();
     

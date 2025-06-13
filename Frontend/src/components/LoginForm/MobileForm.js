@@ -157,7 +157,8 @@ const MobileForm = () => {
                 localStorage.setItem('xyz_cache', btoa(result?.userId))
                 let checkdeposit = Checkdeposithooks();
                 setLoader(false);
-                toastAlert('success', message, 'login');
+                if(message)
+                toastAlert('success', t(message), 'login');
                 if (userSetting && userSetting.afterLogin && userSetting.afterLogin != " ") {
                     history.push(userSetting.afterLogin.url)
                 } else {
@@ -165,17 +166,19 @@ const MobileForm = () => {
                 }
             } else if (status == 'TWO_FA') {
                 setShowTowFA(true)
-                toastAlert('error', message, 'login');
+                if(message)
+                toastAlert('error', t(message), 'login');
             } else {
                 if (error) {
                     setValidateError(error);
                 }
-                if (message == "Your Password is Old Please Reset Your Password") {
-                    toastAlert('error', message, 'login');
+                if (message == "YOUR_PASSWORD_IS_OLD_PLEASE_RESET") {
+                    toastAlert('error', t(message), 'login');
                     history.push("/reset-password/" + authToken)
 
                 }
-                toastAlert('error', message, 'login');
+                if(message)
+                toastAlert('error', t(message), 'login');
             }
     }
 
@@ -219,7 +222,8 @@ const MobileForm = () => {
                 setOtpStatus(true)
                 setButtonName(false)
                 setCounter(600)
-                toastAlert('success', message, 'mobileForm');
+                if(message)
+                toastAlert('success', t(message), 'mobileForm');
                 setTimeout(() => {
                     setOtpStatus(false)
                     setButtonName(true)
@@ -229,7 +233,8 @@ const MobileForm = () => {
                     setValidateError(error)
                     return
                 }
-                toastAlert('error', message, 'mobileForm');
+                if(message)
+                toastAlert('error', t(message), 'mobileForm');
                 // if(error === "Max send attempts reached"){
                 //     toastAlert('error', "Max send attempts reached", 'mobileForm');
                 // }
@@ -397,7 +402,7 @@ const MobileForm = () => {
 
                         {toched.otp && validateError.otp && <p className="error-message">{t(validateError.otp)}</p>}
                         {optStatus == true ? <div className='text-right mb-3 mt-3 countdownspan'>
-                            <p className="pr-2 mt-3"> OTP will expire in <b>  <span>{Minutes}:{Seconds}</span></b></p>
+                            <p className="pr-2 mt-3"> {t("OTP_EXPIRES_IN")} <b>  <span>{Minutes}:{Seconds}</span></b></p>
                         </div> : ""}
                     </div>
 

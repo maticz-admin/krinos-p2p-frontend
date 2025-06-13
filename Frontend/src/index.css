@@ -34533,3 +34533,9 @@ option {
     margin-top: 8px;
   }
 }
+
+
+.displayOwner_loader {
+  margin-top: 84px;
+  min-height: calc(100vh - 235px);
+}

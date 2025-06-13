@@ -209,7 +209,7 @@ const ProfilePage = (props) => {
                                   <button className="themebtn" onClick={() => handleupdate()}>{t("UPDATE")}</button>
                               </div>
 
-                              <p className="text-danger error-message mt-3">{imgerror}</p>
+                              <p className="text-danger error-message mt-3">{t(imgerror)}</p>
 
       
                             </GridItem>

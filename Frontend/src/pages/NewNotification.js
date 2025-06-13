@@ -34,7 +34,10 @@ let dispatch = useDispatch()
 
   const readAllMsg = async () => {
     let { staus, message } = await readNotification();
+    fetchNotificationHistory()
+
     noticePopup(dispatch, false);
+
   };
   useEffect(() => {
     fetchNotificationHistory()
@@ -52,6 +55,7 @@ let dispatch = useDispatch()
             {data && data.length > 0 ? (
                 <>
                 {data.map((val,index)=>(
+                
                     <li className= {val.isRead ?'read' :'unread'} onClick={(e)=>{
                       readMess(val._id)
                       // if(val?.description == "You received one review"){
@@ -61,6 +65,7 @@ let dispatch = useDispatch()
                     <div className='d-flex align-items-center pl-sm-2'>
                         <span className='stat mr-2 shrink-0'></span>
                         <div>
+                          {console.log(val , "vallld")}
                             <p className='f-12 lighttxt descc'>{localStorage.getItem("usr-language") == "en" ? val.description : val.spdescription}</p>
                             <p className='text-muted f-12 dateformat'>{momentFormat(val.createdAt, 'YYYY-MM-DD HH:mm')}</p>
                         </div>

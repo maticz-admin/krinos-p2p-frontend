@@ -255,7 +255,8 @@ const UserDashboard = (props) => {
             cell: record => {
                 return (
                     <>
-                        <span>{momentFormat(record.createdAt, 'YYYY-DD-MM HH:mm')}</span>
+                        {/* <span>{momentFormat(record.createdAt, 'YYYY-DD-MM HH:mm')}</span> */}
+                        <span>{new Date(record?.createdAt)?.toLocaleString()}</span>
                     </>
                 )
             }
@@ -348,7 +349,8 @@ const UserDashboard = (props) => {
             cell: record => {
                 return (
                     <>
-                        <span>{record.offerstatus}</span>
+                        {/* <span>{record.offerstatus}</span> */}
+                        <span>{record?.offerstatus.charAt(0).toUpperCase() + record?.offerstatus?.slice(1)}</span>
                     </>
                 )
             }
@@ -379,6 +381,7 @@ const UserDashboard = (props) => {
             }
         },
     ];
+    
     const data = [
         {
             "id": "55f14312c7447c3da7051b26",
@@ -724,6 +727,7 @@ const UserDashboard = (props) => {
             }
         },
         show_filter: false,
+        
     }
 
     

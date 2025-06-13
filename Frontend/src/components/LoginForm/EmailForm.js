@@ -240,10 +240,10 @@ const EmailForm = () => {
                     }
 
                     localStorage.setItem('xyz_cache', btoa(result?.userId))
-                    let checkdeposit = Checkdeposithooks();
+                    // let checkdeposit = Checkdeposithooks();
                     setLoader(false);
 
-                    toastAlert('success', message, 'login');
+                    toastAlert('success', t(message), 'login');
                     if (userSetting && userSetting.afterLogin && userSetting.afterLogin != " ") {
                         history.push(userSetting.afterLogin.url)
                     } else {
@@ -254,12 +254,12 @@ const EmailForm = () => {
                     setOtp("");
 
                     setShowTowFA(true)
-                    toastAlert('error', message, 'login');
+                    toastAlert('error', t(message), 'login');
                 } else {
                     if (error) {
                         setValidateError(error);
                     }
-                    if (message == "Your Password is Old Please Reset Your Password") {
+                    if (message == "YOUR_PASSWORD_IS_OLD_PLEASE_RESET") {
                         toastAlert('error', t(message), 'login');
                         history.push("/reset-password/" + authToken)
 

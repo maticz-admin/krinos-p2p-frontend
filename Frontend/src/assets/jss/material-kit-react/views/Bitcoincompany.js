@@ -461,7 +461,7 @@ const Bitcoincompany = (props) => {
                                     <div className='one2 one2_col_wdi'>
                                         <div className=''>
                                             <div><p className='namelist'>{t("TRADE_SPEED")}</p></div>
-                                            <div><button className='themebtn mt-4'>{tradespeed ? (parseFloat(tradespeed) < 5 ? "Instant" : tradespeed + "min") : "New"}</button></div>
+                                            <div><button className='themebtn mt-4'>{tradespeed ? (parseFloat(tradespeed) < 5 ? "Instant" : parseInt(tradespeed) + " min") : "New"}</button></div>
                                         </div>
                                     </div>
 

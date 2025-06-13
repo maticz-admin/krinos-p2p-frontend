@@ -128,7 +128,7 @@ const EmailForm = () => {
             // }
             let recaptcha = await generateToken();
             if (!recaptcha) {
-                toast.error('Please complete the reCAPTCHA');
+                toast.error(t("RECPTCHA_VERIFICATION_FAILED"));
                 return;
             }
 
@@ -149,13 +149,13 @@ const EmailForm = () => {
             // setReCaptcha('')
             if (status == 'success') {
                 setFormValue(initialFormValue)
-                toastAlert('success', message, 'signup', 'TOP_RIGHT');
+                toastAlert('success', t(message), 'signup', 'TOP_RIGHT');
             } else {
                 if (error) {
                     setValidateError(error);
                     setRefreshReCaptcha(!refreshReCaptcha);
                 }
-                toastAlert('error', message, 'signup', 'TOP_RIGHT');
+                toastAlert('error', t(message), 'signup', 'TOP_RIGHT');
             }
         }
 

@@ -344,7 +344,7 @@ const Trade = (props) => {
                   <button className="btn btn-link" onClick={() => setOfferheader(false)}>x</button>
                 </div>}
                 <div className="tableborder">
-                  <div className="d-flex align-items-baseline gap-10">
+                  {/* <div className="d-flex align-items-baseline gap-10">
                     <span className="fa fa-clock"></span>
                     <div>
                       {" "}
@@ -353,7 +353,7 @@ const Trade = (props) => {
                         {location?.state?.state?.receive} {offerdata?.coin} {t("WILL_BE")} {location?.state?.state?.tradedata?.ordertype == "Buy" ? t("ADDED") : t("REDUCED")} {t("TO_YOUR_BITCOIN_WALLET")}
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                   <hr />
 
 
@@ -387,7 +387,6 @@ const Trade = (props) => {
                     <span className="fa fa-check"></span>
                   </button>} */}
                   
-                {/* <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} /> */}
 
 
 
@@ -411,28 +410,34 @@ const Trade = (props) => {
                   <hr />
                   <div className="flexb canceltrade">
                     {(tradechat?.chatstatus == "Active" && tradechat?.paidstatus == "pending") && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => setCancelmodal(true)}>{t("CANCEL_TRADE")}</button>}
-                    {tradechat?.spender == userdata?.account?.userId && <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${offerdata?.preferedcurrency}`}</p>}
+                    {/*tradechat?.spender == userdata?.account?.userId && */}
+                   { console.log("Actie check" , offerdata?.ordertype == "Buy" , tradechat?.spender != userdata?.account?.userId , userdata?.account?.userId)}
+                    
+                    {offerdata?.ordertype == "Buy" && tradechat?.spender != userdata?.account?.userId  &&
+                    <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" || tradechat?.paidstatus =="reject"? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${offerdata?.preferedcurrency}`}</p>}
+
+                    {offerdata?.ordertype == "Sell" && tradechat?.spender == userdata?.account?.userId &&
+                    <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" || tradechat?.paidstatus =="reject"? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${offerdata?.preferedcurrency}`}</p>}
                   </div>
                 </div>
                 <div className="secondbox">
                   {tradechat?.ordercreator != userdata?.account?.userId  &&<><h6 className="roboto followtag">{t("PLEASE_FOLLOW")} {owner?.firstName} {t("S_INSTRUCTION")}</h6>
-                  {offerdata.verifiyid && <p className="roboto">You have to verify your id</p>}
-                  {offerdata.verifiyfullname && <p className="roboto">You have to verify your full name</p>}
+                  {offerdata.verifiyid && <p className="roboto">{t("YOU_HAVE_TO_VERIFY_YOUR_ID")}</p>}
+                  {offerdata.verifiyfullname && <p className="roboto">{t("YOU_HAVE_TO_VERIFY_FULLNAME")}</p>}
                   {!offerdata.verifiyid && !offerdata.verifiyfullname &&<p className="roboto">{t("NO_VERIFICATION_NEEEDED")}</p>}
                   </>}
 
 
                   <h6 className="roboto followtag">{t("TRADE_INFORMATION")}</h6>
-                  {/* <p className="roboto offercontent">
-                    12457.5 BTC has been reserved for this trade. This includes
-                    Krinos P2P fee of 0 BTC.
-                  </p> */}
+                  <p className="roboto offercontent">{offerdata?.tradeinstruction}</p>
+                  <h6 className="roboto followtag">{t("OFFER_TERMS")}</h6>
+                  <p className="roboto offercontent">{offerdata?.offerterms}</p>
                   <div className="row tradeinfo">
-                    <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div className="col-xl-6 col-lg-6 col-md-3 col-sm-6 col-6">
                       <h6 className="roboto">{t("RATE")}</h6>
                       <p className="roboto">1 {offerdata?.coin} = {parseFloat(spenderdata?.perprice).toFixed(3)}{offerdata?.preferedcurrency}</p>
                     </div>
-                    <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div className="col-xl-6 col-lg-6 col-md-3 col-sm-6 col-6">
                       <h6 className="roboto">{t("TRADE_ID")}</h6>
                       <p className="roboto">
                         {tradechat?.roomid} 
@@ -444,11 +449,12 @@ const Trade = (props) => {
                     ><span className="fa fa-copy ml-2"></span></CopyToClipboard>
                       </p>
                     </div>
-                    <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div className="col-xl-6 col-lg-6 col-md-3 col-sm-6 col-6">
                       <h6 className="roboto">{t("STARTED")}</h6>
                       <p className="roboto">{new Date(parseFloat(tradechat?.orderstarttime))?.toString()?.slice(4, 21)}</p>
                     </div>
-                    {tradechat?.chatstatus == "Inactive" || (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) < Date.now() && <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {tradechat?.chatstatus == "Inactive" || (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) < Date.now() &&
+                    <div className="col-xl-6 col-lg-6 col-md-3 col-sm-6 col-6">
                       <h6 className="roboto">{tradechat?.chatstatus == "Inactive" ? t("CANCELLED") : t("ENDED")}</h6>
                       <p className="roboto">{tradechat?.orderendtime ? new Date(parseFloat(tradechat?.orderendtime))?.toString()?.slice(4, 21) : new Date(parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit)))?.toString()?.slice(4, 21)}</p>
                     </div>}
@@ -473,8 +479,11 @@ const Trade = (props) => {
                     <img src={accountData?.profileImage
                                                 ? accountData?.profileImage
                                                 : Images.prof} alt="" className="chatprof" />
-                    <span className="chatname roboto">{owner?.firstName ? (owner?.firstName + " " + owner?.lastName) : owner?.userId}</span>
+                    <span className="chatname roboto">{owner?.firstName ? (owner?.firstName + " " + owner?.lastName + "  ") : owner?.userId }</span>
                     {/* <img src={Images.prof} alt="" className="countryimg" /> */}
+
+                {/* <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} /> */}
+
                   </div>
                   <div>
                     <div className="d-flex align-items-center">

@@ -53,6 +53,7 @@ const CryptoWithdraw = (props) => {
   const handleClose = () => {
     setFormValue(initialFormValue);
     setValidateError({});
+    setLoader(false)
     onHide();
   };
 

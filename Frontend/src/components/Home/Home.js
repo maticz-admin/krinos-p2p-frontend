@@ -490,10 +490,10 @@ const Home = (props) => {
 
                                                                         <Dropdown.Item
                                                                         ><p className='d-flex align-items-center' onClick={() => {
-                                                                            setPrefferedcurrency(data?.symbol);
+                                                                            setPrefferedcurrency(data?.coin);
                                                                             setPreimg(data?.image);
                                                                         }}><img src={data?.image} className="iconss" />
-                                                                                <span>{data?.symbol}</span></p></Dropdown.Item>)
+                                                                                <span>{data?.coin}</span></p></Dropdown.Item>)
                                                                 })}
 
                                                             </Dropdown.Menu>

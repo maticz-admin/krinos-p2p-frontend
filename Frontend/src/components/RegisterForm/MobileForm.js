@@ -185,12 +185,14 @@ const MobileForm = () => {
             if (status == "success") {
                 setValidateError({})
                 setOtpStatus(true)
+                if(message)
                 toastAlert('success', t(message), 'mobileForm');
             } else {
                 if (error) {
                     setValidateError(error)
                     // return
                 }
+                if(message)
                 toastAlert('error', t(message), 'mobileForm');
             }
             // if(status == "failed"){
@@ -375,7 +377,7 @@ const MobileForm = () => {
                 </div>
 
                 {optStatus == true ? <div className='text-right mb-3 countdownspan'>
-                    <p className="pr-2"> OTP will expire in <b>  <span>{Minutes}:{Seconds}</span></b></p>
+                    <p className="pr-2"> {t("OTP_EXPIRES_IN")} <b>  <span>{Minutes}:{Seconds}</span></b></p>
                 </div> : ""}
 
 
