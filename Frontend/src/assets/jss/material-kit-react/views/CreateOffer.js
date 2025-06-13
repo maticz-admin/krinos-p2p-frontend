@@ -377,7 +377,7 @@ const CreateOffer = (props) => {
                     <div className={steps == 1 ? 'row paymentmethod' : "d-none"}>
                         <img src={Images.bannerbg} className='positionimg' />
                         <div className='col-lg-6'>
-                            <div className='bordbox borderbox_no_max_hei py-4'>
+                            <div className='bordbox borderbox_no_max_hei py-4 choose_cryptoBox'>
                                 <h5 className='blackandwhite'>{t("CHOOSE_YOUR_CRYPTOCURRENCY")}</h5>
                                 {/* <div className='d-sm-flex d-grid mb-5 mt-4 choosecrypt jc-between'> */}
                                 {/* {crypto?.map((data , i) => <>
@@ -510,8 +510,8 @@ const CreateOffer = (props) => {
                                     </div>
 
 
-                                    <div className='col-xl-12 pb-3'>
-                                        <div className='floatinglabel  my-xl-4 my-3 select_option'>
+                                    <div className='col-xl-12'>
+                                        <div className='floatinglabel  mt-xl-4 mt-3 select_option'>
 
                                             <label>{t("PAYMENT_METHOD")}:       </label>
                                             <Select

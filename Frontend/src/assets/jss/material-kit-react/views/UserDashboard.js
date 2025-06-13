@@ -449,21 +449,21 @@ const UserDashboard = (props) => {
             // cell : record =>
             // (record?.orderdata?.createrid == userdata?.account?.userId) ? record?.orderdata?.ordertype : record?.orderdata?.ordertype == "Buy" ? "Buy" : "Sell",
         },
-        {
-            text: `${t("ADMIN_FEE")}`,
-            className: "address",
-            align: "left",
-            cell: record =>
-                record?.orderdata?.ordertype == "Sell" ? (record?.orderdata?.createrid == userdata?.account?.userId) ? parseFloat(record?.adminfee)?.toFixed(8) : 0
-                    : record?.spender == userdata?.account?.userId ? parseFloat(record?.adminfee)?.toFixed(8) : 0,
-        },
+        // {
+        //     text: `${t("ADMIN_FEE")}`,
+        //     className: "address",
+        //     align: "left",
+        //     cell: record =>
+        //         record?.orderdata?.ordertype == "Sell" ? (record?.orderdata?.createrid == userdata?.account?.userId) ? parseFloat(record?.adminfee)?.toFixed(6) : 0
+        //             : record?.spender == userdata?.account?.userId ? parseFloat(record?.adminfee)?.toFixed(6) : 0,
+        // },
         {
             text: `${t("RECEIVE")}`,
             className: "address",
             align: "left",
             cell: record =>
-                record?.orderdata?.ordertype == "Sell" ? (record?.orderdata?.createrid == userdata?.account?.userId) ? 0 : (parseFloat(record?.receive))?.toFixed(8)
-                    : record?.spender == userdata?.account?.userId ? 0 : (parseFloat(record?.receive))?.toFixed(8),
+                record?.orderdata?.ordertype == "Sell" ? (record?.orderdata?.createrid == userdata?.account?.userId) ? 0 : (parseFloat(record?.receive))?.toFixed(6)
+                    : record?.spender == userdata?.account?.userId ? 0 : (parseFloat(record?.receive))?.toFixed(6),
         },
         {
             text: `${t("PAY")}`,

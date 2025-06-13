@@ -335,12 +335,13 @@ const EditDetail = forwardRef((props, ref) => {
                             <div className="countrylist">
                             <Autocomplete
                             // open={open}
+                            className="autocomplete_inp"
       disablePortal
       id="combo-box-demo"
       value={country}
       onChange={(e , val) => handleCountry(val?.label)}
       options={COUNTRY}
-      sx={{ width: 300 }}
+    //   sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label={t("SELECT_COUNTRY")} />}
     />
     {validateError.country && <p className="error-message">{t(validateError.country)}</p>}

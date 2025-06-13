@@ -154,7 +154,8 @@ const CryptoWithdraw = (props) => {
       //   encryptToken
       // );
       const { status, loading, error, message } = await bitgoWithdraw(reqData)
-
+      console.log("status, loading, error, message" , status, loading, error, message);
+      
       setLoader(loading);
       if (status == "success") {
         setFormValue(initialFormValue);
@@ -230,7 +231,7 @@ const CryptoWithdraw = (props) => {
             <div className="wallwt_balance">
               <p>
                 {t("WALLET_BALANCE")}
-                <span>
+                <span className="ps-2">
                   {assetData && toFixed(assetData.p2pBal , 8)} {assetData.coin == "BNB.BSC" ? "BNB(Binance Coin)" : assetData?.coin}
                 </span>
               </p>

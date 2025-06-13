@@ -727,13 +727,20 @@ body.light_theme .jss25 {
 }
 
 .modalbtns {
-  padding: 4px 8px !important;
+  /* padding: 4px 8px !important; */
+  padding: 0px !important;
   border-radius: 8px !important;
   border: 1px solid #fff !important;
   background: transparent !important;
   color: #fff !important;
-  height: unset !important;
+  /* height: unset !important; */
   font-size: 12px !important;
+ width: 25px;
+  height: 25px !important;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  line-height: unset;
 }
 
 .submod-title {
@@ -812,11 +819,19 @@ body.light_theme .jss25 {
   /* background: #010101 !important; */
   background: #0a090d !important;
   width: fit-content !important;
+  max-width: 200px;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  overflow: hidden;
 }
 .light_theme .floatinglabel label {
   /* background: #f2f4f7 !important; */
   background: #fff !important;
   width: fit-content !important;
+  max-width: 200px;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  overflow: hidden;
 }
 
 .dark_theme .twoFAForm .floatinglabel label {
@@ -1076,9 +1091,9 @@ body.light_theme .jss25 {
     );
   }
 
-  .d-flexj {
+  /* .d-flexj {
     display: unset;
-  }
+  } */
 
   .spring {
     max-width: 250px;

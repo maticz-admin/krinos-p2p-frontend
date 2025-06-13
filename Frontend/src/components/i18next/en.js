@@ -783,8 +783,8 @@ export default {
 
     "SELL_BITCOIN_WITH_COMPANY":"Sell Crypto With Company",
     "BUY_BITCOIN_PAYMENT_CURRENCY":"Buy Crypto from other users using any payment",
-    "HOW_MUCH_DO_YOU_WANT_BUY":"How much do you want to Buy?",
-    "HOW_MUCH_DO_YOU_WANT_to":"How much do you want to Buy?",
+    "HOW_MUCH_DO_YOU_WANT_BUY":"How much do you want to ",
+    "HOW_MUCH_DO_YOU_WANT_to":"How much do you want to ",
     "I_WILL_PAY":"I will pay",
     "AND_RECEIVE":"and receive",
     "BUY_NOW":"Buy Now",

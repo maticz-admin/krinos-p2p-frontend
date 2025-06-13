@@ -141,18 +141,18 @@ const Displayownerdata = (props) => {
     }
     return (
         <>
-            <div>
-                <Header className="header"
-                    color="transparent"
-                    routes={dashboardRoutes}
-                    brand={<img src={require("../../assets/images/logo.png")} alt="logo" className="img-fluid" />}
-                    rightLinks={<HeaderLinks />}
-                    fixed
-                    changeColorOnScroll={{
-                        height: 20,
-                        color: "dark",
-                    }}
-                    {...rest} />
+        <div className='page_wrap'>
+            <Header className="header"
+                color="transparent"
+                routes={dashboardRoutes}
+                brand={<img src={require("../../assets/images/logo.png")} alt="logo" className="img-fluid" />}
+                rightLinks={<HeaderLinks />}
+                fixed
+                changeColorOnScroll={{
+                    height: 20,
+                    color: "dark",
+                }}
+                {...rest} />
 
                 {!loader ? <div className='bitcoincompany login_container login_box'>
                     {/* <div>

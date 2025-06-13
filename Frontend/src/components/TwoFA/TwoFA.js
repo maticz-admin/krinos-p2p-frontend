@@ -224,8 +224,8 @@ const TwoFA = () => {
                                             hidden={true}
                                         /> <label className="form-check-label mb-0" for="flexCheckDefault"> {t('HAVE_BACKUP')}</label>
 
-                                            {validateError.checkValue && <p className="error-message">{t(validateError.checkValue)}</p>}
                                         </div>}
+                                            {validateError.checkValue && <p className="mt-1 error-message">{t(validateError.checkValue)}</p>}
                                     </div>
                                 </form>
                             </GridItem>
