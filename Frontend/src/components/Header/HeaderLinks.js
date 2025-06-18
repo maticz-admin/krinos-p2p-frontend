@@ -450,7 +450,9 @@ const HeaderLinks = () => {
                         </MenuItem>
                       </NavLink>
                       <hr />
-                      <NavLink to="/support-ticket">
+                      <NavLink to="/support-ticket" 
+                       onClick={handleClose}
+                       >
                         <MenuItem>
                           <i
                             className="fa fa-question-circle"

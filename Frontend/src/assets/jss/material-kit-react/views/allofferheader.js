@@ -184,12 +184,12 @@ const Buybitcoin = (props) => {
 
         }
     }
-    
+
     const showloader = () => {
         document.getElementById("loadercontainer").classList.add("d-flex")
         document.getElementById("loadercontainer").classList.remove("d-none")
     }
-    
+
     const hideloader = () => {
         document.getElementById("loadercontainer").classList.remove("d-flex")
         document.getElementById("loadercontainer").classList.add("d-none")
@@ -225,7 +225,7 @@ const Buybitcoin = (props) => {
                         <img src={Images.connect} className='bannerconnect' />
                         <img src={Images.connect} className='connect' />
                         <img src={Images.connect} className='connectright' />
-                        <div className='btborder d-sm-flex justify-content-between mt-5'>
+                        <div className='btborder d-sm-flex gap-2 justify-content-between mt-5'>
                             <div className='mb-sm-0 mb-3'>
                                 <div className='mb-0'>
                                     <Dropdown className="headerdropdown m-left iner_drop_versiotwo">
@@ -258,6 +258,7 @@ const Buybitcoin = (props) => {
                                 <div className='floatinglabel'>
                                     <input type="number" className='form-control' readOnly={loader} placeholder={t("ENTER_AMOUNT")} name='amount' onChange={(e) => { setAmount(e.target.value) }} />
                                     <Button disabled={loader} className="themebtn ms-2 btn_filer_new_ma" onClick={filterbutton}>{t("FILTER")}</Button>
+                                    <Button disabled={loader} className="themebtn ms-2 btn_filer_new_ma">Clear</Button>
                                 </div>
                             </div>
                         </div>
@@ -271,61 +272,61 @@ const Buybitcoin = (props) => {
                                             <div className='themeloader'>
                                             </div>
                                         </div>}
-                                        {console.log("offerdata",offerdata)}
-                                        {!loader && offerdata && offerdata?.length > 0 && offerdata?.map((item) => <> 
-                                        <div className='tradelists w-100 d-flex justify-content-between align-items-center w-100'>
-                                            <>
-                                                <div className='d-flex align-items-center profile_oofer_widt' style={{ maxWidth: "22%", minWidth: "200px", marginRight: "20px" }}>
-                                                    <img src={item?.userdata?.profileImage ? config.API_URL + item?.userdata?.profileImage : Images.profill} className='prof prof_new_size' /> <p style={{ color: "darkgray" }}>{item?.userdata?.firstName ? (item?.userdata?.firstName + " " + item?.userdata?.lastName) : item?.userdata?.userId}</p>
-                                                </div>
-                                                <div style={{ maxWidth: "22%", minWidth: "200px", marginRight: "20px" }}>
-                                                    {item?.paymentmethod?.map((data) => <p className='aqua badge themebadge me-1 mb-1'>{data}</p>)}
-                                                </div>
-                                                <div style={{ maxWidth: "22%", minWidth: "200px", marginRight: "20px" }}>
-                                                    <p><span className='gray amount'>{t("MIN_PURCHASE")} </span> : <span className='yellow'> {item?.min} {item?.preferedcurrency}</span></p>
-                                                    <p><span className='gray amount'>{t("MAX_PURCHASE")} </span> : <span className='yellow'> {item?.max} {item?.preferedcurrency}</span></p>
-                                                </div>
-                                                <div style={{ maxWidth: "22%", minWidth: "200px", marginRight: "20px" }}>
-                                                    <p>
-                                                        <span className='red f-12'>1{item?.coin}  = {item?.prefferedcurrencyvalue} {item?.preferedcurrency} </span>
-                                                        {item?.variablepercentage ? <><span className='green f-12'>{item?.offermargin ? item?.offermargin : item?.variablepercentage}%
-                                                            {(item?.offermargin ? item?.offermargin : item?.variablepercentage) > 0 ? <i className='fa fa-arrow-up'></i> : <i className='fa fa-arrow-down'></i>}</span></> : <span className='hifern_bold'></span>}
-                                                    </p>
-                                                </div>
-                                                <div style={{ maxWidth: "12%", minWidth: "135px" }} className='d-flex align-items-center justify-content-center'>
-                                                    {userdata?.account?.userId ? (item?.createrid != userdata?.account?.userId ? <div >
-                                                        <button className='themebtn' onClick={() => {
-                                                            isLogin() ?
-                                                            navigate.push(`/bitcoincompany/${item?._id}`, { state: item })
-                                                            : navigate.push('/login');
-                                                        }}>{item?.ordertype == "Sell" ? t("BUY") : t("SELL")}</button>
-                                                    </div> : <div >
-                                                        <button className='themebtn' onClick={() => {
-                                                            isLogin() ?
-                                                            navigate.push(`/bitcoincompany/${item?._id}`, { state: item })
-                                                            : navigate.push('/login');
-                                                        }}>{t("VIEW")}</button>
-                                                    </div>) : <div className='btn_div_ooder_he right_space'>
-                                                        <button className='themebtn' onClick={() => {
-                                                            isLogin() ?
-                                                            navigate.push(`/bitcoincompany/${item?._id}`, { state: item })
-                                                            : navigate.push('/login');
-                                                        }}>{item?.ordertype == "Sell" ? t("BUY") : t("SELL")}</button>
-                                                    </div>}
-                                                </div>
-                                            </>
-                                        </div> </>)}
+                                        {console.log("offerdata", offerdata)}
+                                        {!loader && offerdata && offerdata?.length > 0 && offerdata?.map((item) => <>
+                                            <div className='tradelists w-100 d-flex justify-content-between align-items-center w-100'>
+                                                <>
+                                                    <div className='d-flex align-items-center profile_oofer_widt' style={{ maxWidth: "22%", minWidth: "200px", marginRight: "20px" }}>
+                                                        <img src={item?.userdata?.profileImage ? config.API_URL + item?.userdata?.profileImage : Images.profill} className='prof prof_new_size' /> <p style={{ color: "darkgray" }}>{item?.userdata?.firstName ? (item?.userdata?.firstName + " " + item?.userdata?.lastName) : item?.userdata?.userId}</p>
+                                                    </div>
+                                                    <div style={{ maxWidth: "22%", minWidth: "200px", marginRight: "20px" }}>
+                                                        {item?.paymentmethod?.map((data) => <p className='aqua badge themebadge me-1 mb-1'>{data}</p>)}
+                                                    </div>
+                                                    <div style={{ maxWidth: "22%", minWidth: "200px", marginRight: "20px" }}>
+                                                        <p><span className='gray amount'>{t("MIN_PURCHASE")} </span> : <span className='yellow'> {item?.min} {item?.preferedcurrency}</span></p>
+                                                        <p><span className='gray amount'>{t("MAX_PURCHASE")} </span> : <span className='yellow'> {item?.max} {item?.preferedcurrency}</span></p>
+                                                    </div>
+                                                    <div style={{ maxWidth: "22%", minWidth: "200px", marginRight: "20px" }}>
+                                                        <p>
+                                                            <span className='red f-12'>1{item?.coin}  = {item?.prefferedcurrencyvalue} {item?.preferedcurrency} </span>
+                                                            {item?.variablepercentage ? <><span className='green f-12'>{item?.offermargin ? item?.offermargin : item?.variablepercentage}%
+                                                                {(item?.offermargin ? item?.offermargin : item?.variablepercentage) > 0 ? <i className='fa fa-arrow-up'></i> : <i className='fa fa-arrow-down'></i>}</span></> : <span className='hifern_bold'></span>}
+                                                        </p>
+                                                    </div>
+                                                    <div style={{ maxWidth: "12%", minWidth: "135px" }} className='d-flex align-items-center justify-content-center'>
+                                                        {userdata?.account?.userId ? (item?.createrid != userdata?.account?.userId ? <div >
+                                                            <button className='themebtn' onClick={() => {
+                                                                isLogin() ?
+                                                                    navigate.push(`/bitcoincompany/${item?._id}`, { state: item })
+                                                                    : navigate.push('/login');
+                                                            }}>{item?.ordertype == "Sell" ? t("BUY") : t("SELL")}</button>
+                                                        </div> : <div >
+                                                            <button className='themebtn' onClick={() => {
+                                                                isLogin() ?
+                                                                    navigate.push(`/bitcoincompany/${item?._id}`, { state: item })
+                                                                    : navigate.push('/login');
+                                                            }}>{t("VIEW")}</button>
+                                                        </div>) : <div className='btn_div_ooder_he right_space'>
+                                                            <button className='themebtn' onClick={() => {
+                                                                isLogin() ?
+                                                                    navigate.push(`/bitcoincompany/${item?._id}`, { state: item })
+                                                                    : navigate.push('/login');
+                                                            }}>{item?.ordertype == "Sell" ? t("BUY") : t("SELL")}</button>
+                                                        </div>}
+                                                    </div>
+                                                </>
+                                            </div> </>)}
 
                                         {!loader && <> {!offerdata || offerdata?.length == 0 && <p className='mb-0 d-flex h-100 align-items-center jc-center text-light'>{t("NO_DATA_FOUND")}</p>} </>}
                                         {!loader && <>
-                                             {loadbutton && 
-                                        <div className='text-center mt-3'>
-                                             <button className='btn themebtn' onClick={() => { LoadMore() }}>{loadmore}</button>
-                                        </div>
-                                             } 
+                                            {loadbutton &&
+                                                <div className='text-center mt-3'>
+                                                    <button className='btn themebtn' onClick={() => { LoadMore() }}>{loadmore}</button>
+                                                </div>
+                                            }
                                         </>}
 
-                                       
+
 
                                         {/* <div className='tradelists'>
                                         <div className='d-flex flex-1 jc-between align-items-center'>
