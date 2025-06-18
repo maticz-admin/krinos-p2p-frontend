@@ -339,7 +339,7 @@ const MobileForm = () => {
                         onChange={handlePhoneNumber}
                         onBlur={handleBlurPhone}
                         specialLabel={false}
-                        country={'us'}
+                        country={'bo'}
                         autoComplete="new-password"
                     />
                     <span className='fa fa-mobile-alt right'></span>

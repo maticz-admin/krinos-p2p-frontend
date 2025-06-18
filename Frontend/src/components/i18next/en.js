@@ -925,7 +925,7 @@ export default {
     "CRYPTO_AND_PREFFERED_BE_DIFFER" : "cryptocurrency and preferred currency must be differ",
     "ERROR_FOUND" : "Error found",
     "LOADING" : "Loading...",
-    "LOGIN_HEAD" : "Anonymous P2P deals on your terms. Trade globally",
+    "LOGIN_HEAD" : "Anonymous P2P deals on your terms. Trade globally.",
     "CREATE_OFFER_TO" : "Create Offer to",
     "PAYMENT_METHOD_FIELD" : "Payment method field is required",
     "CRYPTOCURRENCY_AND_PREFERED_CURRENCY_" : "cryptocurrency and prefered currency must be differ",
@@ -1067,5 +1067,6 @@ export default {
     "TOUR_4" : "You’ll need to click this button to let your trade partner know that you’ve made the payment for the trade.",
     "TOUR_5" : "Having second thoughts or don’t want to continue with the trade? Just click this button to leave the trade.",
     "TOUR_6" : "This is where you’ll see all your trade partner’s expectations. Be sure to follow these instructions exactly to complete the trade smoothly.",
-    "TOUR_7" : "If you face any issues with the trade, click this button and we’ll help you out."
+    "TOUR_7" : "If you face any issues with the trade, click this button and we’ll help you out.",
+    "EMAILDETAIL" : "Please submit email details"
 }

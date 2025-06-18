@@ -28,10 +28,8 @@ const DeclineOfferModal = (props) =>{
                                     <Modal.Body>
                                         <p className='themetext_modal text-center'>{t("OFFER_DECLINED")}</p>
                                         <p className='themetext_modal text-center'>{t("YOUR_OFFER_HAS_BEEN_DECLINED_BY")} {props?.offer?.username}.</p>
-
                                         <div>
                                             <button className='themebtn' onClick={() => {props.onDismiss()}}>{t("Ok")}</button>
-
                                         </div>
                                     </Modal.Body>
                                 </Modal>

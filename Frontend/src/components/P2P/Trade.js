@@ -81,6 +81,8 @@ const Trade = (props) => {
     const chatresult = await Getorderchathook(payload);
     if (chatresult?.data?.type == "success") {
       var tradedata = chatresult?.data?.data[0]; //? chatresult?.data?.data : {}
+      console.log("trade data" , tradedata);
+      
       setTradechat(tradedata)
       setOfferdata(tradedata?.tradedata);
       var ref = {
@@ -478,8 +480,17 @@ const Trade = (props) => {
                   <div>
                     <img src={accountData?.profileImage
                                                 ? accountData?.profileImage
-                                                : Images.prof} alt="" className="chatprof" />
-                    <span className="chatname roboto">{owner?.firstName ? (owner?.firstName + " " + owner?.lastName + "  ") : owner?.userId }</span>
+                                                : Images.profill} alt="" className="chatprof" />
+                                                {/* userresult?.data?.data?.userId == tradedata?.spender || userresult?.data?.data?.userId == tradedata?.ordercreator */}
+                    <span className="chatname roboto">
+                      {console.log("tradechat" , tradechat , userdatas , GetUserId())}
+                      
+                      {GetUserId() == tradechat?.ordercreator ? userdatas?.firstName+ " " + userdatas?.lastName + "  ": 
+                      owner?.firstName + " " + owner?.lastName + "  "
+                      
+                      }
+                      {/* {owner?.firstName ? (owner?.firstName + " " + owner?.lastName + "  ") : owner?.userId } */}
+                      </span>
                     {/* <img src={Images.prof} alt="" className="countryimg" /> */}
 
                 {/* <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} /> */}

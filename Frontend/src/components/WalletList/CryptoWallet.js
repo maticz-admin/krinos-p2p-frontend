@@ -28,7 +28,7 @@ import { checkEmail } from "../../actions/walletAction";
 
 import { toastAlert } from "../../lib/toastAlert";
 import { Checkdeposithooks } from "actions/P2PorderAction";
-const CryptoWallet = () => {
+const CryptoWallet = (props) => {
   const { t, i18n } = useTranslation();
 
   // state
@@ -160,7 +160,7 @@ const CryptoWallet = () => {
       <div className="d-flex justify-content-between gk showe_flex_div">
         <img className='spring' src={spring} alt="spring" />
         <img src={Images.connect} className='connect' />
-        <h3 className="login_title_8">{t("CRYPTO_WALLET")}</h3>
+        <h3 className="login_title_8">{props.trans("CRYPTO_WALLET")}</h3>
 
         {/* <Checkbox
           name="CheckValue"
@@ -269,7 +269,7 @@ const CryptoWallet = () => {
                                 });
                               }
                               else {
-                                toastAlert("error", "Please submit email details", "email");
+                                toastAlert("error", t("EMAILDETAIL"), "email");
                               }
                               // setModal({
                               //   type: "deposit",
@@ -374,7 +374,7 @@ const CryptoWallet = () => {
                                   });
                                 }
                                 else {
-                                  toastAlert("error", "Please submit email details", "email");
+                                  toastAlert("error", t("EMAILDETAIL"), "email");
                                 }
                                 // setModal({
                                 //   type: "deposit",

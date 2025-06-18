@@ -13,6 +13,7 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 // import { BsBoxArrowUpRight } from 'react-icons/bs';
 
 // import Images from "../../../../Images";
+import Images from '../../Images';
 import profs from "../../assets/images/toss/prof.png";
 // import spring from "../../../images/toss/bannerbg.png";
 import flags from "../../assets/images/flags.png";
@@ -254,7 +255,7 @@ const Displayownerdata = (props) => {
                                     <div className='one1'>
                                         <div className=''>
                                             <div className='d-flex align-items-center align-items-center uu'>
-                                                <div><img src={ownerdata?.profileImage ? config.API_URL + ownerdata?.profileImage : profs} className='prof prof_icon_sixe' /></div>
+                                                <div><img src={ownerdata?.profileImage ? config.API_URL + ownerdata?.profileImage : Images.profill} className='prof prof_icon_sixe' /></div>
                                                 <div><p className='namelist'>{ownerdata?.firstName + " " + ownerdata?.lastName}
                                                     {/* <span><img src={flags} alt='hhq' /></span>  */}
                                                 </p>

@@ -315,7 +315,7 @@ const MobileForm = () => {
                         autoComplete="new-password"
                         // onBlur={handleBlurPhone}
                         specialLabel={false}
-                        country={'us'}
+                        country={'bo'}
                     />
                     {
                         !optStatus &&

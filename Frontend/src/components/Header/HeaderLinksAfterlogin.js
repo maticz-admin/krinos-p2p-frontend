@@ -819,11 +819,17 @@ export default function HeaderLinks1(props) {
                 <Select
                   name="language"
                   value={selLang}
+                  onChange={handleLanguage}
                 >
 
-
-                  <MenuItem value={'English'}>{"English"}</MenuItem>
-                  <MenuItem value={'Spanish'}>{"Spanish"}</MenuItem>
+                  {langOption && langOption.length > 0 && langOption.map((item, key) => {
+                    return (
+                      <MenuItem value={item?.code}>{item?.name}</MenuItem>
+                    )
+                  }
+                  )}
+                  {/* <MenuItem value={'English'}>{"English"}</MenuItem>
+                  <MenuItem value={'Spanish'}>{"Spanish"}</MenuItem> */}
 
                 </Select>
               </li>

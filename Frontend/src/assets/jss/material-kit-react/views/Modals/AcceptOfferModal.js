@@ -45,7 +45,8 @@ const AcceptOfferModal = (props) =>{
                                         </Button>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <p className='themetext_modal text-center'>{props.offer?.username} {t("IS_WAITING_TO_CONNECT_WITH_YOU")}</p>
+                                      {/* props.offer?.username */}
+                                        <p className='themetext_modal text-center'>{t("USER")} {t("IS_WAITING_TO_CONNECT_WITH_YOU")}</p>
                                         <div className='text-center pb-3 pt-3'>
                                             <button className='themebtn' onClick={()=>{navigate.push(`/trade/${props?.offer?.roomid}`)}}>{t("ACCEPT")}</button>
                                             <button className='themebtn ms-3' onClick={() =>handlereject()}>{t("DECLINE")}</button>

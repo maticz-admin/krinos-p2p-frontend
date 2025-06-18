@@ -10,7 +10,7 @@ import FiatWallet from './FiatWallet';
 import { checkDeposit,getAssetData } from '../../actions/walletAction'
 import { getCurrency } from 'actions/commonAction';
 
-const WalletList = () => {
+const WalletList = (props) => {
 let dispatch = useDispatch()
     useEffect(() => {
         checkDeposit()
@@ -19,7 +19,7 @@ let dispatch = useDispatch()
     return (
         <GridItem xs={12} sm={12} lg={12} xl={12}>
             {/* <FiatWallet /> */}
-            <CryptoWallet />
+            <CryptoWallet trans = {props?.trans}/>
         </GridItem>
     )
 }

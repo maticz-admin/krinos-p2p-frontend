@@ -242,7 +242,7 @@ const EmailForm = () => {
                     localStorage.setItem('xyz_cache', btoa(result?.userId))
                     // let checkdeposit = Checkdeposithooks();
                     setLoader(false);
-
+                    if(message)
                     toastAlert('success', t(message), 'login');
                     if (userSetting && userSetting.afterLogin && userSetting.afterLogin != " ") {
                         history.push(userSetting.afterLogin.url)
@@ -254,6 +254,7 @@ const EmailForm = () => {
                     setOtp("");
 
                     setShowTowFA(true)
+                    if(message)
                     toastAlert('error', t(message), 'login');
                 } else {
                     if (error) {
@@ -264,6 +265,7 @@ const EmailForm = () => {
                         history.push("/reset-password/" + authToken)
 
                     }
+                    if(message)
                     toastAlert('error', t(message), 'login');
                 }
         }
@@ -315,9 +317,8 @@ const EmailForm = () => {
         })
     }
  
-    var india = <img src={Images.india} />
+    var india = <img src={Images.india}/>
     return (
-
         <div
             className="g-recaptcha"
             data-sitekey={config.RECAPTCHA_SITE_KEY}

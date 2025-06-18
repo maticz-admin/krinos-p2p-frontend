@@ -435,7 +435,7 @@ export default {
     "FIAT_CRYPTO": "Fiat\/Crypto",
     "TOTAL": "Total",
     "FIAT_WALLET": "Fiat Wallet",
-    "CRYPTO_WALLET": "Crypto Wallet",
+    "CRYPTO_WALLET": "Crypto Walle",
     "SPOT": "SPOT",
     "DERIVATIVE": "DERIVATIVE",
     "P2P": "P2P",
