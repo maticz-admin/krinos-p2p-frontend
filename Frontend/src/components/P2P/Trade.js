@@ -154,7 +154,10 @@ const Trade = (props) => {
         roomid: roomid,
         image: image
       };
+
       socket.emit("SENDMESSAGE", payload);
+      setImage("");
+      setImageblob("");
     }
   }
 

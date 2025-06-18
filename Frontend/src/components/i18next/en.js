@@ -1068,5 +1068,6 @@ export default {
     "TOUR_5" : "Having second thoughts or don’t want to continue with the trade? Just click this button to leave the trade.",
     "TOUR_6" : "This is where you’ll see all your trade partner’s expectations. Be sure to follow these instructions exactly to complete the trade smoothly.",
     "TOUR_7" : "If you face any issues with the trade, click this button and we’ll help you out.",
-    "EMAILDETAIL" : "Please submit email details"
+    "EMAILDETAIL" : "Please submit email details",
+    "ZERO_BALANCE_UNHIDDEN" : "zero balance assets unhidden successfully",
 }

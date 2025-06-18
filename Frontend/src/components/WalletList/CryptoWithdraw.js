@@ -55,6 +55,7 @@ const CryptoWithdraw = (props) => {
     setValidateError({});
     setLoader(false)
     onHide();
+    setLoader(false)
   };
 
   const handleChange = (e) => {
