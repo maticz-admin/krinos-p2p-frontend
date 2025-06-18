@@ -34,8 +34,8 @@ const dashboardRoutes = [];
 const CreateOffer = (props) => {
     document.title = "KRINOS"
     const navigate = useHistory();
-          const { t, i18n } = useTranslation();
-    
+    const { t, i18n } = useTranslation();
+
     const userdata = useSelector(state => state.account);
     const location = useLocation();
     const { ...rest } = props;
@@ -176,19 +176,19 @@ const CreateOffer = (props) => {
             //     [],
             //   );
 
-            for(let i =0 ; i<result?.data?.length; i++){
-                if(result?.data[i]?.type == "crypto"){
+            for (let i = 0; i < result?.data?.length; i++) {
+                if (result?.data[i]?.type == "crypto") {
                     finalarray.push(result?.data[i]);
                 }
             }
-            console.log("Result in get coin list hooks" , result ,finalarray);
-            
+            console.log("Result in get coin list hooks", result, finalarray);
+
             setCrypto(finalarray);
             setCoin(finalarray[0].symbol)
             // var precurrency = await Getpreferedcurrency()
             var precurrency = await getPreferredCurrency()
-            console.log("preferred currency" , precurrency);
-            
+            console.log("preferred currency", precurrency);
+
             setPrefferedcurrencylist(precurrency?.result);
             setPrefferedcurrency(precurrency?.result[0]?.coin)
             setPreimage(`${precurrency?.result[0]?.image}`)
@@ -223,7 +223,7 @@ const CreateOffer = (props) => {
             let cur1 = crypto.find(e => e.coin == coin)
             let cur2 = crypto.find(e => e.coin == prefferedcurrency);
 
-            let pairresult = await GetPairExist(coin , prefferedcurrency)
+            let pairresult = await GetPairExist(coin, prefferedcurrency)
 
             if (cur1?.depositType == "local" || cur2?.depositType == "local" || !pairresult) {
                 setPricetype("Fixed Price");
@@ -256,8 +256,8 @@ const CreateOffer = (props) => {
         if (parseFloat(max) < parseFloat(min) || parseFloat(min) > parseFloat(max) || parseFloat(min) == parseFloat(max)) {
             data.max = "MAX_FIELD"
         }
-        if(pricetype == "Fixed Price"){
-            if(!parseFloat(fixedmarketrate)){
+        if (pricetype == "Fixed Price") {
+            if (!parseFloat(fixedmarketrate)) {
                 data.fixedprice = "FIXED_PRICE"
             }
         }
@@ -359,14 +359,18 @@ const CreateOffer = (props) => {
                         {/* <img src={Images.connect} className='stepsimg' /> */}
                         <div className='col-md-12'>
                             <div className='bordbox p-sm-4'>
-                                <div className='d-flex jc-between stepbtns'>
-                                    <button className='active'
+                                <div className={`d-flex jc-between stepbtns`}>
+                                    <div className={`cus_before ${steps == 1 ? "one" : steps == 2 ? "two" : "three"}`}></div>
+                                    <button
+                                        className={(steps == 1 || steps == 2 || steps == 3) ? 'active' : ""}
                                     // onClick={() => setSteps(1)}
                                     > <span className='fa fa-circle mr-2'></span>{t("PAYMENT_METHOD")}</button>
                                     <button
+                                        className={(steps == 2 || steps == 3) ? 'active' : ""}
                                     // onClick={() => setSteps(2)}
                                     ><span className='fa fa-circle mr-2'></span>{t("PRICE")}</button>
                                     <button
+                                        className={steps == 3 ? 'active' : ""}
                                     // onClick={() => setSteps(3)}
                                     ><span className='fa fa-circle mr-2'></span>{t("OTHER_SETTINGS")}</button>
                                 </div>
