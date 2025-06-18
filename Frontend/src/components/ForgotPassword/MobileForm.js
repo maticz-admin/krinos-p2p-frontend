@@ -61,7 +61,7 @@ const MobileForm = () => {
         let reqData = {
             phoneCode,
             phoneNo,
-            type:'forgot'
+            type: 'forgot'
         }
         let { status, loading, error, message } = await sentOTP(reqData);
         if (status == "success") {
@@ -131,16 +131,16 @@ const MobileForm = () => {
     useEffect(() => {
         // setValidateError(validation(formValue))
     }, [])
-    
+
     return (
         <Fragment>
             {/* <p className="paraLabel text-center mb-3 forhet_txtx">{t('MOBILE_NO')}</p> */}
-            <div className='floatinglabel my-4'>
+            <div className='floatinglabel mt-4 mb-2'>
                 {/* <img src={Images.india} className='flagimg'/> */}
                 <label>{t('MOBILE_NO')}</label>
                 {/* {toched.phoneCode && validateError.phoneCode && <p className="error-message">{validateError.phoneCode}</p>} */}
-                
-                
+
+
                 <PhoneInput className="form-control p-0"
                     placeholder={t('ENTER_MOBILE_NO')}
                     value={phoneCode + phoneNo}
@@ -150,12 +150,12 @@ const MobileForm = () => {
                     // className="form-control"
                     country={'us'}
                 />
-                  {validateError && validateError.phone && <p className="error-message">{validateError.phone}</p>}
+                {validateError && validateError.phone && <p className="error-message">{validateError.phone}</p>}
                 {validateError && validateError.phoneNo && <p className="error-message">{validateError.phoneNo}</p>}
-             </div>
-            <div className="form-group">
-                
-               
+            </div>
+            <div className="form-group text-end">
+
+
 
                 <Button
                     onClick={handleSentOTP}
@@ -203,14 +203,14 @@ const MobileForm = () => {
                 </button>
             </div>
             <div className="d-flex px-4 py-3">
-                    <Link to="/" className="mr-auto">
-                        Home
-                    </Link>
-                    <Link to="/login" className="ml-auto">
-                        {/* {t("DON'T_HAVE_ACCOUNT")}? */}
-                        {t('Login')}
-                    </Link>
-                </div>
+                <Link to="/" className="mr-auto">
+                    Home
+                </Link>
+                <Link to="/login" className="ml-auto">
+                    {/* {t("DON'T_HAVE_ACCOUNT")}? */}
+                    {t('Login')}
+                </Link>
+            </div>
         </Fragment>
     )
 }
