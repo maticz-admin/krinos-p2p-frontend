@@ -350,7 +350,8 @@ const UserDashboard = (props) => {
                 return (
                     <>
                         {/* <span>{record.offerstatus}</span> */}
-                        <span>{record?.offerstatus.charAt(0).toUpperCase() + record?.offerstatus?.slice(1)}</span>
+                        {/* <span>{record?.offerstatus.charAt(0).toUpperCase() + record?.offerstatus?.slice(1)}</span> */}
+                        <span>{t(record?.offerstatus?.toUpperCase())}</span>
                     </>
                 )
             }
@@ -437,7 +438,7 @@ const UserDashboard = (props) => {
             className: "address",
             align: "left",
             cell: record =>
-                (record?.orderdata?.createrid == userdata?.account?.userId) ? record?.orderdata?.ordertype : record?.orderdata?.ordertype == "Buy" ? "Buy" : "Sell",
+                (record?.orderdata?.createrid == userdata?.account?.userId) ? t(record?.orderdata?.ordertype?.toUpperCase()) : record?.orderdata?.ordertype == "Buy" ? t("BUY") : t("SELL"),
         },
         {
             key: "status",
@@ -446,8 +447,7 @@ const UserDashboard = (props) => {
             text: `${t("STATUS")}`,
             className: "address",
             align: "left",
-            // cell : record =>
-            // (record?.orderdata?.createrid == userdata?.account?.userId) ? record?.orderdata?.ordertype : record?.orderdata?.ordertype == "Buy" ? "Buy" : "Sell",
+            cell : record => <span>{t(record?.status?.toUpperCase())}</span>
         },
         // {
         //     text: `${t("ADMIN_FEE")}`,
@@ -531,7 +531,8 @@ const UserDashboard = (props) => {
             text: `${t("STATUS")}`,
             className: "address",
             align: "left",
-            sortable: true
+            sortable: true,
+            cell : record => <span>{t(record?.chatstatus?.toUpperCase())}</span>
         },
         // {
         //     key: "preferred",

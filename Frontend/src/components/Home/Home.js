@@ -600,7 +600,7 @@ const Home = (props) => {
                                                 </div> */}
                                                 <div className='text-center'>
                                                     {/* <Link to="/buybitcoin">   */}
-                                                    <button className='graybtn my-3' onClick={() => handleviewoffer()}>{loading ? "Loading..." : t("VIEW_OFFER")} </button>
+                                                    <button className='graybtn my-3' onClick={() => handleviewoffer()}>{loading ? t("LOADING") : t("VIEW_OFFER")} </button>
                                                     {/* </Link> */}
                                                 </div>
                                             </div>

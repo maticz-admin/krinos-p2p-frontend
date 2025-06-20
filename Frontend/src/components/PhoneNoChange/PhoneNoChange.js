@@ -9,7 +9,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import GridItem from "components/Grid/GridItem.js";
 
 // import action
-import { changeNewPhone, verifyNewPhone } from "../../actions/users";
+import { changeNewPhone, sentOTP, verifyNewPhone } from "../../actions/users";
 
 // import lib
 import { toastAlert } from "../../lib/toastAlert";
@@ -155,7 +155,7 @@ const PhoneNoChange = () => {
           },
         });
         setDisablePh(true);
-        toastAlert("success", message, "editPhoneNumber");
+        toastAlert("success", t(message), "editPhoneNumber");
       } else {
         setMobileDetail({
           ...mobileDetail,
@@ -168,7 +168,7 @@ const PhoneNoChange = () => {
           setValidateError(error);
           return;
         }
-        toastAlert("error", message, "editPhoneNumber");
+        toastAlert("error", t(message), "editPhoneNumber");
       }
     } catch (err) { }
   };
@@ -195,8 +195,10 @@ const PhoneNoChange = () => {
         //     'newPhoneNo': result?.phoneNo,
         //     'otp': ''
         // })
+        // window.location.reload()
         setMobileDetail(mobileInitialValue);
         toastAlert("success", t(message), "editPhoneNumber");
+        setFormValue({...formValue, ...{otp : ""}})
       } else {
         setValidateError(error);
       }

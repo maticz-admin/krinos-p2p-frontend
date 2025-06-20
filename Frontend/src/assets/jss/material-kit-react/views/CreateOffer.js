@@ -519,6 +519,7 @@ const CreateOffer = (props) => {
 
                                             <label>{t("PAYMENT_METHOD")}:       </label>
                                             <Select
+                                            placeholder = {t("SELECT")}
                                                 styles={stylesgraybg}
                                                 onChange={(e) => handleselect(e)} isMulti="true" options={myData} className='multiselect select_oofer_multisel' />
 

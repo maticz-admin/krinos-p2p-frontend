@@ -222,7 +222,7 @@ const ProfilePage = (props) => {
                             <ul className='buyborder1 p-3'>
                                 {review?.length > 0 ? review?.map((data , i) => 
                                 <li class="mb-3">
-                                  <h5 class="text-light fw-bold mb-0">UserId :{data?.userId}</h5>
+                                  <h5 class="text-light fw-bold mb-0">{t("USERID")} :{data?.userId}</h5>
                                   <p class="text-light f-14 roboto mb-0">{data?.description}</p>
                                   <p class="time text-gray roboto f-12">{new Date(parseFloat(data?.date))?.toString()?.slice(4 , 21)}</p>
                                   </li>

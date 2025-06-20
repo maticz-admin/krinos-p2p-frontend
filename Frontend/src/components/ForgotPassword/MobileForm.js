@@ -204,11 +204,11 @@ const MobileForm = () => {
             </div>
             <div className="d-flex px-4 py-3">
                     <Link to="/" className="mr-auto">
-                        Home
+                        {t("HOME")}
                     </Link>
                     <Link to="/login" className="ml-auto">
                         {/* {t("DON'T_HAVE_ACCOUNT")}? */}
-                        {t('Login')}
+                        {t('LOGIN')}
                     </Link>
                 </div>
         </Fragment>

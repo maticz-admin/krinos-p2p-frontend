@@ -66,7 +66,9 @@ const Messagenotification = () => {
 
   async function fetchdata() {
     var result = await Getmessagenotificationhooks();
-    setMessagenotify(result?.data?.data);
+    console.log("result" , result);
+    
+    setMessagenotify(result?.data);
   }
 
   useEffect(() => {
@@ -125,7 +127,9 @@ const Messagenotification = () => {
                             {messagenotity && messagenotity.length > 0 ? (
                               <>
                                 {messagenotity.map((val, index) => (
-                                  <div> <li className={val.isRead ? 'read' : 'unread'} onClick={(e) => { readMess(val._id) }}>
+                                  <div> <li className={val.isRead ? 'read' : 'unread'} 
+                                  // onClick={(e) => { readMess(val._id) }}
+                                  >
                                     <div className='d-flex align-items-center pl-sm-2'>
                                       <span className='stat mr-2 shrink-0'></span>
                                       <div onClick={() => navigate.push(`/trade/${val?.roomid}`)} className="hover_pou_car">

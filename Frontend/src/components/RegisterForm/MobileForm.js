@@ -20,6 +20,7 @@ import { toastAlert } from '../../lib/toastAlert';
 import { getLang } from '../../lib/localStorage';
 import config from '../../config/index';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const initialFormValue = {
     'phoneCode': '',
@@ -43,6 +44,7 @@ const MobileForm = () => {
     const { t, i18n } = useTranslation();
     const { executeRecaptcha } = useGoogleReCaptcha();
     const query = useQuery();
+    const history = useHistory()
     // state
     const [formValue, setFormValue] = useState(initialFormValue);
     //const [reCaptcha, setReCaptcha] = useState('');
@@ -55,6 +57,7 @@ const MobileForm = () => {
     const [counter, setCounter] = useState(600)
     const [Seconds, setseconds] = useState(0)
     const [Minutes, setminutes] = useState(0)
+    const [okregister , setOkregister] = useState(true);
     const { formType, phoneCode, phoneNo, password, confirmPassword, otp, isTerms, showPassword, showConfirmPassword, referenceCode } = formValue;
 
     // function
@@ -124,12 +127,16 @@ const MobileForm = () => {
             // setReCaptcha('')
             if (status == 'success') {
                 setFormValue(initialFormValue)
+                if(message)
                 toastAlert('success', t(message), 'signup', 'TOP_RIGHT');
                 setOtpStatus(false)
+                // history.push("/login")
+                window.location.href = window.location.origin + "/login"
             } else {
                 if (error) {
                     setValidateError(error);
                 }
+                if(message)
                 toastAlert('error', t(message), 'signup', 'TOP_RIGHT');
             }
         }
@@ -187,6 +194,7 @@ const MobileForm = () => {
                 setOtpStatus(true)
                 if(message)
                 toastAlert('success', t(message), 'mobileForm');
+            setOkregister(false)
             } else {
                 if (error) {
                     setValidateError(error)
@@ -266,6 +274,9 @@ const MobileForm = () => {
                 clearInterval(timer);
 
         }
+        else{
+            setOtpStatus(false)
+        }
 
     }, [
     optStatus, counter
@@ -329,7 +340,7 @@ const MobileForm = () => {
 
                 }
                 <span className='fa fa-mobile-alt right'></span>
-                {validateError.phoneCode && <p className="error-message">{t(validateError.phoneCode)}</p>}
+                {/* {validateError.phoneCode && <p className="error-message">{t(validateError.phoneCode)}</p>} */}
                 {validateError.phoneNo && <p className="error-message">{t(validateError.phoneNo)}</p>}
             </div>
             
@@ -529,6 +540,7 @@ const MobileForm = () => {
                     <button className='themebtn big my-3'
                         onClick={handleFormSubmit}
                     // disabled={!isEmpty(validateError) || loader}
+                    disabled = {okregister}
                     >
                         {loader && <i class="fas fa-spinner fa-spin"></i>} {t('REGISTER')}
                     </button>

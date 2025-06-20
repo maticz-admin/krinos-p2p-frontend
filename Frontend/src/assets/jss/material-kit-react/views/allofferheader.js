@@ -258,7 +258,9 @@ const Buybitcoin = (props) => {
                                 <div className='floatinglabel'>
                                     <input type="number" className='form-control' readOnly={loader} placeholder={t("ENTER_AMOUNT")} name='amount' onChange={(e) => { setAmount(e.target.value) }} />
                                     <Button disabled={loader} className="themebtn ms-2 btn_filer_new_ma" onClick={filterbutton}>{t("FILTER")}</Button>
-                                    <Button disabled={loader} className="themebtn ms-2 btn_filer_new_ma">Clear</Button>
+                                    <Button disabled={loader} onClick = {() => {
+                                        window.location.href = window.location.origin+"/viewoffers/Buy/POL"
+                                    }}className="themebtn ms-2 btn_filer_new_ma">{t("CLEAR")}</Button>
                                 </div>
                             </div>
                         </div>

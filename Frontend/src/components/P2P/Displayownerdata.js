@@ -246,7 +246,7 @@ const Displayownerdata = (props) => {
                             {/* <p className='lorem mt-4 mb-4 text-center'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> */}
 
                             <div className='d-flex mb-3'>
-                                <button className='themebtn' onClick={handleNavigate}>Back</button>
+                                <button className='themebtn' onClick={handleNavigate}>{t("BACK")}</button>
                             </div>
                             <div className='buyborder1 mt-3'>
                                 <p className='mb-0 much'>{t("ABOUT_THIS_BUYER")}</p>

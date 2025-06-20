@@ -88,14 +88,16 @@ const EmailForm = () => {
         try {
             let { result } = await getGeoInfoData();
             const browserResult = browser();
+            console.log("ipdresult" , result);
+            
             if (!result.ip) {
                 getGeoInfo();
             }
             setLoginHistory({
-                countryName: result.country_name,
-                countryCode: result.country_calling_code,
-                ipaddress: result.ip, //ipString
-                region: result.region,
+                countryName: result?.country_name,
+                countryCode: result?.country_calling_code,
+                ipaddress: result?.IPv4, //ipString
+                region: result?.region,
                 broswername: browserResult.name,
                 ismobile: browserResult.mobile,
                 os: browserResult.os,

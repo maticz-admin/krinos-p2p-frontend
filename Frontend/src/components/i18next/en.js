@@ -820,8 +820,8 @@ export default {
     "ROOM_ID":"Room Id",
     "OPTION":"Option",
     "VERIFICATION_PENDING":"Verification Pending",
-    "UPDATE_KYC":"Update Kyc",
-    "UPDATE_USERNAME":"Update Username",
+    "UPDATE_KYC":"Not set",
+    "UPDATE_USERNAME":"Not set",
     "2FA_ENABLED":"2FA Enabled",
     "NOTIFICATIONS":"Notifications",
     "MARK_ALL_AS_READ":"Mark all as read",
@@ -1059,7 +1059,7 @@ export default {
     "PASSWORD_ATLEAST_SIX_CHAR" : "Password must have atleast 6 character",
     "PASSWORD_MUST_HAVE_SPECIAL_CHAR" : "Password must have one special character one numeric and one uppercase",
     "PHONE_DOSENT_EXIST" : "The phone number does not exist",
-    "OFFER_TERMS" : "Offer terms and condition",
+    
     //jun-12
     "TOUR_1" : "This is where you chat with your trade partner and exchange information needed to complete the trade.",
     "TOUR_2" : "If you’re ever wondering whether you’re talking to an actual Paxful moderator, this is how you’ll know.",
@@ -1070,4 +1070,18 @@ export default {
     "TOUR_7" : "If you face any issues with the trade, click this button and we’ll help you out.",
     "EMAILDETAIL" : "Please submit email details",
     "ZERO_BALANCE_UNHIDDEN" : "zero balance assets unhidden successfully",
+    "CLEAR" : "Clear",
+    "OFFER_TERMS" : "Offer terms and condition",
+    "SELECT" : "Select",
+    "KYCISSUE" : "Kyc Issue",
+    "DEPOSITISSUE" : "Deposit Issue",
+    "LOGINISSUE" : "Login Issue",
+    "WITHDRAW_ISSUE" : "Withdraw Issue",
+    "ACTIVE" : "Active",
+    "INACTIVE" : "Inactive",
+    "BACK" : "Back",
+    "EMAIL_REQUIRED" : "Email required!",
+    "EMAILTEMPLATE" :"Click here to activate",
+    //new
+    "USERID" : "User Id"
 }

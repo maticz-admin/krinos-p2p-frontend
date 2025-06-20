@@ -56,16 +56,18 @@ let dispatch = useDispatch()
                 <>
                 {data.map((val,index)=>(
                 
-                    <li className= {val.isRead ?'read' :'unread'} onClick={(e)=>{
-                      readMess(val._id)
+                    <li className= {val.isRead ?'read' :'unread'} 
+                    // onClick={(e)=>{
+                      // readMess(val._id)
                       // if(val?.description == "You received one review"){
                       //   window.location.href = window?.location?.origin +"/profile#reviews";
                       // }
-                      }}>
+                      // }}
+                      >
                     <div className='d-flex align-items-center pl-sm-2'>
                         <span className='stat mr-2 shrink-0'></span>
                         <div>
-                          {console.log(val , "vallld")}
+                          {console.log(val ,localStorage.getItem("usr-language"),  "vallld")}
                             <p className='f-12 lighttxt descc'>{localStorage.getItem("usr-language") == "en" ? val.description : val.spdescription}</p>
                             <p className='text-muted f-12 dateformat'>{momentFormat(val.createdAt, 'YYYY-MM-DD HH:mm')}</p>
                         </div>
