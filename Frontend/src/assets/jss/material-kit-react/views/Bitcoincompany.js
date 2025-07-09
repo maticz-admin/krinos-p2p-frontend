@@ -427,7 +427,7 @@ const Bitcoincompany = (props) => {
                                     <div className='one1'>
                                         <div className=''>
                                             <div className='d-flex align-items-center align-items-center uu'>
-                                                <div><img src={ownerdata?.profileImage ? config.API_URL + ownerdata?.profileImage : profs} className='prof prof_icon_sixe' /></div>
+                                                <div><img src={ownerdata?.profileImage ? config.API_URL + ownerdata?.profileImage : Images.profill} className='prof prof_icon_sixe' /></div>
                                                 <div><p className='namelist'>{ownerdata?.firstName ? (ownerdata?.firstName + " " + ownerdata?.lastName) : ownerdata?.userId}
                                                     {/* <span><img src={flags} alt='hhq' /></span>  */}
                                                 </p>
@@ -461,7 +461,7 @@ const Bitcoincompany = (props) => {
                                     <div className='one2 one2_col_wdi'>
                                         <div className=''>
                                             <div><p className='namelist'>{t("TRADE_SPEED")}</p></div>
-                                            <div><button className='themebtn mt-4'>{tradespeed ? (parseFloat(tradespeed) < 5 ? "Instant" : tradespeed + "min") : "New"}</button></div>
+                                            <div><button className='themebtn mt-4'>{tradespeed ? (parseFloat(tradespeed) < 5 ? "Instant" : parseInt(tradespeed) + " min") : "New"}</button></div>
                                         </div>
                                     </div>
 

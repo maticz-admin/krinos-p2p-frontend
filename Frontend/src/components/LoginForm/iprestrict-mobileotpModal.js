@@ -150,8 +150,8 @@ const IprestrictmobileModal = (props) => {
                 </div>
                 <Modal.Header>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        <p className='mb-0'>Login New Device</p>
-                        <p className='submod-title'>Please Enter OTP </p>
+                        <p className='mb-0'>{t("LOGIN_NEW_DEVICE")}</p>
+                        <p className='submod-title'>{t("PLEASE_ENTER_OTP")} </p>
                     </Modal.Title>
                     <Button variant="secondary" className='modalbtns' onClick={props.onDismiss}> x
                     </Button>
@@ -179,20 +179,20 @@ const IprestrictmobileModal = (props) => {
                   {props.error && <p className="error-message">{t(props.error)}</p>}
                         <div className='text-right mb-3 mt-3 countdownspan'>
 
-                            <p className="pr-2 mt-3"> OTP will expire in <b>  <span>{Minutes}:{Seconds}</span></b></p>
+                            <p className="pr-2 mt-3"> {t("OTP_EXPIRES_IN")}<b>  <span>{Minutes}:{Seconds}</span></b></p>
 
 
                         </div>
                       {Minutes==0 &&  Seconds==0 ? <div className='text-center'>
 
-                            <button className='themebtn mb-3' onClick={handleSentOTP}>Resend OTP</button>
+                            <button className='themebtn mb-3' onClick={handleSentOTP}>{t("RESEND_OTP")}</button>
                         </div> :""}
 
 
                         <div className='text-center'>
 
                             {/* <button className='themebtn mb-3' onClick={(e) => { resendOTP(e) }}>Resend OTP</button> */}
-                        <button className='themebtn' onClick={(e) => { handlesubmit(e) }}>Submit</button>
+                        <button className='themebtn' onClick={(e) => { handlesubmit(e) }}>{t("Submit")}</button>
 
                         </div>
 

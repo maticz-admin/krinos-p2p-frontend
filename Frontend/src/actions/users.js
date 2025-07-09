@@ -139,7 +139,7 @@ export const login = async (data, dispatch) => {
         message: response.message,
       };
     }
-    else if (response?.message == "OTP send to your mail id") {
+    else if (response?.message == "OTP_SENDS_TO_YOUR_MAILID") {
       return {
         status: "success",
         loading: false,

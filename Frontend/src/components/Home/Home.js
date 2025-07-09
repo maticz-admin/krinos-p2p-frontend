@@ -490,10 +490,10 @@ const Home = (props) => {
 
                                                                         <Dropdown.Item
                                                                         ><p className='d-flex align-items-center' onClick={() => {
-                                                                            setPrefferedcurrency(data?.symbol);
+                                                                            setPrefferedcurrency(data?.coin);
                                                                             setPreimg(data?.image);
                                                                         }}><img src={data?.image} className="iconss" />
-                                                                                <span>{data?.symbol}</span></p></Dropdown.Item>)
+                                                                                <span>{data?.coin}</span></p></Dropdown.Item>)
                                                                 })}
 
                                                             </Dropdown.Menu>
@@ -600,7 +600,7 @@ const Home = (props) => {
                                                 </div> */}
                                                 <div className='text-center'>
                                                     {/* <Link to="/buybitcoin">   */}
-                                                    <button className='graybtn my-3' onClick={() => handleviewoffer()}>{loading ? "Loading..." : t("VIEW_OFFER")} </button>
+                                                    <button className='graybtn my-3' onClick={() => handleviewoffer()}>{loading ? t("LOADING") : t("VIEW_OFFER")} </button>
                                                     {/* </Link> */}
                                                 </div>
                                             </div>

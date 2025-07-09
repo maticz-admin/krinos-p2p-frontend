@@ -117,7 +117,7 @@ const CreateTicket = (props) => {
             if (status == 'success') {
                 setFormValue(initialFormValue)
                 listRef.current.listData()
-                toastAlert('success', message, 'createTicket')
+                toastAlert('success', t(message), 'createTicket')
                 if (formValue.attachment != '') {
                     setFormValue(initialFormValue)
                     // refreshPage()
@@ -184,7 +184,7 @@ const CreateTicket = (props) => {
                             {
                                 categoryList && categoryList.length > 0 && categoryList.map((item, key) => {
                                     return (
-                                        <MenuItem key={key} value={item._id}>{item.categoryName}</MenuItem>
+                                        <MenuItem key={key} value={item._id}>{t(item.categoryName)}</MenuItem>
                                     )
                                 })
                             }

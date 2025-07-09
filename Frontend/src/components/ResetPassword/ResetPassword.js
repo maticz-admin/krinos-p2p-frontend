@@ -125,7 +125,7 @@ const ResetPassword = () => {
                 <div className='container'>
                     <div className='text-center mb-5'>
                         <h3 className="blackandwhite">{t('PASSSWORD_RESET')}</h3>
-                        <p className='subhead'>Anonymous P2P deals on your terms. Trade globally.</p>
+                        <p className='subhead'>{t("LOGIN_HEAD")}</p>
                     </div>
                     <div className='buyselltab'>
                         <img src={Images.bitcoin} className='bannerbitcoin' />

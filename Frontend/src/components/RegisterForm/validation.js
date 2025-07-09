@@ -17,21 +17,21 @@ export const emailValidation = (value) => {
     if (isEmpty(value.email)) {
         errors.email = "REQUIRED"
     } else if (!(emailRegex.test(value.email))) {
-        errors.email = "Invalid email"
+        errors.email = "INVALID_EMAIL"
     }
 
     if (isEmpty(value.password)) {
         errors.password = "REQUIRED"
     }else if ((value.password.length < 6) || (value.password.length > 18)) {
-        errors.password = "PASSWORD MUST HAVE ATLEAST 6 CHARACTER"
+        errors.password = "PASSWORD_ATLEAST_SIX_CHAR"
     }else if (!(passwordRegex.test(value.password))) {
-        errors.password = "PASSWORD MUST HAVE ONE SPECIAL CHARACTER ONE NUMERIC AND ONE UPPERCASE"
+        errors.password = "PASSWORD_MUST_HAVE_SPECIAL_CHAR"
     } 
 
     if (isEmpty(value.confirmPassword)) {
         errors.confirmPassword = "REQUIRED"
     } else if (!(isEmpty(value.confirmPassword)) && value.password != value.confirmPassword) {
-        errors.confirmPassword = "Confirm password mismatch"
+        errors.confirmPassword = "CONFIRM_PASSWORD_MISMATCH"
     }
 
     // if (isEmpty(value.reCaptcha)) {
@@ -74,7 +74,7 @@ export const mobileValidation = (value) => {
     if (isEmpty(value.confirmPassword)) {
         errors.confirmPassword = "REQUIRED"
     } else if (!(isEmpty(value.confirmPassword)) && value.password != value.confirmPassword) {
-        errors.confirmPassword = "Confirm password mismatch"
+        errors.confirmPassword = "CONFIRM_PASSWORD_MISMATCH"
     }
 
     // if (!(value.isTerms == true)) {

@@ -14,7 +14,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 // import action
 import { logout } from "../../actions/users";
 // import { setTradeTheme, setTheme } from "../../actions/commonAction";
-import { setTheme } from "../../lib/localStorage";
+import { getLang, setLang, setTheme } from "../../lib/localStorage";
 // import {
 //   SET_UNREAD_NOTICE,
 //   UPDATE_NOTICE_POPUP
@@ -35,15 +35,19 @@ import { markasreadallhooks } from "actions/P2PorderAction";
 import { socket } from "config/socketConnectivity";
 import { Getunreadmessagenotificationhooks } from "actions/P2PorderAction";
 import { Checkdeposithooks } from "actions/P2PorderAction";
+import { Getcoinlisthooks } from "actions/P2PorderAction";
 
 export default function HeaderLinks1(props) {
   const userdata = localStorage.getItem("userId");
+  const language = useSelector((state) => state.language);
   const dispatch = useDispatch();
   const socketContext = useContext(SocketContext);
   const history = useHistory();
   const routeMatch = useRouteMatch();
   const { t, i18n } = useTranslation();
   const [theme, settheme] = useState(false);
+    const [langOption, setLangOption] = useState([]);
+    const [coinlist, setCoinlist] = useState([]);
 
   // state
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -140,6 +144,69 @@ export default function HeaderLinks1(props) {
     noticePopup(dispatch, true);
   };
 
+  const handleLanguage = (e) => {
+      e.preventDefault();
+      const { name, value } = e.target;
+      setSelLang(value);
+      setLang(value);
+      console.log("selected lanasdfg", value);
+  
+      i18n.changeLanguage(value);
+      localStorage.setItem("usr-language", value);
+    };
+
+     useEffect(() => {
+    let langs = localStorage.getItem("usr-language");
+    console.log("langslangs1", langs);
+    if (langs == "en") {
+      setSelLang("en");
+      i18n.changeLanguage("en");
+    } else {
+      setSelLang("sp");
+      i18n.changeLanguage("sp");
+    }
+    if (!isEmpty(language)) {
+      setLangOption(language);
+      let lang = getLang();
+      // console.log("language on header" , lang);
+      if (isEmpty(lang)) {
+        let primaryData =
+          language &&
+          language.length > 0 &&
+          language.find((el) => el.isPrimary == true);
+        if (primaryData) {
+          // setSelLang(primaryData.code);
+          // setLang(primaryData.code);
+          // i18n.changeLanguage(primaryData.code);
+        }
+      } else {
+        // setSelLang(lang);
+      }
+    } else {
+      setLangOption([
+        {
+          name: "English",
+          code: "en",
+          isPrimary: true,
+          status: "active",
+        },
+        {
+          name: "Spanish",
+          code: "sp",
+          isPrimary: true,
+          status: "active",
+        },
+      ]);
+    }
+    fetchcoin();
+  }, [language]);
+
+  const fetchcoin = async () => {
+      var result = await Getcoinlisthooks();
+      console.log("Getcoinlisthooks----", result);
+      setCoinlist(result?.data);
+    };
+
   // document.getElementsByTagName("body")[0].onclick(function(event)
   // {
   // });
@@ -210,6 +277,8 @@ export default function HeaderLinks1(props) {
   useEffect(() => {
     fetchdata();
   }, []);
+
+
   async function fetchdata() {
     var result = await Getmessagenotificationhooks();
     var unreadresult = await Getunreadmessagenotificationhooks();
@@ -750,11 +819,17 @@ export default function HeaderLinks1(props) {
                 <Select
                   name="language"
                   value={selLang}
+                  onChange={handleLanguage}
                 >
 
-
-                  <MenuItem value={'English'}>{"English"}</MenuItem>
-                  <MenuItem value={'Spanish'}>{"Spanish"}</MenuItem>
+                  {langOption && langOption.length > 0 && langOption.map((item, key) => {
+                    return (
+                      <MenuItem value={item?.code}>{item?.name}</MenuItem>
+                    )
+                  }
+                  )}
+                  {/* <MenuItem value={'English'}>{"English"}</MenuItem>
+                  <MenuItem value={'Spanish'}>{"Spanish"}</MenuItem> */}
 
                 </Select>
               </li>

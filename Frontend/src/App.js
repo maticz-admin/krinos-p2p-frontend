@@ -3,10 +3,10 @@ import React, { useEffect } from "react";
 import { Switch, BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 // import component
 import ConditionRoute from './components/Route/ConditionRoute';
-import i18n from './components/i18next/i18n';
+import i18nt from './components/i18next/i18n';
 import HelperRoute from './components/Route/HelperRoute';
 
 // import Context
@@ -117,9 +117,12 @@ import MyAppp from "pages/TestPage";
 import {Getsingleuserhook, updateuserstatushooks} from './actions/P2PorderAction'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 require('dotenv').config();
+
 const App = () => {
     const { isAuth } = store.getState().auth;
     const userdata = localStorage.getItem("userId")
+
+    const { t, i18n } = useTranslation();
 
 
     useEffect(() => {
@@ -161,9 +164,28 @@ const App = () => {
        }
     },[])
 
+    useEffect(() => {
+        let langs = localStorage.getItem("usr-language")
+    console.log("langslangsheader" , langs , langs == "en");
+    
+    if(langs == "en"){
+    //   setSelLang("en")
+      i18n.changeLanguage("en");
+    }
+    else{
+    //   setSelLang("sp")
+      i18n.changeLanguage("sp");
+    }
+    } , [])
+
+                
+
+
+    
+
     return (
         <Provider store={store}>
-            <I18nextProvider i18n={i18n}>
+            <I18nextProvider i18n={i18nt}>
                 <BrowserRouter basename="/">
                     <SocketContext.Provider value={{ socket }}>
                         <ToastContainer />

@@ -112,8 +112,8 @@ const IprestrictModal = (props) => {
         console.log("otp data" , otpData);
         
         if (otpData.status == 'success') {
-            if (otpData.message == "OTP send to your mail id") {
-                toastAlert('success', otpData.message, 'login');
+            if (otpData.message == "OTP_SENDS_TO_YOUR_MAILID") {
+                toastAlert('success', t(otpData.message), 'login');
                 setCounter(30)
             }
         }
@@ -184,8 +184,8 @@ const IprestrictModal = (props) => {
                 </div>
                 <Modal.Header>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        <p className='mb-0'>Login New Device</p>
-                        <p className='submod-title'>Please Enter the OTP </p>
+                        <p className='mb-0'>{t("LOGIN_NEW_DEVICE")}</p>
+                        <p className='submod-title'>{t("PLEASE_ENTER_OTP")} </p>
                     </Modal.Title>
                     <Button variant="secondary" className='modalbtns' onClick={props.onDismiss}> x
                     </Button>
@@ -218,17 +218,17 @@ const IprestrictModal = (props) => {
                             }
                             ></Countdown>} */}
 
-                            <p className="pr-2 mt-3 text-center">The OTP will expire in <b>  <span className='otp_expire_time'>{Minutes}:{Seconds}</span></b></p>
+                            <p className="pr-2 mt-3 text-center">{t("OTP_EXPIRES_IN")} <b>  <span className='otp_expire_time'>{Minutes}:{Seconds}</span></b></p>
 
 
                         </div>
                       {Minutes==0 &&  Seconds==0 ? <div className='text-center'>
 
-                            <button className='themebtn mb-3' onClick={(e) => {resendOTP(e) }}>Resend OTP</button>
+                            <button className='themebtn mb-3' onClick={(e) => {resendOTP(e) }}>{t("RESEND_OTP")}</button>
                         </div> :""}
                         <div className='text-center'>
 
-                            <button className='themebtn' onClick={(e) => { handlesubmit(e) }}>Submit</button>
+                            <button className='themebtn' onClick={(e) => { handlesubmit(e) }}>{t("Submit")}</button>
                         </div>
 
                     </div>

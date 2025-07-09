@@ -578,7 +578,8 @@ export const Getmessagenotificationhooks = async (datas, dispatch) => {
             'method': 'get',
             'params': datas
         });
-        return respData;
+        const response = decodedata(respData.data);
+        return response;//respData;
     }
     catch (err) {
         console.log("error", err);

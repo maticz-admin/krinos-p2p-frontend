@@ -109,7 +109,7 @@ const Section2 = (props) => {
                 }
 
                 <h3>{toFixed(balData.bal, 8)}<span>{firstCoin}</span></h3> */}
-                <span> {balances?.toFixed(8) + " BTC"}</span>
+                <span> {balances?.toFixed(6) + " USD"}</span>
                 {/* currencySymbol(userSetting.currencySymbol)}{toFixed(balData.estBal, 2) */}
             </div>
 

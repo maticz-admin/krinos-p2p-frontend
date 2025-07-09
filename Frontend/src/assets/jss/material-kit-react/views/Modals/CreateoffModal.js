@@ -145,7 +145,7 @@ const CreateoffModal = (props) =>{
                                         {/* <div>{}</div> */}
                                         <div className='allbtn d-flexj flex-wrap justify-content-between align-items-center mt-5 btn_cont_noafter'>
                                             <button type="button" class="btn vendorbtn" onClick={props.onDismiss}>{t("I_DON_WANT_TO_BE_A_VENDOR")}</button>
-                                            <button className='themebtn' onClick={handlecreate}>{t("I_ACCEPT")}</button>
+                                            <button className='themebtn z-2' onClick={handlecreate}>{t("I_ACCEPT")}</button>
                                         </div>
                                     </Modal.Body>
                                 </Modal>

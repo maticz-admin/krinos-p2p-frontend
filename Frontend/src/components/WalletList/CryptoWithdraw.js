@@ -53,7 +53,9 @@ const CryptoWithdraw = (props) => {
   const handleClose = () => {
     setFormValue(initialFormValue);
     setValidateError({});
+    setLoader(false)
     onHide();
+    setLoader(false)
   };
 
   const handleChange = (e) => {
@@ -153,7 +155,8 @@ const CryptoWithdraw = (props) => {
       //   encryptToken
       // );
       const { status, loading, error, message } = await bitgoWithdraw(reqData)
-
+      console.log("status, loading, error, message" , status, loading, error, message);
+      
       setLoader(loading);
       if (status == "success") {
         setFormValue(initialFormValue);

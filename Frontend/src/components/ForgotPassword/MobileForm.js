@@ -148,7 +148,7 @@ const MobileForm = () => {
                     // onBlur={handleBlur}
                     specialLabel={false}
                     // className="form-control"
-                    country={'us'}
+                    country={'bo'}
                 />
                 {validateError && validateError.phone && <p className="error-message">{validateError.phone}</p>}
                 {validateError && validateError.phoneNo && <p className="error-message">{validateError.phoneNo}</p>}
@@ -203,14 +203,14 @@ const MobileForm = () => {
                 </button>
             </div>
             <div className="d-flex px-4 py-3">
-                <Link to="/" className="mr-auto">
-                    Home
-                </Link>
-                <Link to="/login" className="ml-auto">
-                    {/* {t("DON'T_HAVE_ACCOUNT")}? */}
-                    {t('Login')}
-                </Link>
-            </div>
+                    <Link to="/" className="mr-auto">
+                        {t("HOME")}
+                    </Link>
+                    <Link to="/login" className="ml-auto">
+                        {/* {t("DON'T_HAVE_ACCOUNT")}? */}
+                        {t('LOGIN')}
+                    </Link>
+                </div>
         </Fragment>
     )
 }

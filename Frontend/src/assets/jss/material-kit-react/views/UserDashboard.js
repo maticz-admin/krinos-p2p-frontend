@@ -255,7 +255,8 @@ const UserDashboard = (props) => {
             cell: record => {
                 return (
                     <>
-                        <span>{momentFormat(record.createdAt, 'YYYY-DD-MM HH:mm')}</span>
+                        {/* <span>{momentFormat(record.createdAt, 'YYYY-DD-MM HH:mm')}</span> */}
+                        <span>{new Date(record?.createdAt)?.toLocaleString()}</span>
                     </>
                 )
             }
@@ -348,7 +349,9 @@ const UserDashboard = (props) => {
             cell: record => {
                 return (
                     <>
-                        <span>{record.offerstatus}</span>
+                        {/* <span>{record.offerstatus}</span> */}
+                        {/* <span>{record?.offerstatus.charAt(0).toUpperCase() + record?.offerstatus?.slice(1)}</span> */}
+                        <span>{t(record?.offerstatus?.toUpperCase())}</span>
                     </>
                 )
             }
@@ -379,6 +382,7 @@ const UserDashboard = (props) => {
             }
         },
     ];
+    
     const data = [
         {
             "id": "55f14312c7447c3da7051b26",
@@ -434,7 +438,7 @@ const UserDashboard = (props) => {
             className: "address",
             align: "left",
             cell: record =>
-                (record?.orderdata?.createrid == userdata?.account?.userId) ? record?.orderdata?.ordertype : record?.orderdata?.ordertype == "Buy" ? "Buy" : "Sell",
+                (record?.orderdata?.createrid == userdata?.account?.userId) ? t(record?.orderdata?.ordertype?.toUpperCase()) : record?.orderdata?.ordertype == "Buy" ? t("BUY") : t("SELL"),
         },
         {
             key: "status",
@@ -443,24 +447,23 @@ const UserDashboard = (props) => {
             text: `${t("STATUS")}`,
             className: "address",
             align: "left",
-            // cell : record =>
-            // (record?.orderdata?.createrid == userdata?.account?.userId) ? record?.orderdata?.ordertype : record?.orderdata?.ordertype == "Buy" ? "Buy" : "Sell",
+            cell : record => <span>{t(record?.status?.toUpperCase())}</span>
         },
-        {
-            text: `${t("ADMIN_FEE")}`,
-            className: "address",
-            align: "left",
-            cell: record =>
-                record?.orderdata?.ordertype == "Sell" ? (record?.orderdata?.createrid == userdata?.account?.userId) ? parseFloat(record?.adminfee)?.toFixed(8) : 0
-                    : record?.spender == userdata?.account?.userId ? parseFloat(record?.adminfee)?.toFixed(8) : 0,
-        },
+        // {
+        //     text: `${t("ADMIN_FEE")}`,
+        //     className: "address",
+        //     align: "left",
+        //     cell: record =>
+        //         record?.orderdata?.ordertype == "Sell" ? (record?.orderdata?.createrid == userdata?.account?.userId) ? parseFloat(record?.adminfee)?.toFixed(6) : 0
+        //             : record?.spender == userdata?.account?.userId ? parseFloat(record?.adminfee)?.toFixed(6) : 0,
+        // },
         {
             text: `${t("RECEIVE")}`,
             className: "address",
             align: "left",
             cell: record =>
-                record?.orderdata?.ordertype == "Sell" ? (record?.orderdata?.createrid == userdata?.account?.userId) ? 0 : (parseFloat(record?.receive))?.toFixed(8)
-                    : record?.spender == userdata?.account?.userId ? 0 : (parseFloat(record?.receive))?.toFixed(8),
+                record?.orderdata?.ordertype == "Sell" ? (record?.orderdata?.createrid == userdata?.account?.userId) ? 0 : (parseFloat(record?.receive))?.toFixed(6)
+                    : record?.spender == userdata?.account?.userId ? 0 : (parseFloat(record?.receive))?.toFixed(6),
         },
         {
             text: `${t("PAY")}`,
@@ -528,7 +531,8 @@ const UserDashboard = (props) => {
             text: `${t("STATUS")}`,
             className: "address",
             align: "left",
-            sortable: true
+            sortable: true,
+            cell : record => <span>{t(record?.chatstatus?.toUpperCase())}</span>
         },
         // {
         //     key: "preferred",
@@ -724,6 +728,7 @@ const UserDashboard = (props) => {
             }
         },
         show_filter: false,
+        
     }
 
     

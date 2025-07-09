@@ -13,11 +13,12 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 // import { BsBoxArrowUpRight } from 'react-icons/bs';
 
 // import Images from "../../../../Images";
-import profs from   "../../assets/images/toss/prof.png";
+import Images from '../../Images';
+import profs from "../../assets/images/toss/prof.png";
 // import spring from "../../../images/toss/bannerbg.png";
 import flags from "../../assets/images/flags.png";
-import Footer from  "../../components/Footer/Footer";
-import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import Footer from "../../components/Footer/Footer";
+import { useHistory, useLocation , useNavigate } from 'react-router-dom/cjs/react-router-dom.min';
 import { useSelector } from 'react-redux';
 import { createroom } from 'actions/P2PorderAction';
 import { getsingletradehooks } from 'actions/P2PorderAction';
@@ -32,106 +33,113 @@ const Displayownerdata = (props) => {
     const { ...rest } = props;
     const location = useLocation();
     const navigate = useHistory();
+    // const nav = useNavigate();
+
     const userdata = useSelector(state => state);
     const { t, i18n } = useTranslation();
 
-    const [tradedata , setTradedata] = useState({});
-    const [pay , setPay] = useState(0);
-    const [receive , setReceive] = useState(0);
-    const [calculatedpay , setCalculatedpay] = useState(0);
-    const [error , setError] = useState("");
-    const [button , setButton] = useState(true);
+    const [tradedata, setTradedata] = useState({});
+    const [pay, setPay] = useState(0);
+    const [receive, setReceive] = useState(0);
+    const [calculatedpay, setCalculatedpay] = useState(0);
+    const [error, setError] = useState("");
+    const [button, setButton] = useState(true);
 
-    const [roomid , setRoomid] = useState(Date.now()?.toString());
-    const [prefferedcurrencyvalue , setPrefferedcurrencyvalue] = useState("");
-    const[variablepercentage , setVariablepercentage] = useState("");
-    const [currentmarketvalue , setCurrentmarketvalue] = useState("");
+    const [roomid, setRoomid] = useState(Date.now()?.toString());
+    const [prefferedcurrencyvalue, setPrefferedcurrencyvalue] = useState("");
+    const [variablepercentage, setVariablepercentage] = useState("");
+    const [currentmarketvalue, setCurrentmarketvalue] = useState("");
 
-    const [ownerdata , setOwnerdata] = useState({});
-    const [kyc , setKyc] = useState({});
-    const [tradespeed , setTradespeed] = useState(0);
-    const [loader , setLoader] =  useState(false);
-    
+    const [ownerdata, setOwnerdata] = useState({});
+    const [kyc, setKyc] = useState({});
+    const [tradespeed, setTradespeed] = useState(0);
+    const [loader, setLoader] = useState(false);
 
-const fetchdata = async() => {
-    setLoader(true);
-    var payload = {
-        userid : window.location.pathname.split('/')[2]?.toString()
+
+    const fetchdata = async () => {
+        setLoader(true);
+        var payload = {
+            userid: window.location.pathname.split('/')[2]?.toString()
+        }
+        var result = await Getsingleuserhook(payload);
+        if (result?.data?.type == "success") {
+            setOwnerdata(result?.data?.data);
+            setKyc(result?.data?.kyc);
+        }
+        var tradespeedresult = await gettradespeedhook({ userid: window.location.pathname.split('/')[2]?.toString() });
+        var speed = parseFloat(tradespeedresult?.data?.data) / 60000
+        setTradespeed(speed);
+        setLoader(false);
+
     }
-    var result = await Getsingleuserhook(payload);
-    if(result?.data?.type == "success"){
-        setOwnerdata(result?.data?.data);
-        setKyc(result?.data?.kyc);
-    }
-    var tradespeedresult = await gettradespeedhook({userid : window.location.pathname.split('/')[2]?.toString()});
-            var speed = parseFloat(tradespeedresult?.data?.data)/60000
-            setTradespeed(speed);
-    setLoader(false);
-
-}
 
 
     useEffect(() => {
-       fetchdata();
-    },[])
+        fetchdata();
+    }, [])
 
 
     const handlecalculatereceive = (val) => {
         setPay(val);
-        if(!val || val==0 || isNaN(val)){
-         setButton(true);
-         setError("Invalid value");   
+        if (!val || val == 0 || isNaN(val)) {
+            setButton(true);
+            setError("Invalid value");
         }
-        else if(val < parseFloat(tradedata?.min) || val > parseFloat(tradedata?.max)){
+        else if (val < parseFloat(tradedata?.min) || val > parseFloat(tradedata?.max)) {
             setButton(true);
             setError(`Value must be > ${tradedata?.min} and < ${tradedata?.max}`);
         }
-        else{ 
+        else {
             setError("");
             setButton(false);
-            if(tradedata?.ordertype == "Buy"){
-                var calculatedvalue = (1/prefferedcurrencyvalue)*val;
+            if (tradedata?.ordertype == "Buy") {
+                var calculatedvalue = (1 / prefferedcurrencyvalue) * val;
                 setReceive(calculatedvalue);
             }
-            if(tradedata?.ordertype == "Sell"){
+            if (tradedata?.ordertype == "Sell") {
                 var onepercent = prefferedcurrencyvalue / 100;
                 var finalvalue = prefferedcurrencyvalue + onepercent;
-                var calculatedvalue = (1/finalvalue)*val;
+                var calculatedvalue = (1 / finalvalue) * val;
                 setReceive(calculatedvalue);
-                var calculateview = val - (val/100);
+                var calculateview = val - (val / 100);
                 setCalculatedpay(calculateview);
             }
         }
     }
 
-    const handlebutton = async() => {
+    const handlebutton = async () => {
         // var payload = {
         //     pay : pay,
         //     receive : receive,
         //     tradedata : tradedata
         // }
         var data = {
-            spender : userdata?.account?.userId,
-            pay : pay,
-            receive : receive,
-            status : "pending",
-            perprice : prefferedcurrencyvalue
+            spender: userdata?.account?.userId,
+            pay: pay,
+            receive: receive,
+            status: "pending",
+            perprice: prefferedcurrencyvalue
         }
         var payload = {
-            creater : ownerdata?.userId,
-            spender : userdata?.account?.userId,
-            orderid : tradedata?.orderid,
-            roomid : roomid,
-            updatedata : data
+            creater: ownerdata?.userId,
+            spender: userdata?.account?.userId,
+            orderid: tradedata?.orderid,
+            roomid: roomid,
+            updatedata: data
         }
         var result = await createroom(payload);
-        if(result?.data?.type == "success"){
-            var room = result?.data?.data?.roomid 
-            navigate.push(`/trade/${result?.data?.data?.roomid }` , {state : payload});
+        if (result?.data?.type == "success") {
+            var room = result?.data?.data?.roomid
+            navigate.push(`/trade/${result?.data?.data?.roomid}`, { state: payload });
         }
     }
 
 
+
+    const handleNavigate = () => {
+        console.log('navigate called')
+        navigate.goBack()
+    }
     return (
         <>
         <div className='page_wrap'>
@@ -147,20 +155,20 @@ const fetchdata = async() => {
                 }}
                 {...rest} />
 
-            {!loader ? <div className='bitcoincompany login_container login_box'>
-                {/* <div>
+                {!loader ? <div className='bitcoincompany login_container login_box'>
+                    {/* <div>
                     <h1 className='blackandwhite bit_text text-center bit1'>{tradedata?.ordertype?.toUpperCase()} BITCOIN With company</h1>
                     <p className='roboto subhead'>{tradedata?.ordertype} Bitcoin from other users using any payment<br></br>method and currency.</p>
                 </div> */}
 
-                <div className='container'>
-                    <div className='bitcoincompany'>
-                        {/* <img className='spring' src={spring} alt="spring" />
+                    <div className='container'>
+                        <div className='bitcoincompany'>
+                            {/* <img className='spring' src={spring} alt="spring" />
                         <img src={Images.connect} className='bannerconnect' />
                         <img src={Images.connect} className='connect1' />
                         <img src={Images.connect} className='connect' />
                         <img src={Images.connect} className='connectright' /> */}
-                        {/* <div className='mt-4'>
+                            {/* <div className='mt-4'>
                             <Link to="/buybitcoin" className='back blackandwhite'><HiOutlineArrowSmLeft className='arl' /> Back to Offer</Link>
                         </div>
 
@@ -235,82 +243,86 @@ const fetchdata = async() => {
                             </div>
                         </div> */}
 
-                        {/* <p className='lorem mt-4 mb-4 text-center'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> */}
+                            {/* <p className='lorem mt-4 mb-4 text-center'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> */}
 
-                        <div className='buyborder1 mt-3'>
-                            <p className='mb-0 much'>{t("ABOUT_THIS_BUYER")}</p>
+                            <div className='d-flex mb-3'>
+                                <button className='themebtn' onClick={handleNavigate}>{t("BACK")}</button>
+                            </div>
+                            <div className='buyborder1 mt-3'>
+                                <p className='mb-0 much'>{t("ABOUT_THIS_BUYER")}</p>
 
-                            <div className='d-flex justify-content-between chance'>
-                                <div className='one1'>
-                                    <div className=''>
-                                        <div className='d-flex align-items-center align-items-center uu'>
-                                            <div><img src={ownerdata?.profileImage ? config.API_URL+ ownerdata?.profileImage : profs} className='prof prof_icon_sixe' /></div>
-                                            <div><p className='namelist'>{ownerdata?.firstName + " " + ownerdata?.lastName} 
-                                            {/* <span><img src={flags} alt='hhq' /></span>  */}
-                                            </p> 
-                                            {/* <p className='no1 mb-0'>Seen 1 minute ago</p> */}
+                                <div className='d-flex justify-content-between chance'>
+                                    <div className='one1'>
+                                        <div className=''>
+                                            <div className='d-flex align-items-center align-items-center uu'>
+                                                <div><img src={ownerdata?.profileImage ? config.API_URL + ownerdata?.profileImage : Images.profill} className='prof prof_icon_sixe' /></div>
+                                                <div><p className='namelist'>{ownerdata?.firstName + " " + ownerdata?.lastName}
+                                                    {/* <span><img src={flags} alt='hhq' /></span>  */}
+                                                </p>
+                                                    {/* <p className='no1 mb-0'>Seen 1 minute ago</p> */}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div className='one2 one2_alig_widt'>
-                                    <div className=''>
-                                        <div><p className='namelist'>Id Proof</p></div>
-                                        <div className='text-center'><img src={kyc?.status == "Approved" ? tick : close} className='prof1' /></div>
+                                    <div className='one2 one2_alig_widt'>
+                                        <div className=''>
+                                            <div><p className='namelist'>Id Proof</p></div>
+                                            <div className='text-center'><img src={kyc?.status == "Approved" ? tick : close} className='prof1' /></div>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className='one2 one2_alig_widt'>
-                                    <div className=''>
-                                        <div><p className='namelist'>{t("PHONE_VERIFIED")}</p></div>
-                                        <div className='text-center'><img src={ownerdata?.phoneStatus == "verified" ? tick : close} className='prof1' /></div>
+                                    <div className='one2 one2_alig_widt'>
+                                        <div className=''>
+                                            <div><p className='namelist'>{t("PHONE_VERIFIED")}</p></div>
+                                            <div className='text-center'><img src={ownerdata?.phoneStatus == "verified" ? tick : close} className='prof1' /></div>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className='one2 one2_alig_widt'>
-                                    <div className=''>
-                                        <div><p className='namelist'>{t("EMAIL_VERIFIED")}</p></div>
-                                        <div className='text-center'><img src={ownerdata?.emailStatus == "verified" ? tick : close} className='prof1' /></div>
+                                    <div className='one2 one2_alig_widt'>
+                                        <div className=''>
+                                            <div><p className='namelist'>{t("EMAIL_VERIFIED")}</p></div>
+                                            <div className='text-center'><img src={ownerdata?.emailStatus == "verified" ? tick : close} className='prof1' /></div>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className='one2 one2_col_wdi'>
-                                    <div className=''>
-                                        <div><p className='namelist'>{t("TRADE_SPEED")}</p></div>
-                                        <div><button className='themebtn mt-4'>{tradespeed ? (parseFloat(tradespeed) < 5 ? "Instant" : tradespeed+"min"): "New"}</button></div>
+                                    <div className='one2 one2_col_wdi'>
+                                        <div className=''>
+                                            <div><p className='namelist'>{t("TRADE_SPEED")}</p></div>
+                                            <div><button className='themebtn mt-4'>{tradespeed ? (parseFloat(tradespeed) < 5 ? "Instant" : parseInt(tradespeed) + "min") : "New"}</button></div>
+                                        </div>
                                     </div>
+
                                 </div>
 
                             </div>
 
-                        </div>
-
-                        <div className='mt-3 reviews '>
-                            <h5 className='text-light'>{t("REVIEWS")}</h5>
-                            <ul className='buyborder1 p-3'>
-                                {ownerdata?.reviews?.length > 0 ? ownerdata?.reviews?.map((data , i) => <li className='mb-3'>
-                                    <h5 className='text-light fw-bold mb-0'>{t("USERID")} :{data?.userid}</h5>
-                                    <p className='text-light f-14 roboto mb-0'>{data?.description}</p>
-                                    <p className='time text-gray roboto f-12'>{new Date(parseFloat(data?.date))?.toString()?.slice(4 , 21)}</p>
-                                </li>) : <p>{t("NO_REVIEWS")}</p>
+                            <div className='mt-3 reviews '>
+                                <h5 className='text-light'>{t("REVIEWS")}</h5>
+                                <ul className='buyborder1 p-3'>
+                                    {ownerdata?.reviews?.length > 0 ? ownerdata?.reviews?.map((data, i) => <li className='mb-3'>
+                                        <h5 className='text-light fw-bold mb-0'>{t("USERID")} :{data?.userid}</h5>
+                                        <p className='text-light f-14 roboto mb-0'>{data?.description}</p>
+                                        <p className='time text-gray roboto f-12'>{new Date(parseFloat(data?.date))?.toString()?.slice(4, 21)}</p>
+                                    </li>) : <p>{t("NO_REVIEWS")}</p>
                                     }
-                            </ul>
+                                </ul>
+                            </div>
+
                         </div>
-
                     </div>
+
                 </div>
+                    :
+                    <div id='loadercontainer' className='displayOwner_loader'>
+                        <div className='themeloader'>
+                        </div>
+                    </div>
+                }
 
-            </div> 
-            : <div id='loadercontainer'> 
-                              <div className='themeloader'> 
-                              </div>
-                              </div> 
-        }
+                <Footer />
 
-            <Footer />
-
-        </div>
+            </div>
         </>
     );
 }

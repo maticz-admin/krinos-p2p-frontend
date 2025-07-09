@@ -13,8 +13,10 @@ import tour7 from "../../../assets/images/take_a_tour/tour7.png"
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { useTranslation } from 'react-i18next';
 
 const Takeatourmodal = (props) =>{
+    const { t, i18n } = useTranslation();
     const [isoffertagmodal , setIsoffertagmodal] = useState(true);
 
     const [taglist , setTaglist] = useState([]);
@@ -51,6 +53,7 @@ const Takeatourmodal = (props) =>{
                     }
                 }
     }
+
     return(
         <>
         <Modal show={isoffertagmodal} aria-labelledby="contained-modal-title-vcenter" size="lg" centered >  {/*show={created}*/}
@@ -62,7 +65,7 @@ const Takeatourmodal = (props) =>{
                                     </div>
                                     <Modal.Header>
                                         <Modal.Title id="contained-modal-title-vcenter">
-                                            <p className='mb-0'>Take a tour</p>
+                                            <p className='mb-0'>{t("TAKE_A_TOUR")}</p>
                                             {/* <p className='submod-title'>It is a long established fact that a reader</p> */}
                                         </Modal.Title>
                                         <Button variant="secondary" className='modalbtns' onClick={props?.onDismiss}> x
@@ -73,49 +76,49 @@ const Takeatourmodal = (props) =>{
     <div class='item'>
          <div className=''>
             <img width="300" height="200" src={tour1}></img>
-            <span className='title_grid'>This is where you chat with your trade partner and exchange information needed to complete the trade.</span>
+            <span className='title_grid'>{t("TOUR_1")}</span>
         </div>
     </div>
     <div class='item'>
  <div className=''>
                                                 <img width="300" height="200" src={tour2}></img>
-                                                <span className='title_grid'>If you’re ever wondering whether you’re talking to an actual Paxful moderator, this is how you’ll know.</span>
+                                                <span className='title_grid'>{t("TOUR_2")}</span>
                                             </div>
     </div>
     <div class='item'>
         <div>
         <img width="300" height="200" src={tour3}></img>
-        <span className='title_grid'>This area shows everything you need to know about the trade and all actions you can take.</span>
+        <span className='title_grid'>{t("TOUR_3")}</span>
         </div>
         </div>
         <div class='item'>
          <div>
          <img width="300" height="200" src={tour4}></img>
-                                                <span className='title_grid'>You’ll need to click this button to let your trade partner know that you’ve made the payment for the trade.</span>
+                                                <span className='title_grid'>{t("TOUR_4")}</span>
          </div>
         </div>
         <div class='item'>
           <div>
           <img width="300" height="200" src={tour5}></img>
-                                                <span className='title_grid'>Having second thoughts or don’t want to continue with the trade? Just click this button to leave the trade.</span>
+                                                <span className='title_grid'>{t("TOUR_5")}</span>
           </div>
         </div>
         <div class='item'>
           <div>
           <img width="300" height="200" src={tour6}></img>
-                                                <span className='title_grid'>This is where you’ll see all your trade partner’s expectations. Be sure to follow these instructions exactly to complete the trade smoothly.</span>
+                                                <span className='title_grid'>{t("TOUR_6")}</span>
           </div>
         </div>
         <div class='item'>
            <div>
            <img width="300" height="200" src={tour7}></img>
-                                                <span className='title_grid'>If you face any issues with the trade, click this button and we’ll help you out.</span>
+                                                <span className='title_grid'>{t("TOUR_7")}</span>
            </div>
         </div>
     </OwlCarousel>
    
                                        
-                                  <div className='text-center'> <button className='btn themebtn' onClick={()=>props.onDismiss()}>Close</button></div> 
+                                  <div className='text-center'> <button className='btn themebtn' onClick={()=>props.onDismiss()}>{t("CLOSE")}</button></div> 
                                     </Modal.Body>
                                 </Modal>
         </>

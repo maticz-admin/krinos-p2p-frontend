@@ -88,14 +88,16 @@ const EmailForm = () => {
         try {
             let { result } = await getGeoInfoData();
             const browserResult = browser();
+            console.log("ipdresult" , result);
+            
             if (!result.ip) {
                 getGeoInfo();
             }
             setLoginHistory({
-                countryName: result.country_name,
-                countryCode: result.country_calling_code,
-                ipaddress: result.ip, //ipString
-                region: result.region,
+                countryName: result?.country_name,
+                countryCode: result?.country_calling_code,
+                ipaddress: result?.IPv4, //ipString
+                region: result?.region,
                 broswername: browserResult.name,
                 ismobile: browserResult.mobile,
                 os: browserResult.os,
@@ -240,10 +242,10 @@ const EmailForm = () => {
                     }
 
                     localStorage.setItem('xyz_cache', btoa(result?.userId))
-                    let checkdeposit = Checkdeposithooks();
+                    // let checkdeposit = Checkdeposithooks();
                     setLoader(false);
-
-                    toastAlert('success', message, 'login');
+                    if(message)
+                    toastAlert('success', t(message), 'login');
                     if (userSetting && userSetting.afterLogin && userSetting.afterLogin != " ") {
                         history.push(userSetting.afterLogin.url)
                     } else {
@@ -254,16 +256,18 @@ const EmailForm = () => {
                     setOtp("");
 
                     setShowTowFA(true)
-                    toastAlert('error', message, 'login');
+                    if(message)
+                    toastAlert('error', t(message), 'login');
                 } else {
                     if (error) {
                         setValidateError(error);
                     }
-                    if (message == "Your Password is Old Please Reset Your Password") {
+                    if (message == "YOUR_PASSWORD_IS_OLD_PLEASE_RESET") {
                         toastAlert('error', t(message), 'login');
                         history.push("/reset-password/" + authToken)
 
                     }
+                    if(message)
                     toastAlert('error', t(message), 'login');
                 }
         }
@@ -315,9 +319,8 @@ const EmailForm = () => {
         })
     }
  
-    var india = <img src={Images.india} />
+    var india = <img src={Images.india}/>
     return (
-
         <div
             className="g-recaptcha"
             data-sitekey={config.RECAPTCHA_SITE_KEY}

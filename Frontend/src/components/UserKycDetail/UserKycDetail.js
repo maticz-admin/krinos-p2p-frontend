@@ -197,13 +197,13 @@ const UserKycDetail = () => {
                             <div className="profileDetailView">
                                 <ul>
                                     <li className='flex-column'>
-                                        <h5 className='title-txt my-0'>Kyc</h5>
-                                        <p className='mt-2 des mb-0 '>To ensure a smooth and secure experience, we require all users to complete their KYC (Know Your Customer) process. This helps us maintain a safe and trusted platform for everyone.
-                                        1.Click Complete Now to navigate the KYC section.
-                                        2.Fill out the necessary information and upload required documents (such as proof of identity and address).
-                                        3.Submit your application for verification.
-                                        Once your KYC is approved, you’ll enjoy full access to all our features and services. If you have any questions or need assistance, feel free to reach out to our support team.
-                                        Secure. Simple. Quick. Complete your KYC today and stay ahead with Didit!
+                                        <h5 className='title-txt my-0'>{t("KYC")}</h5>
+                                        <p className='mt-2 des mb-0 '>{t("KYC_HEADER")}
+                                        <p>{t("KYC_STEP1")}</p>
+                                        <p>{t("KYC_STEP2")}</p>
+                                        <p>{t("KYC_STEP3")}.</p>
+                                        <p>{t("KYC_STEP4")} </p>
+                                        <p>{t("KYC_FINAL_STEP")}</p>
                                         </p>
                                         {!["Approved" , "In Review"]?.includes(userdetail?.kyc?.status) &&<div className="form-group green-button mt-2">
                                             <button
@@ -217,11 +217,11 @@ const UserKycDetail = () => {
                                         </div>}
 
                                         {userdetail?.kyc?.status ==  "Approved" &&<div className="form-group green-button mt-2">
-                                            <p>Your kyc request APPROVED successfully</p>
+                                            <p>{t("YOUR_KYC_APPROVED_SUCCESSFULLY")}</p>
                                             </div>}
 
                                             {userdetail?.kyc?.status ==  "In Review" &&<div className="form-group green-button mt-2">
-                                                <p>Your kyc request under review</p>
+                                                <p>{t("YOUR_KYC_UNDER_REVIEW")}</p>
                                             </div>}
                                     </li>
 

@@ -13,7 +13,7 @@ import config from "../../config/index";
 import { socket } from "../../config/socketConnectivity";
 import { useHistory, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { toastAlert } from 'lib/toastAlert';
-import {GetUserId}  from "lib/userdata"
+import { GetUserId } from "lib/userdata"
 
 
 
@@ -28,7 +28,7 @@ const dashboardRoutes = [];
 const Trade = (props) => {
   const { ...rest } = props;
   const { t, i18n } = useTranslation();
-  
+
   const userdata = useSelector(state => state);
   const accountData = useSelector((state) => state.account);
   const location = useLocation();
@@ -61,7 +61,7 @@ const Trade = (props) => {
   const [lastseendata, setLastseendata] = useState(Date.now().toString());
   const [tag, setTag] = useState({});
 
-  const [loder , setLoader] = useState(false)
+  const [loder, setLoader] = useState(false)
 
   // const socket = useRef();
 
@@ -81,6 +81,8 @@ const Trade = (props) => {
     const chatresult = await Getorderchathook(payload);
     if (chatresult?.data?.type == "success") {
       var tradedata = chatresult?.data?.data[0]; //? chatresult?.data?.data : {}
+      console.log("trade data", tradedata);
+
       setTradechat(tradedata)
       setOfferdata(tradedata?.tradedata);
       var ref = {
@@ -115,21 +117,21 @@ const Trade = (props) => {
   }
 
   const ValidateFile = (data) => {
-    try{
-        var fileName = data?.name;
-        var idxDot = fileName.lastIndexOf(".") + 1;
-        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-        if(extFile=="png" || extFile == "jpg" || extFile == "jpeg" || extFile == "webp"){
-            return ""
-        }
-        else{
-            return "Invalid file format"
-        }
+    try {
+      var fileName = data?.name;
+      var idxDot = fileName.lastIndexOf(".") + 1;
+      var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+      if (extFile == "png" || extFile == "jpg" || extFile == "jpeg" || extFile == "webp") {
+        return ""
+      }
+      else {
+        return "Invalid file format"
+      }
     }
-    catch(e){
-        console.log("Error on validate filer" , e);
+    catch (e) {
+      console.log("Error on validate filer", e);
     }
-}
+  }
 
 
 
@@ -152,7 +154,10 @@ const Trade = (props) => {
         roomid: roomid,
         image: image
       };
+
       socket.emit("SENDMESSAGE", payload);
+      setImage("");
+      setImageblob("");
     }
   }
 
@@ -198,8 +203,8 @@ const Trade = (props) => {
       adminbalance: parseFloat(spenderdata?.buyerfee) + parseFloat(spenderdata?.sellerfee),
       coin: offerdata?.coin,
       roomid: tradechat?.roomid,
-      sellerfee : spenderdata?.sellerfee,
-      buyerfee : spenderdata?.buyerfee
+      sellerfee: spenderdata?.sellerfee,
+      buyerfee: spenderdata?.buyerfee
     };
     console.log('assetpayload-----', assetpayload)
     var assetupdate = await updateAssethooks(assetpayload);
@@ -236,7 +241,7 @@ const Trade = (props) => {
 
   // setTimeout(socket.emit('CHECKPING' , tag) , 5000)
   // setTimeout(setUserstatus("Offline") , 5000);
-  
+
   useEffect(() => {
     const dataID = setInterval(() => {
       socket.emit('CHECKPING', {
@@ -311,7 +316,7 @@ const Trade = (props) => {
   return (
     <div className="page_wrap">
       <Header
-        className = "header dropheader" 
+        className="header dropheader"
         color="transparent"
         routes={dashboardRoutes}
         brand={
@@ -332,7 +337,7 @@ const Trade = (props) => {
 
       <div className="login_container login_box">
         <div className="container">
-          {!loder?<div className="row offerpage">
+          {!loder ? <div className="row offerpage">
             <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
               <h5 className="blackandwhite bit_text text-center bit1">{t("OFFER")}</h5>
               <div>
@@ -344,7 +349,7 @@ const Trade = (props) => {
                   <button className="btn btn-link" onClick={() => setOfferheader(false)}>x</button>
                 </div>}
                 <div className="tableborder">
-                  <div className="d-flex align-items-baseline gap-10">
+                  {/* <div className="d-flex align-items-baseline gap-10">
                     <span className="fa fa-clock"></span>
                     <div>
                       {" "}
@@ -353,7 +358,7 @@ const Trade = (props) => {
                         {location?.state?.state?.receive} {offerdata?.coin} {t("WILL_BE")} {location?.state?.state?.tradedata?.ordertype == "Buy" ? t("ADDED") : t("REDUCED")} {t("TO_YOUR_BITCOIN_WALLET")}
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                   <hr />
 
 
@@ -386,8 +391,7 @@ const Trade = (props) => {
                     Paid <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) +(60000 * parseFloat(offerdata?.offertimelimit))}/>
                     <span className="fa fa-check"></span>
                   </button>} */}
-                  
-                {/* <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} /> */}
+
 
 
 
@@ -411,49 +415,56 @@ const Trade = (props) => {
                   <hr />
                   <div className="flexb canceltrade">
                     {(tradechat?.chatstatus == "Active" && tradechat?.paidstatus == "pending") && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => setCancelmodal(true)}>{t("CANCEL_TRADE")}</button>}
-                    {tradechat?.spender == userdata?.account?.userId && <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${offerdata?.preferedcurrency}`}</p>}
+                    {/*tradechat?.spender == userdata?.account?.userId && */}
+                    {console.log("Actie check", offerdata?.ordertype == "Buy", tradechat?.spender != userdata?.account?.userId, userdata?.account?.userId)}
+
+                    {offerdata?.ordertype == "Buy" && tradechat?.spender != userdata?.account?.userId &&
+                      <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" || tradechat?.paidstatus == "reject" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${offerdata?.preferedcurrency}`}</p>}
+
+                    {offerdata?.ordertype == "Sell" && tradechat?.spender == userdata?.account?.userId &&
+                      <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" || tradechat?.paidstatus == "reject" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${offerdata?.preferedcurrency}`}</p>}
                   </div>
                 </div>
                 <div className="secondbox">
-                  {tradechat?.ordercreator != userdata?.account?.userId  &&<><h6 className="roboto followtag">{t("PLEASE_FOLLOW")} {owner?.firstName} {t("S_INSTRUCTION")}</h6>
-                  {offerdata.verifiyid && <p className="roboto">You have to verify your id</p>}
-                  {offerdata.verifiyfullname && <p className="roboto">You have to verify your full name</p>}
-                  {!offerdata.verifiyid && !offerdata.verifiyfullname &&<p className="roboto">{t("NO_VERIFICATION_NEEEDED")}</p>}
+                  {tradechat?.ordercreator != userdata?.account?.userId && <><h6 className="roboto followtag">{t("PLEASE_FOLLOW")} {owner?.firstName} {t("S_INSTRUCTION")}</h6>
+                    {offerdata.verifiyid && <p className="roboto">{t("YOU_HAVE_TO_VERIFY_YOUR_ID")}</p>}
+                    {offerdata.verifiyfullname && <p className="roboto">{t("YOU_HAVE_TO_VERIFY_FULLNAME")}</p>}
+                    {!offerdata.verifiyid && !offerdata.verifiyfullname && <p className="roboto">{t("NO_VERIFICATION_NEEEDED")}</p>}
                   </>}
 
 
                   <h6 className="roboto followtag">{t("TRADE_INFORMATION")}</h6>
-                  {/* <p className="roboto offercontent">
-                    12457.5 BTC has been reserved for this trade. This includes
-                    Krinos P2P fee of 0 BTC.
-                  </p> */}
+                  <p className="roboto offercontent">{offerdata?.tradeinstruction}</p>
+                  <h6 className="roboto followtag">{t("OFFER_TERMS")}</h6>
+                  <p className="roboto offercontent">{offerdata?.offerterms}</p>
                   <div className="row tradeinfo">
-                    <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div className="col-xl-6 col-lg-6 col-md-3 col-sm-6 col-6">
                       <h6 className="roboto">{t("RATE")}</h6>
                       <p className="roboto">1 {offerdata?.coin} = {parseFloat(spenderdata?.perprice).toFixed(3)}{offerdata?.preferedcurrency}</p>
                     </div>
-                    <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div className="col-xl-6 col-lg-6 col-md-3 col-sm-6 col-6">
                       <h6 className="roboto">{t("TRADE_ID")}</h6>
                       <p className="roboto">
-                        {tradechat?.roomid} 
+                        {tradechat?.roomid}
                         <CopyToClipboard
-                      text={tradechat?.roomid}
-                      onCopy={() => {
-                        toastAlert("success", t("COPIED"), "wallet");
-                      }}
-                    ><span className="fa fa-copy ml-2"></span></CopyToClipboard>
+                          text={tradechat?.roomid}
+                          onCopy={() => {
+                            toastAlert("success", t("COPIED"), "wallet");
+                          }}
+                        ><span className="fa fa-copy ml-2"></span></CopyToClipboard>
                       </p>
                     </div>
-                    <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div className="col-xl-6 col-lg-6 col-md-3 col-sm-6 col-6">
                       <h6 className="roboto">{t("STARTED")}</h6>
                       <p className="roboto">{new Date(parseFloat(tradechat?.orderstarttime))?.toString()?.slice(4, 21)}</p>
                     </div>
-                    {tradechat?.chatstatus == "Inactive" || (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) < Date.now() && <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
-                      <h6 className="roboto">{tradechat?.chatstatus == "Inactive" ? t("CANCELLED") : t("ENDED")}</h6>
-                      <p className="roboto">{tradechat?.orderendtime ? new Date(parseFloat(tradechat?.orderendtime))?.toString()?.slice(4, 21) : new Date(parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit)))?.toString()?.slice(4, 21)}</p>
-                    </div>}
+                    {tradechat?.chatstatus == "Inactive" || (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) < Date.now() &&
+                      <div className="col-xl-6 col-lg-6 col-md-3 col-sm-6 col-6">
+                        <h6 className="roboto">{tradechat?.chatstatus == "Inactive" ? t("CANCELLED") : t("ENDED")}</h6>
+                        <p className="roboto">{tradechat?.orderendtime ? new Date(parseFloat(tradechat?.orderendtime))?.toString()?.slice(4, 21) : new Date(parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit)))?.toString()?.slice(4, 21)}</p>
+                      </div>}
                   </div>
-                  
+
                   <div className="d-flex jc-between mt-3">
                     <button className="offerbtn roboto" onClick={() => navigate.push("/support-ticket", { state: tradechat?.roomid })}>{t("REPORT")}</button>
                     <button href="#" className="offerbtn roboto" onClick={() => navigate.push(`/bitcoincompany/${offerdata?._id}`)}>
@@ -470,11 +481,26 @@ const Trade = (props) => {
               <div className="tableborder chattable">
                 <div className="chathead flexb">
                   <div>
-                    <img src={accountData?.profileImage
-                                                ? accountData?.profileImage
-                                                : Images.prof} alt="" className="chatprof" />
-                    <span className="chatname roboto">{owner?.firstName ? (owner?.firstName + " " + owner?.lastName) : owner?.userId}</span>
-                    {/* <img src={Images.prof} alt="" className="countryimg" /> */}
+                    <div className="mb-1">
+                      <img src={accountData?.profileImage
+                        ? accountData?.profileImage
+                        : Images.profill} alt="" className="chatprof" />
+                      {/* userresult?.data?.data?.userId == tradedata?.spender || userresult?.data?.data?.userId == tradedata?.ordercreator */}
+                      <span className="chatname roboto">
+                        {console.log("tradechat", tradechat, userdatas, GetUserId())}
+
+                        {GetUserId() == tradechat?.ordercreator ? userdatas?.firstName + " " + userdatas?.lastName + "  " :
+                          owner?.firstName + " " + owner?.lastName + "  "
+
+                        }
+                        {/* {owner?.firstName ? (owner?.firstName + " " + owner?.lastName + "  ") : owner?.userId } */}
+                      </span>
+                      {/* <img src={Images.prof} alt="" className="countryimg" /> */}
+                    </div>
+                    <div className="d-flex align-items-center gap-1">
+                      <span className="fw-600 me-1">Timer:</span>
+                      <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                    </div>
                   </div>
                   <div>
                     <div className="d-flex align-items-center">
@@ -485,7 +511,7 @@ const Trade = (props) => {
                         <span className="fa fa-mobile mobileicon"></span>
                       </a> */}
                       {/* userdata?.account?.userId */}
-                      {tradechat?.spender == GetUserId() && <>  
+                      {tradechat?.spender == GetUserId() && <>
                         <a href="#" onClick={() => { setReviewtype("positive"); setReview(true) }}>
                           <div className="likebox">
                             <i className="fa fa-thumbs-up"></i>
@@ -518,91 +544,91 @@ const Trade = (props) => {
                 {/* <div className={tradechat?.message != 0 ? "unavail" : "unavail bdr_rmv"}>
                   <p className="roboto sidetag">{userStatus == "Online" ? "Moderator available" : "Moderator Unavailable"}</p>
                 </div> */}
-                
-                {
-                  tradechat?.message != 0 && 
-               
-                <div className="chatbox">
-                  <ul>
-                    {tradechat && tradechat?.message?.map((data, i) => {
-                      if (data?.from != userdata?.account?.userId) {
-                        return (<li className="rightmsg">
-                          <div className="chatbg">
 
-                            {data?.image && <a href={data?.image ? config?.API_URL + "/" + data?.image : ""} target="_blank"><img src={data?.image ? config?.API_URL + "/" + data?.image : ""} /></a>}
-                            <p className="chatcontent roboto">
-                              {data?.message}
-                            </p>
-                          </div>
-                          <span className="lastchat roboto text-right">
-                            {new Date(parseFloat(data?.time))?.toString()?.slice(4, 21)}
-                          </span>
-                        </li>)
-                      }
-                      else if (data?.from == userdata?.account?.userId) {
-                        return (<li className="leftmsg">
-                          <div className="chatbg">
-                            {data?.image && <a href={data?.image ? config?.API_URL + "/" + data?.image : ""} target="_blank"><img src={data?.image ? config?.API_URL + "/" + data?.image : ""} /></a>}
-                            <p className="chatcontent roboto">
-                              {data?.message}
-                            </p>
-                          </div>
-                          <span className="lastchat roboto">
-                            {new Date(parseFloat(data?.time))?.toString()?.slice(4, 21)}
-                          </span>
-                        </li>)
-                      }
-                    })}
-                  </ul>
-                </div>
-                 }
+                {
+                  tradechat?.message != 0 &&
+
+                  <div className="chatbox">
+                    <ul>
+                      {tradechat && tradechat?.message?.map((data, i) => {
+                        if (data?.from != userdata?.account?.userId) {
+                          return (<li className="rightmsg">
+                            <div className="chatbg">
+
+                              {data?.image && <a href={data?.image ? config?.API_URL + "/" + data?.image : ""} target="_blank"><img src={data?.image ? config?.API_URL + "/" + data?.image : ""} /></a>}
+                              <p className="chatcontent roboto">
+                                {data?.message}
+                              </p>
+                            </div>
+                            <span className="lastchat roboto text-right">
+                              {new Date(parseFloat(data?.time))?.toString()?.slice(4, 21)}
+                            </span>
+                          </li>)
+                        }
+                        else if (data?.from == userdata?.account?.userId) {
+                          return (<li className="leftmsg">
+                            <div className="chatbg">
+                              {data?.image && <a href={data?.image ? config?.API_URL + "/" + data?.image : ""} target="_blank"><img src={data?.image ? config?.API_URL + "/" + data?.image : ""} /></a>}
+                              <p className="chatcontent roboto">
+                                {data?.message}
+                              </p>
+                            </div>
+                            <span className="lastchat roboto">
+                              {new Date(parseFloat(data?.time))?.toString()?.slice(4, 21)}
+                            </span>
+                          </li>)
+                        }
+                      })}
+                    </ul>
+                  </div>
+                }
                 {tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && userdatas?.level == 0 &&
-                
-                <div className="chatfoot">
-                  {
-                    imageblob && 
-                  
-                  <div className="chat_slct_img">
-                  <img src={imageblob ? imageblob : ""} className="img-fluid" />
-                  </div>
-                  }
-                  <input
-                    type="text"
-                    value={newmessage}
-                    onChange={(e) => setNewmessage(e?.target?.value)}
-                    className="form-control roboto"
-                    placeholder={t("WRITE_A_MESSAGE")}
-                  />
-                  <div className="flexb">
-                    <div className="uploadbtn">
-                      <div className="icon">
-                        <span className="fa fa-upload"></span>
+
+                  <div className="chatfoot">
+                    {
+                      imageblob &&
+
+                      <div className="chat_slct_img">
+                        <img src={imageblob ? imageblob : ""} className="img-fluid" />
                       </div>
-                      <input type="file"
-                        onChange={(e) => { 
-                          let validate = ValidateFile(e?.target?.files[0]);
-                          console.log("validate" , validate);
-                          
-                          if(!validate){
-                            setImage(e?.target?.files[0]); 
-                            setImageblob(URL.createObjectURL(e?.target?.files[0])) 
-                          }
-                          else {
-                            toastAlert("error", t("INVALID_FILE"));
-                          }
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <button className="roboto btn sendbtn" onClick={handleSend}>
-                        <span className="fa fa-paper-plane"></span>
-                        {t("SEND")}
-                      </button>
+                    }
+                    <input
+                      type="text"
+                      value={newmessage}
+                      onChange={(e) => setNewmessage(e?.target?.value)}
+                      className="form-control roboto"
+                      placeholder={t("WRITE_A_MESSAGE")}
+                    />
+                    <div className="flexb">
+                      <div className="uploadbtn">
+                        <div className="icon">
+                          <span className="fa fa-upload"></span>
+                        </div>
+                        <input type="file"
+                          onChange={(e) => {
+                            let validate = ValidateFile(e?.target?.files[0]);
+                            console.log("validate", validate);
+
+                            if (!validate) {
+                              setImage(e?.target?.files[0]);
+                              setImageblob(URL.createObjectURL(e?.target?.files[0]))
+                            }
+                            else {
+                              toastAlert("error", t("INVALID_FILE"));
+                            }
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <button className="roboto btn sendbtn" onClick={handleSend}>
+                          <span className="fa fa-paper-plane"></span>
+                          {t("SEND")}
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-                 
-                 } 
+
+                }
 
                 {userdatas?.level == 1 && <button className="themebtn" onClick={() => handleconfirm()}>{t("PAID_USER")}</button>}
                 {tour && <Takeatourmodal onDismiss={() => setTour(false)} />}
@@ -610,14 +636,14 @@ const Trade = (props) => {
                 {review && <Reviewmodal type={reviewtype} owner={tradechat?.ordercreator == userdata?.account?.userId ? tradechat?.spender : tradechat?.ordercreator} onSet={(data) => handleonset(data)} onDismiss={() => setReview(false)} />}
               </div>
             </div>
-          </div> 
-          
-        :
-        <div id='loadercontainer'> 
-                              <div className='themeloader'> 
-                              </div>
-                              </div> 
-        }
+          </div>
+
+            :
+            <div id='loadercontainer'>
+              <div className='themeloader'>
+              </div>
+            </div>
+          }
         </div>
       </div>
     </div>
