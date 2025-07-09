@@ -390,7 +390,7 @@ export default function HeaderLinks1(props) {
                 </li>
               )}
               {isAuth && (
-                <li>
+                <li> 
                   <NavLink to="/viewoffers/Buy/POL">{t("OFFER")}</NavLink>
                 </li>
               )}
@@ -731,8 +731,8 @@ export default function HeaderLinks1(props) {
                           />{" "}
                         </div>
                         <div>
-                          <p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
-                          <p className="second mb-0 mx-3">{email}</p>
+                          <p className="mx-2 mb-0 first">{`${firstName} ${lastName}`}</p>
+                          <p className="second mb-0 mx-2">{email}</p>
                         </div>{" "}
                       </div>
                       {/* alt="profileicon" */}
@@ -913,11 +913,17 @@ export default function HeaderLinks1(props) {
                 <Select
                   name="language"
                   value={selLang}
+                  onChange={handleLanguage}
                 >
 
-
-                  <MenuItem value={'English'}>{"English"}</MenuItem>
-                  <MenuItem value={'Spanish'}>{"Spanish"}</MenuItem>
+                  {langOption && langOption.length > 0 && langOption.map((item, key) => {
+                    return (
+                      <MenuItem value={item?.code}>{item?.name}</MenuItem>
+                    )
+                  }
+                  )}
+                  {/* <MenuItem value={'English'}>{"English"}</MenuItem>
+                  <MenuItem value={'Spanish'}>{"Spanish"}</MenuItem> */}
 
                 </Select>
               </li>
@@ -968,8 +974,8 @@ export default function HeaderLinks1(props) {
                           />{" "}
                         </div>
                         <div>
-                          <p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
-                          <p className="second mb-0 mx-3">{email}</p>
+                          <p className="mx-2 mb-0 first">{`${firstName} ${lastName}`}</p>
+                          <p className="second mb-0 mx-2">{email}</p>
                         </div>{" "}
                       </div>
                       {/* alt="profileicon" */}

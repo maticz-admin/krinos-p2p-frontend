@@ -128,12 +128,12 @@ const CreatedModal = (props) => {
                         <p className='blackandwhite'>{t("OR_COPY_THIS_LINK_AND_SHARE_IRECTLY")}</p>
                     </div>
 
-                    <div className='floatinglabel my-4'>
+                    <div className='floatinglabel my-4 d-flex'>
 
                         {/* <input type="text" className='form-control leftspace' placeholder='Enter Amount'/> */}
                         <input
                             type="text"
-                            className="form-control"
+                            className="form-control rightRadius_none"
                             value={`${config?.FRONT_URL}bitcoincompany/${props?.createdata?._id}`}
                         />
                         <CopyToClipboard text={`${config?.FRONT_URL}/bitcoincompany/${props?.createdata?._id}`} onCopy={() => copyUrl()}>

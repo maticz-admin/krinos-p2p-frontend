@@ -1267,8 +1267,8 @@ header.dropheader div div:last-child {
 
 .one2 div,
 .one1 div {
-  width: 100%;
-  text-align: center;
+  /* width: 100%; */
+  /* text-align: center; */
 }
 .one2_col_wdi.one2 {
   min-width: 240px !important;

@@ -76,7 +76,7 @@ const CryptoDeposit = (props) => {
                   placeholder=""
                   value={assetData && assetData.address}
                 />
-                {assetData && !isEmpty(assetData.address) && (
+                {/* {assetData && !isEmpty(assetData.address) && ( */}
                   <CopyToClipboard
                     text={assetData.address}
                     onCopy={() => {
@@ -85,7 +85,7 @@ const CryptoDeposit = (props) => {
                   >
                     <i class="far fa-copy"></i>
                   </CopyToClipboard>
-                )}
+                {/* )} */}
               </div>
             </div>
           </GridItem>

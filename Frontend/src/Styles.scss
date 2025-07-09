@@ -208,7 +208,8 @@ a {
 .incrementbtn {
   border: 1px solid #707070;
   border-radius: 10px;
-  width: 220px;
+  // width: 220px;
+  width: 250px;
   overflow: hidden;
 
   &>* {
@@ -1571,7 +1572,8 @@ a[aria-expanded="true"] .fa-plus:before {
 }
 
 .chatbox li {
-  width: 90%;
+  // width: 90%;
+  width: auto;
 }
 
 .chatbox li.leftmsg {
@@ -1639,4 +1641,8 @@ header.common_header {
 
 .light_theme .profileContent .floatinglabel label {
   background-color: var(--white-bg) !important;
+}
+
+.line-heigh-0 {
+  line-height: 0px;
 }

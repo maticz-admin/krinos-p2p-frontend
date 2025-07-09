@@ -170,16 +170,16 @@ const CryptoWallet = (props) => {
         /> */}
 
         <div className="d-flex align-items-center">
-          <div className="zeroBalance mr-3 novisible_checkbox">
+          <div className="d-flex align-items-center zeroBalance mr-3 novisible_checkbox">
             <Checkbox
-              class="form-control"
+              className="line-heigh-0"
               name="checkValue"
               onChange = {(e) => handleCheckBox(e)}
               checked={checkValue}
             />
             {console.log("checking" , checkValue)}
             {/* <input class="form-check-input novisible" type="checkbox" value={checkValue} name={"checkValue"} checked={checkValue} onChange={handleCheckBox} /> */}
-            <label className="ml-1">{t("HIDE_ZERO_BALANCE")}</label>
+            <label className="ml-1 mb-0">{t("HIDE_ZERO_BALANCE")}</label>
           </div>
 
           {

@@ -121,7 +121,7 @@ const Messagenotification = () => {
                     <GridContainer className="new_faq_img_sectio mt-3 notify-table">
                       <GridItem xs={12} sm={10} md={7} lg={12} className="m-auto">
                         <div className='newnotify'>
-                          <button className="btn btn-link ml-auto text-capital f-12 py-0 pr-2 shrink-0 pl-2 d-sm-block d-none" onClick={(e) => { handlemarkasreadall() }}>
+                          <button className="btn btn-link ml-auto text-capital f-12 py-0 pr-2 shrink-0 pl-2 d-flex" onClick={(e) => { handlemarkasreadall() }}>
                             {t("MARK_ALL_AS_READ")}</button>
                           <ul className='pl-0'>
                             {messagenotity && messagenotity.length > 0 ? (
@@ -136,7 +136,7 @@ const Messagenotification = () => {
                                         <p className='f-12 lighttxt descc'>{localStorage.getItem("usr-language") == "en" ? val.description : val.spdescription}</p>
                                         <p className='text-muted f-12 dateformat'>{momentFormat(val.createdAt, 'YYYY-MM-DD HH:mm')}</p>
                                       </div>
-                                      <button className='btn btn-link ml-auto text-capital f-12 py-0 pr-2 shrink-0 pl-2 d-sm-block d-none' onClick={(e) => { handlemarkasreadone(val._id) }}>
+                                      <button className='btn btn-link ml-auto text-capital f-12 py-0 pr-2 shrink-0 pl-2 d-flex' onClick={(e) => { handlemarkasreadone(val._id) }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M374.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 178.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l80 80c12.5 12.5 32.8 12.5 45.3 0l160-160zm96 128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 402.7 86.6 297.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l256-256z" /></svg>
                                         {t("MARK_AS_READ")}</button>
                                     </div>
