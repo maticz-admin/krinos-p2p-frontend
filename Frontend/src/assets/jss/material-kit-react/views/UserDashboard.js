@@ -638,7 +638,8 @@ const UserDashboard = (props) => {
             text: `${t("STATUS")}`,
             className: "address",
             align: "left",
-            sortable: true
+            sortable: true,
+            cell : record => <span>{t(record?.chatstatus?.toUpperCase())}</span>
         },
         // {
         //     key: "preferred",
@@ -890,7 +891,7 @@ const UserDashboard = (props) => {
 
                                                 <Dropdown className="headerdropdown m-left iner_drop_versiotwo">
                                                     <Dropdown.Toggle variant="success" className='btcc btcc_mn_wodt_set' id="dropdown-basic">
-                                                        <span>{buyorsell ? buyorsell : t("SELECT_TYPE")}</span>
+                                                        <span>{buyorsell ? t(buyorsell?.toUpperCase()) : t("SELECT_TYPE")}</span>
                                                     </Dropdown.Toggle>
 
                                                     <Dropdown.Menu className="iner_dropmenu_versiotwo btcc_mn_wodt_set_menu">

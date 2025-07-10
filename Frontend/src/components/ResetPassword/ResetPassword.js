@@ -104,12 +104,12 @@ const ResetPassword = () => {
             setToched({})
             setValidateError(validation(initialFormValue))
             history.push("/login");
-            toastAlert('success', message, 'resetPassword');
+            toastAlert('success', t(message), 'resetPassword');
         } else {
             if (error) {
                 setValidateError(error);
             }
-            toastAlert('error', message, 'resetPassword');
+            toastAlert('error', t(message), 'resetPassword');
 
         }
     }

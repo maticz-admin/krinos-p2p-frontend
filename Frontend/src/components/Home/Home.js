@@ -85,7 +85,7 @@ const Home = (props) => {
         let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,6}))$/;
         var validateError = emailRegex.test(email);//await  emailValidation(letter)
         if (!email) {
-            toastAlert('error', "Email required!")
+            toastAlert('error', t("EMAIL_REQUIRED"))
         } else
             if (validateError) {
                 var res = await subscribe(letter)
@@ -127,17 +127,17 @@ const Home = (props) => {
     useEffect(() => {
         async function getcms() {
             let langs = localStorage.getItem("usr-language")
-            var payload1 = { "identifier": "TRANSPARENT_FEES"  , lang: langs? langs : "sp"};
-            var result1 = await Getcmshooks(payload1);
-            setTransparentfee(result1?.data?.data?.content);
+            // var payload1 = { "identifier": "TRANSPARENT_FEES"  , lang: langs? langs : "sp"};
+            // var result1 = await Getcmshooks(payload1);
+            // setTransparentfee(result1?.data?.data?.content);
 
-            var payload2 = { "identifier": "MARGIN_CALL" , lang: langs? langs : "sp" };
-            var result2 = await Getcmshooks(payload2);
-            setMarginhall(result2?.data?.data?.content);
+            // var payload2 = { "identifier": "MARGIN_CALL" , lang: langs? langs : "sp" };
+            // var result2 = await Getcmshooks(payload2);
+            // setMarginhall(result2?.data?.data?.content);
 
-            var payload3 = { "identifier": "LEARN_&_PRACTICE"  , lang: langs? langs : "sp"};
-            var result3 = await Getcmshooks(payload3);
-            setLearnandpractice(result3?.data?.data?.content);
+            // var payload3 = { "identifier": "LEARN_&_PRACTICE"  , lang: langs? langs : "sp"};
+            // var result3 = await Getcmshooks(payload3);
+            // setLearnandpractice(result3?.data?.data?.content);
 
             var result4 = await Getfaqhooks({lang : langs ? langs : "sp"});
             console.log("faqqqq result" , result4);
@@ -521,7 +521,7 @@ const Home = (props) => {
                                                 </Select> */}
 
                                                     </div>
-                                                    <p className='text-danger error-message mb-3'> {errors?.preferedcurrency}</p>
+                                                    <p className='text-danger error-message mb-3'> {t(errors?.preferedcurrency)}</p>
                                                 </div>
                                             </div>
                                             <div className='row'>
@@ -585,7 +585,7 @@ const Home = (props) => {
                                                             onChange={(e) => { setAmount(e?.target?.value); setOrdertype('Sell') }}
                                                         />
                                                     </div>
-                                                    <span className='text-danger'> {errors?.amount}</span>
+                                                    <span className='text-danger'> {t(errors?.amount)}</span>
                                                 </div>
 
                                             </div>

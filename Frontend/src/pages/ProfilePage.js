@@ -62,7 +62,7 @@ const ProfilePage = (props) => {
   useEffect(() => {
     fetchdata()
     getKycDetail(dispatch)
-    document.title = "KrinosP2P"
+    document.title = "KRINOS"
   }, [])
 
   const fetchdata = async() => {
@@ -109,6 +109,7 @@ const ProfilePage = (props) => {
       toastAlert("error" , t("PROF_IS_REQUIRED"));
     }
   }
+  
   const handleFile = async (e) => {
     let imageFormat = /\.(jpg|JPG|jpeg|JPEG|png|PNG|pdf|PDF)$/;
     const { name, files } = e.target;

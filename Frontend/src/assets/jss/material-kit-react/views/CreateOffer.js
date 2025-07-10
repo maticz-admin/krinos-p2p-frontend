@@ -752,7 +752,7 @@ const CreateOffer = (props) => {
                                     ></textarea>
                                     {/* <span className='subhead f-12'>Lorem Ipsum is simply dummy</span> */}
                                 </div>
-                                <p className='error-message mb-0'>{errors?.tradeinstruction}</p>
+                                <p className='error-message mb-0'>{t(errors?.tradeinstruction)}</p>
                                 <div>
                                     <h6 className='blackandwhite'>{t("VERIFICATION")}</h6>
                                     {/* <div className="form-check d-flex align-items-center">

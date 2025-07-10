@@ -74,6 +74,7 @@ const CryptoHistory = (props) => {
     
   const [filtercoin, setFiltercoin] = useState("All");
   const [filtertype, setFiltertype] = useState("All");
+  const [searching , setSearching] = useState("");
 
     // function
     const fetchHistory = async (reqQuery) => {
@@ -138,11 +139,14 @@ const CryptoHistory = (props) => {
             //     fetchHistory(filterData)
             // }, 1000))
             setSearch(true)
+            setSearching(value)
+
             searchedValue(record.data,value)
         } else {
             fetchHistory(filterData)
         }
     }
+
     const searchedValue = async(data,searchSymbol) => {
         const filteredData  = await data.filter(value => ((value.address)).includes(searchSymbol));
         setFilterItems(filteredData) ;
@@ -237,24 +241,33 @@ const CryptoHistory = (props) => {
                             <input
                                 type="text"
                                 name="search"
-                                value={search}
+                                value={searching}
                                 onChange={handleChange}
                                 class="form-control"
                                 placeholder= {t("SEARCH_BY_ADDRESS")}
                             />
-                            <div class="input-group-append">
+                            {/* <div class="input-group-append">
                                 <span class="btnType1"><i class="fas fa-search"></i></span>
+                            </div> */}
+                            <div className="input-group-append cursor-pointer" onClick={() => {
+                                // setSearching();
+                                setSearch(false)
+                                setSearching("")
+                                }}>
+                                <span class="btnType1"  ><i class="fas fa-close"></i></span>
                             </div>
                         </div>
                     </div>
                 </div>
+                {console.log("search" , searching)}
+                
                 {/* <div className="newsSelectGroup">
                     <button className="btn btn-outline text-uppercase py-1 m-0">Download PDF</button>
                 </div> */}
             </div>
 
-            {isSearch ? (<DataTable
-            className='changing_table'
+            { ! loader  ? isSearch ? (<DataTable 
+                className='changing_table'
                 columns={columns}
                 data={filteredItems}
                 paginationTotalRows={record.count}
@@ -265,12 +278,13 @@ const CryptoHistory = (props) => {
                 onChangeRowsPerPage={handlePerRowsChange}
                 onChangePage={handlePageChange}
                 noDataComponent= {t("NO_DATA_FOUND")}
+                // localeText = {t("LOADING")}
             />):(
                 <DataTable 
                 className='changing_table'
                 columns={columns}
                 data={record.data}
-                paginationTotalRows={record.count}
+                paginationTotalRows = {record.count}
                 noHeader
                 progressPending={loader}
                 pagination
@@ -278,8 +292,9 @@ const CryptoHistory = (props) => {
                 onChangeRowsPerPage={handlePerRowsChange}
                 onChangePage={handlePageChange}
                 noDataComponent= {t("NO_DATA_FOUND")}
+                // localeText = {t("LOADING")}
             />
-            )}
+            ) : <p style={{alignItems: 'center' ,justifyContent: 'center' , display: 'flex'}}>{t("LOADING")}</p>}
            
         </div>
     )

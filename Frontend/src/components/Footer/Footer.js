@@ -99,10 +99,11 @@ export default function Footer(props) {
           <div className="footerMidd_right">
             <h3>{t("SOCIAL")}</h3>
             <ul className="socialLinks">
-
-              <li><a href={facebook} target="_blank"><i className="fab fa-youtube"></i></a></li>
+              <li><a href={facebook} target="_blank"><i className="fab fa-facebook"></i></a></li>
               <li><a href={twitter} target="_blank"><i className="fab fa-twitter"></i></a></li>
               <li><a href={telegram} target="_blank"><i class="fab fa-telegram"></i></a></li>
+
+              
 
               {/* <li><a href="https://www.youtube.com/@myctos_info" target="_blank"><i className="fab fa-youtube"></i></a></li>
               <li><a href="https://twitter.com/myctos_info" target="_blank"><i className="fab fa-twitter"></i></a></li>

@@ -170,7 +170,7 @@ const ContactUs = (props) => {
                     </div>
                 </GridItem>
 
-              <p className='contavt_et'>Contact us on <a href="mailto:soporte@krinos.app">soporte@krinos.app</a></p>
+              <p className='contavt_et'>{t("CONTACT_US_ON")} <a href="mailto:soporte@krinos.app">soporte@krinos.app</a></p>
 
             </GridItem>
         </div>

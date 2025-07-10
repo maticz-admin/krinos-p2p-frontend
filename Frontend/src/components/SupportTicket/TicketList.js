@@ -7,9 +7,10 @@ import ChatList from './ChatList';
 
 // import action
 import { getTicketList, replyMessage, closeTicket } from '../../actions/supportAction';
+import { useTranslation } from 'react-i18next';
 
 const TicketList = forwardRef((props, ref) => {
-
+    const { t, i18n } = useTranslation();
     // state
     const [ticketList, setTicketList] = useState([])
     const [sender, setSender] = useState({})

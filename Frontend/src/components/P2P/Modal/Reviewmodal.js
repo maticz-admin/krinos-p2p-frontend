@@ -12,6 +12,7 @@ import tour7 from "../../../assets/images/take_a_tour/tour7.png"
 import { Adduserreviewhooks } from 'actions/P2PorderAction';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 // import spring from "../../../../images/toss/bannerbg.png";
 const Reviewmodal = (props) =>{
     const userdata = useSelector(state => state);
@@ -21,7 +22,8 @@ const { t, i18n } = useTranslation();
     const [userreview , setUserreview] = useState("");
 
     const handleclick = async(data)=>{
-        var data = {
+        if(userreview){
+            var data = {
             reviewtype : props?.type,
             userid : userdata?.account?.userId,
             description : userreview,
@@ -36,6 +38,11 @@ const { t, i18n } = useTranslation();
             props.onSet(result?.data?.data);
             props.onDismiss();
         }
+        }
+        else{
+            toast.error(t("REVIEW_FIELD_IS_REQUIRED"))
+        }
+        
     } 
     return(
         <>

@@ -65,7 +65,7 @@ const MobileForm = () => {
         }
         let { status, loading, error, message } = await sentOTP(reqData);
         if (status == "success") {
-            toastAlert('success', message, 'mobileForm');
+            toastAlert('success', t(message), 'mobileForm');
             setOtpStatus(true)
         }
         if (error) {
@@ -91,10 +91,12 @@ const MobileForm = () => {
             setFormValue(initialFormValue)
             setToched({})
             // setValidateError(validation(initialFormValue))
-            toastAlert('success', message, 'forgotPassword');
+            if(message)
+            toastAlert('success', t(message), 'forgotPassword');
             history.push('/reset-password/' + result)
         } else {
-            toastAlert('error', message, 'forgotPassword');
+            if(message)
+            toastAlert('error', t(message), 'forgotPassword');
         }
         if (error) {
             setValidateError(error);
@@ -150,8 +152,8 @@ const MobileForm = () => {
                     // className="form-control"
                     country={'bo'}
                 />
-                  {validateError && validateError.phone && <p className="error-message">{validateError.phone}</p>}
-                {validateError && validateError.phoneNo && <p className="error-message">{validateError.phoneNo}</p>}
+                  {validateError && validateError.phone && <p className="error-message">{t(validateError.phone)}</p>}
+                {validateError && validateError.phoneNo && <p className="error-message">{t(validateError.phoneNo)}</p>}
              </div>
             <div className="form-group">
                 

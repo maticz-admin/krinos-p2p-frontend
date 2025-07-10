@@ -29,6 +29,7 @@ let dispatch = useDispatch()
     let data = {id:id}
     let { staus, message } = await readsingelNotification(data);
     //noticePopup(dispatch, false);
+    fetchNotificationHistory()
 
   };
 
@@ -39,12 +40,13 @@ let dispatch = useDispatch()
     noticePopup(dispatch, false);
 
   };
+  
   useEffect(() => {
     fetchNotificationHistory()
     socketContext.socket.on('read',(data)=>{
       setData(data)
     })
-    document.title="KrinosP2P"
+    document.title="KRINOS"
   }, [socketContext])
     return(
     <>

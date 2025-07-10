@@ -191,10 +191,17 @@ const Bitcoincompany = (props) => {
                     updatedata: data
                 }
                 var result = await createroom(payload);
+                console.log("result in old" ,  result);
+                debugger
                 if (result?.data?.type == "success") {
+                    if(result?.data?.old){
+                        toastAlert("success" , t("COMPLETE_EXISTING_TRADE"))
+                    }
                     var room = result?.data?.data?.roomid
                     // navigate.push(`/trade/${result?.data?.data?.roomid}`, { state: payload });
-                    window.location.href = window.location.origin + `/trade/${result?.data?.data?.roomid}`
+                    setTimeout(() => {
+                        window.location.href = window.location.origin + `/trade/${result?.data?.data?.roomid}`
+                    } , 2000)
                 }
             }
             else {
@@ -222,8 +229,14 @@ const Bitcoincompany = (props) => {
                 }
                 var result = await createroom(payload);
                 if (result?.data?.type == "success") {
+                    if(result?.data?.old){
+                        toastAlert("success" , t("COMPLETE_EXISTING_TRADE"))
+                    }
                     var room = result?.data?.data?.roomid
-                    navigate.push(`/trade/${result?.data?.data?.roomid}`, { state: payload });
+                    // navigate.push(`/trade/${result?.data?.data?.roomid}`, { state: payload });
+                    setTimeout(() => {
+                        window.location.href = window.location.origin + `/trade/${result?.data?.data?.roomid}`
+                    }, 2000)
                 }
             }
             else {

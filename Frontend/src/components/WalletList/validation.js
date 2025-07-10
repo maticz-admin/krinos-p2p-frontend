@@ -83,7 +83,7 @@ export const coinValidation = (value, t) => {
     } else if (isNaN(value.amount)) {
         errors.amount = "ALLOW_NUMERIC"
     } else if (value.minimumWithdraw > value.amount) {
-        errors.amount = t(`MINIMUM WITHDRAW ${value.minimumWithdraw}`, { "AMOUNT": value.minimumWithdraw, "COIN": value.coin })
+        errors.amount = t(`Minimum withdrawal amount is  ${value.minimumWithdraw}`, { "AMOUNT": value.minimumWithdraw, "COIN": value.coin })
     } else if (value.amount <= 0) {
         errors.amount = "Pleae Enter Valid Amount"
     }

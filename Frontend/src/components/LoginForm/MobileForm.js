@@ -175,7 +175,6 @@ const MobileForm = () => {
                 if (message == "YOUR_PASSWORD_IS_OLD_PLEASE_RESET") {
                     toastAlert('error', t(message), 'login');
                     history.push("/reset-password/" + authToken)
-
                 }
                 if(message)
                 toastAlert('error', t(message), 'login');

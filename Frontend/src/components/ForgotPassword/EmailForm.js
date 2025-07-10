@@ -76,10 +76,12 @@ const EmailForm = () => {
             setFormValue(initialFormValue)
             setToched({})
             setValidateError({})
-            toastAlert('success', message, 'forgotPassword');
+            if(message)
+            toastAlert('success', t(message), 'forgotPassword');
             // history.push('/reset-password/' + result)
         } else {
-            toastAlert('error', message, 'forgotPassword');
+            if(message)
+            toastAlert('error', t(message), 'forgotPassword');
         }
         if (!isEmpty(error)) {
             setValidateError(error)

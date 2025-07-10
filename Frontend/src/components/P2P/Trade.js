@@ -28,7 +28,6 @@ const dashboardRoutes = [];
 const Trade = (props) => {
   const { ...rest } = props;
   const { t, i18n } = useTranslation();
-
   const userdata = useSelector(state => state);
   const accountData = useSelector((state) => state.account);
   const location = useLocation();
@@ -307,6 +306,12 @@ const Trade = (props) => {
     socket.on('CHAT', (newmessage) => {
       setTradechat(newmessage);
     });
+    
+
+    socket.on('CANCEL_TRADE', (newmessage) => {
+      // setTradechat(newmessage);
+      fetchdata();
+    });
 
     return () => {
       clearInterval(dataID)
@@ -316,7 +321,7 @@ const Trade = (props) => {
   return (
     <div className="page_wrap">
       <Header
-        className="header dropheader"
+        className = "header dropheader"
         color="transparent"
         routes={dashboardRoutes}
         brand={
@@ -531,7 +536,6 @@ const Trade = (props) => {
                 <div className="flexb usertime">
                   <div>
                     {/* <p className="roboto sidetag"> {userstatus == "Online" ? "Online" : `Last seen ${new Date(parseFloat(lastseendata))?.toString()?.slice(4, 21)}`}</p> */}
-
                     {/* <p className="roboto sidetag"> {tradechat?.ordercreator == userdata?.account?.userId ? (userdatas?.lastseen == "online" ? "Online" : `lastseen ${new Date(parseFloat(userdatas?.lastseen))?.toString()?.slice(4 , 21)}`) : (owner?.lastseen == "online" ? "Online" : `lastseen ${new Date(parseFloat(owner?.time))?.toString()?.slice(4 , 21)}`)}</p> */}
                   </div>
                   <div className="partner">
@@ -583,7 +587,6 @@ const Trade = (props) => {
                   </div>
                 }
                 {tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && userdatas?.level == 0 &&
-
                   <div className="chatfoot">
                     {
                       imageblob &&
@@ -606,6 +609,8 @@ const Trade = (props) => {
                         </div>
                         <input type="file"
                           onChange={(e) => {
+                            console.log("on change" , e?.target?.files[0]);
+                            
                             let validate = ValidateFile(e?.target?.files[0]);
                             console.log("validate", validate);
 
@@ -616,6 +621,7 @@ const Trade = (props) => {
                             else {
                               toastAlert("error", t("INVALID_FILE"));
                             }
+                            e.target.value = null
                           }}
                         />
                       </div>
@@ -627,7 +633,6 @@ const Trade = (props) => {
                       </div>
                     </div>
                   </div>
-
                 }
 
                 {userdatas?.level == 1 && <button className="themebtn" onClick={() => handleconfirm()}>{t("PAID_USER")}</button>}

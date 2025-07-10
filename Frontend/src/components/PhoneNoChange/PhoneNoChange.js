@@ -64,12 +64,15 @@ const PhoneNoChange = () => {
       return;
     }
     let formData = { ...formValue, ...{ [name]: value } };
+    console.log("formData" , formData  , name, value);
+    
     setFormValue(formData);
     if (value) {
       setValidateError({});
     }
     // setValidateError(validation(formData))
   };
+console.log("formvallue" , formValue);
 
   const handlePhoneNumber = (value, country) => {
     const { dialCode } = country;
@@ -155,6 +158,7 @@ const PhoneNoChange = () => {
           },
         });
         setDisablePh(true);
+        setValidateError({});
         toastAlert("success", t(message), "editPhoneNumber");
       } else {
         setMobileDetail({
@@ -184,6 +188,8 @@ const PhoneNoChange = () => {
         newPhoneNo,
         otp,
       };
+      console.log("reqData" , reqData);
+      
       let { status, loading, error, message, result } = await verifyNewPhone(
         reqData
       );
@@ -248,7 +254,7 @@ const PhoneNoChange = () => {
     //     catch (err) {
     //     }
     // }
-  }, [mobileDetail?.timer]);
+  }, []);
 
   console.log("mobileDetail", mobileDetail)
 

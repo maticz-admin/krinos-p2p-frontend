@@ -711,6 +711,8 @@ const HeaderLinks = () => {
                   </NavLink>
                 </ListItem>
               )}
+
+              {!isAuth && (
               <ListItem className={classes.listItem}>
                 <NavLink
                   exact
@@ -721,6 +723,7 @@ const HeaderLinks = () => {
                   {t("REGISTER")}
                 </NavLink>
               </ListItem>
+               )}
 
               {/* <ListItem className={classes.listItem}>
                 <img src={require("../../assets/images/Path 84.png")} className="img-fluid langicon" alt="hh" />

@@ -98,6 +98,9 @@ const IprestrictModal = (props) => {
         if(otp?.length != 4){
             toastAlert('error', t("PLEASE_ENTER_cORRECT_OTP"), 'login');
         }
+        if(isNaN(parseInt(otp))){
+            toastAlert('error', t("OTP_MUST_BE_NUMBER"), 'login');
+        }
         else{
             props.login(e);
         }
@@ -199,11 +202,26 @@ const IprestrictModal = (props) => {
                             <input className="otp form-control" type="text" onKeyUp={(e) => { e.preventDefault(); onTextOtp(e.target.value, 3) }} maxlength="1" /> */}
                             <OtpInput
                                 value={otp}
-                                onChange={e => {setOtp(e); props.setotp(e)}}
+                                onChange={e => {
+                                    // console.log("E" , e?.charCodeAt);
+                                    
+                                    // if((e.charCode >= 65 && e.charCode <= 90) || (e.charCode >= 97 && e.charCode <= 122)){
+                                    //     setOtp(e); 
+                                    //     props.setotp(e)
+                                    // }
+                                    // else{
+                                    //     return;
+                                    // }
+
+                                        setOtp(e); 
+                                        props.setotp(e)
+                                }}
                                 numInputs={4}
                                 className="otp form-control"
                                 renderSeparator={<span>-</span>}
                                 renderInput={(props) => <input {...props} />}
+                                // onKeyPress={event => (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)}
+                                
                             />
                         </form>
                         <div className='text-right mb-3 mt-3 countdownspan'>

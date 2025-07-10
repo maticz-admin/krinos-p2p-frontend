@@ -271,7 +271,7 @@ const CreateTicket = (props) => {
                                     <li ><a href='#'  onClick={(e)=>{
                                     e.preventDefault();
                                     setFormValue({ ...formValue, ...{ ['categoryId']:item._id}});
-                                }}>{i+1}. {item.categoryName}</a></li>
+                                }}>{i+1}. {t(item.categoryName)}</a></li>
                                 </ul>
                             )
                         })

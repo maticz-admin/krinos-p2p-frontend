@@ -428,7 +428,7 @@ const MobileForm = () => {
                         value={password}
                         autoComplete="off"
                         onChange={handleChange}
-                    // onBlur={handleBlur}
+                        // onBlur={handleBlur}
                     />
                     <Link className='right' onClick={(e) => {
                         e.preventDefault();

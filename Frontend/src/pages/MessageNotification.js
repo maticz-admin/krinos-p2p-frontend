@@ -61,7 +61,7 @@ const Messagenotification = () => {
     socketContext.socket.on('read', (data) => {
       setData(data)
     })
-    document.title = "KrinosP2P"
+    document.title = "KRINOS"
   }, [socketContext])
 
   async function fetchdata() {
