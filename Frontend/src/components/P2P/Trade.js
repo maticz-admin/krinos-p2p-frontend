@@ -424,10 +424,10 @@ const Trade = (props) => {
                     {console.log("Actie check", offerdata?.ordertype == "Buy", tradechat?.spender != userdata?.account?.userId, userdata?.account?.userId)}
 
                     {offerdata?.ordertype == "Buy" && tradechat?.spender != userdata?.account?.userId &&
-                      <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" || tradechat?.paidstatus == "reject" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${offerdata?.preferedcurrency}`}</p>}
+                      <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" || tradechat?.paidstatus == "reject" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${" "} ${offerdata?.preferedcurrency}`}</p>}
 
                     {offerdata?.ordertype == "Sell" && tradechat?.spender == userdata?.account?.userId &&
-                      <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" || tradechat?.paidstatus == "reject" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${offerdata?.preferedcurrency}`}</p>}
+                      <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" || tradechat?.paidstatus == "reject" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${" "} ${offerdata?.preferedcurrency}`}</p>}
                   </div>
                 </div>
                 <div className="secondbox">
@@ -554,26 +554,29 @@ const Trade = (props) => {
 
                   <div className="chatbox">
                     <ul>
+                     
                       {tradechat && tradechat?.message?.map((data, i) => {
                         if (data?.from != userdata?.account?.userId) {
-                          return (<li className="rightmsg">
+                          return (
+                          <li className="rightmsg">
                             <div className="chatbg">
 
                               {data?.image && <a href={data?.image ? config?.API_URL + "/" + data?.image : ""} target="_blank"><img src={data?.image ? config?.API_URL + "/" + data?.image : ""} /></a>}
-                              <p className="chatcontent roboto">
+                              <p className="chatcontent roboto mt-1">
                                 {data?.message}
                               </p>
                             </div>
                             <span className="lastchat roboto text-right">
                               {new Date(parseFloat(data?.time))?.toString()?.slice(4, 21)}
                             </span>
-                          </li>)
+                          </li>
+                          )
                         }
                         else if (data?.from == userdata?.account?.userId) {
                           return (<li className="leftmsg">
                             <div className="chatbg">
                               {data?.image && <a href={data?.image ? config?.API_URL + "/" + data?.image : ""} target="_blank"><img src={data?.image ? config?.API_URL + "/" + data?.image : ""} /></a>}
-                              <p className="chatcontent roboto">
+                              <p className="chatcontent roboto mt-1">
                                 {data?.message}
                               </p>
                             </div>

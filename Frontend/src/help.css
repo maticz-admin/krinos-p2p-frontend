@@ -683,6 +683,25 @@ body.light_theme .jss25 {
   overflow-x: auto;
 }
 
+/* .tableborder .tradelists::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: transparent;
+} */
+
+.tableborder .tradelists::-webkit-scrollbar {
+  /* width: 2px !important; */
+  height: 2px !important;
+  /* background-color: transparent; */
+}
+
+.tableborder .tradelists::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+  background-color: var(--btn-bg);
+}
+
+
+
 .dark_theme .tableborder .tradelists {
   border: 1px solid #19181c;
 }
@@ -1248,8 +1267,8 @@ header.dropheader div div:last-child {
 
 .one2 div,
 .one1 div {
-  width: 100%;
-  text-align: center;
+  /* width: 100%; */
+  /* text-align: center; */
 }
 .one2_col_wdi.one2 {
   min-width: 240px !important;

@@ -27876,19 +27876,21 @@ a:hover {
 }
 
 button.otp_btn {
-  position: absolute;
-  top: 1px;
-  right: 1px;
-  width: 95px;
+  /* position: absolute; */
+  /* top: 1px; */
+  /* right: 1px; */
+  /* width: 95px; */
+  /* max-width: 100px; */
   font-size: 11px;
   font-weight: 600;
   white-space: nowrap;
   z-index: 999;
   height: 50px;
   background: #21b77a;
-  border: 1px solid transparent;
+  /* border: 1px solid transparent; */
+  border: none !important;
   transition: 0.2s all;
-  text-wrap: balance;
+  /* text-wrap: balance; */
 }
 
 button.otp_btn:hover {
@@ -32491,6 +32493,12 @@ input:checked~.checkmark {
   background-color: #2e2e2ecc;
   padding: 14px 20px;
   border-radius: 7px;
+  width: fit-content;
+}
+
+.tableborder .chatbox ul li.leftmsg .chatbg {
+  margin-right: 0;
+  margin-left: auto;
 }
 
 .tableborder .chatbox ul li .chatbg .h6 {
@@ -32504,7 +32512,8 @@ input:checked~.checkmark {
   font-size: 14px;
   font-weight: 400;
   margin-bottom: 0px;
-  line-height: 26px;
+  line-height: 20px;
+  word-break: break-word;
 }
 
 .tableborder .chatbox ul li .lastchat {
@@ -32514,6 +32523,11 @@ input:checked~.checkmark {
   font-weight: 500;
   margin-top: 3px;
   display: block;
+  text-align: start !important;
+}
+
+.tableborder .chatbox ul li.leftmsg .lastchat {
+  text-align: end !important;
 }
 
 .tableborder .chatfoot {
@@ -33984,6 +33998,11 @@ option {
 
 .choose_cryptoBox {
   overflow-x: unset !important;
+}
+
+.rightRadius_none {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
 }
 
 @media (max-width: 1199px) {

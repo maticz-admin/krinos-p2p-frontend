@@ -61,7 +61,7 @@ const MobileForm = () => {
         let reqData = {
             phoneCode,
             phoneNo,
-            type:'forgot'
+            type: 'forgot'
         }
         let { status, loading, error, message } = await sentOTP(reqData);
         if (status == "success") {
@@ -133,16 +133,16 @@ const MobileForm = () => {
     useEffect(() => {
         // setValidateError(validation(formValue))
     }, [])
-    
+
     return (
         <Fragment>
             {/* <p className="paraLabel text-center mb-3 forhet_txtx">{t('MOBILE_NO')}</p> */}
-            <div className='floatinglabel my-4'>
+            <div className='floatinglabel mt-4 mb-2'>
                 {/* <img src={Images.india} className='flagimg'/> */}
                 <label>{t('MOBILE_NO')}</label>
                 {/* {toched.phoneCode && validateError.phoneCode && <p className="error-message">{validateError.phoneCode}</p>} */}
-                
-                
+
+
                 <PhoneInput className="form-control p-0"
                     placeholder={t('ENTER_MOBILE_NO')}
                     value={phoneCode + phoneNo}
@@ -152,12 +152,12 @@ const MobileForm = () => {
                     // className="form-control"
                     country={'bo'}
                 />
-                  {validateError && validateError.phone && <p className="error-message">{t(validateError.phone)}</p>}
-                {validateError && validateError.phoneNo && <p className="error-message">{t(validateError.phoneNo)}</p>}
-             </div>
-            <div className="form-group">
-                
-               
+                {validateError && validateError.phone && <p className="error-message">{validateError.phone}</p>}
+                {validateError && validateError.phoneNo && <p className="error-message">{validateError.phoneNo}</p>}
+            </div>
+            <div className="form-group text-end">
+
+
 
                 <Button
                     onClick={handleSentOTP}

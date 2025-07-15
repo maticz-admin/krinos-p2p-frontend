@@ -393,8 +393,8 @@ const HeaderLinks = () => {
                               />{" "}
                             </div>
                             <div>
-                              <p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
-                              <p className="second mb-0 mx-3">{email}</p>
+                              <p className="mx-2 mb-0 first">{`${firstName} ${lastName}`}</p>
+                              <p className="second mb-0 mx-2">{email}</p>
                             </div>{" "}
                           </div>
                         </MenuItem>
@@ -820,8 +820,8 @@ const HeaderLinks = () => {
                               />{" "}
                             </div>
                             <div>
-                              <p className="mx-3 mb-0 first">{`${firstName} ${lastName}`}</p>
-                              <p className="second mb-0 mx-3">{email}</p>
+                              <p className="mx-2 mb-0 first">{`${firstName} ${lastName}`}</p>
+                              <p className="second mb-0 mx-2">{email}</p>
                             </div>{" "}
                           </div>
                         </MenuItem>
