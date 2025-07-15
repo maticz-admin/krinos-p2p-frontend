@@ -885,7 +885,11 @@ progress {
   font: inherit;
   -webkit-appearance: button;
 }
-
+.sendcodebtn{
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
 output {
   display: inline-block;
 }

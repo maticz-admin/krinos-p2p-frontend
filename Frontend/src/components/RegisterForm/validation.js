@@ -15,13 +15,13 @@ export const emailValidation = (value) => {
     let passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{6,18}(?!\S)/;
 
     if (isEmpty(value.email)) {
-        errors.email = "REQUIRED"
+        errors.email = "EMAIL_REQUIRED"
     } else if (!(emailRegex.test(value.email))) {
         errors.email = "INVALID_EMAIL"
     }
 
     if (isEmpty(value.password)) {
-        errors.password = "REQUIRED"
+        errors.password = "PASSWORD_REQUIRED"
     }else if ((value.password.length < 6) || (value.password.length > 18)) {
         errors.password = "PASSWORD_ATLEAST_SIX_CHAR"
     }else if (!(passwordRegex.test(value.password))) {
@@ -29,7 +29,7 @@ export const emailValidation = (value) => {
     } 
 
     if (isEmpty(value.confirmPassword)) {
-        errors.confirmPassword = "REQUIRED"
+        errors.confirmPassword = "CONFIRM_PASSWORD_REQUIRED"
     } else if (!(isEmpty(value.confirmPassword)) && value.password != value.confirmPassword) {
         errors.confirmPassword = "CONFIRM_PASSWORD_MISMATCH"
     }

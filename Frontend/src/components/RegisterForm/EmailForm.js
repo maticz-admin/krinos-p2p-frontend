@@ -213,7 +213,7 @@ const EmailForm = () => {
 
 
 
-
+    console.log('validateErrorvalidateError',validateError)
 
     return (
 

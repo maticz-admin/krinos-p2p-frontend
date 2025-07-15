@@ -52,7 +52,7 @@ const Details = (props) => {
     useEffect(() => {
         async function fetchdata() {
             let langs = localStorage.getItem("usr-language")
-
+            console.log('checkkkkkkkk',window.location.pathname.split('/')[2]?.toString())
             if (window.location.pathname.split('/')[2]?.toString() == "demo_videos") {
                 let payload1 = { "identifier": "TRANSPARENT_FEES", lang: langs ? langs : "sp" };
                 let result1 = await Getcmshooks(payload1);
@@ -89,6 +89,7 @@ const Details = (props) => {
             else {
                 var payload = { "identifier": window.location.pathname.split('/')[2]?.toString(), lang: langs ? langs : "sp" };
                 var result = await Getcmshooks(payload);
+                console.log('resultresult',payload,result)
                 setCmsdata(result?.data?.data?.content);
                 setSubject(result?.data?.data?.subject);
             }

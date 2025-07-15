@@ -2,7 +2,7 @@ export default {
     "REGISTER_TITLE_1": "Register your account easily and strart trading.",
     "REGISTER": "Register",
     "ALREADY_HAVE_ACCOUNT": "Already have an account?",
-    "ACCEPT_TERMS_MESSAGE": "Please accept the Terms & Conditions of Use",
+    "ACCEPT_TERMS_MESSAGE": "Please accept the terms & conditions of use",
     "RECOVERY_PASSWORD_TITLE": "Type in your registered password and we will send you a password recovery email.",
     "EMAIL_NOT_EXISTS": "User account not found",
     "SIGN_IN_BUTTON": "Sign In",
@@ -1080,7 +1080,7 @@ export default {
     "ACTIVE" : "Active",
     "INACTIVE" : "Inactive",
     "BACK" : "Back",
-    "EMAIL_REQUIRED" : "Email required!",
+    "EMAIL_REQUIRED" : "Email required",
     "EMAILTEMPLATE" :"Click here to activate",
     "USERID" : "User ID",
     "OTP_REQUIRED" : "OTP Field is Required",
@@ -1093,5 +1093,9 @@ export default {
     "Required" : "Field is required!",
     "CONTACT_US_ON" : "Contact us on",
     "OTP_MUST_BE_NUMBER" : "OTP must be number",
-    "COMPLETE_EXISTING_TRADE" : "complete existing trade"
+    "COMPLETE_EXISTING_TRADE" : "complete existing trade",
+    "SHOW": "Show",
+    "AS_PER_PAGE": "as per page",
+    "ERROR_ON_DIDIT": "error on didit",
+    "BLOCK": "Block",
 }

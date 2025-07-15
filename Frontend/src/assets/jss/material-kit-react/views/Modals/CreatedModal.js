@@ -134,7 +134,7 @@ const CreatedModal = (props) => {
                         <input
                             type="text"
                             className="form-control rightRadius_none"
-                            value={`${config?.FRONT_URL}bitcoincompany/${props?.createdata?._id}`}
+                            value={`${config?.FRONT_URL}/bitcoincompany/${props?.createdata?._id}`}
                         />
                         <CopyToClipboard text={`${config?.FRONT_URL}/bitcoincompany/${props?.createdata?._id}`} onCopy={() => copyUrl()}>
                             {/* <button variant='link' className='fa fa-copy' style={{backgroundColor:"transparent", border:0, color:"#848484"}}></button> */}

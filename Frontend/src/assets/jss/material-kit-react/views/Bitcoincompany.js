@@ -170,6 +170,7 @@ const Bitcoincompany = (props) => {
     const handletrade = async () => {
         var ownersdata = await Getsingleuserhook({ userid: tradedata?.createrid });
         var wallets = ownersdata?.data?.wallet?.assets?.find(e => e.coin?.toUpperCase() == tradedata?.coin?.toUpperCase());
+        console.log('typpeeee',tradedata?.ordertype,'111ww',wallets?.p2pBal,'fsd',userwallet?.p2pBal,tradedata?.createrid)
         if (tradedata?.ordertype == "Sell") {
             if (parseFloat(wallets?.p2pBal) > (parseFloat(receive) + parseFloat(adminprofit))) {
                 var data = {
@@ -192,7 +193,7 @@ const Bitcoincompany = (props) => {
                 }
                 var result = await createroom(payload);
                 console.log("result in old" ,  result);
-                debugger
+                // debugger
                 if (result?.data?.type == "success") {
                     if(result?.data?.old){
                         toastAlert("success" , t("COMPLETE_EXISTING_TRADE"))

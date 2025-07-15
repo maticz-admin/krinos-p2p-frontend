@@ -731,8 +731,22 @@ export default function HeaderLinks1(props) {
                           />{" "}
                         </div>
                         <div>
-                          <p className="mx-2 mb-0 first">{`${firstName} ${lastName}`}</p>
-                          <p className="second mb-0 mx-2">{email}</p>
+                          {
+                            (firstName||lastName) 
+                            ?
+                            <p className="mx-2 mb-0 first">{`${firstName?firstName:""} ${lastName?lastName:""}`}</p>
+                            :
+                            <></>
+                          }
+
+                          {
+                            email
+                            ?
+                            <p className="second mb-0 mx-2">{email?email:""}</p>
+                            :
+                            <></>
+                          }
+                          
                         </div>{" "}
                       </div>
                       {/* alt="profileicon" */}

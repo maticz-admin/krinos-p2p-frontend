@@ -14,6 +14,7 @@ import { toastAlert } from 'lib/toastAlert';
 import Countdown from 'react-countdown';
 import {resendOtp} from 'actions/users';
 import { useTranslation } from 'react-i18next';
+import { NumberOnly } from 'lib/commonFunction';
 
 
 const IprestrictModal = (props) => {
@@ -213,8 +214,8 @@ const IprestrictModal = (props) => {
                                     //     return;
                                     // }
 
-                                        setOtp(e); 
-                                        props.setotp(e)
+                                        setOtp(NumberOnly(e)); 
+                                        props.setotp(NumberOnly(e))
                                 }}
                                 numInputs={4}
                                 className="otp form-control"

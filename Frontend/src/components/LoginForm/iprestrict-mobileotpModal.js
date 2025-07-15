@@ -15,6 +15,7 @@ import Countdown from 'react-countdown';
 import {resendOtp} from 'actions/users';
 import { getGeoInfoData, login, sentOTP } from '../../actions/users';
 import { useTranslation } from 'react-i18next';
+import { NumberOnly } from 'lib/commonFunction';
 
 
 
@@ -169,7 +170,7 @@ const IprestrictmobileModal = (props) => {
                           
                             <OtpInput
                                 value={otp}
-                                onChange={e => {setOtp(e); props.setotp(e)}}
+                                onChange={e => {setOtp(NumberOnly(e)); props.setotp(NumberOnly(e))}}
                                 numInputs={6}
                                 className="otp form-control"
                                 renderSeparator={<span>-</span>}

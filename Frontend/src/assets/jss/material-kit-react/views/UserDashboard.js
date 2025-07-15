@@ -242,7 +242,11 @@ const UserDashboard = (props) => {
             cell: record => {
                 return (
                     <>
-                        <span>{record.ordertype}</span>
+                        <span>
+                            {
+                                record?.ordertype == "Buy" ? t("BUY") : t("SELL")
+                            }
+                        </span>
                     </>
                 )
             }
@@ -690,6 +694,9 @@ const UserDashboard = (props) => {
             }
         },
     ];
+
+    // Mostrar 10 por página
+
     const config = {
         page_size: 10,
         length_menu: [10, 20, 50],
@@ -718,7 +725,7 @@ const UserDashboard = (props) => {
             // print: true,
         },
         language: {
-            length_menu: "Show _MENU_ as per page",
+            length_menu: `${t('SHOW')} _MENU_ ${"AS_PER_PAGE"}`,
             filter: false,
             info: "Showing _START_ to _END_ of _TOTAL_ entries",
             pagination: {

@@ -1093,39 +1093,44 @@ const Home = (props) => {
 
 
                         </div>
-                        <div className='col-xl-12 col-lg-12 mt-4 mt-lg-5'>
-                            <div className=' '>
-                                <div className='text-start'>
-                                    <h1 className="mb-4 title1 heads mt-0 text-lg-left">FAQ</h1>
-                                    {/* <p className='roboto text-lg-left subhead'> In publishing and graphic design, Lorem ipsum is a placeholder text commonly</p> */}
-                                </div>
 
-                                <div>
-                                    <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true" >
-                                        {faq?.map((data, i) => <>
-                                            <div class="card">
-                                                <div class="card-header" role="tab" id={`heading${i}`}>
-                                                    <a className="collapsed" data-toggle="collapse" data-parent="#accordionEx" href={`#collapse${i}`}
-                                                        aria-controls={`collapse${i}`} >
-                                                        <h5 class="mb-0 d-flex jc-between" >{data?.question}<i class="fas fa-plus rotate-icon"></i> </h5>
-                                                    </a>
-                                                </div>
-                                                <div id={`collapse${i}`} class="collapse " role={`tabpanel${i}`} aria-labelledby={`heading${i}`}
-                                                    data-parent="#accordionEx">
-                                                    <div class="card-body">
-                                                        <p>{data?.answer}</p>
-                                                        {/* <ul>
+                        {
+                            Array.isArray(faq) && faq?.length > 0
+                                ?
+                                <div className='col-xl-12 col-lg-12 mt-4 mt-lg-5'>
+                                    <div className=' '>
+                                        <div className='text-start'>
+                                            {console.log('faqfaqfaq', faq)}
+                                            <h1 className="mb-4 title1 heads mt-0 text-lg-left">FAQ</h1>
+                                            {/* <p className='roboto text-lg-left subhead'> In publishing and graphic design, Lorem ipsum is a placeholder text commonly</p> */}
+                                        </div>
+
+                                        <div>
+                                            <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true" >
+                                                {faq?.map((data, i) => <>
+                                                    <div class="card">
+                                                        <div class="card-header" role="tab" id={`heading${i}`}>
+                                                            <a className="collapsed" data-toggle="collapse" data-parent="#accordionEx" href={`#collapse${i}`}
+                                                                aria-controls={`collapse${i}`} >
+                                                                <h5 class="mb-0 d-flex jc-between" >{data?.question}<i class="fas fa-plus rotate-icon"></i> </h5>
+                                                            </a>
+                                                        </div>
+                                                        <div id={`collapse${i}`} class="collapse " role={`tabpanel${i}`} aria-labelledby={`heading${i}`}
+                                                            data-parent="#accordionEx">
+                                                            <div class="card-body">
+                                                                <p>{data?.answer}</p>
+                                                                {/* <ul>
                                                         <li> <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p></li>
                                                         <li> <p>Lorem Ipsum is simply dumm</p></li>
                                                         <li> <p> The printing and typesetting industry. Lorem Ipsum has been the industry's</p></li>
                                                     </ul> */}
+                                                            </div>
+                                                        </div>
+
                                                     </div>
-                                                </div>
+                                                </>)}
 
-                                            </div>
-                                        </>)}
-
-                                        {/* <div class="card">
+                                                {/* <div class="card">
                                             <div class="card-header" role="tab" id="heading2">
                                                 <a className="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapse2" aria-expanded='false'
                                                     aria-controls="collapse2" >
@@ -1171,14 +1176,18 @@ const Home = (props) => {
                                             </div>
 
                                         </div> */}
-                                    </div>
-                                </div>
-                                {/* <div className='d-flex jc-between align-items-center mt-md-5 mt-3 viewallfaq'>
+                                            </div>
+                                        </div>
+                                        {/* <div className='d-flex jc-between align-items-center mt-md-5 mt-3 viewallfaq'>
                                     <h3>ANSWERS TO ALL YOUR<br /> QUESTIONS ON OUR FAQ h3AGE</h3>
                                     <div> <button className='themebtn py-2 px-4'>View all</button></div>
                                 </div> */}
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
+                                :
+                                <></>
+                        }
+
                     </div>
                 </div>
             </section>

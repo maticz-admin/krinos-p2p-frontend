@@ -117,7 +117,7 @@ const UserKycDetail = () => {
                 window.location.href = result?.data?.result?.sessionurl;
             }
             else{
-                toastAlert("error" , "error on didit")
+                toastAlert("error" , t("ERROR_ON_DIDIT"));
             }
             setLoader(false)
         }
