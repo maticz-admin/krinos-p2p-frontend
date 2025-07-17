@@ -1,5 +1,5 @@
 let key = {};
-let env='local' //production or local
+let env='maticzdemo' //production or local
 if (env === "demo") {
     const API_URL = "https://backp2p-stage.krinos.app/"    
     //const API_URL = 'https://krinosp2p-backend.maticz.in/';
@@ -70,4 +70,5 @@ export default {
     ...key,
     ...{ SITE_DETAIL : require('./siteConfig').default },
     NumOnly: (/[^0-9]/g),
+    adminViewUrl: [ ["/trade/","?from=admin"] ],
 };

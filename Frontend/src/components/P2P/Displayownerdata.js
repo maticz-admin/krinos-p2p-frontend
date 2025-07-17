@@ -62,6 +62,7 @@ const Displayownerdata = (props) => {
             userid: window.location.pathname.split('/')[2]?.toString()
         }
         var result = await Getsingleuserhook(payload);
+        console.log('resultresult',result)
         if (result?.data?.type == "success") {
             setOwnerdata(result?.data?.data);
             setKyc(result?.data?.kyc);
@@ -253,10 +254,19 @@ const Displayownerdata = (props) => {
 
                                 <div className='d-flex justify-content-between chance'>
                                     <div className='one1'>
+                                        {console.log('ownerdataownerdata',ownerdata)}
                                         <div className=''>
                                             <div className='d-flex align-items-center align-items-center uu'>
                                                 <div><img src={ownerdata?.profileImage ? config.API_URL + ownerdata?.profileImage : Images.profill} className='prof prof_icon_sixe' /></div>
-                                                <div><p className='namelist'>{ownerdata?.firstName + " " + ownerdata?.lastName}
+                                                <div>
+                                                    <p className='namelist'>
+                                                        {
+                                                            (ownerdata?.firstName || ownerdata?.lastName)
+                                                                ?
+                                                                ownerdata?.firstName + " " + ownerdata?.lastName
+                                                                :
+                                                                ownerdata?.userId
+                                                        }
                                                     {/* <span><img src={flags} alt='hhq' /></span>  */}
                                                 </p>
                                                     {/* <p className='no1 mb-0'>Seen 1 minute ago</p> */}

@@ -218,12 +218,26 @@ const ProfilePage = (props) => {
                         </div>
 
                       </div>
+                      {console.log('reviewreview',review)}
                       <div className='mt-3 reviews' id="reviews">
                             <h5 className='text-light' >{t("REVIEWS")}</h5>
                             <ul className='buyborder1 p-3'>
                                 {review?.length > 0 ? review?.map((data , i) => 
                                 <li class="mb-3">
-                                  <h5 class="text-light fw-bold mb-0">{t("USERID")} :{data?.userId}</h5>
+                                  <h5 class="text-light fw-bold mb-0">
+                                    {t("USERID")} : {data?.userid} 
+                                      {" "}{
+                                        data?.reviewtype == "negative"
+                                          ?
+                                          <span className="dislikebox">
+                                            <i className="fa fa-thumbs-down"></i>
+                                          </span>
+                                          :
+                                          <span className="likebox">
+                                            <i className="fa fa-thumbs-up"></i>
+                                          </span>
+                                      }
+                                  </h5>
                                   <p class="text-light f-14 roboto mb-0">{data?.description}</p>
                                   <p class="time text-gray roboto f-12">{new Date(parseFloat(data?.date))?.toString()?.slice(4 , 21)}</p>
                                   </li>

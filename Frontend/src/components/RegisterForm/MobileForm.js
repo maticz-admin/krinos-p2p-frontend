@@ -275,7 +275,7 @@ const MobileForm = () => {
 
         }
         else{
-            setOtpStatus(false)
+            // setOtpStatus(false)
         }
 
     }, [
@@ -328,18 +328,18 @@ const MobileForm = () => {
                         specialLabel={false}
                         country={'bo'}
                     />
-                    {
-                        !optStatus &&
+                    {/* {
+                        !optStatus && */}
                         <button
                             
                             onClick={handleSentOTP}
                             // disabled={validateError && validateError.phoneCode}
                             className="otp_btn sendcodebtn"
                         >
-                            {t('SEND_CODE')}
+                            {t(optStatus?'RE_SEND_CODE':'SEND_CODE')}
                         </button>
 
-                    }
+                    {/* } */}
                 <span className='fa fa-mobile-alt right'></span>
                 {/* {validateError.phoneCode && <p className="error-message">{t(validateError.phoneCode)}</p>} */}
                 {validateError.phoneNo && <p className="error-message">{t(validateError.phoneNo)}</p>}

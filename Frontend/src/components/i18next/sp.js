@@ -1060,4 +1060,9 @@ export default {
     "AS_PER_PAGE": "por página",
     "ERROR_ON_DIDIT": "error en didit",
     "BLOCK": "Bloquear",
-   }
+    "INSUFFICIENT_FUND_ADMIN_WALLET": "Fondos insuficientes en la billetera del administrador",
+    "INSUFFICIENT_FUND": "Fondo insuficiente",
+    "USERS": "Usuarias",
+    "NAME_REQUIRED": "Nombre requerido",
+    "SUBJECT_REQUIRED": "Asunto requerido",
+}

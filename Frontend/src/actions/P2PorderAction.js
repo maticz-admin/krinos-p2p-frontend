@@ -731,3 +731,20 @@ export const GetPairExist = async(symbol , symbol2) => {
         console.log("error on get pair exist");
     }
 }
+
+export const getHomeLiveDatas = async () => {
+    try {
+        let respData = await axios({
+            'url': `p2papi/gethomelive`,
+            'method': 'get',
+        });
+        return respData;
+    }
+    catch (err) {
+        console.log("error" , err);
+        handleResp(err, 'error')
+        return {
+            status: "failed",
+        }
+    }
+}

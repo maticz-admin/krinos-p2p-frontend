@@ -226,7 +226,8 @@ const MobileForm = () => {
                 setTimeout(() => {
                     setOtpStatus(false)
                     setButtonName(true)
-                }, 600000)
+                }, 600)
+                    // }, 600000)
             } else {
                 if (error) {
                     setValidateError(error)

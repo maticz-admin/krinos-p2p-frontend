@@ -14,13 +14,13 @@ export const emailValidation = (value) => {
     let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,6}))$/;
 
     if (isEmpty(value.email)) {
-        errors.email = "REQUIRED"
+        errors.email = "EMAIL_REQUIRED"
     } else if (!(emailRegex.test(value.email))) {
-        errors.email = "invalid email"
+        errors.email = "EMAIL_INVALID"
     }
 
     if (isEmpty(value.password)) {
-        errors.password = "REQUIRED"
+        errors.password = "PASSWORD_REQUIRED"
     }
 
     // if (!(value.isTerms == true)) {
@@ -42,7 +42,7 @@ export const mobileValidation = (value) => {
     }
 
     if (isEmpty(value.otp)) {
-        errors.otp = "REQUIRED"
+        errors.otp = "PLEASE_ENTER_OTP"
     } else if (isNaN(value.otp)) {
         errors.otp = "ONLY_NUMERIC"
     } else if (value.otp.length > 6) {
@@ -50,7 +50,7 @@ export const mobileValidation = (value) => {
     }
 
     if (isEmpty(value.password)) {
-        errors.password = "REQUIRED"
+        errors.password = "PASSWORD_REQUIRED"
     }
 
     // if (!(value.isTerms == true)) {

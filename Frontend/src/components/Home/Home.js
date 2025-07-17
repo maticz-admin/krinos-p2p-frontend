@@ -27,6 +27,8 @@ import axios from 'axios';
 import { Email } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import { getPreferredCurrency } from 'actions/commonAction';
+import { getHomeLiveDatas } from 'actions/P2PorderAction';
+import { NumberChange } from 'lib/commonFunction';
 
 const names = [
     'Oliver Hansen',
@@ -75,6 +77,7 @@ const Home = (props) => {
     const [coinimg, setCoinimg] = useState("");
 
     const [preimage, setPreimg] = useState("");
+    const [ liveSiteDatas, setLiveDatas ] = useState({tradeVolume: 0, userCount: 0,})
 
 
     const navigate = useHistory();
@@ -102,7 +105,9 @@ const Home = (props) => {
             }
     }
 
+
     useEffect(() => {
+
         async function fetchdata() {
             var result = await Getcoinlisthooks();
             setCoinlist(result?.data);
@@ -121,10 +126,7 @@ const Home = (props) => {
             // setOffertaglist(ofrtg?.data?.data);
         }
         fetchdata();
-    }, [])
 
-
-    useEffect(() => {
         async function getcms() {
             let langs = localStorage.getItem("usr-language")
             // var payload1 = { "identifier": "TRANSPARENT_FEES"  , lang: langs? langs : "sp"};
@@ -146,6 +148,21 @@ const Home = (props) => {
 
         }
         getcms();
+
+        async function getCountDatas() {
+            console.log('innnnnnn')
+            let resp = await getHomeLiveDatas();
+            console.log('getCountDatas_resp',resp);
+            setLiveDatas({
+                ...{
+                    userCount: NumberChange(resp?.data?.data?.userCount),
+                    tradeVolume: NumberChange(resp?.data?.data?.tradeVolume),
+                }
+            })
+        }
+
+        getCountDatas();
+
     }, [])
 
 
@@ -183,6 +200,8 @@ const Home = (props) => {
             setErrors(data);
         }
     }
+
+    console.log('liveSiteDatasliveSiteDatas',liveSiteDatas)
 
 
     return (
@@ -1039,15 +1058,23 @@ const Home = (props) => {
 
                     <div className='row'>
                         <div className='col-sm-4'>
-                            <h3>44+</h3>
-                            <p>{t("MILLIONS_OF_USERS")}</p>
+                            <h3>{liveSiteDatas?.userCount}+</h3>
+                            <p>{t("USERS")}</p>
                         </div>
                         <div className='col-sm-4'>
-                            <h3>$3,364,238,100</h3>
+                            <h3>
+                                $ {
+                                    liveSiteDatas?.tradeVolume > 0
+                                    ?
+                                    liveSiteDatas?.tradeVolume
+                                    :
+                                    "4529"
+                                }
+                            </h3>
                             <p>{t("TRADING_VOLUME")}</p>
                         </div>
                         <div className='col-sm-4'>
-                            <h3>700+</h3>
+                            <h3>{coinlist?.length}</h3>
                             <p>{t("PRIME_VIRTUAL_ASSET")}</p>
                         </div>
                     </div>

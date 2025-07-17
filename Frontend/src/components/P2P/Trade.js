@@ -59,10 +59,13 @@ const Trade = (props) => {
 
   const [lastseendata, setLastseendata] = useState(Date.now().toString());
   const [tag, setTag] = useState({});
+  const [ chatUserId, setChatUserId ] = useState("");
 
   const [loder, setLoader] = useState(false)
 
   // const socket = useRef();
+  
+  const currRoomId = window.location.pathname.split('/')[2]?.toString();
 
   const handleonset = (data) => {
     setOwner(data);
@@ -78,6 +81,7 @@ const Trade = (props) => {
     setUser(userdata?.account);
     var payload = { roomid: roomid }
     const chatresult = await Getorderchathook(payload);
+    console.log('chatresultchatresult',chatresult)
     if (chatresult?.data?.type == "success") {
       var tradedata = chatresult?.data?.data[0]; //? chatresult?.data?.data : {}
       console.log("trade data", tradedata);
@@ -137,7 +141,11 @@ const Trade = (props) => {
 
   useEffect(() => {
     fetchdata();
-  }, []);
+  }, [roomid]);
+
+  useEffect(()=>{
+    setRoomid(currRoomId)
+  },[currRoomId]);
 
   // useEffect(() => {
   //   setInterval(fetchdata , 60000);
@@ -318,6 +326,23 @@ const Trade = (props) => {
     }
   }, [socket]);
 
+  const checkUpdateAccess = () => {
+    return !location.search.includes("?from=");
+  }
+
+  useEffect(()=>{
+    if(checkUpdateAccess()){
+      setChatUserId(userdata?.account?.userId);
+    }
+    else{
+      setChatUserId(owner?.userId);
+    }
+  },[userdata?.account?.userId,owner])
+
+  const returnUserIdUserData = (currUserId) => {
+    return currUserId == owner?.userId ? owner : userdatas;
+  }
+
   return (
     <div className="page_wrap">
       <Header
@@ -353,8 +378,13 @@ const Trade = (props) => {
                   </p>
                   <button className="btn btn-link" onClick={() => setOfferheader(false)}>x</button>
                 </div>}
-                <div className="tableborder">
-                  {/* <div className="d-flex align-items-baseline gap-10">
+
+                {
+                  checkUpdateAccess()
+                    ?
+                    <>
+                      <div className="tableborder">
+                        {/* <div className="d-flex align-items-baseline gap-10">
                     <span className="fa fa-clock"></span>
                     <div>
                       {" "}
@@ -364,35 +394,33 @@ const Trade = (props) => {
                       </p>
                     </div>
                   </div> */}
-                  <hr />
+                        <hr />
+                        {offerdata?.ordertype == "Sell" && tradechat?.spender != userdata?.account?.userId && tradechat?.paidstatus == "paid" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <><button className="btn themebtn" onClick={() => handleconfirm()}>{console.log("countdown", parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit)))}
+                          {t("CONFIRM")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                          <span className="fa fa-check ps-1"></span>
+                        </button>
+
+                          <button className="btn themebtn ms-3" onClick={() => handlereject()}>
+                            {t("REJECT")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                            <span className="fa fa-check ps-1"></span>
+                          </button>
+
+                        </>}
+
+                        {offerdata?.ordertype == "Buy" && tradechat?.spender == userdata?.account?.userId && tradechat?.paidstatus == "paid" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <><button className="btn themebtn" onClick={() => handleconfirm()}>{console.log("countdown", parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit)))}
+                          {t("CONFIRM")} <br /> {t("TIME_LEFT")} <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                          <span className="fa fa-check ps-1"></span>
+                        </button>
+
+                          <button className="btn themebtn ms-3" onClick={() => handlereject()}>
+                            {t("REJECT")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                            <span className="fa fa-check ps-1"></span>
+                          </button>
+
+                        </>}
 
 
-                  {offerdata?.ordertype == "Sell" && tradechat?.spender != userdata?.account?.userId && tradechat?.paidstatus == "paid" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <><button className="btn themebtn" onClick={() => handleconfirm()}>{console.log("countdown", parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit)))}
-                    {t("CONFIRM")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
-                    <span className="fa fa-check ps-1"></span>
-                  </button>
-
-                    <button className="btn themebtn ms-3" onClick={() => handlereject()}>
-                      {t("REJECT")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
-                      <span className="fa fa-check ps-1"></span>
-                    </button>
-
-                  </>}
-
-                  {offerdata?.ordertype == "Buy" && tradechat?.spender == userdata?.account?.userId && tradechat?.paidstatus == "paid" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <><button className="btn themebtn" onClick={() => handleconfirm()}>{console.log("countdown", parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit)))}
-                    {t("CONFIRM")} <br /> {t("TIME_LEFT")} <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
-                    <span className="fa fa-check ps-1"></span>
-                  </button>
-
-                    <button className="btn themebtn ms-3" onClick={() => handlereject()}>
-                      {t("REJECT")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
-                      <span className="fa fa-check ps-1"></span>
-                    </button>
-
-                  </>}
-
-
-                  {/* {tradechat?.spender == userdata?.account?.userId && tradechat?.paidstatus == "paid" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) +(60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={handlepaid}>{console.log("countdown" , parseFloat(tradechat?.orderstarttime) +(60000 * parseFloat(offerdata?.offertimelimit)))}
+                        {/* {tradechat?.spender == userdata?.account?.userId && tradechat?.paidstatus == "paid" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) +(60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={handlepaid}>{console.log("countdown" , parseFloat(tradechat?.orderstarttime) +(60000 * parseFloat(offerdata?.offertimelimit)))}
                     Paid <br /> Time left  <Countdown date={parseFloat(tradechat?.orderstarttime) +(60000 * parseFloat(offerdata?.offertimelimit))}/>
                     <span className="fa fa-check"></span>
                   </button>} */}
@@ -402,34 +430,40 @@ const Trade = (props) => {
 
 
 
-                  {offerdata?.ordertype == "Sell" && tradechat?.spender == userdata?.account?.userId && tradechat?.paidstatus == "pending" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => handlepaid()}>
-                    {t("PAID")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
-                    <span className="fa fa-check ps-1"></span>
-                  </button>}
-                  {offerdata?.ordertype == "Buy" && tradechat?.spender != userdata?.account?.userId && tradechat?.paidstatus == "pending" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => handlepaid()}>
-                    {t("PAID")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
-                    <span className="fa fa-check ps-1"></span>
-                  </button>}
-                  {canceltrade && <div className="notes">
-                    <span className="fa fa-info ps-1"></span>
-                    <p>
-                      {t("KEEP_TRADES_WITHIN_KRINOSP2P")}
-                    </p>
-                    <button className="btn btn-link" onClick={() => setCanceltrade(false)}>x</button>
-                  </div>}
-                  <hr />
-                  <div className="flexb canceltrade">
-                    {(tradechat?.chatstatus == "Active" && tradechat?.paidstatus == "pending") && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => setCancelmodal(true)}>{t("CANCEL_TRADE")}</button>}
-                    {/*tradechat?.spender == userdata?.account?.userId && */}
-                    {console.log("Actie check", offerdata?.ordertype == "Buy", tradechat?.spender != userdata?.account?.userId, userdata?.account?.userId)}
+                        {offerdata?.ordertype == "Sell" && tradechat?.spender == userdata?.account?.userId && tradechat?.paidstatus == "pending" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => handlepaid()}>
+                          {t("PAID")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                          <span className="fa fa-check ps-1"></span>
+                        </button>}
+                        {offerdata?.ordertype == "Buy" && tradechat?.spender != userdata?.account?.userId && tradechat?.paidstatus == "pending" && tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => handlepaid()}>
+                          {t("PAID")} <br /> {t("TIME_LEFT")}  <Countdown date={parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))} />
+                          <span className="fa fa-check ps-1"></span>
+                        </button>}
+                        {canceltrade && <div className="notes">
+                          <span className="fa fa-info ps-1"></span>
+                          <p>
+                            {t("KEEP_TRADES_WITHIN_KRINOSP2P")}
+                          </p>
+                          <button className="btn btn-link" onClick={() => setCanceltrade(false)}>x</button>
+                        </div>}
+                        <hr />
+                        <div className="flexb canceltrade">
+                          {(tradechat?.chatstatus == "Active" && tradechat?.paidstatus == "pending") && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && <button className="btn themebtn" onClick={() => setCancelmodal(true)}>{t("CANCEL_TRADE")}</button>}
+                          {/*tradechat?.spender == userdata?.account?.userId && */}
+                          {console.log("Actie check", offerdata?.ordertype == "Buy", tradechat?.spender != userdata?.account?.userId, userdata?.account?.userId)}
 
-                    {offerdata?.ordertype == "Buy" && tradechat?.spender != userdata?.account?.userId &&
-                      <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" || tradechat?.paidstatus == "reject" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${" "} ${offerdata?.preferedcurrency}`}</p>}
+                          {offerdata?.ordertype == "Buy" && tradechat?.spender != userdata?.account?.userId &&
+                            <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" || tradechat?.paidstatus == "reject" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${" "} ${offerdata?.preferedcurrency}`}</p>}
 
-                    {offerdata?.ordertype == "Sell" && tradechat?.spender == userdata?.account?.userId &&
-                      <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" || tradechat?.paidstatus == "reject" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${" "} ${offerdata?.preferedcurrency}`}</p>}
-                  </div>
-                </div>
+                          {offerdata?.ordertype == "Sell" && tradechat?.spender == userdata?.account?.userId &&
+                            <p className="roboto mb-0 paid_tetx_higghtligth"> {tradechat?.paidstatus == "pending" || tradechat?.paidstatus == "reject" ? t("YOU_HAVE_NT_PAY") : `${t("YOU_HAVE_PAID")}${spenderdata?.pay} ${" "} ${offerdata?.preferedcurrency}`}</p>}
+                        </div>
+                      </div>
+                    </>
+                    :
+                    <></>
+                }
+
+
                 <div className="secondbox">
                   {tradechat?.ordercreator != userdata?.account?.userId && <><h6 className="roboto followtag">{t("PLEASE_FOLLOW")} {owner?.firstName} {t("S_INSTRUCTION")}</h6>
                     {offerdata.verifiyid && <p className="roboto">{t("YOU_HAVE_TO_VERIFY_YOUR_ID")}</p>}
@@ -470,15 +504,24 @@ const Trade = (props) => {
                       </div>}
                   </div>
 
-                  <div className="d-flex jc-between mt-3">
-                    <button className="offerbtn roboto" onClick={() => navigate.push("/support-ticket", { state: tradechat?.roomid })}>{t("REPORT")}</button>
-                    <button href="#" className="offerbtn roboto" onClick={() => navigate.push(`/bitcoincompany/${offerdata?._id}`)}>
-                      {t("VIEW_OFFER")}
-                    </button>
-                    <button className="offerbtn roboto" onClick={() => setTour(true)}>
-                      <span className="fa fa-info-circle pr-2"></span> {t("TAKE_A_TOUR")}
-                    </button>
-                  </div>
+                  {
+                    checkUpdateAccess()
+                      ?
+                      <>
+                        <div className="d-flex jc-between mt-3">
+                          <button className="offerbtn roboto" onClick={() => navigate.push("/support-ticket", { state: tradechat?.roomid })}>{t("REPORT")}</button>
+                          <button href="#" className="offerbtn roboto" onClick={() => navigate.push(`/bitcoincompany/${offerdata?._id}`)}>
+                            {t("VIEW_OFFER")}
+                          </button>
+                          <button className="offerbtn roboto" onClick={() => setTour(true)}>
+                            <span className="fa fa-info-circle pr-2"></span> {t("TAKE_A_TOUR")}
+                          </button>
+                        </div>
+                      </>
+                      :
+                      <></>
+                  }
+
                 </div>
               </div>
             </div>
@@ -487,15 +530,30 @@ const Trade = (props) => {
                 <div className="chathead flexb">
                   <div>
                     <div className="mb-1">
-                      <img src={accountData?.profileImage
-                        ? accountData?.profileImage
-                        : Images.profill} alt="" className="chatprof" />
+                      <img 
+                        src={
+                          // accountData?.profileImage
+                          // ? accountData?.profileImage
+                          // : Images.profill
+                          (userdata?.account?.userId == owner?.userId && checkUpdateAccess())
+                            ?
+                            (userdatas?.account?.profileImage ? (userdatas?.account?.profileImage) : Images.prof)
+                            :
+                            (owner?.profileImage ? (config.API_URL + owner?.profileImage) : Images.prof)
+                        }
+                        alt="" 
+                        className="chatprof" 
+                        />
                       {/* userresult?.data?.data?.userId == tradedata?.spender || userresult?.data?.data?.userId == tradedata?.ordercreator */}
                       <span className="chatname roboto">
-                        {console.log("tradechat", tradechat, userdatas, GetUserId())}
+                        {console.log("tradechat",owner, tradechat, userdatas, GetUserId())}
 
-                        {GetUserId() == tradechat?.ordercreator ? userdatas?.firstName + " " + userdatas?.lastName + "  " :
-                          owner?.firstName + " " + owner?.lastName + "  "
+                        {
+                          (GetUserId() == tradechat?.ordercreator && checkUpdateAccess())
+                          ? 
+                          (userdatas?.firstName ? (userdatas?.firstName + " " + userdatas?.lastName + "  ") : userdatas?.userId )
+                          :
+                          (owner?.firstName ? (owner?.firstName + " " + owner?.lastName + "  ") : owner?.userId)
 
                         }
                         {/* {owner?.firstName ? (owner?.firstName + " " + owner?.lastName + "  ") : owner?.userId } */}
@@ -533,18 +591,32 @@ const Trade = (props) => {
                     </div>
                   </div>
                 </div>
+
+
                 <div className="flexb usertime">
                   <div>
                     {/* <p className="roboto sidetag"> {userstatus == "Online" ? "Online" : `Last seen ${new Date(parseFloat(lastseendata))?.toString()?.slice(4, 21)}`}</p> */}
                     {/* <p className="roboto sidetag"> {tradechat?.ordercreator == userdata?.account?.userId ? (userdatas?.lastseen == "online" ? "Online" : `lastseen ${new Date(parseFloat(userdatas?.lastseen))?.toString()?.slice(4 , 21)}`) : (owner?.lastseen == "online" ? "Online" : `lastseen ${new Date(parseFloat(owner?.time))?.toString()?.slice(4 , 21)}`)}</p> */}
                   </div>
-                  <div className="partner">
-                    <i className="fas fa-info-circle"></i>
-                    {tradechat && <a href={""} onClick={() => navigate.push(`/displayownerdata/${tradechat?.ordercreator == userdata?.account?.userId ? tradechat?.spender : tradechat?.ordercreator}`)} >
-                      <span className="roboto">{t("PARTNER_DETAIL")}</span>
-                    </a>}
-                  </div>
+
+                {
+                  checkUpdateAccess()
+                    ?
+                    <>
+                      <div className="partner">
+                        <i className="fas fa-info-circle"></i>
+                        {tradechat && <a href={""} onClick={() => navigate.push(`/displayownerdata/${tradechat?.ordercreator == userdata?.account?.userId ? tradechat?.spender : tradechat?.ordercreator}`)} >
+                          <span className="roboto">{t("PARTNER_DETAIL")}</span>
+                        </a>}
+                      </div>
+                    </>
+                    :
+                    <></>
+                }
+
                 </div>
+
+                
                 {/* <div className={tradechat?.message != 0 ? "unavail" : "unavail bdr_rmv"}>
                   <p className="roboto sidetag">{userStatus == "Online" ? "Moderator available" : "Moderator Unavailable"}</p>
                 </div> */}
@@ -556,9 +628,13 @@ const Trade = (props) => {
                     <ul>
                      
                       {tradechat && tradechat?.message?.map((data, i) => {
+                        let currUserData = returnUserIdUserData(data?.from);
                         if (data?.from != userdata?.account?.userId) {
                           return (
                           <li className="rightmsg">
+                            <span className="lastchat text-left">
+                              {(currUserData?.firstName ? (currUserData?.firstName + " " + currUserData?.lastName) : currUserData?.userId)}
+                            </span> 
                             <div className="chatbg">
 
                               {data?.image && <a href={data?.image ? config?.API_URL + "/" + data?.image : ""} target="_blank"><img src={data?.image ? config?.API_URL + "/" + data?.image : ""} /></a>}
@@ -574,6 +650,9 @@ const Trade = (props) => {
                         }
                         else if (data?.from == userdata?.account?.userId) {
                           return (<li className="leftmsg">
+                            <span className="lastchat roboto text-right">
+                            {(currUserData?.firstName ? (currUserData?.firstName+" "+currUserData?.lastName) : currUserData?.userId)}
+                          </span>
                             <div className="chatbg">
                               {data?.image && <a href={data?.image ? config?.API_URL + "/" + data?.image : ""} target="_blank"><img src={data?.image ? config?.API_URL + "/" + data?.image : ""} /></a>}
                               <p className="chatcontent roboto mt-1">
@@ -589,53 +668,63 @@ const Trade = (props) => {
                     </ul>
                   </div>
                 }
-                {tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && userdatas?.level == 0 &&
-                  <div className="chatfoot">
-                    {
-                      imageblob &&
+                
+                {
+                  checkUpdateAccess()
+                    ?
+                    <>
+                      {
+                        (tradechat?.chatstatus == "Active" && (parseFloat(tradechat?.orderstarttime) + (60000 * parseFloat(offerdata?.offertimelimit))) > Date.now() && userdatas?.level == 0) &&
+                        <div className="chatfoot">
+                          {
+                            imageblob &&
 
-                      <div className="chat_slct_img">
-                        <img src={imageblob ? imageblob : ""} className="img-fluid" />
-                      </div>
-                    }
-                    <input
-                      type="text"
-                      value={newmessage}
-                      onChange={(e) => setNewmessage(e?.target?.value)}
-                      className="form-control roboto"
-                      placeholder={t("WRITE_A_MESSAGE")}
-                    />
-                    <div className="flexb">
-                      <div className="uploadbtn">
-                        <div className="icon">
-                          <span className="fa fa-upload"></span>
+                            <div className="chat_slct_img">
+                              <img src={imageblob ? imageblob : ""} className="img-fluid" />
+                            </div>
+                          }
+                          <input
+                            type="text"
+                            value={newmessage}
+                            onChange={(e) => setNewmessage(e?.target?.value)}
+                            className="form-control roboto"
+                            placeholder={t("WRITE_A_MESSAGE")}
+                          />
+                          <div className="flexb">
+                            <div className="uploadbtn">
+                              <div className="icon">
+                                <span className="fa fa-upload"></span>
+                              </div>
+                              <input type="file"
+                                onChange={(e) => {
+                                  console.log("on change", e?.target?.files[0]);
+
+                                  let validate = ValidateFile(e?.target?.files[0]);
+                                  console.log("validate", validate);
+
+                                  if (!validate) {
+                                    setImage(e?.target?.files[0]);
+                                    setImageblob(URL.createObjectURL(e?.target?.files[0]))
+                                  }
+                                  else {
+                                    toastAlert("error", t("INVALID_FILE"));
+                                  }
+                                  e.target.value = null
+                                }}
+                              />
+                            </div>
+                            <div>
+                              <button className="roboto btn sendbtn" onClick={handleSend}>
+                                <span className="fa fa-paper-plane"></span>
+                                {t("SEND")}
+                              </button>
+                            </div>
+                          </div>
                         </div>
-                        <input type="file"
-                          onChange={(e) => {
-                            console.log("on change" , e?.target?.files[0]);
-                            
-                            let validate = ValidateFile(e?.target?.files[0]);
-                            console.log("validate", validate);
-
-                            if (!validate) {
-                              setImage(e?.target?.files[0]);
-                              setImageblob(URL.createObjectURL(e?.target?.files[0]))
-                            }
-                            else {
-                              toastAlert("error", t("INVALID_FILE"));
-                            }
-                            e.target.value = null
-                          }}
-                        />
-                      </div>
-                      <div>
-                        <button className="roboto btn sendbtn" onClick={handleSend}>
-                          <span className="fa fa-paper-plane"></span>
-                          {t("SEND")}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                      }
+                    </>
+                    :
+                    <></>
                 }
 
                 {userdatas?.level == 1 && <button className="themebtn" onClick={() => handleconfirm()}>{t("PAID_USER")}</button>}

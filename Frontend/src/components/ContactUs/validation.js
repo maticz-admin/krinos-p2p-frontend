@@ -6,21 +6,21 @@ const validation = value => {
     let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,6}))$/;
 
     if (isEmpty(value.name)) {
-        errors.name = "REQUIRED"
+        errors.name = "NAME_REQUIRED"
     }
 
     if (isEmpty(value.email)) {
-        errors.email = "REQUIRED"
+        errors.email = "EMAIL_REQUIRED"
     } else if (!(emailRegex.test(value.email))) {
-        errors.email = "Invalid email"
+        errors.email = "INVALID_EMAIL"
     }
 
     if (isEmpty(value.subject)) {
-        errors.subject = "REQUIRED"
+        errors.subject = "SUBJECT_REQUIRED"
     }
 
     if (isEmpty(value.message)) {
-        errors.message = "REQUIRED"
+        errors.message = "WRITE_A_MESSAGE"
     }
 
     return errors;

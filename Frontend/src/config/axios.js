@@ -4,7 +4,7 @@ import axios from 'axios';
 // import lib
 import config from './index';
 import { getAuthToken,removeAuthToken } from '../lib/localStorage'
-import isLogin from '../lib/isLogin';
+import isLogin, { allowedForAdmin } from '../lib/isLogin';
 
 axios.defaults.baseURL = config.API_URL;
 axios.defaults.headers.common['Authorization'] = getAuthToken();
@@ -40,7 +40,9 @@ export const handleResp = (respData, type = 'success') => {
         if (isLogin() && type == 'error' && respData && respData.response && respData.response.status == 401) {
             removeAuthToken()
             removeAuthorization()
-            window.location.href = '/login'
+            if(!allowedForAdmin()){
+                window.location.href = '/login'
+            }
             return true
         }
     } catch (err) {

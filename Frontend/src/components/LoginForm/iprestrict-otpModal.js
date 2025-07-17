@@ -118,7 +118,7 @@ const IprestrictModal = (props) => {
         if (otpData.status == 'success') {
             if (otpData.message == "OTP_SENDS_TO_YOUR_MAILID") {
                 toastAlert('success', t(otpData.message), 'login');
-                setCounter(30)
+                setCounter(300)
             }
         }
     }

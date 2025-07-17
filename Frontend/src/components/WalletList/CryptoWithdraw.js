@@ -131,7 +131,7 @@ const CryptoWithdraw = (props) => {
     };
  let newDoc = {
     "title" : "withdraw request",
-    "description" : "withdraw request send Successfully",
+    "description" : "withdraw request send successfully",
     "isRead" : false,
     "trxId" : "",
     "currencySymbol" : "",
