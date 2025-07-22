@@ -4,7 +4,7 @@ import isEmpty from '../../lib/isEmpty';
 const validation = value => {
     try{
     let errors = {};
-    var letters = /^[A-Za-z]+$/;
+    var letters = /^[A-Za-z ]+$/;
     var letters2 = /^[A-Za-z ]+$/;
     var numbers = /^[0-9]+$/;
     var imageFormat = /\.(jpg|JPG|jpeg|JPEG|png|PNG)$/;
@@ -19,9 +19,9 @@ const validation = value => {
     } else if (!letters2.test(value.lastName)) {
         errors.lastName = "LAST_NAME_ALPHABET"
     }
-    if (isEmpty(value.blockNo)) {
-        errors.blockNo = "REQUIRED"
-    } 
+    // if (isEmpty(value.blockNo)) {
+    //     errors.blockNo = "REQUIRED"
+    // } 
     // else if (!letters.test(value.blockNo)) {
     //     errors.blockNo = "BLOCKNO_NAME_ALPHABET"
     // }
@@ -41,11 +41,11 @@ const validation = value => {
     } else if (!letters.test(value.city)) {
         errors.city = "CITY_NAME_ALPHABET"
     }
-    if (isEmpty(value.postalCode)) {
-        errors.postalCode = "REQUIRED"
-    } else if (!numbers.test(value.postalCode)) {
-        errors.postalCode = "POSTAL_CODE_MUST_NUMBER"
-    }
+    // if (isEmpty(value.postalCode)) {
+    //     errors.postalCode = "REQUIRED"
+    // } else if (!numbers.test(value.postalCode)) {
+    //     errors.postalCode = "POSTAL_CODE_MUST_NUMBER"
+    // }
 
     // if (isEmpty(value.profileImage.name)) {
     //     errors.profileImage = "REQUIRED"

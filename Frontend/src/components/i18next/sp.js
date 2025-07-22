@@ -1065,4 +1065,7 @@ export default {
     "USERS": "Usuarias",
     "NAME_REQUIRED": "Nombre requerido",
     "SUBJECT_REQUIRED": "Asunto requerido",
+    "TAKE_PICTURE": "Tomar Foto",
+    "SELL_CRYPTO" : "vender criptomonedas",
+    "BUY_CRYPTO" : "comprar criptomonedas",
 }

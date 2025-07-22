@@ -196,6 +196,14 @@ const UserKycDetail = () => {
                         <div className="kycCardStatus labelWidth">
                             <div className="profileDetailView">
                                 <ul>
+                                    {userdetail?.kyc?.status == "Approved" && <div className="form-group green-button mt-2">
+                                        <p>{t("YOUR_KYC_APPROVED_SUCCESSFULLY")}</p>
+                                    </div>}
+
+                                    {userdetail?.kyc?.status == "In Review" && <div className="form-group green-button mt-2">
+                                        <p>{t("YOUR_KYC_UNDER_REVIEW")}</p>
+                                    </div>}
+                                    
                                     <li className='flex-column'>
                                         <h5 className='title-txt my-0'>{t("KYC")}</h5>
                                         <p className='mt-2 des mb-0 '>{t("KYC_HEADER")}
@@ -216,13 +224,7 @@ const UserKycDetail = () => {
                                             </button>
                                         </div>}
 
-                                        {userdetail?.kyc?.status ==  "Approved" &&<div className="form-group green-button mt-2">
-                                            <p>{t("YOUR_KYC_APPROVED_SUCCESSFULLY")}</p>
-                                            </div>}
-
-                                            {userdetail?.kyc?.status ==  "In Review" &&<div className="form-group green-button mt-2">
-                                                <p>{t("YOUR_KYC_UNDER_REVIEW")}</p>
-                                            </div>}
+                                        
                                     </li>
 
                                 </ul>

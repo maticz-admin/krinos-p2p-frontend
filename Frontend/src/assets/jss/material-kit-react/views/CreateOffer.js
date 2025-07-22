@@ -14,7 +14,7 @@ import OffertagModal from "./Modals/offertagModal";
 // import isEmpty from 'lib/isEmpty';
 import isEmpty from "is-empty";
 import { useSelector } from 'react-redux';
-import { Getcoinlisthooks, GetPairExist } from '../../../../actions/P2PorderAction';
+import { Getcoinlisthooks, GetPairExist, Getsingleuserhook } from '../../../../actions/P2PorderAction';
 import { Getpreferedcurrency } from '../../../../actions/P2PorderAction';
 import { Getalloffertaghook } from 'actions/P2PorderAction';
 // import { Select } from '@matnpm i --save react-selecterial-ui/core';
@@ -29,6 +29,7 @@ import config from '../../../../config';
 import btcicon from "../../../images/btcIcon.png"
 import { useTranslation } from 'react-i18next';
 import { getPreferredCurrency } from 'actions/commonAction';
+import { toastAlert } from 'lib/toastAlert';
 
 const dashboardRoutes = [];
 const CreateOffer = (props) => {
@@ -220,6 +221,18 @@ const CreateOffer = (props) => {
         }
 
         if (isEmpty(data)) {
+
+            let userpayload = {
+                userid :  userdata?.userId //redux usr data
+              }
+            let userresult = await Getsingleuserhook(userpayload);
+            const wallet = userresult?.data?.wallet?.assets;
+            const balance = wallet?.find(e => e?.coin == coin);
+            console.log('p2pBalp2pBal',balance?.p2pBal <= 0,ordertype)
+            if (balance?.p2pBal <= 0 && ordertype == "Sell") {
+                return toastAlert("error", t("INSUFFICIENT_BAL"));
+            }
+
             let cur1 = crypto.find(e => e.coin == coin)
             let cur2 = crypto.find(e => e.coin == prefferedcurrency);
 
@@ -348,7 +361,7 @@ const CreateOffer = (props) => {
             <div className='login_container login_box createoff'>
                 <div className='text-center mb-5'>
                     {/* <h3 className='blackandwhite'>{`Create Offer to ${locationpath} Bitcoin`}</h3> */}
-                    {<h3 className='blackandwhite'>{`${t("CREATE_OFFER_TO")} ${t(offerbitcoin?.toLowerCase())} ${t("BITCOIN")}`}</h3>}
+                    {<h3 className='blackandwhite'>{`${t("CREATE_OFFER_TO")} ${t(ordertype?.toUpperCase())} ${t("BITCOIN")}`}</h3>}
 
                     {/* {<h3 className='blackandwhite'>Create Offer to Buy Bitcoin</h3>} */}
 
@@ -562,7 +575,7 @@ const CreateOffer = (props) => {
                                 <p className='grayandblack'>{t("START_CREATING_YOUR_OFFER")}</p>
                                 <ul className='pl-3'>
                                     <li>
-                                        <p className='grayandblack'>{t("YOU_WANT_TO")} {ordertype} {coin}</p>
+                                        <p className='grayandblack'>{t("YOU_WANT_TO")} {t(ordertype?.toUpperCase())} {coin}</p>
                                     </li>
                                     <li>
                                         <p className='grayandblack'>{t("AND_GET_PAID_IN")} {prefferedcurrency}</p>
@@ -643,8 +656,8 @@ const CreateOffer = (props) => {
                                             <button disabled={fixedmarketrate == 1} onClick={() => setFixedmarketrate(parseFloat(fixedmarketrate) - 1)}>-</button> <input type="text" placeholder={fixedmarketrate} value={fixedmarketrate} onChange={(e) => setFixedmarketrate(e?.target?.value)} />
                                             <button onClick={() => setFixedmarketrate(parseFloat(fixedmarketrate) + 1)}>+</button>
                                               <span style={{ textTransform: "uppercase" }}>
-                                                {/* {prefferedcurrency?.toUpperCase()} */}
-                                                EURO
+                                                {prefferedcurrency?.toUpperCase()}
+                                                {/* EURO */}
                                                 </span>
                                         </div>
                                         <p className='error-message mb-0'>{t(errors?.fixedprice)}</p>
@@ -676,7 +689,7 @@ const CreateOffer = (props) => {
                                 <p className='grayandblack'>{t("DECIDE_THE_PRICE")}</p>
                                 <ul className='pl-3'>
                                     <li>
-                                        <p className='grayandblack'>{t("YOU_WANT_TO")} {ordertype} {coin}</p>
+                                        <p className='grayandblack'>{t("YOU_WANT_TO")} {t(ordertype?.toUpperCase())} {coin}</p>
                                     </li>
                                     <li>
                                         <p className='grayandblack'>{t("AND_GET_PAID_IN")} {prefferedcurrency}</p>
@@ -808,7 +821,7 @@ const CreateOffer = (props) => {
                                 <p className='grayandblack'>{t("SET_THE_TERMS_INSTRUCTIONS_AND_LIMITATIONS")}</p>
                                 <ul className='pl-3'>
                                     <li>
-                                        <p className='grayandblack'>{t("YOU_WANT_TO")} {ordertype} {coin}</p>
+                                        <p className='grayandblack'>{t("YOU_WANT_TO")} {t(ordertype?.toUpperCase())} {coin}</p>
                                     </li>
                                     <li>
                                         <p className='grayandblack'>{t("AND_GET_PAID_IN")} {prefferedcurrency}</p>

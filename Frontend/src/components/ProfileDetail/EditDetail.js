@@ -182,7 +182,11 @@ const EditDetail = forwardRef((props, ref) => {
     }, [])
 
     return (
-        <form className={clsx("contact_form p-0", { "disabledForm": editForm }, "mb-0")}>
+        <>
+        {
+            (!editForm || hide == 'false')
+            ?
+            <form className={clsx("contact_form p-0", { "disabledForm": editForm }, "mb-0")}>
             <GridContainer>
                 {/* <GridItem xs={12} sm={6} md={6} lg={3}>
                     <div className="profile_name">
@@ -247,7 +251,7 @@ const EditDetail = forwardRef((props, ref) => {
                         </GridItem>
                         <GridItem xs={12} sm={6} md={6} lg={3}>
                             <div className="form-group floatinglabel">
-                                <label>{t('BUILDING_BLOCK')}<span className="textRed">*</span></label>
+                                <label>{t('BUILDING_BLOCK')}{/*<span className="textRed">*</span>*/}</label>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -292,7 +296,7 @@ const EditDetail = forwardRef((props, ref) => {
                         </GridItem>
                         <GridItem xs={12} sm={6} md={6} lg={3}>
                             <div className="form-group floatinglabel">
-                                <label>{t('POSTAL_CODE')}<span className="textRed">*</span></label>
+                                <label>{t('POSTAL_CODE')}{/*<span className="textRed">*</span>*/}</label>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -377,6 +381,10 @@ const EditDetail = forwardRef((props, ref) => {
             </GridContainer>
 
         </form>
+            :
+            <></>
+        }
+        </>
     )
 })
 

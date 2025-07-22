@@ -207,7 +207,7 @@ const ProfilePage = (props) => {
                                   ></input>
                                   <button className="themebtn">{t("CHOOSE")}</button>
                                   </div></div> 
-                                  <button className="themebtn" onClick={() => handleupdate()}>{t("UPDATE")}</button>
+                                  <button className="themebtn" onClick={() => handleupdate()}>{t("TAKE_PICTURE")}</button>
                               </div>
 
                               <p className="text-danger error-message mt-3">{t(imgerror)}</p>

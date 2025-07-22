@@ -1103,4 +1103,7 @@ export default {
     "USERS": "Users",
     "NAME_REQUIRED": "Name required",
     "SUBJECT_REQUIRED": "Subject required",
+    "TAKE_PICTURE": "Take Picture",
+    "SELL_CRYPTO" : "sell crypto",
+    "BUY_CRYPTO" : "buy crypto",
 }

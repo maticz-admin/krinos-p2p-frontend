@@ -34043,3 +34043,37 @@ option {
   margin-top: 84px;
   min-height: calc(100vh - 235px);
 }
+
+
+.notiification_link_for_web button{
+  font-size: 20px !important;
+}
+.drops_main{
+  position: absolute;
+  background: #000;
+  border: 1px solid #80808099;
+  border-radius: 8px;
+  padding: 10px 10px;
+  color: #fff;
+}
+.light_theme .drops_main {
+  background: #fff;
+  border: 1px solid #80808099;
+  color: #000 !important;
+}
+.light_theme .drops_main p{
+  color: #000 !important;
+}
+.widthsets{
+  position: relative;
+  z-index: 1;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.chat_image_preview{
+  height: 150px;
+  width: 150px;
+  object-fit: contain;
+}

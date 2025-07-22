@@ -67,23 +67,23 @@ const ViewDetail = (props) => {
                     <ul>
                     <li>
                             <label>{t("BLOCK")}</label>
-                            <span>{blockNo}</span>
+                            <span>{blockNo?blockNo:"-"}</span>
                         </li>
                         <li>
                             <label>{t("ADDRESS")}</label>
-                            <span>{address}</span>
+                            <span>{address?address:"-"}</span>
                         </li>
                         <li>
                             <label>{t("STATE_PROVISION")}</label>
-                            <span>{state}</span>
+                            <span>{state?state:"-"}</span>
                         </li>
                         <li>
                             <label>{t("CITY")} & {t("POSTAL_CODE")}</label>
-                            <span>{city}{' '}{postalCode}</span>
+                            <span>{city?city:"-"}{' '}{postalCode?postalCode:""}</span>
                         </li>
                         <li>
                             <label>{t("COUNTRY")}</label>
-                            <span>{country}</span>
+                            <span>{country?country:"-"}</span>
                         </li>
                     </ul>
                 </GridItem>

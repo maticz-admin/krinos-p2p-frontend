@@ -212,7 +212,7 @@ const Buybitcoin = (props) => {
                 {...rest} />
             <div className='login_container login_box'>
                 <div>
-                    <h1 className='blackandwhite bit_text text-center bit1'>{window.location.pathname.split('/')[2]?.toString() == "Buy" ? t("BUY") + " " + t("OFFER") : t("SELL") + " " + t("OFFER")}</h1>
+                    <h1 className='blackandwhite bit_text text-center bit1'>{window.location.pathname.split('/')[2]?.toString() == "Buy" ? t("BUY") + " " + coin : t("SELL") + " " + coin}</h1>
                     <p className='roboto subhead'>{t("BUY_OR_SELL_BITCOIN")}<br></br>{t("METHOD_AND_CURRENCY")}</p>
                 </div>
 

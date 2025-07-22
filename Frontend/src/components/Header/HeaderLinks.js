@@ -1,5 +1,5 @@
 // import package
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,10 +22,22 @@ import { setLang, getLang } from "../../lib/localStorage";
 import { upperCase } from "../../lib/stringCase";
 import config from "../../config/index";
 
-import { Getcoinlisthooks } from "../../actions/P2PorderAction";
+import {Getcoinlisthooks, Getmessagenotificationhooks, Getunreadmessagenotificationhooks, markasreadallhooks} from "../../actions/P2PorderAction";
+import { readNotification } from "actions/notificationAction";
+import { noticePopup } from "actions/notificationAction";
+import mesicon from "../../assets/images/mesicon.png"
+import { FetchunReadNotice } from "actions/notificationAction";
+import SocketContext from "components/Context/SocketContext";
+import { socket } from "config/socketConnectivity";
+
 const useStyles = makeStyles(styles);
 
 const HeaderLinks = () => {
+
+
+  const socketContext = useContext(SocketContext);
+
+
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -52,6 +64,10 @@ const HeaderLinks = () => {
   // state
   const [langOption, setLangOption] = useState([]);
   const [selLang, setSelLang] = useState("Spanish");
+  const [anchorElNoti, setAnchorElNoti] = React.useState(null);
+  const [anchorElNoti1, setAnchorElNoti1] = React.useState(null);
+  const [unreadmsg , setUnreadmsg] = useState(0);
+  const [popupdata , setPopupdata] = useState([]);
 
   // redux-state
   const { isAuth } = useSelector((state) => state.auth);
@@ -65,6 +81,8 @@ const HeaderLinks = () => {
 
   // redux-state
   const accountData = useSelector((state) => state.account);
+  const { unread, isOpen } = useSelector((state) => state.notice);
+  
   const {
     firstName,
     lastName,
@@ -183,6 +201,106 @@ const HeaderLinks = () => {
   const handleLanguagee = (event) => {
     setSelLangg(event.target.value);
   };
+
+    // notification
+
+    const handleClickNotification = async (event, val) => {
+      // alert(1);
+      if (val == "readall") {
+        let { staus, message } = await readNotification();
+      }
+      setAnchorElNoti(event.currentTarget);
+      // document.getElementsByTagName("body")[0].style.overflow ="auto";
+      document.getElementsByTagName("body")[0].classList.add("padi_over_body");
+  
+  
+    };
+  
+    const handleClickNotification1 = async (event, val) => {
+        // alert(1);
+        if (val == "readall") {
+          let { staus, message } = await readNotification();
+        }
+        setAnchorElNoti1(event.currentTarget);
+        // document.getElementsByTagName("body")[0].style.overflow ="auto";
+        document.getElementsByTagName("body")[0].classList.add("padi_over_body");
+    
+    
+      };
+  
+    const handleCloseNotification = () => {
+      setAnchorElNoti(null);
+      document.getElementsByTagName("body")[0].classList.remove("padi_over_body");
+  
+      // document.getElementsByTagName("body")[0].style.overflow ="auto";
+      // document.getElementsByTagName("body")[0].style.paddingRight ="0px";
+  
+    };
+  
+    const handleCloseNotification1 = () => {
+      setAnchorElNoti1(null);
+      document.getElementsByTagName("body")[0].classList.remove("padi_over_body");
+  
+      // document.getElementsByTagName("body")[0].style.overflow ="auto";
+      // document.getElementsByTagName("body")[0].style.paddingRight ="0px";
+  
+    };
+  
+    const readAllMsg = async () => {
+      let { staus, message } = await readNotification();
+      noticePopup(dispatch, false);
+    };
+  
+    useEffect(() => {
+      socketContext.socket.on("notice", (result) => {
+        FetchunReadNotice(dispatch, result);
+      });
+  
+      socketContext.socket.on("MSG_RD", () => {
+        fetchdata();
+      });
+    }, [socketContext.socket]);
+  
+    useEffect(() => {
+      return () => {
+        if (isOpen) {
+          readAllMsg();
+        }
+      };
+    }, [isOpen]);
+  
+  
+    useEffect(() => {
+      socket.on('messagenotice', (data) => {
+        fetchdata();
+      })
+      // socket.on('MSG_RD' , ()=>{
+      //   fetchdata();
+      // })
+  
+    }, [socket])
+  
+    useEffect(() => {
+  
+      fetchdata();
+    }, []);
+    async function fetchdata() {
+      var result = await Getmessagenotificationhooks();
+      var unreadresult = await Getunreadmessagenotificationhooks();
+      console.log("messagenotification resulat", unreadresult?.data?.data);
+      var unreaddata = unreadresult?.data?.data;
+      console.log("unread darta", unreaddata);
+      setUnreadmsg(unreaddata?.length)
+      setPopupdata(unreaddata)
+      // let checkdeposit  = await Checkdeposithooks();
+    }
+  
+    const handlemarkasreadall = async () => {
+      var result = await markasreadallhooks();
+      fetchdata();
+    }
+  
+    //  notification
 
   return (
     <div className="home_page_menu beforelog alloffers">
@@ -346,6 +464,215 @@ const HeaderLinks = () => {
                 <NavLink to="/wallet" color="transparent" className="nav-link">W allet</NavLink>
               </ListItem>
             } */}
+
+              {
+              isAuth && (
+                <>
+                  <li className="dashboard_login noti_parent_po notiification_link_for_web">
+                    {unread && unread.length > 0 ? (
+                      <span className="notify_count">
+                        {unread && unread.length}
+                      </span>
+                    ) : null}
+                    {isOpen == false ? (
+                      // <Button
+                      //   class="btn btnNotification"
+                      //   type="button"
+                      //   data-toggle="collapse"
+                      //   data-target="#notificationDropdown"
+                      //   onClick={closeBox}
+                      //   aria-expanded="false"
+                      //   aria-controls="notificationDropdown"
+                      // >
+                      <Button
+                        aria-controls="notificationDropdown"
+                        aria-haspopup="true"
+                        onClick={handleClickNotification}
+                      >
+                        <i className="fas fa-bell"></i>
+                      </Button>
+                    ) : (
+                      <Button
+                        aria-controls="notificationDropdown"
+                        aria-haspopup="true"
+                        onClick={() => { handleClickNotification("readall") }}
+                      >
+                        <i className="fas fa-bell"></i>
+                      </Button>
+                    )}
+                    <Menu
+                      id="notificationDropdown"
+                      className="afterlogin_hr"
+                      anchorEl={anchorElNoti}
+                      keepMounted
+                      open={Boolean(anchorElNoti)}
+                      onClose={handleCloseNotification}
+                    >
+                      <div className="notificationDropdown noti_child_po">
+                        {!isEmpty(unread) && unread.length > 0 ? (
+                          <>
+                            <div className="text-right">
+                              <button onClick={() => { readAllMsg() }} className="mark_read_link mark_read_link_new">Mark all as read </button>
+                            </div>
+                            <ul>
+                              {unread &&
+                                unread.length > 0 &&
+                                unread.map((item) => {
+                                  return (
+                                    <li onClick={() => {
+                                      if (item?.description == "You received one review") {
+                                        window.location.href = window?.location?.origin + "/profile#reviews";
+                                      }
+                                    }}>
+                                      <p>
+                                        {/* <TimeAgo date={new Date(item.createdAt)}>
+                                      {({ value }) => value}
+                                    </TimeAgo> */}
+                                      </p>
+                                      <h5>{item.description}</h5>
+                                    </li>
+                                  );
+                                })}
+                            </ul>
+                          </>
+                        ) : (
+                          <>
+                            <ul>
+                              <li className="nomore_ul_li">
+                                <h5>No more unread Notifications ...</h5>
+                              </li>
+                            </ul>
+                          </>
+                        )}
+
+                        <p className="text-center pb-3 pt-2">
+                          <Link to="/notification" className="all_noti_link_green all_noti_link_green_new">All Notifications</Link>
+                          {/* <Link to="/" className="all_noti_link_green">All Notifications</Link> */}
+                        </p>
+                      </div>
+
+                    </Menu>
+
+                  </li>
+
+                  {/* <li className="notiification_link_for_mob">
+                  <a href="/notification">Notifications</a>
+                </li> */}
+
+                  {/* <li className="notiification_link_for_mob">
+                  <a href="/notification">Messages</a>
+                </li> */}
+
+
+                </>
+              )}
+
+
+
+              {
+                isAuth && (
+                  <>
+                    <li className="noti_parent_po notiification_link_for_web">
+                      {unreadmsg && unreadmsg > 0 ? (
+                        <span className="notify_count">
+                          {unreadmsg && unreadmsg}
+                        </span>
+                      ) : null}
+                      {isOpen == false ? (
+                        // <Button
+                        //   class="btn btnNotification"
+                        //   type="button"
+                        //   data-toggle="collapse"
+                        //   data-target="#notificationDropdown"
+                        //   onClick={closeBox}
+                        //   aria-expanded="false"
+                        //   aria-controls="notificationDropdown"
+                        // >
+                        <Button
+                          aria-controls="notificationDropdown1"
+                          aria-haspopup="true"
+                          onClick={handleClickNotification1}
+                        >
+                          <img src={mesicon} className="mes_icon_header" />
+
+                          {/* <i className="fas fa-message"></i> */}
+                        </Button>
+                      ) : (
+                        <Button
+                          aria-controls="notificationDropdown1"
+                          aria-haspopup="true"
+                          onClick={() => { handleClickNotification1("readall") }}
+                        >
+                          <img src={mesicon} className="mes_icon_header" />
+
+                          {/* <i className="fas fa-message"></i> */}
+                        </Button>
+                      )}
+                      <Menu
+                        id="notificationDropdown1"
+                        className="afterlogin_hr"
+                        anchorEl={anchorElNoti1}
+                        keepMounted
+                        open={Boolean(anchorElNoti1)}
+                        onClose={handleCloseNotification1}
+                      >
+                        <div className="notificationDropdown noti_child_po">
+                          {!isEmpty(popupdata) && popupdata.length > 0 ? (
+                            <>
+                              <div className="text-right">
+                                <button onClick={() => { handlemarkasreadall() }} className="mark_read_link mark_read_link_new">Mark all as read </button>
+                              </div>
+                              <ul>
+                                {popupdata &&
+                                  popupdata.length > 0 &&
+                                  popupdata.map((item, i) => {
+                                    if (i < 5) {
+                                      return (//navigate.push(`/trade/${item?.roomid }`)
+                                        <div onClick={() => window.location.href = window.location.origin + `/trade/${item?.roomid}`}>
+                                          <li>
+                                            <p>
+                                              {/* <TimeAgo date={new Date(item.createdAt)}>
+                                        {({ value }) => value}
+                                      </TimeAgo> */}
+                                            </p>
+                                            <h5>{item.description}</h5>
+                                          </li></div>
+                                      );
+                                    }
+                                  })}
+                              </ul>
+                            </>
+                          ) : (
+                            <>
+                              <ul>
+                                <li className="nomore_ul_li">
+                                  <h5>No more unread Notifications ...</h5>
+                                </li>
+                              </ul>
+                            </>
+                          )}
+
+                          <p className="text-center pb-3 pt-2">
+                            <Link to="/message-notification" className="all_noti_link_green all_noti_link_green_new">All Messages</Link>
+                            {/* <Link to="/" className="all_noti_link_green">All Notifications</Link> */}
+                          </p>
+                        </div>
+
+                      </Menu>
+
+                    </li>
+
+                    <li className="notiification_link_for_mob">
+                      <a href="/notification">Notifications</a>
+                    </li>
+
+                    <li className="notiification_link_for_mob">
+                      <a href="/message-notification">Messages</a>
+                      {/* <a href="/">Notifications</a> */}
+                    </li>
+                  </>
+                )}
+
               {isAuth && (
                 <ListItem className={classes.listItem}>
                   <li className="li_ellipse_menu login_header1 ">
