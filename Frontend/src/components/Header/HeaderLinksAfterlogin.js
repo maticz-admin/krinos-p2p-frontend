@@ -382,6 +382,12 @@ export default function HeaderLinks1(props) {
                 ""
               )}
 
+              <li>
+                <NavLink to="/" exact>
+                  {t("HOME")}
+                </NavLink>
+              </li>
+
               {isAuth && (
                 <li>
                   <NavLink to="/userdash" className="nav-link">
@@ -394,12 +400,6 @@ export default function HeaderLinks1(props) {
                   <NavLink to="/viewoffers/Buy/POL">{t("OFFER")}</NavLink>
                 </li>
               )}
-
-              <li>
-                <NavLink to="/" exact>
-                  {t("HOME")}
-                </NavLink>
-              </li>
 
               {/* {isAuth && (
               <li>
