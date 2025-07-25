@@ -185,7 +185,21 @@ const CreateOffer = (props) => {
             console.log("Result in get coin list hooks", result, finalarray);
 
             setCrypto(finalarray);
-            setCoin(finalarray[0].symbol)
+
+            let initialCoin = finalarray?.[0];
+            console.log('checkkkk',location?.state?.state?.coin)
+            if(location?.state?.state?.coin){
+                let getCoinData = finalarray?.find((check)=>check?.name==location?.state?.state?.coin)
+                console.log('getCoinData',getCoinData,finalarray)
+                if(getCoinData){
+                    initialCoin = getCoinData
+                }
+            }
+            if(location?.state?.state?.type){
+                setOrdertype(location?.state?.state?.type);
+            }
+
+            setCoin(initialCoin.symbol)
             // var precurrency = await Getpreferedcurrency()
             var precurrency = await getPreferredCurrency()
             console.log("preferred currency", precurrency);
@@ -193,7 +207,7 @@ const CreateOffer = (props) => {
             setPrefferedcurrencylist(precurrency?.result);
             setPrefferedcurrency(precurrency?.result[0]?.coin)
             setPreimage(`${precurrency?.result[0]?.image}`)
-            setCoinimg(`${config.API_URL}/images/currency/${finalarray[0]?.image}`);
+            setCoinimg(`${config.API_URL}/images/currency/${initialCoin?.image}`);
             var ofrtg = await Getalloffertaghook();
             setOffertaglist(ofrtg?.data?.data);
             var paytype = await getpaymenttypeshook();
@@ -329,6 +343,8 @@ const CreateOffer = (props) => {
             setErrors(data)
         }
     }
+
+    console.log('locaaassss',location)
 
 
     return (

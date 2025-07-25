@@ -204,28 +204,35 @@ const UserKycDetail = () => {
                                         <p>{t("YOUR_KYC_UNDER_REVIEW")}</p>
                                     </div>}
                                     
-                                    <li className='flex-column'>
-                                        <h5 className='title-txt my-0'>{t("KYC")}</h5>
-                                        <p className='mt-2 des mb-0 '>{t("KYC_HEADER")}
-                                        <p>{t("KYC_STEP1")}</p>
-                                        <p>{t("KYC_STEP2")}</p>
-                                        <p>{t("KYC_STEP3")}.</p>
-                                        <p>{t("KYC_STEP4")} </p>
-                                        <p>{t("KYC_FINAL_STEP")}</p>
-                                        </p>
-                                        {!["Approved" , "In Review"]?.includes(userdetail?.kyc?.status) &&<div className="form-group green-button mt-2">
-                                            <button
-                                                type="button" className="themebtn text-uppercase py-2 my-0"
-                                                onClick={handleverify}
-                                                disabled={loader}
-                                            >
-                                                {loader && <i class="fas fa-spinner fa-spin"></i>}
-                                                {"Complete Now"}
-                                            </button>
-                                        </div>}
-
-                                        
-                                    </li>
+                                    {
+                                        !["Approved", "In Review"]?.includes(userdetail?.kyc?.status)
+                                            ?
+                                            <>
+                                                <li className='flex-column'>
+                                                    <h5 className='title-txt my-0'>{t("KYC")}</h5>
+                                                    <p className='mt-2 des mb-0 '>{t("KYC_HEADER")}
+                                                        <p>{t("KYC_STEP1")}</p>
+                                                        <p>{t("KYC_STEP2")}</p>
+                                                        <p>{t("KYC_STEP3")}.</p>
+                                                        <p>{t("KYC_STEP4")} </p>
+                                                        <p>{t("KYC_FINAL_STEP")}</p>
+                                                    </p>
+                                                    {!["Approved", "In Review"]?.includes(userdetail?.kyc?.status) && <div className="form-group green-button mt-2">
+                                                        <button
+                                                            type="button" className="themebtn text-uppercase py-2 my-0"
+                                                            onClick={handleverify}
+                                                            disabled={loader}
+                                                        >
+                                                            {loader && <i class="fas fa-spinner fa-spin"></i>}
+                                                            {"Complete Now"}
+                                                        </button>
+                                                    </div>}
+                                                </li>
+                                            </>
+                                            :
+                                            <></>
+                                    }
+                                    
 
                                 </ul>
                             </div>

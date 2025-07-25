@@ -353,7 +353,10 @@ const HeaderLinks = () => {
                     {coinlist?.map((data, i) => {
                       var img = "crypt" + (i + 1);
                       return (
-                        <Dropdown.Item href={`/viewoffers/Buy/${data?.name}`}>
+                        <Dropdown.Item 
+                          // href={`/viewoffers/Buy/${data?.name}`}
+                          onClick={()=>history.push(`/viewoffers/Buy/${data?.name}`)}
+                        >
                           <img
                             src={`${config.API_URL}/images/currency/${data?.image}`}
                             className="iconss"
@@ -379,7 +382,10 @@ const HeaderLinks = () => {
                     {coinlist?.map((data, i) => {
                       var img = "crypt" + (i + 1);
                       return (
-                        <Dropdown.Item href={`/viewoffers/Sell/${data?.name}`}>
+                        <Dropdown.Item 
+                          // href={`/viewoffers/Sell/${data?.name}`}
+                          onClick={()=>history.push(`/viewoffers/Sell/${data?.name}`)}
+                        >
                           <img
                             src={`${config.API_URL}/images/currency/${data?.image}`}
                             className="iconss"
@@ -948,7 +954,10 @@ const HeaderLinks = () => {
                     {coinlist?.map((data, i) => {
                       var img = "crypt" + (i + 1);
                       return (
-                        <Dropdown.Item href={`/viewoffers/Buy/${data?.coin}`}>
+                        <Dropdown.Item 
+                          // href={`/viewoffers/Buy/${data?.coin}`}
+                          onClick={()=>history.push(`/viewoffers/Buy/${data?.name}`)}  
+                        >
                           <img
                             src={`${config.API_URL}/images/currency/${data?.image}`}
                             className="iconss drop_icon"
@@ -974,7 +983,10 @@ const HeaderLinks = () => {
                     {coinlist?.map((data, i) => {
                       var img = "crypt" + (i + 1);
                       return (
-                        <Dropdown.Item href={`/viewoffers/Sell/${data?.coin}`}>
+                        <Dropdown.Item 
+                          // href={`/viewoffers/Sell/${data?.coin}`}
+                          onClick={()=>history.push(`/viewoffers/Sell/${data?.name}`)}    
+                        >
                           <img
                             src={`${config.API_URL}/images/currency/${data?.image}`}
                             className="iconss drop_icon"

@@ -1,5 +1,5 @@
 let key = {};
-let env='maticzdemo' //production or local
+let env='demo' //production or local
 if (env === "demo") {
     const API_URL = "https://backp2p-stage.krinos.app"    
     //const API_URL = 'https://krinosp2p-backend.maticz.in';

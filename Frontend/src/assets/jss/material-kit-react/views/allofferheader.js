@@ -150,7 +150,7 @@ const Buybitcoin = (props) => {
             var userresult = await Getsingleuserhook(userpayload);
             setUserverification(userresult?.data?.data);
             if (userresult?.data?.kyc?.status == "Approved") {
-                navigate.push("/createoffer");
+                navigate.push("/createoffer",{state:{type: window.location.pathname.split('/')[2]?.toString(), coin: coin}});
             }
             else {
                 toastAlert("error", t("COMPLETE_YOUR_KYC_AND_UPDATE_FULL_NAME"));

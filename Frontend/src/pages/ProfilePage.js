@@ -205,9 +205,9 @@ const ProfilePage = (props) => {
                                     // setImageblob(URL.createObjectURL(e?.target?.files[0]));
                                   }}
                                   ></input>
-                                  <button className="themebtn">{t("CHOOSE")}</button>
+                                  <button className="themebtn">{t("TAKE_PICTURE")}</button>
                                   </div></div> 
-                                  <button className="themebtn" onClick={() => handleupdate()}>{t("TAKE_PICTURE")}</button>
+                                  <button className="themebtn" onClick={() => handleupdate()}>{t("UPDATE")}</button>
                               </div>
 
                               <p className="text-danger error-message mt-3">{t(imgerror)}</p>
