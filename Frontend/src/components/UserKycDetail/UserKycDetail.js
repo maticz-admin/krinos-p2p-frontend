@@ -232,7 +232,6 @@ const UserKycDetail = () => {
                                             :
                                             <></>
                                     }
-                                    
 
                                 </ul>
                             </div>

@@ -354,8 +354,8 @@ const HeaderLinks = () => {
                       var img = "crypt" + (i + 1);
                       return (
                         <Dropdown.Item 
-                          // href={`/viewoffers/Buy/${data?.name}`}
-                          onClick={()=>history.push(`/viewoffers/Buy/${data?.name}`)}
+                          href={`/viewoffers/Buy/${data?.name}`}
+                          // onClick={()=>history.push(`/viewoffers/Buy/${data?.name}`)}
                         >
                           <img
                             src={`${config.API_URL}/images/currency/${data?.image}`}
@@ -383,8 +383,8 @@ const HeaderLinks = () => {
                       var img = "crypt" + (i + 1);
                       return (
                         <Dropdown.Item 
-                          // href={`/viewoffers/Sell/${data?.name}`}
-                          onClick={()=>history.push(`/viewoffers/Sell/${data?.name}`)}
+                          href={`/viewoffers/Sell/${data?.name}`}
+                          // onClick={()=>history.push(`/viewoffers/Sell/${data?.name}`)}
                         >
                           <img
                             src={`${config.API_URL}/images/currency/${data?.image}`}
@@ -955,8 +955,8 @@ const HeaderLinks = () => {
                       var img = "crypt" + (i + 1);
                       return (
                         <Dropdown.Item 
-                          // href={`/viewoffers/Buy/${data?.coin}`}
-                          onClick={()=>history.push(`/viewoffers/Buy/${data?.name}`)}  
+                          href={`/viewoffers/Buy/${data?.coin}`}
+                          // onClick={()=>history.push(`/viewoffers/Buy/${data?.name}`)}  
                         >
                           <img
                             src={`${config.API_URL}/images/currency/${data?.image}`}
@@ -984,8 +984,8 @@ const HeaderLinks = () => {
                       var img = "crypt" + (i + 1);
                       return (
                         <Dropdown.Item 
-                          // href={`/viewoffers/Sell/${data?.coin}`}
-                          onClick={()=>history.push(`/viewoffers/Sell/${data?.name}`)}    
+                          href={`/viewoffers/Sell/${data?.coin}`}
+                          // onClick={()=>history.push(`/viewoffers/Sell/${data?.name}`)}    
                         >
                           <img
                             src={`${config.API_URL}/images/currency/${data?.image}`}

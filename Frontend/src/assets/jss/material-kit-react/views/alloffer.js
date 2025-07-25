@@ -181,12 +181,10 @@ const Buybitcoin = (props) => {
                             </div>
                         </div>
 
-                        {console.log('sennddddd',coin,)}
-
                         <div className='d-flex align-items-center justify-content-end mt-5 mb-3'>
                             {/* <button className='graybtn my-3'>How to start</button> */}
                             {/* <button className='themebtn' onClick={() => setCreateModal(true)}>Create offer</button> */}
-                           <Link to={{pathname:"/createoffer", state: { coin: coin,  }}}><button className='themebtn'>{t("CREATE_OFFER")}</button></Link>
+                           <Link to="/createoffer"><button className='themebtn'>{t("CREATE_OFFER")}</button></Link>
                         </div>
 
                         <div className='tableborder'>

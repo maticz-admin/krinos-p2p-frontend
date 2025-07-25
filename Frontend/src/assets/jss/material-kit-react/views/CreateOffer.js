@@ -185,7 +185,6 @@ const CreateOffer = (props) => {
             console.log("Result in get coin list hooks", result, finalarray);
 
             setCrypto(finalarray);
-
             let initialCoin = finalarray?.[0];
             console.log('checkkkk',location?.state?.state?.coin)
             if(location?.state?.state?.coin){
@@ -343,8 +342,6 @@ const CreateOffer = (props) => {
             setErrors(data)
         }
     }
-
-    console.log('locaaassss',location)
 
 
     return (
