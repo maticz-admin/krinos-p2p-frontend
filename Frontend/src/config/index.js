@@ -1,5 +1,5 @@
 let key = {};
-let env='maticzdemo' //production or local
+let env='salesdemo' //production or local
 if (env === "demo") {
     const API_URL = "https://backp2p-stage.krinos.app"    
     //const API_URL = 'https://krinosp2p-backend.maticz.in';
@@ -39,6 +39,25 @@ else if (env === "maticzdemo") {
         ADMIN_URL: 'https://uatadmin-p2p.krinos.app/',
         // SOCKET_URL: "https://backp2p-stage.krinos.app/", 
         SOCKET_URL:'https://krinosp2p-backend.maticz.in/',
+        getGeoInfo: "https://geolocation-db.com/json/",
+        AUTHENTICATOR_URL : {
+            PLAY_STORE: "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2",
+            APP_STORE: "https://apps.apple.com/us/app/google-authenticator/id388497605",
+        },
+    };
+}
+else if (env === "salesdemo") {
+    // const API_URL = "https://backp2p-stage.krinos.app/"    
+    const API_URL = 'https://krinosp2pbd-backend.maticz.in/';
+    key = {
+        fronturl : "https://krinosp2p-sales-frontend.pages.dev",
+        secretOrKey: "vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3",
+        CRYPTO_SECRET_KEY: "1234567812345678",
+        RECAPTCHA_SITE_KEY: "6LcNAH4rAAAAAMcji4ul5LhrLqALIWjglOhm-aEx", //local
+        API_URL: 'https://krinosp2pbd-backend.maticz.in/',
+        FRONT_URL: "https://krinosp2p-sales-frontend.pages.dev",
+        ADMIN_URL: 'https://krinosp2p-sales-adminpanel.pages.dev/',
+        SOCKET_URL:'https://krinosp2pbd-backend.maticz.in/',
         getGeoInfo: "https://geolocation-db.com/json/",
         AUTHENTICATOR_URL : {
             PLAY_STORE: "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2",

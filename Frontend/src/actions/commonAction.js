@@ -102,6 +102,7 @@ export const getPreferredCurrency = async (dispatch) => {
             'url': `/api/get-preferredCurrency`,
         });
         const response = decodedata(respData.data)
+        console.log('responseresponse',response)
         // dispatch(setCurrencyOption(response.result))
         return {
             status: 'success',
